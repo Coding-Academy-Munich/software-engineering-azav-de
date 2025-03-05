@@ -13144,6 +13144,138 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=db3c86fa554279ea"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Editoren und Entwicklungsumgebungen<br/>(und Compiler, Interpreter)</h2>
+<h3 id="Wesentliche-Werkzeuge-f%C3%BCr-modernes-Software-Engineering">Wesentliche Werkzeuge für modernes Software-Engineering<a class="anchor-link" href="#Wesentliche-Werkzeuge-f%C3%BCr-modernes-Software-Engineering">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=23eaace62101bb91"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="I.-Texteditoren">I. Texteditoren<a class="anchor-link" href="#I.-Texteditoren">¶</a></h2><p><strong>Was sind Texteditoren?</strong></p>
+<ul>
+<li>Werkzeuge zum Erstellen und Bearbeiten von reinen Textdateien</li>
+<li>Unterschied zu Textverarbeitungsprogrammen</li>
+<li>Grundlage der Programmierung und Softwareentwicklung</li>
+<li>Reichen von einfach (Notepad) bis fortgeschritten (Vim, Emacs, VS Code)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cdc16e85608e88f5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="II.-Codeausf%C3%BChrung:-Compiler-und-Interpreter">II. Codeausführung: Compiler und Interpreter<a class="anchor-link" href="#II.-Codeausf%C3%BChrung:-Compiler-und-Interpreter">¶</a></h2><p><strong>Wie wird Code zu laufender Software?</strong></p>
+<ul>
+<li>Compiler: Übersetzen gesamten Code in Maschinensprache</li>
+<li>Interpreter: Führen Code zeilenweise aus</li>
+<li>Hybride Ansätze (JIT-Kompilierung)</li>
+<li>Verschiedene Paradigmen für verschiedene Anforderungen</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f616e96520e7b42a"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Compiler-(C++)">Compiler (C++)<a class="anchor-link" href="#Compiler-(C++)">¶</a></h2><p><img alt="No description has been provided for this image" src="img/compiler.svg" style="width:60%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5b638a7730d83a5d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interpreter-(Python)">Interpreter (Python)<a class="anchor-link" href="#Interpreter-(Python)">¶</a></h2><p><img alt="No description has been provided for this image" src="img/interpreter.svg" style="width:60%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=75d3d3c514c5e449"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="III.-Jupyter-Notebooks">III. Jupyter Notebooks<a class="anchor-link" href="#III.-Jupyter-Notebooks">¶</a></h2><p><strong>Interaktive Rechenumgebungen</strong></p>
+<ul>
+<li>Code + Dokumentation + Visualisierung in einem Dokument</li>
+<li>Zellenbasiertes Ausführungsmodell</li>
+<li>Literarischer Programmieransatz</li>
+<li>Beliebt in Data Science, Bildung und Forschung</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cd58a554ede77ae1"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Jupyter-Notebooks">Jupyter Notebooks<a class="anchor-link" href="#Jupyter-Notebooks">¶</a></h2><p><img alt="No description has been provided for this image" src="img/jupyter-notebook.svg" style="width:60%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=732c2970ebbb145a">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fact</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=39126b347bc1128e">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fact</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b75c0eaa05d665e7"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="IV.-Integrierte-Entwicklungsumgebungen-(IDEs)">IV. Integrierte Entwicklungsumgebungen (IDEs)<a class="anchor-link" href="#IV.-Integrierte-Entwicklungsumgebungen-(IDEs)">¶</a></h2><p><strong>Umfassende Entwicklungswerkzeuge</strong></p>
+<ul>
+<li>Mehr als einfache Textbearbeitung</li>
+<li>Code-Intelligenz-Funktionen</li>
+<li>Debugging-Möglichkeiten</li>
+<li>Projektverwaltung</li>
+<li>Integrierte Toolchains</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f9f72a0c3acd4db4"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="V.-Funktionen-moderner-Entwicklungsumgebungen">V. Funktionen moderner Entwicklungsumgebungen<a class="anchor-link" href="#V.-Funktionen-moderner-Entwicklungsumgebungen">¶</a></h2><p><strong>Jenseits von grundlegender Bearbeitung und Kompilierung</strong></p>
+<ul>
+<li>Code-Analyse- und Qualitätswerkzeuge</li>
+<li>Test-Frameworks und -Integration</li>
+<li>Containerisierung und Cloud-Entwicklung</li>
+<li>KI-unterstützte Programmierung</li>
+<li>Remote-Entwicklungsmöglichkeiten</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 </main>

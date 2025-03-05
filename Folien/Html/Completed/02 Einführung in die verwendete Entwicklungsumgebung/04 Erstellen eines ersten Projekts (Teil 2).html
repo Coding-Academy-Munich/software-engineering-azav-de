@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f4120ff522ccdac3"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=0bfd853e4aa6ceb1"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,7 +13136,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Editoren und Entwicklungsumgebungen</b>
+<b>Erstellen eines ersten Projekts (Teil 2)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13144,121 +13144,156 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=db3c86fa554279ea"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9b4f398efbc4c1ae"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2>Editoren und Entwicklungsumgebungen<br/>(und Compiler, Interpreter)</h2>
-<h3 id="Wesentliche-Werkzeuge-f%C3%BCr-modernes-Software-Engineering">Wesentliche Werkzeuge für modernes Software-Engineering<a class="anchor-link" href="#Wesentliche-Werkzeuge-f%C3%BCr-modernes-Software-Engineering">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=23eaace62101bb91"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="I.-Texteditoren">I. Texteditoren<a class="anchor-link" href="#I.-Texteditoren">¶</a></h2><p><strong>Was sind Texteditoren?</strong></p>
-<ul>
-<li>Werkzeuge zum Erstellen und Bearbeiten von reinen Textdateien</li>
-<li>Unterschied zu Textverarbeitungsprogrammen</li>
-<li>Grundlage der Programmierung und Softwareentwicklung</li>
-<li>Reichen von einfach (Notepad) bis fortgeschritten (Vim, Emacs, VS Code)</li>
+<h2 id="Zeichnen-einer-Spirale">Zeichnen einer Spirale<a class="anchor-link" href="#Zeichnen-einer-Spirale">¶</a></h2><ul>
+<li>Als eine etwas interessanteres Beispiel wollen wir eine bunte Spirale zeichnen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cdc16e85608e88f5"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_solution" id="cell-id=94cb88409222ffec"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="II.-Codeausf%C3%BChrung:-Compiler-und-Interpreter">II. Codeausführung: Compiler und Interpreter<a class="anchor-link" href="#II.-Codeausf%C3%BChrung:-Compiler-und-Interpreter">¶</a></h2><p><strong>Wie wird Code zu laufender Software?</strong></p>
-<ul>
-<li>Compiler: Übersetzen gesamten Code in Maschinensprache</li>
-<li>Interpreter: Führen Code zeilenweise aus</li>
-<li>Hybride Ansätze (JIT-Kompilierung)</li>
-<li>Verschiedene Paradigmen für verschiedene Anforderungen</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f616e96520e7b42a"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Compiler-(C++)">Compiler (C++)<a class="anchor-link" href="#Compiler-(C++)">¶</a></h2><p><img alt="No description has been provided for this image" src="img/compiler.svg" style="width:60%;margin:auto"/></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5b638a7730d83a5d"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interpreter-(Python)">Interpreter (Python)<a class="anchor-link" href="#Interpreter-(Python)">¶</a></h2><p><img alt="No description has been provided for this image" src="img/interpreter.svg" style="width:60%;margin:auto"/></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=75d3d3c514c5e449"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="III.-Jupyter-Notebooks">III. Jupyter Notebooks<a class="anchor-link" href="#III.-Jupyter-Notebooks">¶</a></h2><p><strong>Interaktive Rechenumgebungen</strong></p>
-<ul>
-<li>Code + Dokumentation + Visualisierung in einem Dokument</li>
-<li>Zellenbasiertes Ausführungsmodell</li>
-<li>Literarischer Programmieransatz</li>
-<li>Beliebt in Data Science, Bildung und Forschung</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cd58a554ede77ae1"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Jupyter-Notebooks">Jupyter Notebooks<a class="anchor-link" href="#Jupyter-Notebooks">¶</a></h2><p><img alt="No description has been provided for this image" src="img/jupyter-notebook.svg" style="width:60%;margin:auto"/></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=732c2970ebbb145a">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Set up the window</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Screen</span><span class="p">()</span>
+<span class="n">window</span><span class="o">.</span><span class="n">bgcolor</span><span class="p">(</span><span class="s2">"black"</span><span class="p">)</span>
+
+<span class="c1"># Create a turtle object</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Speed up the turtle</span>
+<span class="n">t</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Slightly thicker line</span>
+
+<span class="c1"># Create a colorful spiral</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"orange"</span><span class="p">,</span> <span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"purple"</span><span class="p">]</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Now draw the actual spiral</span>
+<span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">):</span>
+    <span class="c1"># Change color every few steps</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)])</span>
+
+    <span class="c1"># Draw a line and turn</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+
+    <span class="c1"># Increase the line length each time</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="mi">3</span>
+
+<span class="c1"># Hide the turtle when finished</span>
+<span class="n">t</span><span class="o">.</span><span class="n">hideturtle</span><span class="p">()</span>
+
+<span class="c1"># Keep the window open until it's clicked</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">done</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=45f06eabbf254b9e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Zeichnen-von-Sternen-im-Hintergrund">Zeichnen von Sternen im Hintergrund<a class="anchor-link" href="#Zeichnen-von-Sternen-im-Hintergrund">¶</a></h2><ul>
+<li>Wir wollen nun Sterne im Hintergrund zeichnen</li>
+<li>Die Sterne sollen zufällig verteilt sein und unterschiedliche Größen haben</li>
+<li>Sie sollen außerhalb der Spirale liegen</li>
+<li>Wir verwenden dazu die <code>random</code> Bibliothek</li>
+<li>Aufgrund des Workshops wissen wir bereits, wie wir Sterne zeichnen können</li>
+</ul>
+<p>Pasten Sie den folgenden Code in das Programm (vor der Zeile <code>t.hideturtle()</code>):</p>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=39126b347bc1128e">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2eb5a2b6ba5ee2ed"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># The approximate radius of the spiral</span>
+<span class="n">spiral_radius</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">penup</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Fastest speed</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">250</span><span class="p">):</span>
+    <span class="c1"># Generate coordinates outside the spiral area</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+        <span class="c1"># Calculate distance from origin</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Check if outside the spiral area</span>
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="n">spiral_radius</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">pendown</span><span class="p">()</span>
+
+    <span class="c1"># Use a random color from the list</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">colors</span><span class="p">))</span>
+
+    <span class="c1"># Draw stars with random sizes</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Reset the direction</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>
+
+    <span class="n">t</span><span class="o">.</span><span class="n">penup</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b75c0eaa05d665e7"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b0b7631a1b9fc4a6"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="IV.-Integrierte-Entwicklungsumgebungen-(IDEs)">IV. Integrierte Entwicklungsumgebungen (IDEs)<a class="anchor-link" href="#IV.-Integrierte-Entwicklungsumgebungen-(IDEs)">¶</a></h2><p><strong>Umfassende Entwicklungswerkzeuge</strong></p>
-<ul>
-<li>Mehr als einfache Textbearbeitung</li>
-<li>Code-Intelligenz-Funktionen</li>
-<li>Debugging-Möglichkeiten</li>
-<li>Projektverwaltung</li>
-<li>Integrierte Toolchains</li>
+<h2 id="Workshop:-Zeichnen-eines-bunten-Sterns">Workshop: Zeichnen eines bunten Sterns<a class="anchor-link" href="#Workshop:-Zeichnen-eines-bunten-Sterns">¶</a></h2><ul>
+<li>Schreiben Sie ein Python Programm, das einen bunten Stern zeichnet</li>
+<li>Der Stern soll aus 5 Linien bestehen, die in unterschiedlichen Farben
+gezeichnet werden</li>
+<li>Dabei können Sie das Programm aus dem vorherigen Workshop verwenden</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f9f72a0c3acd4db4"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=adbe9261e6770e21"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="V.-Funktionen-moderner-Entwicklungsumgebungen">V. Funktionen moderner Entwicklungsumgebungen<a class="anchor-link" href="#V.-Funktionen-moderner-Entwicklungsumgebungen">¶</a></h2><p><strong>Jenseits von grundlegender Bearbeitung und Kompilierung</strong></p>
-<ul>
-<li>Code-Analyse- und Qualitätswerkzeuge</li>
-<li>Test-Frameworks und -Integration</li>
-<li>Containerisierung und Cloud-Entwicklung</li>
-<li>KI-unterstützte Programmierung</li>
-<li>Remote-Entwicklungsmöglichkeiten</li>
-</ul>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Set up the window</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Screen</span><span class="p">()</span>
+<span class="n">window</span><span class="o">.</span><span class="n">bgcolor</span><span class="p">(</span><span class="s2">"black"</span><span class="p">)</span>
+
+<span class="c1"># Create a turtle object</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+
+<span class="c1"># Set pen color</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"orange"</span><span class="p">,</span> <span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"purple"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">]</span>
+
+<span class="c1"># Set the turtle's speed</span>
+<span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Set the drawing pen's size</span>
+<span class="n">t</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Draw a simple square</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="c1"># t.color(random.choice(colors))  # Random color</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)])</span>  <span class="c1"># Fixed sequence of colors</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>  <span class="c1"># Move forward 100 pixels</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">144</span><span class="p">)</span>     <span class="c1"># Turn right 144 degrees</span>
+
+<span class="c1"># Keep the window open until it's clicked</span>
+<span class="n">turtle</span><span class="o">.</span><span class="n">done</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 </div>
