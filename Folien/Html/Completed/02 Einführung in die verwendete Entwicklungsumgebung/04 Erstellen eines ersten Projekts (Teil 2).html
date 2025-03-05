@@ -13153,7 +13153,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_solution" id="cell-id=94cb88409222ffec"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_solution" id="cell-id=390f29721f3fce0f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>
@@ -13169,16 +13169,15 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Speed up the turtle</span>
 <span class="n">t</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Slightly thicker line</span>
 
-<span class="c1"># Create a colorful spiral</span>
+<span class="c1"># Create a list of colors</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"orange"</span><span class="p">,</span> <span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"purple"</span><span class="p">]</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
 
-<span class="c1"># Now draw the actual spiral</span>
-<span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># Now draw the colorful spiral</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">):</span>
     <span class="c1"># Change color every few steps</span>
     <span class="n">t</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)])</span>
+    <span class="c1"># t.color(random.choice(colors))</span>
 
     <span class="c1"># Draw a line and turn</span>
     <span class="n">t</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
@@ -13262,7 +13261,7 @@ gezeichnet werden</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=adbe9261e6770e21"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_alt" id="cell-id=adbe9261e6770e21"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>

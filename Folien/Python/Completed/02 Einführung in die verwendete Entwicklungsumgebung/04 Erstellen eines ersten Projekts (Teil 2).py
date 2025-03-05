@@ -29,16 +29,15 @@
 # t.speed(10)  # Speed up the turtle
 # t.pensize(2)  # Slightly thicker line
 #
-# # Create a colorful spiral
+# # Create a list of colors
 # colors = ["red", "orange", "yellow", "green", "blue", "purple"]
-# size = 10
 #
-# # Now draw the actual spiral
-# t.speed(10)
+# # Now draw the colorful spiral
 # size = 10
 # for i in range(60):
 #     # Change color every few steps
 #     t.color(colors[i % len(colors)])
+#     # t.color(random.choice(colors))
 #
 #     # Draw a line and turn
 #     t.forward(size)
