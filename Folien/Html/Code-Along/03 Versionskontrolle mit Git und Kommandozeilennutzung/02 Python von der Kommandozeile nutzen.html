@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f04b7e2eea9398f7"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=097ccc866e256953"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,12 +13136,83 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Ausführen von Python</b>
+<b>Python von der Kommandozeile nutzen</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
 <br/>
 </br></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=bdc7061dd8cc5bb5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Python-auf-der-Kommandozeile-nutzen">Python auf der Kommandozeile nutzen<a class="anchor-link" href="#Python-auf-der-Kommandozeile-nutzen">¶</a></h1><h2 id="Interaktive-und-Skript-Ausf%C3%BChrung-von-Python">Interaktive und Skript-Ausführung von Python<a class="anchor-link" href="#Interaktive-und-Skript-Ausf%C3%BChrung-von-Python">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=106af73b672d828b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interaktives-Python:-Die-REPL">Interaktives Python: Die REPL<a class="anchor-link" href="#Interaktives-Python:-Die-REPL">¶</a></h2><p>Starte interaktives Python mit:</p>
+<div class="highlight"><pre><span></span>python
+</pre></div>
+<p>Der Prompt <code>&gt;&gt;&gt;</code> zeigt an, dass Python bereit ist und Sie Anweisungen eingeben können.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3e1df59e44edfff9"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Probieren Sie einfache Anweisungen aus:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="mi">4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"Hallo"</span> <span class="o">+</span> <span class="s2">" Welt"</span>
+<span class="s1">'Hallo Welt'</span>
+</pre></div>
+<p>Beenden mit <code>exit()</code> oder <code>Strg+D</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=00af7a2aa4057dea"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Skripte-aus-Dateien-ausf%C3%BChren">Skripte aus Dateien ausführen<a class="anchor-link" href="#Skripte-aus-Dateien-ausf%C3%BChren">¶</a></h2><p>Erstelle <code>hallo.py</code>:</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Hallo aus dem Skript!"</span><span class="p">)</span>
+</pre></div>
+<p>Skript ausführen:</p>
+<div class="highlight"><pre><span></span>python<span class="w"> </span>hallo.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=34abe0e91bfbc957"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Python-Module-mit-python--m-ausf%C3%BChren">Python-Module mit <code>python -m</code> ausführen<a class="anchor-link" href="#Python-Module-mit-python--m-ausf%C3%BChren">¶</a></h2><p>Python ermöglicht direkten Aufruf interner Module mit <code>-m</code>:</p>
+<div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>calendar
+python<span class="w"> </span>-m<span class="w"> </span>calendar<span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=71f1aa00dd2d794a"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Python-auf-der-Kommandozeile-nutzen">Workshop: Python auf der Kommandozeile nutzen<a class="anchor-link" href="#Workshop:-Python-auf-der-Kommandozeile-nutzen">¶</a></h2><ul>
+<li>Geben Sie folgende Ausdrücke interaktiv ein:<ul>
+<li><code>2+3</code></li>
+<li><code>"Hallo " * 3</code></li>
+</ul>
+</li>
+<li>Führen Sie die Turtle-Grafikskripte aus verschiedenen Verzeichnissen aus. Wann können Sie die <code>-m</code> Option verwenden?</li>
+<li>Führen Sie die folgenden internen Module aus:<ul>
+<li><code>calendar</code> (ohne Argumente, mit Jahr, mit Jahr und Monat)</li>
+<li><code>this</code> (ohne Argumente)</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>

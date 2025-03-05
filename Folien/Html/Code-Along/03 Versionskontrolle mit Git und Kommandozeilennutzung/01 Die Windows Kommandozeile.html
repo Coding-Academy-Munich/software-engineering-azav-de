@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=cfaa5ffe46de57b9"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=9a01bb7e2e9c29f2"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,12 +13136,118 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Ausführen von Git</b>
+<b>Die Windows Kommandozeile</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
 <br/>
 </br></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=71094c6ff8f9e3e0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Powershell">Powershell<a class="anchor-link" href="#Powershell">¶</a></h1><ul>
+<li>Eine moderne Shell für Windows</li>
+<li>I Menü unter <code>Windows PowerShell</code> zu finden</li>
+<li>Unterschiedliche Befehle und Syntax als die alte Eingabeaufforderung
+(<code>Command.com</code>)</li>
+<li>Open-Source Version auf GitHub verfügbar</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f15491b5102c4d67"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Starten-von-Programmen">Starten von Programmen<a class="anchor-link" href="#Starten-von-Programmen">¶</a></h2><ul>
+<li>Der Prompt der Powershell sieht folgendermaßen aus:<div class="highlight"><pre><span></span><span class="nb">PS </span><span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">Matthias</span> <span class="n">Hölzl</span><span class="p">&gt;</span>
+</pre></div>
+</li>
+<li>Sie können viele Programme starten, indem Sie einfach ihren Namen eingeben.<ul>
+<li><code>notepad</code> für einen einfachen Text-Editor</li>
+<li><code>code</code> für Visual Studio Code</li>
+<li><code>python</code> für den Python Interpreter</li>
+<li><code>git</code> für das Git Versionskontroll-System</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ce0bec021d7d2181"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>PowerShell bietet Vervollständigung von Befehlen und Pfaden</li>
+<li>Drücken Sie <code>Tab</code>, um Befehle und Pfade zu vervollständigen</li>
+<li>Dabei wird bei Programmen typischerweise die Dateiendung ergänzt<ul>
+<li><code>.exe</code>, <code>.cmd</code>, <code>.bat</code>, <code>.ps1</code>, usw.</li>
+</ul>
+</li>
+<li>Nach dem Kommando können Argumente folgen, z.B. Dateinamen oder Optionen<ul>
+<li><code>code my-file.txt</code> öffnet die Datei <code>my-file.txt</code> in Visual Studio Code</li>
+</ul>
+</li>
+<li>Sie können die Pfeiltasten verwenden, um durch die Befehlshistorie zu
+navigieren</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=26ac50adfd3f1f92"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Das-Aktuelle-Verzeichnis">Das Aktuelle Verzeichnis<a class="anchor-link" href="#Das-Aktuelle-Verzeichnis">¶</a></h2><ul>
+<li>Das im Prompt angezeigte Verzeichnis nennt sich "aktuelles Verzeichnis"
+oder "Arbeitsverzeichnis".</li>
+<li>Sie können auch das Kommando <code>pwd</code> eingeben, um das aktuelle Verzeichnis zu sehen.</li>
+<li>Mit <code>ls</code> oder <code>dir</code> können Sie die Dateien im aktuellen Verzeichnis anzeigen.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e269a4740779207d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wechseln-des-Arbeitsverzeichnisses">Wechseln des Arbeitsverzeichnisses<a class="anchor-link" href="#Wechseln-des-Arbeitsverzeichnisses">¶</a></h2><ul>
+<li>Mit dem Kommando <code>cd</code> können Sie das aktuelle Verzeichnis wechseln</li>
+<li>Nach <code>cd</code> steht ein Pfad:<ul>
+<li>Absoluter Pfad: <code>cd c:\Windows</code></li>
+<li>Relativer Pfad: <code>cd System</code> oder <code>cd .\System</code></li>
+</ul>
+</li>
+<li>Sie können die <code>Tab</code>-Taste verwenden, um Pfade zu vervollständigen</li>
+<li><code>.</code> steht für das aktuelle Verzeichnis, <code>..</code> für das übergeordnete Verzeichnis</li>
+<li>Sie können <code>/</code> oder <code>\</code> verwenden, um Pfadbestandteile zu trennen</li>
+<li>Pfade mit Leerzeichen müssen in Anführungszeichen eingeschlossen werden:<ul>
+<li>cd 'C:\Users\Matthias Hölzl'</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=90b6f787bb41b6e8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tipps-zum-Arbeiten-mit-Pfaden">Tipps zum Arbeiten mit Pfaden<a class="anchor-link" href="#Tipps-zum-Arbeiten-mit-Pfaden">¶</a></h2><ul>
+<li>Vervollständigen Sie Pfade mit der <code>Tab</code>-Taste</li>
+<li>Verwenden Sie <code>~</code> um in Ihr Home-Verzeichnis zu wechseln</li>
+<li>Verwenden Sie <code>..</code> um ins übergeordnete Verzeichnis zu wechseln</li>
+<li>Kopieren Sie Pfade aus dem Explorer oder Finder</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2e599a167fead8c2"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Das-war's-schon">Das war's schon<a class="anchor-link" href="#Das-war's-schon">¶</a></h2><ul>
+<li>Die Kommandozeile bietet viel mehr Features als wir besprochen haben</li>
+<li>Aber für das, was wir in diesem Kurs machen wollen, wissen wir genug</li>
+</ul>
+</div>
 </div>
 </div>
 </div>

@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=39a85b488edda4ee"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=5af06c61351b6aee"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,12 +13136,659 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Die Kommandozeile</b>
+<b>Arbeiten mit Jupyter Notebooks</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
 <br/>
 </br></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=628ebc6bffc8792d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Arbeiten-mit-Jupyter-Notebooks">Arbeiten mit Jupyter Notebooks<a class="anchor-link" href="#Arbeiten-mit-Jupyter-Notebooks">¶</a></h1><h2 id="Interaktives-Rechnen-f%C3%BCr-Software-Engineering">Interaktives Rechnen für Software-Engineering<a class="anchor-link" href="#Interaktives-Rechnen-f%C3%BCr-Software-Engineering">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=54874b3ec94344bb"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="I.-Was-sind-Jupyter-Notebooks?">I. Was sind Jupyter Notebooks?<a class="anchor-link" href="#I.-Was-sind-Jupyter-Notebooks?">¶</a></h2><p><strong>Definition und Zweck:</strong></p>
+<ul>
+<li>Interaktive Dokumente, die Code, Text und Visualisierungen kombinieren</li>
+<li>Benannt nach Julia, Python und R (früh unterstützte Sprachen)</li>
+<li>Ideal für:<ul>
+<li>Explorative Datenanalyse</li>
+<li>Lehren und Lernen</li>
+<li>Dokumentation mit Live-Code</li>
+<li>Prototyping und Experimentieren</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e79adb9674e30c2b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="II.-Jupyter-Notebooks-in-VS-Code">II. Jupyter Notebooks in VS Code<a class="anchor-link" href="#II.-Jupyter-Notebooks-in-VS-Code">¶</a></h2><p><strong>Hauptfunktionen:</strong></p>
+<ul>
+<li>Integrierte Entwicklungsumgebung</li>
+<li>IntelliSense-Code-Vervollständigung</li>
+<li>Debug-Funktionen</li>
+<li>Git-Integration</li>
+<li>Erweiterungsökosystem</li>
+<li>Variablen-Explorer</li>
+<li>Anpassbare Benutzeroberfläche</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8f6b1fd4f0f7e5f5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="III.-Zelltypen-und-Modi">III. Zelltypen und Modi<a class="anchor-link" href="#III.-Zelltypen-und-Modi">¶</a></h2><p><strong>Hauptzelltypen:</strong></p>
+<ul>
+<li>Code-Zellen: Führen Programmcode aus</li>
+<li>Markdown-Zellen: Formatieren Text mit Markdown</li>
+</ul>
+<p><strong>Interaktionsmodi:</strong></p>
+<ul>
+<li>Befehlsmodus: Zellnavigation und -manipulation (kein Rahmen)</li>
+<li>Bearbeitungsmodus: Bearbeiten des Zelleninhalts (Rahmen um Zelle)</li>
+<li>Klicken Sie innerhalb/außerhalb der Zelle oder drücken Sie <code>Eingabe</code>/<code>Esc</code>,
+um die Modi zu wechseln</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6b16f8c1344e5bc0">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># This is a code cell</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, Jupyter!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello, Jupyter!
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=bad407169cffeb00">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># This is another code cell</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number: </span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">, Square: </span><span class="si">{</span><span class="n">num</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number: 1, Square: 1
+Number: 2, Square: 4
+Number: 3, Square: 9
+Number: 4, Square: 16
+Number: 5, Square: 25
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6d92af7b5190287b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="IV.-Arbeiten-mit-Code-Zellen">IV. Arbeiten mit Code-Zellen<a class="anchor-link" href="#IV.-Arbeiten-mit-Code-Zellen">¶</a></h2><p><strong>Probieren Sie es aus:</strong> Führen Sie die folgende Zelle aus, indem Sie darauf klicken und <code>Umschalt+Eingabe</code> drücken</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e711107a649ed1b0">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Dies ist eine Code-Zelle</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Hallo, Jupyter!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hallo, Jupyter!
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b82264715cb86a64">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Dies ist eine weitere Code-Zelle</span>
+<span class="n">zahlen</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">zahl</span> <span class="ow">in</span> <span class="n">zahlen</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Zahl: </span><span class="si">{</span><span class="n">zahl</span><span class="si">}</span><span class="s2">, Quadrat: </span><span class="si">{</span><span class="n">zahl</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Zahl: 1, Quadrat: 1
+Zahl: 2, Quadrat: 4
+Zahl: 3, Quadrat: 9
+Zahl: 4, Quadrat: 16
+Zahl: 5, Quadrat: 25
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8cb2fa7fca9aa5b6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Arbeiten-mit-Code-Zellen">Arbeiten mit Code-Zellen<a class="anchor-link" href="#Arbeiten-mit-Code-Zellen">¶</a></h3><p><strong>Ausführung</strong>:</p>
+<ul>
+<li><code>Umschalt+Eingabe</code>: Zelle ausführen und zur nächsten Zelle gehen</li>
+<li><code>Strg+Eingabe</code>: Zelle ausführen und in derselben Zelle bleiben</li>
+<li><code>Alt+Eingabe</code>: Zelle ausführen und neue Zelle darunter einfügen</li>
+<li>Ausführen-Schaltfläche in der Symbolleiste</li>
+<li>Das Ergebnis des letzten Ausdrucks wird unterhalb der Zelle gedruckt</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=f0009ff1050cd47c">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Text printed to the console"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Text printed to the console
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=79a590bd4f92d6e4">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="mi">17</span> <span class="o">+</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>21</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=cc3751f0ef2a9c5e">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=63e6ceb28ad474fa">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>10</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=0ffaa2809ecdfa78">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5be00066d54ce094"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Code-Organisation</strong>:</p>
+<ul>
+<li>Code-Zellen auf eine einzelne Aufgabe fokussieren</li>
+<li>Komplexe Operationen in mehrere Zellen aufteilen</li>
+<li>Variablen verwenden, um Daten zwischen Zellen zu übertragen</li>
+<li>Bedenken Sie, dass die Ausführungsreihenfolge wichtig ist, nicht die Zellenreihenfolge im Dokument</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=2abcee2fe3d34af9">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Vielleicht nicht die beste Art, Dinge zu organisieren:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ausführung einer komplexen Operation..."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ausführung einer anderen, nicht verwandten Operation..."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ausführung einer komplexen Operation...
+Ausführung einer anderen, nicht verwandten Operation...
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=2b584deced5c866b">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Bessere Organisation: separate Zellen für separate Aufgaben</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ausführung einer komplexen Operation..."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ausführung einer komplexen Operation...
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_keep" id="cell-id=191c4634044f3cc7"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>print("Ausführung einer anderen, nicht verwandten Operation...")</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=e3a38199565d0d7c">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=7c52883a303cd59f">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a84d62eca642a05e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ausführungsstatus</strong>:</p>
+<ul>
+<li>Zellen können in beliebiger Reihenfolge ausgeführt werden</li>
+<li>Zellennummern <code>[1]</code>, <code>[2]</code> usw. zeigen die Ausführungsreihenfolge an</li>
+<li><code>Kernel &gt; Neu starten &amp; Alle ausführen</code> für sequenzielle Ausführung</li>
+<li>Spinner in der unteren linken Zellenecke zeigt an, dass sie gerade ausgeführt wird<ul>
+<li>(In Jupyter-Notebooks ist dies ein <code>[*]</code> neben der Zellennummer)</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b529f0a6575c2c65">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="c1"># time.sleep(5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=18750b5e8789e4ed">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define a variable</span>
+<span class="n">my_variable</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Initial value: </span><span class="si">{</span><span class="n">my_variable</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Initial value: 42
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=708a86bcfbeafe49">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Use the variable in another cell</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The value is still: </span><span class="si">{</span><span class="n">my_variable</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The value is still: 42
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=addc5a0f2c3213ae">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Modify the variable</span>
+<span class="n">my_variable</span> <span class="o">+=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9d2d0c47205b933e">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"New value: </span><span class="si">{</span><span class="n">my_variable</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>New value: 52
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f0900c9983123328"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="V.-Variablenzustand-und-Speicher">V. Variablenzustand und Speicher<a class="anchor-link" href="#V.-Variablenzustand-und-Speicher">¶</a></h2><p><strong>Variablen bleiben zwischen Zellen erhalten:</strong></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b663ab96c6a66379">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Eine Variable definieren</span>
+<span class="n">meine_variable</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Anfangswert: </span><span class="si">{</span><span class="n">meine_variable</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Anfangswert: 42
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1ea257eb0d703ff5">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Die Variable in einer anderen Zelle verwenden</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Der Wert ist immer noch: </span><span class="si">{</span><span class="n">meine_variable</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Der Wert ist immer noch: 42
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=7981381a8912672b">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Variable ändern</span>
+<span class="n">meine_variable</span> <span class="o">+=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=10d2bc181f606b2d">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Neuer Wert: </span><span class="si">{</span><span class="n">meine_variable</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Neuer Wert: 52
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1547d2cc876a4d83"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="VI.-Arbeiten-mit-Markdown-Zellen">VI. Arbeiten mit Markdown-Zellen<a class="anchor-link" href="#VI.-Arbeiten-mit-Markdown-Zellen">¶</a></h2><p><strong>Beispiele für Markdown-Formatierung:</strong></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=bbd2a030f6c52fcb"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="%C3%9Cberschrift-1">Überschrift 1<a class="anchor-link" href="#%C3%9Cberschrift-1">¶</a></h1><h2 id="%C3%9Cberschrift-2">Überschrift 2<a class="anchor-link" href="#%C3%9Cberschrift-2">¶</a></h2><h3 id="%C3%9Cberschrift-3">Überschrift 3<a class="anchor-link" href="#%C3%9Cberschrift-3">¶</a></h3><ul>
+<li>Aufzählungspunkt 1</li>
+<li>Aufzählungspunkt 2<ul>
+<li>Verschachtelter Punkt</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Nummerierte Liste</li>
+<li>Zweiter Punkt</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=f283ad666eacc7cf"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Fetter Text</strong> und <em>kursiver Text</em></p>
+<p><code>Inline-Code</code> und Codeblöcke:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hallo</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">"Hallo, Welt!"</span>
+</pre></div>
+<p><a href="https://google.com">Link zu Google</a></p>
+<p>Mathematische Gleichungen: $E = mc^2$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=809a70b591123876"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="VII.-Wichtige-Tastaturk%C3%BCrzel">VII. Wichtige Tastaturkürzel<a class="anchor-link" href="#VII.-Wichtige-Tastaturk%C3%BCrzel">¶</a></h2><p><strong>Befehlsmodus</strong> (Drücken Sie <code>Esc</code>, um einzutreten):</p>
+<ul>
+<li><code>A</code>: Zelle darüber einfügen</li>
+<li><code>B</code>: Zelle darunter einfügen</li>
+<li><code>D,D</code>: Zelle löschen (D zweimal drücken)</li>
+<li><code>Y</code>: In Code-Zelle umwandeln</li>
+<li><code>M</code>: In Markdown-Zelle umwandeln</li>
+<li><code>Umschalt+Eingabe</code>: Zelle ausführen und zur nächsten gehen</li>
+<li><code>Strg+Eingabe</code>: Zelle ausführen und bleiben</li>
+<li><code>Pfeil auf/ab</code>: Zwischen Zellen navigieren</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c9963cfbb73259a1"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="VIII.-Interaktive-%C3%9Cbung:-Probieren-Sie-es-selbst">VIII. Interaktive Übung: Probieren Sie es selbst<a class="anchor-link" href="#VIII.-Interaktive-%C3%9Cbung:-Probieren-Sie-es-selbst">¶</a></h2><p><strong>Aufgaben:</strong></p>
+<ol>
+<li>Erstellen Sie eine neue Code-Zelle unten (drücken Sie <code>B</code> im Befehlsmodus)</li>
+<li>Schreiben Sie Code, der eine Funktion erstellt, um die Fakultät einer Zahl zu berechnen<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</li>
+<li>Führen Sie die Zelle aus</li>
+<li>Erstellen Sie eine weitere Zelle, um Ihre Funktion mit verschiedenen Eingaben zu testen<div class="highlight"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</li>
+<li>Führen Sie die Testzelle aus</li>
+<li>Experimentieren Sie mit verschiedenen Eingaben, um zu sehen, wie sich die Funktion verhält</li>
+<li>Erstellen Sie eine Markdown-Zelle, um Notizen oder Erklärungen zu schreiben</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
