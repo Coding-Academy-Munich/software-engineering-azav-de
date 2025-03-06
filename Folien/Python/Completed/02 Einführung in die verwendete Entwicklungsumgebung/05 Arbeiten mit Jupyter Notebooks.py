@@ -52,21 +52,11 @@
 # - Klicken Sie innerhalb/außerhalb der Zelle oder drücken Sie `Eingabe`/`Esc`,
 #   um die Modi zu wechseln
 
-# %%
-# This is a code cell
-print("Hello, Jupyter!")
-
-# %%
-# This is another code cell
-numbers = [1, 2, 3, 4, 5]
-for num in numbers:
-    print(f"Number: {num}, Square: {num**2}")
-
 # %% [markdown]
 #
 # ## IV. Arbeiten mit Code-Zellen
 #
-# **Probieren Sie es aus:** Führen Sie die folgende Zelle aus, indem Sie darauf klicken und `Umschalt+Eingabe` drücken
+# Führen Sie die folgende Zelle aus, indem Sie darauf klicken und `Umschalt+Eingabe` drücken
 
 # %%
 # Dies ist eine Code-Zelle
@@ -123,8 +113,8 @@ print("Ausführung einer anderen, nicht verwandten Operation...")
 # Bessere Organisation: separate Zellen für separate Aufgaben
 print("Ausführung einer komplexen Operation...")
 
-# %% [markdown]
-# print("Ausführung einer anderen, nicht verwandten Operation...")
+# %%
+print("Ausführung einer anderen, nicht verwandten Operation...")
 
 # %%
 x = 10
@@ -132,12 +122,15 @@ x = 10
 # %%
 x = 20
 
+# %%
+x
+
 # %% [markdown]
 #
 # **Ausführungsstatus**:
 # - Zellen können in beliebiger Reihenfolge ausgeführt werden
 # - Zellennummern `[1]`, `[2]` usw. zeigen die Ausführungsreihenfolge an
-# - `Kernel > Neu starten & Alle ausführen` für sequenzielle Ausführung
+# - `Restart & Run All` um sequenzielle Ausführung sicherzustellen
 # - Spinner in der unteren linken Zellenecke zeigt an, dass sie gerade ausgeführt wird
 #   - (In Jupyter-Notebooks ist dies ein `[*]` neben der Zellennummer)
 
@@ -197,11 +190,11 @@ print(f"Neuer Wert: {meine_variable}")
 # * Aufzählungspunkt 1
 # * Aufzählungspunkt 2
 #   * Verschachtelter Punkt
+
+# %% [markdown]
 #
 # 1. Nummerierte Liste
 # 2. Zweiter Punkt
-
-# %% [markdown]
 #
 # **Fetter Text** und *kursiver Text*
 #
@@ -231,7 +224,7 @@ print(f"Neuer Wert: {meine_variable}")
 
 # %% [markdown]
 #
-# ## VIII. Interaktive Übung: Probieren Sie es selbst
+# ## Workshop: Arbeiten mit Jupyter-Notebooks
 #
 # **Aufgaben:**
 # 1. Erstellen Sie eine neue Code-Zelle unten (drücken Sie `B` im Befehlsmodus)
@@ -244,6 +237,9 @@ print(f"Neuer Wert: {meine_variable}")
 #            return n * factorial(n-1)
 #    ```
 # 3. Führen Sie die Zelle aus
+
+# %% [markdown]
+#
 # 4. Erstellen Sie eine weitere Zelle, um Ihre Funktion mit verschiedenen Eingaben zu testen
 #    ```python
 #    factorial(5)
