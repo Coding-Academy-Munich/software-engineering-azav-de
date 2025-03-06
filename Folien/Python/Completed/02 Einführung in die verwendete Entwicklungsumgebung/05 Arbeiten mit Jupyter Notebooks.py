@@ -138,22 +138,6 @@ x
 import time
 # time.sleep(5)
 
-# %%
-# Define a variable
-my_variable = 42
-print(f"Initial value: {my_variable}")
-
-# %%
-# Use the variable in another cell
-print(f"The value is still: {my_variable}")
-
-# %%
-# Modify the variable
-my_variable += 10
-
-# %%
-print(f"New value: {my_variable}")
-
 # %% [markdown]
 #
 # ## V. Variablenzustand und Speicher

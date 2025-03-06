@@ -12,7 +12,7 @@
 # # Powershell
 #
 # - Eine moderne Shell für Windows
-# - I Menü unter `Windows PowerShell` zu finden
+# - Im Menü unter `Windows PowerShell` zu finden
 # - Unterschiedliche Befehle und Syntax als die alte Eingabeaufforderung
 #   (`Command.com`)
 # - Open-Source Version auf GitHub verfügbar
@@ -22,7 +22,7 @@
 # ## Starten von Programmen
 #
 # - Der Prompt der Powershell sieht folgendermaßen aus:
-#   ```powershell
+#   ```
 #   PS C:\Users\Matthias Hölzl>
 #   ```
 # - Sie können viele Programme starten, indem Sie einfach ihren Namen eingeben.
