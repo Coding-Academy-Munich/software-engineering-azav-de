@@ -76,8 +76,31 @@
 
 # %% [markdown]
 #
-# ## Das war's schon
+# ## Shell Befehle (1)
+#
+# - `ls` oder `dir` listet die Dateien im aktuellen Verzeichnis auf
+# - `tree` listet die Unterverzeichnisse des aktuellen Verzeichnisses und aller
+#   Unterverzeichnisse auf
+#   - `tree /f` listet auch die Dateien auf
+# - `mkdir` erstellt ein neues Verzeichnis
+# - `copy` oder `cp` kopiert eine Datei
+# - `move` oder `mv` verschiebt eine Datei
+# - `rmdir` löscht ein Verzeichnis
+# - `del` oder `rm` löscht eine Datei
+
+# %% [markdown]
+#
+# ## Shell Befehle (2)
+#
+# - `echo` gibt eine Nachricht auf der Konsole aus
+#    - `>` leitet die Ausgabe in eine Datei um
+#    - `>>` hängt die Ausgabe an eine Datei an
+# - `type` gibt den Inhalt einer Datei auf der Konsole aus
+# - `more` zeigt den Inhalt einer Datei seitenweise an
+
+# %% [markdown]
+#
+# ## Das war's vorerst
 #
 # - Die Kommandozeile bietet viel mehr Features als wir besprochen haben
-# - Aber für das, was wir in diesem Kurs machen wollen, wissen wir genug
-
+# - Aber für's Erste wissen wir genug
