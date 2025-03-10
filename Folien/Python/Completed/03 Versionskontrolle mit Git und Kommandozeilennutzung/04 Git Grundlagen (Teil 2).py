@@ -26,6 +26,7 @@
 
 # %% [markdown]
 #
+# ```powershell
 # # Statistiken anzeigen
 # git log --stat
 # ```
@@ -63,7 +64,9 @@
 # ```
 # ```powershell
 # # Unterschiede zwischen Staging-Area und letztem Commit
-# git diff --staged    # or --cached
+# git diff --staged
+# # Oder
+# git diff --cached
 # ```
 # ```powershell
 # # Unterschiede zwischen zwei Commits
@@ -86,7 +89,7 @@
 #
 # ```powershell
 # # Ändern wir die README-Datei
-# echo -e "# Git Demo Projekt\n\nEin einfaches Projekt zum Lernen von Git." > README.md
+# echo -e "# Git Demo Projekt\n\nEin Projekt zum Lernen von Git." > README.md
 # ```
 # ```powershell
 # # Unterschiede anzeigen

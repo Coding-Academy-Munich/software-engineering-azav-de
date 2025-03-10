@@ -13159,14 +13159,15 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b12427310a9a3465"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=acdca1a4f2fb4ea8"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Statistiken-anzeigen">Statistiken anzeigen<a class="anchor-link" href="#Statistiken-anzeigen">¶</a></h1><p>git log --stat</p>
-<pre><code>```powershell
-# Grafische Darstellung
-git log --graph --oneline --all
-</code></pre>
+<div class="highlight"><pre><span></span><span class="c"># Statistiken anzeigen</span>
+<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-stat</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Grafische Darstellung</span>
+<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-all</span>
+</pre></div>
 <div class="highlight"><pre><span></span><span class="c"># Nach Autor filtern</span>
 <span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-author</span><span class="p">=</span><span class="s2">"Name"</span>
 </pre></div>
@@ -13186,14 +13187,16 @@ git log --graph --oneline --all
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1e85437da289608d"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=60ba713412ae443c"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Unterschiede-anzeigen">Unterschiede anzeigen<a class="anchor-link" href="#Unterschiede-anzeigen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Unterschiede im Arbeitsverzeichnis zu Staging-Area/letztem Commit</span>
 <span class="n">git</span> <span class="nb">diff</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="c"># Unterschiede zwischen Staging-Area und letztem Commit</span>
-<span class="n">git</span> <span class="nb">diff </span><span class="p">-</span><span class="n">-staged</span>    <span class="c"># or --cached</span>
+<span class="n">git</span> <span class="nb">diff </span><span class="p">-</span><span class="n">-staged</span>
+<span class="c"># Oder</span>
+<span class="n">git</span> <span class="nb">diff </span><span class="p">-</span><span class="n">-cached</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="c"># Unterschiede zwischen zwei Commits</span>
 <span class="n">git</span> <span class="nb">diff </span><span class="n">commit1</span> <span class="n">commit2</span>
@@ -13207,12 +13210,12 @@ git log --graph --oneline --all
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=fe512d262cf856ce"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e271cbdcceac1bf1"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Praktisches-Beispiel:-Unterschiede-anzeigen">Praktisches Beispiel: Unterschiede anzeigen<a class="anchor-link" href="#Praktisches-Beispiel:-Unterschiede-anzeigen">¶</a></h2><p>Ändern wir eine Datei und untersuchen die Unterschiede:</p>
 <div class="highlight"><pre><span></span><span class="c"># Ändern wir die README-Datei</span>
-<span class="nb">echo </span><span class="n">-e</span> <span class="s2">"# Git Demo Projekt\n\nEin einfaches Projekt zum Lernen von Git."</span> <span class="p">&gt;</span> <span class="n">README</span><span class="p">.</span><span class="nb">md</span>
+<span class="nb">echo </span><span class="n">-e</span> <span class="s2">"# Git Demo Projekt\n\nEin Projekt zum Lernen von Git."</span> <span class="p">&gt;</span> <span class="n">README</span><span class="p">.</span><span class="nb">md</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="c"># Unterschiede anzeigen</span>
 <span class="n">git</span> <span class="nb">diff</span>
