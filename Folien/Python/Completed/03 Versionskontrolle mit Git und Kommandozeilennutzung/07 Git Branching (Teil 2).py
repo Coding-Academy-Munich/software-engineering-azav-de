@@ -130,6 +130,7 @@
 
 # %% [markdown]
 #
+# ```powershell
 # # Löse den Konflikt
 # # 1. Öffne die Datei mit einem Editor
 # # 2. Bearbeite die Konfliktmarkierungen

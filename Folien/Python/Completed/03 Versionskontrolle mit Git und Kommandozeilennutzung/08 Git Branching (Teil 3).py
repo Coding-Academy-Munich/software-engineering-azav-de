@@ -15,42 +15,24 @@
 # # Alle Branches auflisten
 # git branch
 # git branch -a  # Auch Remote-Branches anzeigen
-#
+# ```
+# ```powershell
 # # Details zu Branches anzeigen
 # git branch -v  # Mit letztem Commit
 # git branch --merged    # Branches, die in den aktuellen gemergt sind
 # git branch --no-merged # Branches, die nicht gemergt sind
-#
-# # Branch umbenennen
-# git branch -m alt-name neuer-name
-#
-# # Branch löschen
-# git branch -d branch-name  # Nur wenn gemergt
-# git branch -D branch-name  # Erzwingen (auch wenn nicht gemergt)
 # ```
 
 # %% [markdown]
 #
-# ## Praktisches Beispiel: Branch-Management
-#
 # ```powershell
-# # Branches auflisten
-# git branch
-# git branch -v
-#
-# # Gemergter vs. nicht-gemergter Branch
-# git branch --merged
-# git branch --no-merged
-#
 # # Branch umbenennen
-# git branch -m new-feature better-feature
-# git branch
-#
+# git branch -m alt-name neuer-name
+# ```
+# ```powershell
 # # Branch löschen
-# git branch -d bugfix  # Sollte funktionieren, falls gemergt
-# git branch -d feature  # Zeigt Warnung, falls nicht gemergt
-# git branch -D feature  # Erzwingt Löschung
-# git branch
+# git branch -d branch-name  # Nur wenn gemergt
+# git branch -D branch-name  # Erzwingen (auch wenn nicht gemergt)
 # ```
 
 # %% [markdown]
@@ -60,18 +42,25 @@
 # ```powershell
 # # Remote Branches anzeigen
 # git branch -r
-#
+# ```
+# ```powershell
 # # Remote abrufen
 # git fetch origin
-#
+# ```
+# ```powershell
 # # Lokalen Branch erstellen, der Remote folgt
 # git checkout -b feature origin/feature
 # # ODER in neueren Versionen
 # git checkout feature  # Erstellt automatisch Tracking-Branch
+# ```
+
+# %% [markdown]
 #
+# ```powershell
 # # Tracking-Informationen anzeigen
 # git branch -vv
-#
+# ```
+# ```powershell
 # # Tracking für existierenden Branch einrichten
 # git branch -u origin/feature feature
 # # ODER
@@ -84,20 +73,23 @@
 #
 # ```powershell
 # # Wechseln wir zu einem geklonten Repository (aus der vorherigen Lektion)
-# cd ~/GitExample
 # # Falls nicht vorhanden:
 # # git clone https://github.com/Coding-Academy-Munich/GitExample.git
 # cd GitExample
-#
+# ```
+# ```powershell
 # # Remote-Branches anzeigen
 # git branch -r
-#
+# ```
+# ```powershell
 # # Neuen lokalen Branch erstellen, der einen Remote-Branch verfolgt
-# git checkout -b feature origin/main
-#
+# git checkout -b feature-1 origin/feature-1
+# ```
+# ```powershell
 # # Tracking-Informationen anzeigen
 # git branch -vv
-#
+# ```
+# ```powershell
 # # Änderungen vom Remote holen
 # git fetch origin
 # git log --oneline --decorate --graph --all

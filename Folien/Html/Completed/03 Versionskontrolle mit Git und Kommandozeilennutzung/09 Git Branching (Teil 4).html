@@ -13144,60 +13144,48 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b49931cf9ad5104c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9ea3d0f5f09de17c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Erinnerung: Merging</li>
+</ul>
+<p><img alt="No description has been provided for this image" src="img/basic-merging-03.png" style="width:80%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b41dacecad8a5739"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Rebasing</li>
+</ul>
+<p><img alt="No description has been provided for this image" src="img/basic-rebase-01.png" style="width:80%;margin:auto"/>Rebase</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ea2af585e358540a"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Rebasing">Rebasing<a class="anchor-link" href="#Rebasing">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Grundlegendes Rebase</span>
 <span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span>
 <span class="n">git</span> <span class="n">rebase</span> <span class="n">main</span>
-
-<span class="c"># Interaktives Rebase</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">-i</span> <span class="n">HEAD</span><span class="p">~</span><span class="n">3</span>  <span class="c"># Letzte 3 Commits</span>
-
-<span class="c"># Rebase abbrechen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Rebase abbrechen</span>
 <span class="n">git</span> <span class="n">rebase</span> <span class="p">-</span><span class="n">-abort</span>
-
-<span class="c"># Konflikte während Rebase lösen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Konflikte während Rebase lösen</span>
 <span class="c"># Nach Konfliktlösung:</span>
 <span class="n">git</span> <span class="n">add</span> <span class="p">&lt;</span><span class="n">datei</span><span class="p">&gt;</span>
 <span class="n">git</span> <span class="n">rebase</span> <span class="p">-</span><span class="n">-continue</span>
-
-<span class="c"># Auf Remote-Branch rebasen</span>
-<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">origin</span><span class="p">/</span><span class="n">main</span>
 </pre></div>
-<p><img alt="No description has been provided for this image" src="img/basic-rebase-01.png" style="width:80%;margin:auto"/>Rebase</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=19cbe27059af83f9"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=d4514b5bf1ae2209"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Rebasing">Praktisches Beispiel: Rebasing<a class="anchor-link" href="#Praktisches-Beispiel:-Rebasing">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Wechseln wir zurück zum branch-demo Verzeichnis</span>
-<span class="nb">cd </span><span class="p">~/</span><span class="n">branch-demo</span>
-
-<span class="c"># Erstellen wir einen Branch für das Rebase-Beispiel</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">rebase-example</span>
-
-<span class="c"># Änderungen im rebase-example Branch</span>
-<span class="nb">echo </span><span class="s2">"// Rebase-Beispiel"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Änderungen für Rebase-Beispiel"</span>
-
-<span class="c"># Änderungen im main-Branch</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="nb">echo </span><span class="s2">"// Main-Update"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Update im main-Branch"</span>
-
-<span class="c"># Rebase durchführen</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">rebase-example</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">main</span>
-
-<span class="c"># Historie anzeigen</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
-</pre></div>
+<h2 id="Praktisches-Beispiel:-Rebasing">Praktisches Beispiel: Rebasing<a class="anchor-link" href="#Praktisches-Beispiel:-Rebasing">¶</a></h2><p>(Siehe Demonstration)</p>
 </div>
 </div>
 </div>

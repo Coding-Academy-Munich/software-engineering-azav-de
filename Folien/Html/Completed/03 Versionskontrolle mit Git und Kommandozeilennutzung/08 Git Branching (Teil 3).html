@@ -13144,70 +13144,58 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1805deb32abdc8ab"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=515041af04f15e15"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Branch-Management">Branch-Management<a class="anchor-link" href="#Branch-Management">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Alle Branches auflisten</span>
 <span class="n">git</span> <span class="n">branch</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-a</span>  <span class="c"># Auch Remote-Branches anzeigen</span>
-
-<span class="c"># Details zu Branches anzeigen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Details zu Branches anzeigen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-v</span>  <span class="c"># Mit letztem Commit</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-merged</span>    <span class="c"># Branches, die in den aktuellen gemergt sind</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-no-merged</span> <span class="c"># Branches, die nicht gemergt sind</span>
-
-<span class="c"># Branch umbenennen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=50440703c09e163e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c"># Branch umbenennen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-m</span> <span class="n">alt-name</span> <span class="n">neuer-name</span>
-
-<span class="c"># Branch löschen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Branch löschen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-d</span> <span class="n">branch-name</span>  <span class="c"># Nur wenn gemergt</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-D</span> <span class="n">branch-name</span>  <span class="c"># Erzwingen (auch wenn nicht gemergt)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f20440ac6e6122f3"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Branch-Management">Praktisches Beispiel: Branch-Management<a class="anchor-link" href="#Praktisches-Beispiel:-Branch-Management">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Branches auflisten</span>
-<span class="n">git</span> <span class="n">branch</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-v</span>
-
-<span class="c"># Gemergter vs. nicht-gemergter Branch</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-merged</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-no-merged</span>
-
-<span class="c"># Branch umbenennen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-m</span> <span class="nb">new-feature</span> <span class="n">better-feature</span>
-<span class="n">git</span> <span class="n">branch</span>
-
-<span class="c"># Branch löschen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-d</span> <span class="n">bugfix</span>  <span class="c"># Sollte funktionieren, falls gemergt</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-d</span> <span class="n">feature</span>  <span class="c"># Zeigt Warnung, falls nicht gemergt</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-D</span> <span class="n">feature</span>  <span class="c"># Erzwingt Löschung</span>
-<span class="n">git</span> <span class="n">branch</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=c72f6ddf59cf43b4"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b21d0862b1bb064d"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Remote-Branches-und-Tracking">Remote Branches und Tracking<a class="anchor-link" href="#Remote-Branches-und-Tracking">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Remote Branches anzeigen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-r</span>
-
-<span class="c"># Remote abrufen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Remote abrufen</span>
 <span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
-
-<span class="c"># Lokalen Branch erstellen, der Remote folgt</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Lokalen Branch erstellen, der Remote folgt</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">feature</span> <span class="n">origin</span><span class="p">/</span><span class="n">feature</span>
 <span class="c"># ODER in neueren Versionen</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">feature</span>  <span class="c"># Erstellt automatisch Tracking-Branch</span>
-
-<span class="c"># Tracking-Informationen anzeigen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=560d60fab2e7df6c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c"># Tracking-Informationen anzeigen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-vv</span>
-
-<span class="c"># Tracking für existierenden Branch einrichten</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Tracking für existierenden Branch einrichten</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-u</span> <span class="n">origin</span><span class="p">/</span><span class="n">feature</span> <span class="n">feature</span>
 <span class="c"># ODER</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-set-upstream-to</span><span class="p">=</span><span class="n">origin</span><span class="p">/</span><span class="n">feature</span> <span class="n">feature</span>
@@ -13215,25 +13203,24 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=5eddfbc9f4ff2187"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=97fc7749d3d2e434"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Praktisches-Beispiel:-Remote-Branches">Praktisches Beispiel: Remote Branches<a class="anchor-link" href="#Praktisches-Beispiel:-Remote-Branches">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Wechseln wir zu einem geklonten Repository (aus der vorherigen Lektion)</span>
-<span class="nb">cd </span><span class="p">~/</span><span class="n">GitExample</span>
 <span class="c"># Falls nicht vorhanden:</span>
 <span class="c"># git clone https://github.com/Coding-Academy-Munich/GitExample.git</span>
 <span class="nb">cd </span><span class="n">GitExample</span>
-
-<span class="c"># Remote-Branches anzeigen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Remote-Branches anzeigen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-r</span>
-
-<span class="c"># Neuen lokalen Branch erstellen, der einen Remote-Branch verfolgt</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">feature</span> <span class="n">origin</span><span class="p">/</span><span class="n">main</span>
-
-<span class="c"># Tracking-Informationen anzeigen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Neuen lokalen Branch erstellen, der einen Remote-Branch verfolgt</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">feature</span><span class="p">-</span><span class="n">1</span> <span class="n">origin</span><span class="p">/</span><span class="n">feature</span><span class="p">-</span><span class="n">1</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Tracking-Informationen anzeigen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-vv</span>
-
-<span class="c"># Änderungen vom Remote holen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Änderungen vom Remote holen</span>
 <span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
 <span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
 </pre></div>

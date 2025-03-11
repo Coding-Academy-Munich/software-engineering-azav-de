@@ -9,61 +9,42 @@
 
 # %% [markdown]
 #
+# - Erinnerung: Merging
+#
+# <img src="img/basic-merging-03.png" style="width:80%;margin:auto"></img>
+
+
+# %% [markdown]
+#
+# - Rebasing
+#
+# <img src="img/basic-rebase-01.png" style="width:80%;margin:auto">Rebase</img>
+
+# %% [markdown]
+#
 # ## Rebasing
 #
 # ```powershell
 # # Grundlegendes Rebase
 # git switch feature
 # git rebase main
-#
-# # Interaktives Rebase
-# git rebase -i HEAD~3  # Letzte 3 Commits
-#
+# ```
+# ```powershell
 # # Rebase abbrechen
 # git rebase --abort
-#
+# ```
+# ```powershell
 # # Konflikte während Rebase lösen
 # # Nach Konfliktlösung:
 # git add <datei>
 # git rebase --continue
-#
-# # Auf Remote-Branch rebasen
-# git fetch origin
-# git rebase origin/main
 # ```
-#
-# <img src="img/basic-rebase-01.png" style="width:80%;margin:auto">Rebase</img>
 
 # %% [markdown]
 #
 # ## Praktisches Beispiel: Rebasing
 #
-# ```powershell
-# # Wechseln wir zurück zum branch-demo Verzeichnis
-# cd ~/branch-demo
-#
-# # Erstellen wir einen Branch für das Rebase-Beispiel
-# git switch main
-# git checkout -b rebase-example
-#
-# # Änderungen im rebase-example Branch
-# echo "// Rebase-Beispiel" >> app.js
-# git add app.js
-# git commit -m "Änderungen für Rebase-Beispiel"
-#
-# # Änderungen im main-Branch
-# git switch main
-# echo "// Main-Update" >> app.js
-# git add app.js
-# git commit -m "Update im main-Branch"
-#
-# # Rebase durchführen
-# git switch rebase-example
-# git rebase main
-#
-# # Historie anzeigen
-# git log --oneline --decorate --graph --all
-# ```
+# (Siehe Demonstration)
 
 # %% [markdown]
 #
