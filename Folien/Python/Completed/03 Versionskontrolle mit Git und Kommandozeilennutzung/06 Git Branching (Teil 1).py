@@ -175,15 +175,18 @@
 # ```powershell
 # # Einfache Darstellung mit Graphen
 # git log --oneline --decorate --graph --all
-#
+# ```
+# ```powershell
 # # Mit Farbmarkierungen und kompakt
 # git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
-#
+# ```
+# ```powershell
 # # Graphisches Tool starten (wenn installiert)
-# gitk --all &
-#
+# gitk --all
+# ```
+# ```powershell
 # # Git-internes Visualisierungstool
-# git gui &
+# git gui
 # ```
 
 # %% [markdown]
