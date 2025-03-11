@@ -13201,7 +13201,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a6f92467ffd4c76f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a614fd8fa7c52a7c"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Praktisches-Beispiel:-Remote-Branches">Praktisches Beispiel: Remote Branches<a class="anchor-link" href="#Praktisches-Beispiel:-Remote-Branches">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Wechseln wir zu einem geklonten Repository (aus der vorherigen Lektion)</span>
@@ -13213,8 +13213,9 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-r</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="c"># Neuen lokalen Branch erstellen, der einen Remote-Branch verfolgt</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span><span class="p">-</span><span class="n">1</span>  <span class="c"># Erstellt automatisch Tracking-Branch</span>
+<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span><span class="p">-</span><span class="n">1</span>  <span class="c"># Erstellt automatisch Tracking-Branch (*)</span>
 </pre></div>
+<p>(*) Wenn es einen Branch <code>origin/feature-1</code>gibt und keinen lokalen Branch <code>feature-1</code></p>
 <div class="highlight"><pre><span></span><span class="c"># Tracking-Informationen anzeigen</span>
 <span class="n">git</span> <span class="n">branch</span> <span class="n">-vv</span>
 </pre></div>

@@ -81,8 +81,9 @@
 # ```
 # ```powershell
 # # Neuen lokalen Branch erstellen, der einen Remote-Branch verfolgt
-# git switch feature-1  # Erstellt automatisch Tracking-Branch
+# git switch feature-1  # Erstellt automatisch Tracking-Branch (*)
 # ```
+# (*) Wenn es einen Branch `origin/feature-1`gibt und keinen lokalen Branch `feature-1`
 # ```powershell
 # # Tracking-Informationen anzeigen
 # git branch -vv
