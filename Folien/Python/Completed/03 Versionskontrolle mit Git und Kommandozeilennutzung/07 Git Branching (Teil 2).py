@@ -36,16 +36,16 @@
 
 # %% [markdown]
 #
-# - Mergen des `feature`-Branches in den `main`-Branch
-# - Keine Konflikte, da `main` ein direkter Vorfahre von `feature` ist
+# - Mergen des `feature`-Branches in den `master`-Branch
+# - Keine Konflikte, da `master` ein direkter Vorfahre von `feature` ist
 # - Ein Fast-Forward-Merge wird durchgeführt
 #
 # <img src="img/basic-merging-02.png" style="width:80%;margin:auto"></img>
 
 # %% [markdown]
 #
-# - Mergen des `hotfix`-Branches in den `main`-Branch
-# - `main` ist kein direkter Vorfahre von `hotfix`
+# - Mergen des `hotfix`-Branches in den `master`-Branch
+# - `master` ist kein direkter Vorfahre von `hotfix`
 # - Ein Drei-Wege-Merge wird durchgeführt
 # - Ein neuer Merge-Commit wird erzeugt
 #
@@ -57,7 +57,7 @@
 #
 # ```powershell
 # # Zum Ziel-Branch wechseln (wohin soll gemergt werden)
-# git switch main
+# git switch master
 # ```
 # ```powershell
 # # Merge durchführen
@@ -110,11 +110,11 @@
 #
 # ```powershell
 # # Wechsle in den master Branch
-# git switch main
+# git switch master
 # # Ändere main/app.js
 # # ...
 # # Committe die Änderungen im master Branch
-# git commit -m "Ändere main/app.js in main"
+# git commit -m "Ändere main/app.js in master"
 # ```
 # ```powershell
 # git switch feature
@@ -124,7 +124,7 @@
 # ```
 # ```powershell
 # # Versuche zu mergen (erzeugt Konflikt)
-# git switch main
+# git switch master
 # git merge feature
 # ```
 

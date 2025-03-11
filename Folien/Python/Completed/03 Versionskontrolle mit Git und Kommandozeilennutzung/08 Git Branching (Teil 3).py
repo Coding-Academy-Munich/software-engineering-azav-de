@@ -49,9 +49,7 @@
 # ```
 # ```powershell
 # # Lokalen Branch erstellen, der Remote folgt
-# git checkout -b feature origin/feature
-# # ODER in neueren Versionen
-# git checkout feature  # Erstellt automatisch Tracking-Branch
+# git switch feature  # Erstellt automatisch Tracking-Branch
 # ```
 
 # %% [markdown]
@@ -83,7 +81,7 @@
 # ```
 # ```powershell
 # # Neuen lokalen Branch erstellen, der einen Remote-Branch verfolgt
-# git checkout -b feature-1 origin/feature-1
+# git switch feature-1  # Erstellt automatisch Tracking-Branch
 # ```
 # ```powershell
 # # Tracking-Informationen anzeigen
