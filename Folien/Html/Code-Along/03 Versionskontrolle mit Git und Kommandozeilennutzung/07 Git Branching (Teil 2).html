@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=9ef43ceba8f4782e"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=cbaef700ecc391a9"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,7 +13136,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Git Branching, Merging und Rebasing</b>
+<b>Git Branching (Teil 2)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13144,180 +13144,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a04843a5f9d8f1a7"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Git-Branching,-Merging-und-Rebasing">Git Branching, Merging und Rebasing<a class="anchor-link" href="#Git-Branching,-Merging-und-Rebasing">¶</a></h2><ul>
-<li>Branches: Parallele Entwicklungslinien</li>
-<li>Merging: Zusammenführen von Branches</li>
-<li>Rebasing: Alternative Methode zur Integration von Änderungen</li>
-<li>Kernkonzepte für kollaborative Softwareentwicklung</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=bc0e7b999ad52da3"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Git-Objekte:-Die-interne-Struktur">Git-Objekte: Die interne Struktur<a class="anchor-link" href="#Git-Objekte:-Die-interne-Struktur">¶</a></h2><p><img alt="No description has been provided for this image" src="img/commit-and-tree-01.png" style="width:80%;margin:auto"/>Git Objects</p>
-<ul>
-<li><strong>Commits</strong>: Snapshots des Projekts mit Metadaten</li>
-<li><strong>Trees</strong>: Verzeichnisstrukturen (Baumstrukturen)</li>
-<li><strong>Blobs</strong>: Dateiinhalte</li>
-<li><strong>Refs</strong>: Zeiger auf Commits (Branches, Tags)</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=034585fe7d7b4cf4"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktischer-Einstieg:-Beispielprojekt-erstellen">Praktischer Einstieg: Beispielprojekt erstellen<a class="anchor-link" href="#Praktischer-Einstieg:-Beispielprojekt-erstellen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Neues Verzeichnis erstellen</span>
-<span class="n">mkdir</span> <span class="n">branch-demo</span>
-<span class="nb">cd </span><span class="n">branch-demo</span>
-<span class="n">git</span> <span class="n">init</span>
-
-<span class="c"># Initiale Dateien erstellen</span>
-<span class="nb">echo </span><span class="s2">"# Branching Demo"</span> <span class="p">&gt;</span> <span class="n">README</span><span class="p">.</span><span class="nb">md</span>
-<span class="nb">echo </span><span class="s2">"console.log('Main application');"</span> <span class="p">&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="nb">echo </span><span class="s2">"body { font-family: Arial, sans-serif; }"</span> <span class="p">&gt;</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-
-<span class="c"># Erste Änderungen committen</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Initial commit mit README, app.js und styles.css"</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=86840bf84b417065"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Git-Branches">Git-Branches<a class="anchor-link" href="#Git-Branches">¶</a></h2><p><img alt="No description has been provided for this image" src="img/branch-and-history-01.png" style="width:80%;margin:auto"/>Git Branches</p>
-<ul>
-<li><strong>Branch</strong>: Leichtgewichtiger beweglicher Zeiger auf einen Commit</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=5b976b60987dd861"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Branches-erstellen">Branches erstellen<a class="anchor-link" href="#Branches-erstellen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Aktuellen Branch anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span>
-
-<span class="c"># Neuen Branch erstellen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">feature</span>
-
-<span class="c"># Branch erstellen und gleich wechseln</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">-c</span> <span class="nb">new-feature</span>
-<span class="c"># ODER in älteren Git-Versionen</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">bugfix</span>
-</pre></div>
-<p>Ein Branch ist nur ein Zeiger auf einen Commit!</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ef8dbb1bc9744800"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Branches-erstellen">Praktisches Beispiel: Branches erstellen<a class="anchor-link" href="#Praktisches-Beispiel:-Branches-erstellen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Branches anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span>
-
-<span class="c"># Feature-Branch erstellen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">feature</span>
-
-<span class="c"># Bugfix-Branch erstellen und gleich wechseln</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">-c</span> <span class="n">bugfix</span>
-<span class="c"># ODER</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">bugfix</span>
-
-<span class="c"># Alle Branches anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=860e42f3ec7f8064"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Zwischen-Branches-wechseln">Zwischen Branches wechseln<a class="anchor-link" href="#Zwischen-Branches-wechseln">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Zu einem existierenden Branch wechseln</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">branch-name</span>
-<span class="c"># ODER in neueren Git-Versionen</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">branch-name</span>
-
-<span class="c"># Zum vorherigen Branch zurückkehren</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="p">-</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="p">-</span>
-
-<span class="c"># Mit unkommittierten Änderungen wechseln</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="nb">new-branch</span>  <span class="c"># Nimmt Änderungen mit</span>
-<span class="n">git</span> <span class="n">stash</span>                   <span class="c"># Speichert Änderungen temporär</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">other-branch</span>
-<span class="n">git</span> <span class="n">stash</span> <span class="n">pop</span>               <span class="c"># Holt Änderungen zurück</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=831690d33fd6b1a5"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Branch-Wechsel-und-%C3%84nderungen">Praktisches Beispiel: Branch-Wechsel und Änderungen<a class="anchor-link" href="#Praktisches-Beispiel:-Branch-Wechsel-und-%C3%84nderungen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Zum bugfix-Branch wechseln (falls noch nicht dort)</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">bugfix</span>
-
-<span class="c"># Änderung im bugfix-Branch vornehmen</span>
-<span class="nb">echo </span><span class="s2">"console.log('Bug fixed!');"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Fix critical bug in app.js"</span>
-
-<span class="c"># Zurück zum main-Branch wechseln</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-
-<span class="c"># app.js anzeigen (sollte die Bugfix-Änderung nicht enthalten)</span>
-<span class="nb">cat </span><span class="n">app</span><span class="p">.</span><span class="n">js</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=477986ff0db3c259"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Branches-visualisieren">Branches visualisieren<a class="anchor-link" href="#Branches-visualisieren">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Einfache Darstellung mit Graphen</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
-
-<span class="c"># Mit Farbmarkierungen und kompakt</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-pretty</span><span class="p">=</span><span class="n">format</span><span class="p">:</span><span class="s1">'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset'</span> <span class="p">-</span><span class="n">-abbrev-commit</span> <span class="p">-</span><span class="n">-all</span>
-
-<span class="c"># Graphisches Tool starten (wenn installiert)</span>
-<span class="n">gitk</span> <span class="p">-</span><span class="n">-all</span> <span class="p">&amp;</span>
-
-<span class="c"># Git-internes Visualisierungstool</span>
-<span class="n">git</span> <span class="n">gui</span> <span class="p">&amp;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=4b887e8b49d44f26"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Branches-visualisieren">Praktisches Beispiel: Branches visualisieren<a class="anchor-link" href="#Praktisches-Beispiel:-Branches-visualisieren">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Änderungen im main-Branch</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="nb">echo </span><span class="s2">"// Main-Branch-Update"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Update app.js im main-Branch"</span>
-
-<span class="c"># Änderungen im feature-Branch</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span>
-<span class="nb">echo </span><span class="s2">"h1 { color: blue; }"</span> <span class="p">&gt;&gt;</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Füge blaue Überschriften in styles.css hinzu"</span>
-
-<span class="c"># Branches visualisieren</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e023f20c0a070f0f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=973f5ed90b1ce6aa"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Divergierende-Branches">Divergierende Branches<a class="anchor-link" href="#Divergierende-Branches">¶</a></h2><ul>
@@ -13325,320 +13152,148 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <li>Gleiche Dateien können unterschiedlich geändert werden</li>
 <li>Jeder Branch hat seine eigene Commit-Historie</li>
 </ul>
-<p><img alt="No description has been provided for this image" src="img/basic-branching-01.png" style="width:80%;margin:auto"/>Diverging Branches</p>
+<p><img alt="No description has been provided for this image" src="img/basic-branching-05.png" style="width:50%;margin:auto"/></p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=904e164402080525"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=cb688719ffd1f591"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Divergierende-Branches">Praktisches Beispiel: Divergierende Branches<a class="anchor-link" href="#Praktisches-Beispiel:-Divergierende-Branches">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Erstellen wir divergierende Änderungen in verschiedenen Branches</span>
-
-<span class="c"># Im main-Branch</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="nb">echo </span><span class="s2">"function mainFeature() { return 'main'; }"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Füge mainFeature Funktion hinzu"</span>
-
-<span class="c"># Im feature-Branch</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span>
-<span class="nb">echo </span><span class="s2">"function newFeature() { return 'feature'; }"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Füge newFeature Funktion hinzu"</span>
-
-<span class="c"># Branches anzeigen</span>
+<h2 id="Praktisches-Beispiel:-Divergierende-Branches">Praktisches Beispiel: Divergierende Branches<a class="anchor-link" href="#Praktisches-Beispiel:-Divergierende-Branches">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Branches anzeigen (GitExample Repository)</span>
 <span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b3291643a810f96f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ac9ec13758c9aa7b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Branches-zusammenf%C3%BChren-mit-Merge">Branches zusammenführen mit Merge<a class="anchor-link" href="#Branches-zusammenf%C3%BChren-mit-Merge">¶</a></h2><ul>
+<li>Divergierende Branches</li>
+</ul>
+<p><img alt="No description has been provided for this image" src="img/basic-merging-01.png" style="width:80%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a5af23f16f4bf717"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Mergen des <code>feature</code>-Branches in den <code>main</code>-Branch</li>
+<li>Keine Konflikte, da <code>main</code> ein direkter Vorfahre von <code>feature</code> ist</li>
+<li>Ein Fast-Forward-Merge wird durchgeführt</li>
+</ul>
+<p><img alt="No description has been provided for this image" src="img/basic-merging-02.png" style="width:80%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ed208dd7afcd65ef"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Mergen des <code>hotfix</code>-Branches in den <code>main</code>-Branch</li>
+<li><code>main</code> ist kein direkter Vorfahre von <code>hotfix</code></li>
+<li>Ein Drei-Wege-Merge wird durchgeführt</li>
+<li>Ein neuer Merge-Commit wird erzeugt</li>
+</ul>
+<p><img alt="No description has been provided for this image" src="img/basic-merging-03.png" style="width:80%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=3445f3b24643a3a2"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Branches-zusammenf%C3%BChren-mit-Merge">Branches zusammenführen mit Merge<a class="anchor-link" href="#Branches-zusammenf%C3%BChren-mit-Merge">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Zum Ziel-Branch wechseln (wohin soll gemergt werden)</span>
 <span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-
-<span class="c"># Merge durchführen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Merge durchführen</span>
 <span class="n">git</span> <span class="n">merge</span> <span class="n">feature</span>
-
-<span class="c"># Bei einem Fast-Forward-Merge</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Bei einem Fast-Forward-Merge</span>
 <span class="n">git</span> <span class="n">merge</span> <span class="n">feature</span>  <span class="c"># Verschiebt einfach den Branch-Pointer</span>
-
-<span class="c"># Drei-Wege-Merge erzeugt einen Merge-Commit</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="n">feature</span>  <span class="c"># Wenn es Divergenzen gibt</span>
-
-<span class="c"># Merge mit eigener Commit-Nachricht</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="p">-</span><span class="n">-no-ff</span> <span class="n">feature</span> <span class="n">-m</span> <span class="s2">"Merge feature Branch"</span>
 </pre></div>
-<p><img alt="No description has been provided for this image" src="img/basic-merging-01.png" style="width:80%;margin:auto"/>Merge</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=2e95e386932fd54a"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Merging">Praktisches Beispiel: Merging<a class="anchor-link" href="#Praktisches-Beispiel:-Merging">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Fast-forward Merge: bugfix in main integrieren</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="n">bugfix</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
-
-<span class="c"># Drei-Wege-Merge: feature in main integrieren</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="n">feature</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
-
-<span class="c"># Erzwungener Merge-Commit mit --no-ff</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="nb">new-feature</span>
-<span class="nb">echo </span><span class="s2">"// Neue Funktion"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Füge neue Funktion hinzu"</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="p">-</span><span class="n">-no-ff</span> <span class="nb">new-feature</span> <span class="n">-m</span> <span class="s2">"Merge new-feature mit --no-ff"</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
+<div class="highlight"><pre><span></span><span class="c"># Drei-Wege-Merge erzeugt einen Merge-Commit</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">hotfix</span>  <span class="c"># Wenn es Divergenzen gibt</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f601cc4b86840b62"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=0de72dbbccf59141"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Merge-Konflikte-l%C3%B6sen">Merge-Konflikte lösen<a class="anchor-link" href="#Merge-Konflikte-l%C3%B6sen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Wenn Git einen Konflikt meldet:</span>
 <span class="n">git</span> <span class="n">status</span>  <span class="c"># Zeigt Dateien mit Konflikten</span>
-
-<span class="c"># Öffne die Dateien mit Konflikten im Editor</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Öffne die Dateien mit Konflikten im Editor</span>
 <span class="c"># Datei enthält Markierungen:</span>
 <span class="c"># &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
 <span class="c"># Deine Änderungen</span>
 <span class="c"># =======</span>
 <span class="c"># Andere Änderungen</span>
 <span class="c"># &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature</span>
-
-<span class="c"># Nach der Bearbeitung:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=5d3869ba37e9cb28"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c"># Nach der Bearbeitung:</span>
 <span class="n">git</span> <span class="n">add</span> <span class="p">&lt;</span><span class="n">konfliktdatei</span><span class="p">&gt;</span>  <span class="c"># Konfliktlösung markieren</span>
 <span class="n">git</span> <span class="n">merge</span> <span class="p">-</span><span class="n">-continue</span>     <span class="c"># Merge fortsetzen</span>
 <span class="c"># ODER</span>
 <span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Löse Merge-Konflikt"</span>
-
-<span class="c"># Merge abbrechen</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Merge abbrechen</span>
 <span class="n">git</span> <span class="n">merge</span> <span class="p">-</span><span class="n">-abort</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=51f88c886bc08045"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=2646b90f8fc5a9b9"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Merge-Konflikt-erzeugen-und-l%C3%B6sen">Praktisches Beispiel: Merge-Konflikt erzeugen und lösen<a class="anchor-link" href="#Praktisches-Beispiel:-Merge-Konflikt-erzeugen-und-l%C3%B6sen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Erzeuge einen Konflikt</span>
+<h2 id="Praktisches-Beispiel:-Merge-Konflikt-erzeugen-und-l%C3%B6sen">Praktisches Beispiel: Merge-Konflikt erzeugen und lösen<a class="anchor-link" href="#Praktisches-Beispiel:-Merge-Konflikt-erzeugen-und-l%C3%B6sen">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Wechsle in den master Branch</span>
 <span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="nb">echo </span><span class="s2">"// Diese Zeile wird Konflikt verursachen - main"</span> <span class="p">&gt;&gt;</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Ändere styles.css in main"</span>
-
-<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span>
-<span class="nb">echo </span><span class="s2">"// Diese Zeile wird Konflikt verursachen - feature"</span> <span class="p">&gt;&gt;</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Ändere styles.css in feature"</span>
-
-<span class="c"># Versuche zu mergen (erzeugt Konflikt)</span>
+<span class="c"># Ändere main/app.js</span>
+<span class="c"># ...</span>
+<span class="c"># Committe die Änderungen im master Branch</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Ändere main/app.js in main"</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span>
+<span class="c"># Erzeuge einen Konflikt durch Ändern derselben Stelle in main/app.js</span>
+<span class="c"># ...</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Ändere main/app.js in feature"</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c"># Versuche zu mergen (erzeugt Konflikt)</span>
 <span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
 <span class="n">git</span> <span class="n">merge</span> <span class="n">feature</span>
-
-<span class="c"># Löse den Konflikt</span>
-<span class="c"># 1. Öffne die Datei mit einem Editor</span>
-<span class="c"># 2. Bearbeite die Konfliktmarkierungen</span>
-<span class="c"># 3. Speichere die Datei</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">styles</span><span class="p">.</span><span class="n">css</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Löse Merge-Konflikt in styles.css"</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1805deb32abdc8ab"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1c9423254aa4340f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Branch-Management">Branch-Management<a class="anchor-link" href="#Branch-Management">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Alle Branches auflisten</span>
-<span class="n">git</span> <span class="n">branch</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-a</span>  <span class="c"># Auch Remote-Branches anzeigen</span>
-
-<span class="c"># Details zu Branches anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-v</span>  <span class="c"># Mit letztem Commit</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-merged</span>    <span class="c"># Branches, die in den aktuellen gemergt sind</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-no-merged</span> <span class="c"># Branches, die nicht gemergt sind</span>
-
-<span class="c"># Branch umbenennen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-m</span> <span class="n">alt-name</span> <span class="n">neuer-name</span>
-
-<span class="c"># Branch löschen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-d</span> <span class="n">branch-name</span>  <span class="c"># Nur wenn gemergt</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-D</span> <span class="n">branch-name</span>  <span class="c"># Erzwingen (auch wenn nicht gemergt)</span>
-</pre></div>
+<h1 id="L%C3%B6se-den-Konflikt">Löse den Konflikt<a class="anchor-link" href="#L%C3%B6se-den-Konflikt">¶</a></h1><h1 id="1.-%C3%96ffne-die-Datei-mit-einem-Editor">1. Öffne die Datei mit einem Editor<a class="anchor-link" href="#1.-%C3%96ffne-die-Datei-mit-einem-Editor">¶</a></h1><h1 id="2.-Bearbeite-die-Konfliktmarkierungen">2. Bearbeite die Konfliktmarkierungen<a class="anchor-link" href="#2.-Bearbeite-die-Konfliktmarkierungen">¶</a></h1><h1 id="3.-Speichere-die-Datei">3. Speichere die Datei<a class="anchor-link" href="#3.-Speichere-die-Datei">¶</a></h1><p>git add main/app.js
+git commit -m "Löse Merge-Konflikt in main/app.js"</p>
+<pre><code></code></pre>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f20440ac6e6122f3"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4dcd1cdfd549d10b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Branch-Management">Praktisches Beispiel: Branch-Management<a class="anchor-link" href="#Praktisches-Beispiel:-Branch-Management">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Branches auflisten</span>
-<span class="n">git</span> <span class="n">branch</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-v</span>
-
-<span class="c"># Gemergter vs. nicht-gemergter Branch</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-merged</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-no-merged</span>
-
-<span class="c"># Branch umbenennen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-m</span> <span class="nb">new-feature</span> <span class="n">better-feature</span>
-<span class="n">git</span> <span class="n">branch</span>
-
-<span class="c"># Branch löschen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-d</span> <span class="n">bugfix</span>  <span class="c"># Sollte funktionieren, falls gemergt</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-d</span> <span class="n">feature</span>  <span class="c"># Zeigt Warnung, falls nicht gemergt</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-D</span> <span class="n">feature</span>  <span class="c"># Erzwingt Löschung</span>
-<span class="n">git</span> <span class="n">branch</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=c72f6ddf59cf43b4"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Remote-Branches-und-Tracking">Remote Branches und Tracking<a class="anchor-link" href="#Remote-Branches-und-Tracking">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Remote Branches anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-r</span>
-
-<span class="c"># Remote abrufen</span>
-<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
-
-<span class="c"># Lokalen Branch erstellen, der Remote folgt</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">feature</span> <span class="n">origin</span><span class="p">/</span><span class="n">feature</span>
-<span class="c"># ODER in neueren Versionen</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">feature</span>  <span class="c"># Erstellt automatisch Tracking-Branch</span>
-
-<span class="c"># Tracking-Informationen anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-vv</span>
-
-<span class="c"># Tracking für existierenden Branch einrichten</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-u</span> <span class="n">origin</span><span class="p">/</span><span class="n">feature</span> <span class="n">feature</span>
-<span class="c"># ODER</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="p">-</span><span class="n">-set-upstream-to</span><span class="p">=</span><span class="n">origin</span><span class="p">/</span><span class="n">feature</span> <span class="n">feature</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=5eddfbc9f4ff2187"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Remote-Branches">Praktisches Beispiel: Remote Branches<a class="anchor-link" href="#Praktisches-Beispiel:-Remote-Branches">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Wechseln wir zu einem geklonten Repository (aus der vorherigen Lektion)</span>
-<span class="nb">cd </span><span class="p">~/</span><span class="n">GitExample</span>
-<span class="c"># Falls nicht vorhanden:</span>
-<span class="c"># git clone https://github.com/Coding-Academy-Munich/GitExample.git</span>
-<span class="nb">cd </span><span class="n">GitExample</span>
-
-<span class="c"># Remote-Branches anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-r</span>
-
-<span class="c"># Neuen lokalen Branch erstellen, der einen Remote-Branch verfolgt</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">feature</span> <span class="n">origin</span><span class="p">/</span><span class="n">main</span>
-
-<span class="c"># Tracking-Informationen anzeigen</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">-vv</span>
-
-<span class="c"># Änderungen vom Remote holen</span>
-<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b49931cf9ad5104c"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rebasing">Rebasing<a class="anchor-link" href="#Rebasing">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Grundlegendes Rebase</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">main</span>
-
-<span class="c"># Interaktives Rebase</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">-i</span> <span class="n">HEAD</span><span class="p">~</span><span class="n">3</span>  <span class="c"># Letzte 3 Commits</span>
-
-<span class="c"># Rebase abbrechen</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="p">-</span><span class="n">-abort</span>
-
-<span class="c"># Konflikte während Rebase lösen</span>
-<span class="c"># Nach Konfliktlösung:</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">&lt;</span><span class="n">datei</span><span class="p">&gt;</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="p">-</span><span class="n">-continue</span>
-
-<span class="c"># Auf Remote-Branch rebasen</span>
-<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">origin</span><span class="p">/</span><span class="n">main</span>
-</pre></div>
-<p><img alt="No description has been provided for this image" src="img/basic-rebase-01.png" style="width:80%;margin:auto"/>Rebase</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=19cbe27059af83f9"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Rebasing">Praktisches Beispiel: Rebasing<a class="anchor-link" href="#Praktisches-Beispiel:-Rebasing">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Wechseln wir zurück zum branch-demo Verzeichnis</span>
-<span class="nb">cd </span><span class="p">~/</span><span class="n">branch-demo</span>
-
-<span class="c"># Erstellen wir einen Branch für das Rebase-Beispiel</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">-b</span> <span class="n">rebase-example</span>
-
-<span class="c"># Änderungen im rebase-example Branch</span>
-<span class="nb">echo </span><span class="s2">"// Rebase-Beispiel"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Änderungen für Rebase-Beispiel"</span>
-
-<span class="c"># Änderungen im main-Branch</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">main</span>
-<span class="nb">echo </span><span class="s2">"// Main-Update"</span> <span class="p">&gt;&gt;</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Update im main-Branch"</span>
-
-<span class="c"># Rebase durchführen</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">rebase-example</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">main</span>
-
-<span class="c"># Historie anzeigen</span>
-<span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">-oneline</span> <span class="p">-</span><span class="n">-decorate</span> <span class="p">-</span><span class="n">-graph</span> <span class="p">-</span><span class="n">-all</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=da46f338941d2d41"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rebase-vs.-Merge">Rebase vs. Merge<a class="anchor-link" href="#Rebase-vs.-Merge">¶</a></h2><p><strong>Merge:</strong></p>
-<ul>
-<li>Erstellt einen Merge-Commit</li>
-<li>Bewahrt die Geschichte (wann wurde gemergt)</li>
-<li>Keine Änderung bestehender Commits</li>
-<li>Sicherer für öffentliche/geteilte Branches</li>
-</ul>
-<p><strong>Rebase:</strong></p>
-<ul>
-<li>Erzeugt lineare Geschichte</li>
-<li>"Verschiebt" Commits auf neue Basis</li>
-<li>Ändert betroffene Commit-Hashes</li>
-<li>Besser für nicht-geteilte Branches</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=75030321a10aefd0"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Zusammenfassung">Zusammenfassung<a class="anchor-link" href="#Zusammenfassung">¶</a></h2><ul>
-<li><strong>Git-Objekte</strong>: Commits, Trees, Blobs bilden die interne Struktur</li>
-<li><strong>Branches</strong>: Leichtgewichtige Zeiger auf Commits für parallele Entwicklung</li>
-<li><strong>Branch-Wechsel</strong>: <code>git switch</code> oder <code>git checkout</code></li>
-<li><strong>Branch-Visualisierung</strong>: <code>git log --graph</code> oder grafische Tools</li>
-<li><strong>Merging</strong>: <code>git merge</code> führt Änderungen aus verschiedenen Branches zusammen</li>
-<li><strong>Konflikte lösen</strong>: Manuelles Editieren der konfliktmarkierten Dateien</li>
-<li><strong>Remote Branches</strong>: Verfolgen des Zustands entfernter Repositories</li>
-<li><strong>Rebasing</strong>: <code>git rebase</code> für lineare Historie als Alternative zum Mergen</li>
-<li><strong>Branch-Management</strong>: Branches organisieren, verfolgen und bereinigen</li>
+<h2 id="Workshop:-Merge-Konflikte">Workshop: Merge-Konflikte<a class="anchor-link" href="#Workshop:-Merge-Konflikte">¶</a></h2><ul>
+<li>Wechseln Sie in das Git-Repository, das Sie im letzten Workshop angelegt
+haben. (Oder erzeugen Sie ein neues Repository)</li>
+<li>Erstellen Sie einen neuen Branch <code>feature</code> und ändern Sie eine Datei.</li>
+<li>Wechseln Sie zurück zum <code>master</code>-Branch und ändern Sie dieselbe Datei.</li>
+<li>Versuchen Sie, den <code>feature</code>-Branch in den <code>master</code>-Branch zu mergen.</li>
+<li>Funktioniert der Merge? Falls nicht, lösen Sie den Konflikt.</li>
+<li>Experimentieren Sie mit verschiedenen Änderungen um zu sehen, welche
+Änderungen Konflikte verursachen.</li>
+<li>Versuchen Sie die entstandenen Konflikte zu lösen.</li>
 </ul>
 </div>
 </div>

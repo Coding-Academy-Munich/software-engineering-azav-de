@@ -1,0 +1,96 @@
+# %% [markdown]
+#
+# <div style="text-align:center; font-size:200%;">
+#  <b>Git Branching (Teil 4)</b>
+# </div>
+# <br/>
+# <div style="text-align:center;">Dr. Matthias Hölzl</div>
+# <br/>
+
+# %% [markdown]
+#
+# ## Rebasing
+#
+# ```powershell
+# # Grundlegendes Rebase
+# git switch feature
+# git rebase main
+#
+# # Interaktives Rebase
+# git rebase -i HEAD~3  # Letzte 3 Commits
+#
+# # Rebase abbrechen
+# git rebase --abort
+#
+# # Konflikte während Rebase lösen
+# # Nach Konfliktlösung:
+# git add <datei>
+# git rebase --continue
+#
+# # Auf Remote-Branch rebasen
+# git fetch origin
+# git rebase origin/main
+# ```
+#
+# <img src="img/basic-rebase-01.png" style="width:80%;margin:auto">Rebase</img>
+
+# %% [markdown]
+#
+# ## Praktisches Beispiel: Rebasing
+#
+# ```powershell
+# # Wechseln wir zurück zum branch-demo Verzeichnis
+# cd ~/branch-demo
+#
+# # Erstellen wir einen Branch für das Rebase-Beispiel
+# git switch main
+# git checkout -b rebase-example
+#
+# # Änderungen im rebase-example Branch
+# echo "// Rebase-Beispiel" >> app.js
+# git add app.js
+# git commit -m "Änderungen für Rebase-Beispiel"
+#
+# # Änderungen im main-Branch
+# git switch main
+# echo "// Main-Update" >> app.js
+# git add app.js
+# git commit -m "Update im main-Branch"
+#
+# # Rebase durchführen
+# git switch rebase-example
+# git rebase main
+#
+# # Historie anzeigen
+# git log --oneline --decorate --graph --all
+# ```
+
+# %% [markdown]
+#
+# ## Rebase vs. Merge
+#
+# **Merge:**
+# - Erstellt einen Merge-Commit
+# - Bewahrt die Geschichte (wann wurde gemergt)
+# - Keine Änderung bestehender Commits
+# - Sicherer für öffentliche/geteilte Branches
+#
+# **Rebase:**
+# - Erzeugt lineare Geschichte
+# - "Verschiebt" Commits auf neue Basis
+# - Ändert betroffene Commit-Hashes
+# - Besser für nicht-geteilte Branches
+
+# %% [markdown]
+#
+# ## Zusammenfassung
+#
+# - **Git-Objekte**: Commits, Trees, Blobs bilden die interne Struktur
+# - **Branches**: Leichtgewichtige Zeiger auf Commits für parallele Entwicklung
+# - **Branch-Wechsel**: `git switch` oder `git checkout`
+# - **Branch-Visualisierung**: `git log --graph` oder grafische Tools
+# - **Merging**: `git merge` führt Änderungen aus verschiedenen Branches zusammen
+# - **Konflikte lösen**: Manuelles Editieren der konfliktmarkierten Dateien
+# - **Remote Branches**: Verfolgen des Zustands entfernter Repositories
+# - **Rebasing**: `git rebase` für lineare Historie als Alternative zum Mergen
+# - **Branch-Management**: Branches organisieren, verfolgen und bereinigen
