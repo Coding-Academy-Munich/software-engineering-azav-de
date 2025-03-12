@@ -27,7 +27,7 @@
 # ```powershell
 # # Grundlegendes Rebase
 # git switch feature
-# git rebase main
+# git rebase master
 # ```
 # ```powershell
 # # Rebase abbrechen

@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f145e1f5cba98312"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=99538250e85f2b8f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,12 +13136,235 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Git in VS Code</b>
+<b>Git Best Practices</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
 <br/>
 </br></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e9c23e0fb0341d58"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Git-Best-Practices">Git Best Practices<a class="anchor-link" href="#Git-Best-Practices">¶</a></h2><ul>
+<li>Konsistente Commit-Strategien</li>
+<li>Effektives Branching</li>
+<li>Klare Kommunikation im Team</li>
+<li>Sauberes Repository-Management</li>
+<li>Sinnvolle Workflows</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=eb017f2623b1d726"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Aussagekr%C3%A4ftige-Commit-Nachrichten">Aussagekräftige Commit-Nachrichten<a class="anchor-link" href="#Aussagekr%C3%A4ftige-Commit-Nachrichten">¶</a></h2><ul>
+<li>Kurze, prägnante Betreffzeile (max. 50 Zeichen)</li>
+<li>Leerzeile nach Betreff</li>
+<li>Detaillierte Beschreibung im Hauptteil (optional)</li>
+<li>Schreiben im Imperativ: "Fix bug" statt "Fixed bug"</li>
+<li>Erklären <strong>warum</strong> eine Änderung gemacht wurde, nicht nur was</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c"># Beispiel für gute Commit-Nachricht</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Add user authentication feature</span>
+
+<span class="s2">- Implement OAuth2 login with Google</span>
+<span class="s2">- Create session management</span>
+<span class="s2">- Add remember-me functionality</span>
+
+<span class="s2">Closes #42"</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=99f0a649b41ef6a5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Atomic-Commits">Atomic Commits<a class="anchor-link" href="#Atomic-Commits">¶</a></h2><ul>
+<li>Ein Commit sollte eine einzelne, logische Änderung enthalten</li>
+<li>Keine unzusammenhängenden Änderungen mischen</li>
+<li>Erleichtert das Verständnis der Projektgeschichte</li>
+<li>Macht Rollbacks und Debugging einfacher</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c"># Beispiel: Staging bestimmter Dateien</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">src</span><span class="p">/</span><span class="n">auth</span><span class="p">/</span><span class="n">login</span><span class="p">.</span><span class="n">js</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Fix login validation logic"</span>
+
+<span class="c"># Für verschiedene Änderungen in derselben Datei</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">-p</span> <span class="n">src</span><span class="p">/</span><span class="n">app</span><span class="p">.</span><span class="n">js</span>  <span class="c"># Interaktives Staging von Teilen einer Datei</span>
+<span class="c"># (Einfacher in VS Code)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=cae1b9a53b54781b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Effektives-Branching">Effektives Branching<a class="anchor-link" href="#Effektives-Branching">¶</a></h2><ul>
+<li>Branches für neue Features, Bugfixes und Experimente erstellen</li>
+<li>Kurze Lebensdauer von Feature-Branches anstreben</li>
+<li>Regelmäßig vom Hauptbranch (main/master) aktualisieren</li>
+<li>Klare Branch-Namenskonventionen einhalten</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c"># Feature-Branch erstellen und wechseln</span>
+<span class="n">git</span> <span class="k">switch</span> <span class="n">-c</span> <span class="n">feature</span><span class="p">/</span><span class="n">user-profile</span>
+
+<span class="c"># Vom main-Branch aktualisieren</span>
+<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span><span class="p">/</span><span class="n">user-profile</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">main</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4ec6e4975b2d27f7"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Branch-Namenskonventionen">Branch-Namenskonventionen<a class="anchor-link" href="#Branch-Namenskonventionen">¶</a></h2><p>Gemeinsame Präfixe für unterschiedliche Branch-Typen:</p>
+<ul>
+<li><code>feature/</code> - Neue Funktionen</li>
+<li><code>bugfix/</code> - Fehlerbehebungen</li>
+<li><code>hotfix/</code> - Dringende Produktionsprobleme</li>
+<li><code>release/</code> - Release-Vorbereitungen</li>
+<li><code>refactor/</code> - Code-Umstrukturierungen</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">git</span> <span class="k">switch</span> <span class="n">-c</span> <span class="n">feature</span><span class="p">/</span><span class="n">login-page</span>
+<span class="n">git</span> <span class="k">switch</span> <span class="n">-c</span> <span class="n">bugfix</span><span class="p">/</span><span class="n">password-reset</span>
+<span class="n">git</span> <span class="k">switch</span> <span class="n">-c</span> <span class="n">hotfix</span><span class="p">/</span><span class="n">security-vulnerability</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=486a082e69060c3d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Git-Workflow-Modelle">Git Workflow-Modelle<a class="anchor-link" href="#Git-Workflow-Modelle">¶</a></h2><ul>
+<li><strong>Git Flow</strong>: Strukturierter Workflow mit development, feature, release,
+hotfix und master Branches</li>
+<li><strong>GitHub Flow</strong>: Vereinfachter Workflow mit feature Branches und Pull
+Requests</li>
+<li><strong>GitLab Flow</strong>: Erweiterung von GitHub Flow mit Pre-Production/Release
+Branches</li>
+<li><strong>Trunk-Based Development</strong>: Alle Entwicklungen erfolgen am Hauptbranch</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=59c37f4ea029123f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pull-Requests-/-Merge-Requests">Pull Requests / Merge Requests<a class="anchor-link" href="#Pull-Requests-/-Merge-Requests">¶</a></h2><ul>
+<li>Code-Reviews vor dem Merge in den Hauptbranch</li>
+<li>Qualitätssicherung durch Peer-Reviews</li>
+<li>Wissensaustausch im Team</li>
+<li>Automatisierte Tests und CI/CD-Integration</li>
+</ul>
+<p>Best Practices:</p>
+<ul>
+<li>Kleine, fokussierte PRs erstellen</li>
+<li>Klare Beschreibung der Änderungen</li>
+<li>Selbst-Review vor Abgabe durchführen</li>
+<li>Konstruktives Feedback geben</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=02d4d3e217c6666b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id=".gitignore-richtig-nutzen">.gitignore richtig nutzen<a class="anchor-link" href="#.gitignore-richtig-nutzen">¶</a></h2><ul>
+<li>Verhindern Sie, dass unnötige Dateien ins Repository gelangen</li>
+<li>Ignorieren Sie Build-Artefakte, Abhängigkeiten und lokale Konfigurationen</li>
+<li>Nutzen Sie Templates für Ihre Programmiersprache/Framework</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=799d18946dc57e64"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<pre><code># Beispiel .gitignore für Node.js Projekt
+node_modules/
+.env
+dist/
+.cache/
+*.log
+.DS_Store
+coverage/
+</code></pre>
+<p>Templates finden: <a href="https://www.gitignore.io/">gitignore.io</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cc98f1555ed688e4"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Konfliktl%C3%B6sung">Konfliktlösung<a class="anchor-link" href="#Konfliktl%C3%B6sung">¶</a></h2><ul>
+<li>Regelmäßig vom Hauptbranch aktualisieren, um Konflikte zu minimieren</li>
+<li>Konflikte sofort nach dem Auftreten lösen</li>
+<li>Bei komplexen Konflikten mit dem Autor der Änderungen sprechen</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c"># Konflikte während Merge/Rebase ansehen</span>
+<span class="n">git</span> <span class="n">status</span>
+
+<span class="c"># Nach dem Bearbeiten der Konfliktdateien</span>
+<span class="n">git</span> <span class="n">add</span> <span class="p">&lt;</span><span class="n">konfliktdatei</span><span class="p">&gt;</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="p">-</span><span class="n">-continue</span>  <span class="c"># (oder git merge --continue)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=92475f77aa8058cc"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sicherheit-und-Datenschutz">Sicherheit und Datenschutz<a class="anchor-link" href="#Sicherheit-und-Datenschutz">¶</a></h2><ul>
+<li>Niemals sensible Daten ins Repository einchecken<ul>
+<li>Passwörter, API-Schlüssel, Tokens</li>
+<li>Produktionsdaten, persönlich identifizierbare Informationen</li>
+</ul>
+</li>
+<li>Für Umgebungsvariablen <code>.env.example</code>-Dateien verwenden</li>
+<li>Git-Hooks für Pre-commit Überprüfungen nutzen</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c"># Falls doch sensible Daten eingecheckt wurden</span>
+<span class="n">git</span> <span class="k">filter</span><span class="n">-branch</span> <span class="p">-</span><span class="n">-force</span> <span class="p">-</span><span class="n">-index-filter</span> <span class="p">\</span>
+<span class="s2">"git rm --cached --ignore-unmatch path/to/sensitive/file"</span> <span class="p">\</span>
+<span class="p">-</span><span class="n">-prune-empty</span> <span class="p">-</span><span class="n">-tag-name-filter</span> <span class="nb">cat </span><span class="p">--</span> <span class="p">-</span><span class="n">-all</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=de00fa598097e9ed"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sinnvolle-Commit-H%C3%A4ufigkeit">Sinnvolle Commit-Häufigkeit<a class="anchor-link" href="#Sinnvolle-Commit-H%C3%A4ufigkeit">¶</a></h2><ul>
+<li>Committen Sie früh und oft</li>
+<li>Idealerweise bei jedem abgeschlossenen logischen Schritt</li>
+<li>Vor dem Verlassen des Arbeitsplatzes</li>
+<li>Vor riskanten Änderungen</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=affa986de8cd179f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Repository-Pflege">Repository-Pflege<a class="anchor-link" href="#Repository-Pflege">¶</a></h2><ul>
+<li>Regelmäßige Überprüfung und Bereinigung</li>
+<li>Große Binärdateien vermeiden oder mit Git LFS verwalten</li>
+<li>Alte Branches löschen, die nicht mehr benötigt werden</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c"># Veraltete Remote-Tracking-Branches bereinigen</span>
+<span class="n">git</span> <span class="n">fetch</span> <span class="p">-</span><span class="n">-prune</span>
+
+<span class="c"># Geschlossene Feature-Branches löschen</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="n">-d</span> <span class="n">feature</span><span class="p">/</span><span class="n">completed-feature</span>
+
+<span class="c"># Auf dem Remote-Repository löschen</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="p">-</span><span class="n">-delete</span> <span class="n">feature</span><span class="p">/</span><span class="n">completed-feature</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

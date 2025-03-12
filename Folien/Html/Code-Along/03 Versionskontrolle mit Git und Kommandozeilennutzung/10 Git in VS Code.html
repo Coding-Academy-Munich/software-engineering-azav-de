@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=00996c4118b2ec2d"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f145e1f5cba98312"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,7 +13136,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Git Branching (Teil 4)</b>
+<b>Git in VS Code</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13144,85 +13144,66 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9ea3d0f5f09de17c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=fdc9f0a36fe85710"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Erinnerung: Merging</li>
-</ul>
-<p><img alt="No description has been provided for this image" src="img/basic-merging-03.png" style="width:80%;margin:auto"/></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b41dacecad8a5739"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Rebasing</li>
-</ul>
-<p><img alt="No description has been provided for this image" src="img/basic-rebase-01.png" style="width:80%;margin:auto"/>Rebase</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=0e322c3de8725042"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rebasing">Rebasing<a class="anchor-link" href="#Rebasing">¶</a></h2><div class="highlight"><pre><span></span><span class="c"># Grundlegendes Rebase</span>
-<span class="n">git</span> <span class="k">switch</span> <span class="n">feature</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="n">master</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c"># Rebase abbrechen</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="p">-</span><span class="n">-abort</span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c"># Konflikte während Rebase lösen</span>
-<span class="c"># Nach Konfliktlösung:</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">&lt;</span><span class="n">datei</span><span class="p">&gt;</span>
-<span class="n">git</span> <span class="n">rebase</span> <span class="p">-</span><span class="n">-continue</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=d4514b5bf1ae2209"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praktisches-Beispiel:-Rebasing">Praktisches Beispiel: Rebasing<a class="anchor-link" href="#Praktisches-Beispiel:-Rebasing">¶</a></h2><p>(Siehe Demonstration)</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=da46f338941d2d41"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rebase-vs.-Merge">Rebase vs. Merge<a class="anchor-link" href="#Rebase-vs.-Merge">¶</a></h2><p><strong>Merge:</strong></p>
-<ul>
-<li>Erstellt einen Merge-Commit</li>
-<li>Bewahrt die Geschichte (wann wurde gemergt)</li>
-<li>Keine Änderung bestehender Commits</li>
-<li>Sicherer für öffentliche/geteilte Branches</li>
-</ul>
-<p><strong>Rebase:</strong></p>
-<ul>
-<li>Erzeugt lineare Geschichte</li>
-<li>"Verschiebt" Commits auf neue Basis</li>
-<li>Ändert betroffene Commit-Hashes</li>
-<li>Besser für nicht-geteilte Branches</li>
+<h2 id="Wichtige-Git-Befehle-(Lokal)">Wichtige Git Befehle (Lokal)<a class="anchor-link" href="#Wichtige-Git-Befehle-(Lokal)">¶</a></h2><ul>
+<li><code>git init</code>: Repository initialisieren</li>
+<li><code>git status</code>: Dateistatus überprüfen</li>
+<li><code>git add</code>: Dateien zum Staging-Bereich hinzufügen</li>
+<li><code>git commit</code>: Änderungen ins Repository übernehmen</li>
+<li><code>git log</code>: Commit-Historie anzeigen</li>
+<li><code>git diff</code>: Unterschiede anzeigen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=75030321a10aefd0"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=06a8edc386b95e81"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Zusammenfassung">Zusammenfassung<a class="anchor-link" href="#Zusammenfassung">¶</a></h2><ul>
-<li><strong>Git-Objekte</strong>: Commits, Trees, Blobs bilden die interne Struktur</li>
-<li><strong>Branches</strong>: Leichtgewichtige Zeiger auf Commits für parallele Entwicklung</li>
-<li><strong>Branch-Wechsel</strong>: <code>git switch</code> oder <code>git checkout</code></li>
-<li><strong>Branch-Visualisierung</strong>: <code>git log --graph</code> oder grafische Tools</li>
-<li><strong>Merging</strong>: <code>git merge</code> führt Änderungen aus verschiedenen Branches zusammen</li>
-<li><strong>Konflikte lösen</strong>: Manuelles Editieren der konfliktmarkierten Dateien</li>
-<li><strong>Remote Branches</strong>: Verfolgen des Zustands entfernter Repositories</li>
-<li><strong>Rebasing</strong>: <code>git rebase</code> für lineare Historie als Alternative zum Mergen</li>
-<li><strong>Branch-Management</strong>: Branches organisieren, verfolgen und bereinigen</li>
+<h2 id="Wichtige-Git-Befehle-(Branch-Management)">Wichtige Git Befehle (Branch-Management)<a class="anchor-link" href="#Wichtige-Git-Befehle-(Branch-Management)">¶</a></h2><ul>
+<li><code>git branch</code>: Branches verwalten</li>
+<li><code>git switch</code>: Branch wechseln</li>
+<li><code>git merge</code>: Branches zusammenführen</li>
+<li><code>git rebase</code>: Branches linearisieren</li>
 </ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7c1af39119101979"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wichtige-Git-Befehle-(Remote)">Wichtige Git Befehle (Remote)<a class="anchor-link" href="#Wichtige-Git-Befehle-(Remote)">¶</a></h2><ul>
+<li><code>git clone</code>: Remote-Repository klonen</li>
+<li><code>git remote</code>: Remote-Verbindungen verwalten</li>
+<li><code>git fetch</code>, <code>git pull</code>: Änderungen vom Remote holen</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6ac30b931bcb54e6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Git-in-VS-Code">Git in VS Code<a class="anchor-link" href="#Git-in-VS-Code">¶</a></h2><ul>
+<li>VS Code bietet integrierte Git-Unterstützung</li>
+<li>Alle wichtigen Git-Befehle können direkt in VS Code ausgeführt werden</li>
+<li>Visualisierung von Änderungen und Historie</li>
+<li>Konfliktlösung und Branch-Management</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=21ee9b621e5e0efc"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Beispiel:-Erstellen-und-bearbeiten-eines-lokalen-Repositories">Beispiel: Erstellen und bearbeiten eines lokalen Repositories<a class="anchor-link" href="#Beispiel:-Erstellen-und-bearbeiten-eines-lokalen-Repositories">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ef3e0e9f0431c1ac"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Beispiel:-Klonen-und-Bearbeiten-eines-Remote-Repositories">Beispiel: Klonen und Bearbeiten eines Remote-Repositories<a class="anchor-link" href="#Beispiel:-Klonen-und-Bearbeiten-eines-Remote-Repositories">¶</a></h3><p>URL: <a href="https://github.com/Coding-Academy-Munich/GitExample.git">https://github.com/Coding-Academy-Munich/GitExample.git</a></p>
 </div>
 </div>
 </div>
