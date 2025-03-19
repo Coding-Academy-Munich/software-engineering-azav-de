@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=037fb3a7d819263c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e3961ddb4e85bf36"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,12 +13136,218 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Else-Klauseln</b>
+<b>Funktionen</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
 <br/>
 </br></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=67b78923068ac045"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Funktionen">Funktionen<a class="anchor-link" href="#Funktionen">¶</a></h1><p>Wir haben eine Firma zum Einzäunen dreieckiger Grundstücke gegründet.</p>
+<p>Für jedes von Straßen $A$, $B$ und $C$ begrenze Grundstück berechnen wir:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=696f31505d3b9456">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">länge_a</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Beispielwert</span>
+<span class="n">länge_b</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># Beispielwert</span>
+<span class="n">länge_c</span> <span class="o">=</span> <span class="p">(</span><span class="n">länge_a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">länge_b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+<span class="n">länge_gesamt</span> <span class="o">=</span> <span class="n">länge_a</span> <span class="o">+</span> <span class="n">länge_b</span> <span class="o">+</span> <span class="n">länge_c</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">länge_gesamt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>91.2310562561766
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=8d180dbb3f74e7dd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Können wir das etwas eleganter gestalten?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7b694994e8819e50"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Satz-von-Pythagoras">Satz von Pythagoras<a class="anchor-link" href="#Satz-von-Pythagoras">¶</a></h2><p>Wir berechnen die Länge von $C$ aus $A$ und $B$ immer nach dem Satz von
+Pythagoras: $C = \sqrt{A^2 + B^2}$.</p>
+<p>Das können wir in Python durch eine <em>Funktion</em> ausdrücken:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=44b3c0d6f61a79da">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pythagoras</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=4670f02dc0e65999">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pythagoras</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>5.0</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=84fbc98d6cbe5f05">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pythagoras</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>1.4142135623730951</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=6ebaf34cabfac5ef"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Funktionsdefinition">Funktionsdefinition<a class="anchor-link" href="#Funktionsdefinition">¶</a></h2><ul>
+<li>Schlüsselwort <code>def</code></li>
+<li>Name der Funktion</li>
+<li>Parameter der Funktion, in Klammern</li>
+<li><strong>Doppelpunkt</strong></li>
+<li>Rumpf der Funktion, <em>4 Leerzeichen eingerückt</em></li>
+<li>Im Rumpf können die Parameter wie Variablen verwendet werden</li>
+<li>Schlüsselwort <code>return</code><ul>
+<li>Beendet die Funktion</li>
+<li>Bestimmt welcher Wert zurückgegeben wird</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=648fe306439d9df1"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Funktionsaufruf">Funktionsaufruf<a class="anchor-link" href="#Funktionsaufruf">¶</a></h2><ul>
+<li>Name der Funktion</li>
+<li>Argumente des Aufrufs, in Klammern</li>
+<li>Ein Argument für jeden Parameter</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=fa1e93d8257482d8">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pythagoras</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>5.0</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3aca9fc87d71a800"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Mini-Workshop">Mini-Workshop<a class="anchor-link" href="#Mini-Workshop">¶</a></h3><p>Schreiben Sie eine Funktion <code>begrüßung(name)</code>, die eine Begrüßung in der Form
+"Hallo <em>name</em>!" zurückgibt, z.B.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">begrüßung</span><span class="p">(</span><span class="s2">"Max"</span><span class="p">)</span>
+<span class="s1">'Hallo Max!'</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+<p><em>Hinweis:</em> Sie können Strings mit dem <code>+</code>-Operator konkatenieren:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">"Max"</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"Hallo, "</span> <span class="o">+</span> <span class="n">name</span>
+<span class="s1">'Hallo, Max'</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=8c2d0a6585d291fb">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">begrüßung</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">"Hallo "</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">"!"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=bdb180a7fe01c720">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">begrüßung</span><span class="p">(</span><span class="s2">"Max"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>'Hallo Max!'</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=037fb3a7d819263c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=14513016bd348f17"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,12 +13136,398 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Else-Klauseln</b>
+<b>Kontrollstrukturen</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
 <br/>
 </br></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a51d51a07fa8ef13"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="if-Anweisungen"><code>if</code>-Anweisungen<a class="anchor-link" href="#if-Anweisungen">¶</a></h1><ul>
+<li>Wir wollen ein Programm schreiben, das bestimmt ob eine Zahl eine Glückszahl
+ist oder nicht:<ul>
+<li>7 ist eine Glückszahl</li>
+<li>Alle anderen Zahlen sind es nicht.</li>
+</ul>
+</li>
+<li>Wir benötigen dazu die <code>if</code>-Anweisung:</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=3fe1e8e4f604c7cf">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=1a10a4f9e7c68dec">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ecce395ac6fa2cae">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=70ee239c3997573b">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ist_glückszahl_1</span><span class="p">(</span><span class="n">zahl</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Ist"</span><span class="p">,</span> <span class="n">zahl</span><span class="p">,</span> <span class="s2">"eine Glückszahl?"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">zahl</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Ja!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Leider nein."</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Wir wünschen Ihnen alles Gute."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=548caff77a824afa">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ist_glückszahl_1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=0f7c6e928318a3a3">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ist_glückszahl_1</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=97e57151502cbd31">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ist_glückszahl_2</span><span class="p">(</span><span class="n">zahl</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">zahl</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">zahl</span><span class="p">,</span> <span class="s2">"ist eine Glückszahl!"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Sie haben sicher einen super Tag!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">zahl</span><span class="p">,</span> <span class="s2">"ist leider keine Glückszahl."</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Vielleicht sollten Sie heute lieber im Bett bleiben."</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Wir wünschen Ihnen trotzdem alles Gute."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=f014179f6da49740">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ist_glückszahl_2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b7acfbfdfdbc260d">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ist_glückszahl_2</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=9f467710af6e2c3f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Struktur-einer-if-Anweisung-(unvollst%C3%A4ndig):">Struktur einer <code>if</code>-Anweisung (unvollständig):<a class="anchor-link" href="#Struktur-einer-if-Anweisung-(unvollst%C3%A4ndig):">¶</a></h2><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">&lt;</span><span class="n">Bedingung</span><span class="o">&gt;</span><span class="p">:</span>
+    <span class="n">Rumpf</span><span class="p">,</span> <span class="n">der</span> <span class="n">ausgeführt</span> <span class="n">wird</span><span class="p">,</span> <span class="n">wenn</span> <span class="o">&lt;</span><span class="n">Bedingung</span><span class="o">&gt;</span> <span class="n">wahr</span> <span class="n">ist</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">Rumpf</span><span class="p">,</span> <span class="n">der</span> <span class="n">ausgeführt</span> <span class="n">wird</span><span class="p">,</span> <span class="n">wenn</span> <span class="o">&lt;</span><span class="n">Bedingung</span><span class="o">&gt;</span> <span class="n">falsch</span> <span class="n">ist</span>
+</pre></div>
+<ul>
+<li>Nur das <code>if</code> und der erste Rumpf sind notwendig</li>
+<li>Falls ein <code>else</code> vorhanden ist, so darf der entsprechende Rumpf nicht leer sein</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=62a085027cc29a2e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mini-Workshop:-Vollj%C3%A4hrig">Mini-Workshop: Volljährig<a class="anchor-link" href="#Mini-Workshop:-Vollj%C3%A4hrig">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=1d2ba43eb29aa0d6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Schreiben Sie eine Funktion <code>drucke_volljährig(alter)</code>, die <code>Volljährig</code>
+auf dem Bildschirm ausgibt, wenn <code>alter &gt;= 18</code> ist und <code>Minderjährig</code> sonst.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=aaf4fa47a654277c">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a8816d254521ff1c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Testen Sie <code>drucke_volljährig(alter)</code> mit den Werten 17 und 18.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=114413485e84d9eb">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0feb033b717b3fcf"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mini-Workshop:-Gerade-Zahl">Mini-Workshop: Gerade Zahl<a class="anchor-link" href="#Mini-Workshop:-Gerade-Zahl">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=089a844cb19df3d6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Schreiben Sie eine Funktion <code>ist_gerade(zahl)</code>, die <code>True</code> zurückgibt,
+falls <code>zahl</code> gerade ist und <code>False</code>, falls <code>zahl</code> ungerade ist.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9761676197a80f99">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a26fb32c6d25672d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Schreiben Sie Assertions, die testen ob <code>ist_gerade()</code> für die Argumente 0, 1
+und 8 das korrekte Ergebnis liefert.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0f1703735255e1ae">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=72e33fee0399a2f2"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Schreiben Sie eine Funktion <code>drucke_ist_gerade(zahl)</code>, die</p>
+<ul>
+<li><code>{zahl} ist gerade.</code> auf dem Bildschirm ausgibt, falls <code>zahl</code> gerade ist und</li>
+<li><code>{zahl} ist ungerade.</code> auf dem Bildschirm ausgibt, falls <code>zahl</code> nicht
+gerade ist.</li>
+</ul>
+<p>Verwenden Sie dabei dei Funktion <code>ist_gerade()</code> um zu überprüfen, ob <code>zahl</code>
+gerade ist.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ababaf16f34c3a34">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f22ef6bed4079838"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Testen Sie <code>drucke_ist_gerade(zahl)</code> mit den Werten 0, 1 und 8.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=79a84f5c19fb96c7">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=87df949031d9cb58"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mini-Workshop:-Verk%C3%BCrzte-Ausgabe">Mini-Workshop: Verkürzte Ausgabe<a class="anchor-link" href="#Mini-Workshop:-Verk%C3%BCrzte-Ausgabe">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0b777989d449f05c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Schreiben Sie eine Funktion <code>fits_in_line(text: str, line_length: int = 72)</code>,
+die <code>True</code> oder <code>False</code> zurückgibt, je nachdem ob <code>text</code> in einer Zeile der
+Länge <code>line_length</code> ausgegeben werden kann oder nicht:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">fits_in_line</span><span class="p">(</span><span class="s2">"Hallo"</span><span class="p">)</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_in_line</span><span class="p">(</span><span class="s2">"Hallo"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="kc">False</span>
+</pre></div>
+<p><em>Hinweis:</em> Sie können die Länge eines Strings mit der Funktion <code>len()</code> bestimmen:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="s2">"abcd"</span><span class="p">)</span>
+<span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=8f9b1bc79bae8aeb">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=55cf251981a30b20">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7f5c47e30c1fa92e">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7ed353f18c06b0e5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Schreiben Sie eine Funktion <code>print_line(text: str, line_length:int = 72)</code>,
+die</p>
+<ul>
+<li><code>text</code> auf dem Bildschirm ausgibt, falls das in einer Zeile der Länge
+<code>line_length</code> möglich ist</li>
+<li><code>...</code> ausgibt, falls das nicht möglich ist.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_line</span><span class="p">(</span><span class="s2">"Hallo"</span><span class="p">)</span>
+<span class="n">Hallo</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_line</span><span class="p">(</span><span class="s2">"Hallo"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=2be11964dfdebbc7">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=bd09713845b6628b">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=389aca8b6c1777a5">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
