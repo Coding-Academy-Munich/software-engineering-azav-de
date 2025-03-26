@@ -90,7 +90,40 @@ assert find("x", my_list) is None
 
 # %% [markdown]
 #
-# ## Mini-Workshop: Finden des letzten Elements
+# ## Workshop: Nummerierte Aufzählung
+#
+# Schreiben Sie eine Funktion `print_enumerated(items: list[string])`, die eine Liste von Strings bekommt und diese als
+# nummerierte Aufzählung auf dem Bildschirm ausgibt:
+#
+# ```python
+# print_enumerated(["Gehe Einkaufen", "Koche Mittagessen", "Wasche ab"])
+# ```
+#
+# sollte folgendes ausgeben:
+#
+# ```
+# 1: Gehe Einkaufen
+# 2: Koche Mittagessen
+# 3: Wasche ab
+# ```
+
+# %%
+def print_enumerated(items: list[str]):
+    for pos, item in enumerate(items, 1):
+        print(f"{pos}: {item}")
+
+# %% [markdown]
+#
+# Ohne Verwendung des 2. Arguments von `enumerate()`:
+
+# %%
+def print_enumerated(items: list[str]):
+    for pos, item in enumerate(items):
+        print(f"{pos + 1}: {item}")
+
+# %% [markdown]
+#
+# ## Workshop: Finden des letzten Elements
 #
 # Schreiben Sie eine Funktion `find_last(element, a_list: list)`, die den Index des
 # *letzten* Vorkommens von `element` in `a_list` zurückgibt, oder `None` falls das

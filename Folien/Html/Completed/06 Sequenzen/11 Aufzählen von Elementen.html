@@ -13201,7 +13201,7 @@ ein Iterable bestehend aus Paaren <code>(index, element)</code> zurück:</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[2]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;enumerate at 0x7fee78263880&gt;</pre>
+<pre>&lt;enumerate at 0x7f7321720bd0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13391,10 +13391,58 @@ Pos = 5, element = e
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=863e7b8a29010a5b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d375b5f3c85d2f96"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mini-Workshop:-Finden-des-letzten-Elements">Mini-Workshop: Finden des letzten Elements<a class="anchor-link" href="#Mini-Workshop:-Finden-des-letzten-Elements">¶</a></h2><p>Schreiben Sie eine Funktion <code>find_last(element, a_list: list)</code>, die den Index des
+<h2 id="Workshop:-Nummerierte-Aufz%C3%A4hlung">Workshop: Nummerierte Aufzählung<a class="anchor-link" href="#Workshop:-Nummerierte-Aufz%C3%A4hlung">¶</a></h2><p>Schreiben Sie eine Funktion <code>print_enumerated(items: list[string])</code>, die eine Liste von Strings bekommt und diese als
+nummerierte Aufzählung auf dem Bildschirm ausgibt:</p>
+<div class="highlight"><pre><span></span><span class="n">print_enumerated</span><span class="p">([</span><span class="s2">"Gehe Einkaufen"</span><span class="p">,</span> <span class="s2">"Koche Mittagessen"</span><span class="p">,</span> <span class="s2">"Wasche ab"</span><span class="p">])</span>
+</pre></div>
+<p>sollte folgendes ausgeben:</p>
+<pre><code>1: Gehe Einkaufen
+2: Koche Mittagessen
+3: Wasche ab
+</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=5dec28b8aede8921">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_enumerated</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">pos</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_alt" id="cell-id=7b6ede728152aa1d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ohne Verwendung des 2. Arguments von <code>enumerate()</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=4b840896035c1d6d">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_enumerated</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c40ebbaa11067634"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Finden-des-letzten-Elements">Workshop: Finden des letzten Elements<a class="anchor-link" href="#Workshop:-Finden-des-letzten-Elements">¶</a></h2><p>Schreiben Sie eine Funktion <code>find_last(element, a_list: list)</code>, die den Index des
 <em>letzten</em> Vorkommens von <code>element</code> in <code>a_list</code> zurückgibt, oder <code>None</code> falls das
 Element nicht in der Liste vorkommt.</p>
 </div>
@@ -13414,7 +13462,7 @@ Element nicht in der Liste vorkommt.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=9aee85698ccc6f01">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">find_last</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">a_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
@@ -13430,7 +13478,7 @@ Element nicht in der Liste vorkommt.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=84c0723e6131c071">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -13441,7 +13489,7 @@ Element nicht in der Liste vorkommt.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4d0a07178b7a6573">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">find_last</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
@@ -13455,7 +13503,7 @@ Element nicht in der Liste vorkommt.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=1fac12da22ea3c09">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">find_last_rev</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">a_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
@@ -13470,7 +13518,7 @@ Element nicht in der Liste vorkommt.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=ac2d55fadd53c09d">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">find_last_rev</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
