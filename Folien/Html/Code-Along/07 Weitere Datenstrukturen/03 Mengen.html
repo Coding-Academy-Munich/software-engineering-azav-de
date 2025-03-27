@@ -13144,14 +13144,20 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=624c3b5efca07bd5"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f4d710d442baf8ee"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mengen">Mengen<a class="anchor-link" href="#Mengen">¶</a></h2>
+<h2 id="Mengen">Mengen<a class="anchor-link" href="#Mengen">¶</a></h2><ul>
+<li>Mengen sind eine Sammlung von Elementen ohne Reihenfolge</li>
+<li>Jedes Element kommt in einer Menge nur einmal vor</li>
+<li>Sie können Elemente zu Mengen hinzufügen und entfernen</li>
+<li>Sie können Mengen mit anderen Mengen vereinigen, schneiden oder die
+Differenz bilden</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=9631b97a7d887794">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=9631b97a7d887794">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13173,7 +13179,30 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=917cb07d802ba372">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c6d5a297a3dcf8e7"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hinzuf%C3%BCgen-und-Entfernen-von-Elementen">Hinzufügen und Entfernen von Elementen<a class="anchor-link" href="#Hinzuf%C3%BCgen-und-Entfernen-von-Elementen">¶</a></h3><ul>
+<li><code>s.add(x)</code> fügt ein Element <code>x</code> zur Menge <code>s</code> hinzu</li>
+<li><code>s.remove(x)</code> entfernt das Element <code>x</code> aus der Menge <code>s</code></li>
+<li><code>s.discard(x)</code> entfernt das Element <code>x</code> aus der Menge <code>s</code>, falls es
+vorhanden ist</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d1574e1c0259117f">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">numbers</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=94da5a1e6ca6f689">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13184,78 +13213,12 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d1574e1c0259117f">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=fb21bea410686638">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=36d76f7b1a6869b9">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5b8048f6a9a12d61">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f50bac86ea247586">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=adcb22708d789941">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e4aa32108d386057">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ed233b1173cd7ef2">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">numbers</span>
 </pre></div>
 </div>
 </div>
@@ -13272,12 +13235,23 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=298f612535545b89">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=67fe475d87a3aa0d">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">numbers</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=8484a27ccd0113ca">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">numbers</span>
 </pre></div>
 </div>
 </div>
@@ -13294,12 +13268,12 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=cb96294b22709eef">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=298f612535545b89">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">numbers</span>
 </pre></div>
 </div>
 </div>
@@ -13327,12 +13301,33 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=23a7297b26477e44">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=d113e6760fc2c3b8">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e5ac9f1924e49f2b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Test-auf-Mitgliedschaft">Test auf Mitgliedschaft<a class="anchor-link" href="#Test-auf-Mitgliedschaft">¶</a></h3><ul>
+<li><code>x in s</code> testet, ob das Element <code>x</code> in der Menge <code>s</code> enthalten ist</li>
+<li><code>x not in s</code> testet, ob das Element <code>x</code> nicht in der Menge <code>s</code> enthalten ist</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=0c2fbf7c173636b9">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -13360,7 +13355,159 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6cab686cb08562fa">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7d36d4556b346e32"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Vereinigung,-Schnittmenge-und-Differenz">Vereinigung, Schnittmenge und Differenz<a class="anchor-link" href="#Vereinigung,-Schnittmenge-und-Differenz">¶</a></h3><ul>
+<li>Vereinigung (alle Elemente, die in mindestens einer Menge enthalten sind):<ul>
+<li><code>s.union(t)</code></li>
+<li><code>s | t</code></li>
+</ul>
+</li>
+<li>Schnittmenge (alle Elemente, die in beiden Mengen enthalten sind):<ul>
+<li><code>s.intersection(t)</code></li>
+<li><code>s &amp; t</code></li>
+</ul>
+</li>
+<li>Differenz (alle Elemente, die in der ersten Menge, aber nicht in der zweiten
+enthalten sind):<ul>
+<li><code>s.difference(t)</code></li>
+<li><code>s - t</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=b0b496ee5ab33239">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=36d76f7b1a6869b9">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=df211533541338af">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f50bac86ea247586">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ad8d745fd2919ceb">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=0dea5475eb95fbf2">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e4aa32108d386057">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a880312016a4f9d5">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ed233b1173cd7ef2">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f521ea2466092292"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Teilmengen">Teilmengen<a class="anchor-link" href="#Teilmengen">¶</a></h3><ul>
+<li><code>s</code> ist Teilmenge von <code>t</code>, wenn jedes Element von <code>s</code> auch in <code>t</code> enthalten
+ist<ul>
+<li><code>s &lt;= t</code> testet, ob <code>s</code> eine Teilmenge von <code>t</code> ist</li>
+</ul>
+</li>
+<li><code>s</code> ist echte Teilmenge von <code>t</code>, wenn jedes Element von <code>s</code> auch in <code>t</code>
+enthalten ist, aber mindestens ein Element in <code>t</code> nicht in <code>s</code> enthalten ist<ul>
+<li><code>s &lt; t</code> testet, ob <code>s</code> eine echte Teilmenge von <code>t</code> ist</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=6cab686cb08562fa">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=53bd311737aeb12a">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13372,6 +13519,28 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=1c1ad9014f86c63d">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7b8fc06eed39b980">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=894c7addd4e7ca65">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13412,6 +13581,13 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3fd94a1a8f80556c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vorbereitung-f%C3%BCr-den-Workshop">Vorbereitung für den Workshop<a class="anchor-link" href="#Vorbereitung-f%C3%BCr-den-Workshop">¶</a></h2>
 </div>
 </div>
 </div>
@@ -13486,10 +13662,10 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9c6b12a69567daf8"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5e45933a02f64fdb"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Mini-Workshop">Mini-Workshop<a class="anchor-link" href="#Mini-Workshop">¶</a></h3><p>Schreiben Sie eine Funktion <code>count_unique_words(text: str)</code>, die die Anzahle der in
+<h3 id="Mini-Workshop">Mini-Workshop<a class="anchor-link" href="#Mini-Workshop">¶</a></h3><p>Schreiben Sie eine Funktion <code>count_unique_words(text: str)</code>, die die Anzahl der in
 einem Text vorkommenden Wörter (ohne Wiederholungen und Satzzeichen) zählt. Testen Sie
 die Funktion mit dem in <code>dickens</code> gespeicherten String.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">count_unique_words</span><span class="p">(</span><span class="n">dickens</span><span class="p">)</span>
