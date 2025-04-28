@@ -60,14 +60,14 @@ class DependentInit:
         self.point = Point3D(x, y, z)
 
     def __repr__(self):
-        return f"DependentInit({self.x}, {self.y}, {self.z})"
+        return f"DependentInit({self.point})"
 
 
 # %%
-bd1 = DependentInit()
+di1 = DependentInit()
 
 # %%
-bd1
+di1
 
 
 # %% [markdown]
@@ -90,19 +90,19 @@ class DependentInit:
 
 
 # %%
-bd1 = DependentInit()
-bd1
+di1 = DependentInit()
+di1
 
 # %%
-# bd1.x
+# di1.x
 
 # %%
-bd2 = DependentInit(1.0, 2.0, 3.0)
-bd2
+di2 = DependentInit(1.0, 2.0, 3.0)
+di2
 
 # %%
-# bd2.x
+# di2.x
 
 # %%
-bd1.point.move(3.0, 5.0)
-bd1, bd2
+di1.point.move(3.0, 5.0)
+di1, di2
