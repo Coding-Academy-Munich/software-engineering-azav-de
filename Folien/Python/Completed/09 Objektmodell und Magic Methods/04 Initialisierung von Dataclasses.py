@@ -7,19 +7,38 @@
 # <div style="text-align:center;">Dr. Matthias Hölzl</div>
 # <br/>
 
+# %%
+class LogCreation:
+    def __init__(self, x=0.0):
+        self.x = x
+        print(f"Creating LogCreation instance with x={self.x}")
+
+
+# %%
+lc1 = LogCreation(1.0)
+
+# %%
+lc1.x
+
+
 # %% [markdown]
 #
 # Es ist möglich, komplexere Initialisierungen vorzunehmen:
 #
 # - Die `__post_init__()` Methode kann Code zur Initialisierung von Objekten
 #   enthalten, der nach der generierten `__init__()` Methode ausgeführt wird.
-# - Der Typ `InitVar[T]` deklariert, dass ein Klassen-Attribut als Argument an
-#   `__post_init__()` übergeben und nicht als Instanz-Attribut verwendet wird.
-# - Das Keyword-Argument `init=False` für `field()` bewirkt, dass ein Attribut
-#   nicht in der generierten `__init__()` Methode initialisiert wird.
 
 # %%
 from dataclasses import dataclass, field, InitVar
+
+
+# %%
+@dataclass
+class LogCreation:
+    x: float = 0.0
+
+    def __post_init__(self):
+        print(f"Creating LogCreation instance with x={self.x}")
 
 
 # %%
@@ -43,12 +62,20 @@ class DependentInit:
     def __repr__(self):
         return f"DependentInit({self.x}, {self.y}, {self.z})"
 
+
 # %%
 bd1 = DependentInit()
 
 # %%
 bd1
 
+
+# %% [markdown]
+#
+# - Der Typ `InitVar[T]` deklariert, dass ein Klassen-Attribut als Argument an
+#   `__post_init__()` übergeben und nicht als Instanz-Attribut verwendet wird.
+# - Das Keyword-Argument `init=False` für `field()` bewirkt, dass ein Attribut
+#   nicht in der generierten `__init__()` Methode initialisiert wird.
 
 # %%
 @dataclass
