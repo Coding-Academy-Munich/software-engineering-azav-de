@@ -25,14 +25,29 @@ from dataclasses import dataclass, field, InitVar
 # %%
 @dataclass
 class Point3D:
-    x: float = field(default=0.0)
-    y: float = field(default=0.0)
-    z: float = 0.0  # Python >= 3.10
+    x: float = 0.0
+    y: float = 0.0
+    z: float = 0.0
 
     def move(self, dx=0.0, dy=0.0, dz=0.0):
         self.x += dx
         self.y += dy
         self.z += dz
+
+
+# %%
+class DependentInit:
+    def __init__(self, x=0.0, y=0.0, z=0.0):
+        self.point = Point3D(x, y, z)
+
+    def __repr__(self):
+        return f"DependentInit({self.x}, {self.y}, {self.z})"
+
+# %%
+bd1 = DependentInit()
+
+# %%
+bd1
 
 
 # %%
@@ -52,8 +67,14 @@ bd1 = DependentInit()
 bd1
 
 # %%
+# bd1.x
+
+# %%
 bd2 = DependentInit(1.0, 2.0, 3.0)
 bd2
+
+# %%
+# bd2.x
 
 # %%
 bd1.point.move(3.0, 5.0)
