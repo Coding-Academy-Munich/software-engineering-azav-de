@@ -73,7 +73,7 @@ print_int_sqrt(9)
 #   weiter ausgeführt
 
 # %%
-def print_int_sqrt(n):  # type: ignore
+def print_int_sqrt(n):
     try:
         root = int_sqrt(n)
         print(f"The root of {n} is {root}.")

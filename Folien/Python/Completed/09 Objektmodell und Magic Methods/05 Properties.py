@@ -171,7 +171,7 @@ class Circle:
         return math.pi * (self._radius**2)
 
     def __repr__(self):
-        return f"Circle(radius={self._radius:.2f})"  # Access internal attribute directly here
+        return f"Circle(radius={self._radius:.2f})"
 
 
 # %%
@@ -211,12 +211,30 @@ print(f"Internal value: {c._radius}")  # We can still access _radius (by convent
 # %%
 class Book:
     def __init__(self, title, author):
-        self.title = title
-        self.author = author
+        self._title = title
+        self._author = author
+
+    @property
+    def title(self):
+        return self._title
+
+    @property
+    def author(self):
+        return self._author
 
     @property
     def citation(self):
-        return f'"{self.title}" by {self.author}'
+        return f'\"{self.title}\" by {self.author}'
 
     def __repr__(self):
         return f"Book(title={self.title}, author={self.author})"
+
+# %%
+b = Book("1984", "George Orwell")
+
+# %%
+print(b)  # Book(title=1984, author=George Orwell)
+print(b.citation)  # "1984" by George Orwell
+print(b.title)  # 1984
+print(b.author)  # George Orwell
+# %%

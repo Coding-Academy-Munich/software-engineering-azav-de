@@ -23,7 +23,6 @@ from math import isclose
 # %%
 class GeoPointV2:
     def __init__(self, x=0.0, y=0.0):
-        # Store x and y directly
         self.x = x
         self.y = y
 
