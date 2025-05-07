@@ -13152,6 +13152,79 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=14b3657249348ac4">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_1</span><span class="p">():</span>
+    <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">local_var_2</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">function_2</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"function_1(): done"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=0dafb0f5d79b5898">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_2</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">local_var_2</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="n">local_var_3</span> <span class="o">=</span> <span class="mi">15</span>
+        <span class="n">function_3</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"function_2(): done"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"function_2(): caught Exception"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=68e5fa2ed1070428">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_3</span><span class="p">():</span>
+    <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">function_4</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"function_3(): done"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=2332bbf39ea617aa">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_4</span><span class="p">():</span>
+    <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Raising ValueError"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"function_4(): done"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=db53684852e66543">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">function_1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6b85b2b4e1dc4cc5"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13216,32 +13289,30 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=5b91f1593f2ae1a3">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=e8cc46259d75dc05">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=a0d04a488ffb17d5">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ErrorType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">VALUE</span> <span class="o">=</span> <span class="s2">"ValueError"</span>
-    <span class="n">LOOKUP</span> <span class="o">=</span> <span class="s2">"LookupError"</span>
-    <span class="n">INDEX</span> <span class="o">=</span> <span class="s2">"IndexError"</span>
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=1859aabf8a522010"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Der Typ <code>Callable</code> kann z.B. verwendet werden, um auszudrücken, dass wir
+eine Funktion als Argument übergeben wollen.</li>
+<li>Das kann auch eine Konstruktorfunktion sein, wie z.B. <code>list</code> oder
+<code>ValueError</code>.</li>
+</ul>
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a51afc724ecce257">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ae8ed23cecd8dc5f">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13252,7 +13323,7 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=572973ef58fa1587">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=845e7ebeffc196c3">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13263,43 +13334,148 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=30a8a9559f8aaa38">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c4e971f1b956f7c6">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span> <span class="o">=</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=4996b624cd5eb488">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=f89b1e7b1aa8e182">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=36f09c1bee83e7f7">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=40f57427d673dea3"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Wir haben schon gesehen, dass Exceptions eine Hierarchie bilden:<pre><code>BaseException
+ └── Exception
+      ├── ArithmeticError
+      ├── LookupError
+      │    ├── IndexError
+      │    └── KeyError
+      ├── TypeError
+      └── ValueError
+</code></pre>
+</li>
+<li>Mit <code>issubclass()</code> können wir das überprüfen.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=9ba56065187957a0">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=d8241b6dd93efb54">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a66564dd6a671030">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b4bb8f779182b758">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=81c51d5420cb5248">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
     <span class="n">intermediate_fun_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=531fc37438b52a21">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=5fb5e462d933e9ac">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">):</span>
-    <span class="n">raise_and_handle_error_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">raise_and_handle_error_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4c31a41adeaa40e9">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4eece752598abd50">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">error_type</span> <span class="o">==</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">error_type</span> <span class="o">==</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">LOOKUP</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="n">error_type</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising </span><span class="si">{</span><span class="n">error_type</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
         <span class="k">pass</span>
 </pre></div>
@@ -13307,58 +13483,71 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=2e6a0bd0e8f507f0">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=278ea9b3b8148283">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_with_try_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span> <span class="o">=</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller_v0(ValueError)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9f023ad927c5e87e">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=9a8f642c4f2d537b">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): before calling"</span><span class="p">)</span>
+    <span class="n">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): after calling"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b09f2ed2cc2d1b05">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): before try"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="k">pass</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): before calling"</span><span class="p">)</span>
+        <span class="n">raise_and_handle_error</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): after calling"</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): after except"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=1781ece02175e11d">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=7e10b621f3f367a7">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try_v0</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=cce193b366351dcc">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller_v0(ErrorType.VALUE)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=dc5d2a21c2b0085b">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error(): before try"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error(): before raise"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">error_type</span> <span class="o">==</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Raising ValueError"</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">error_type</span> <span class="o">==</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">LOOKUP</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s2">"Raising LookupError"</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">"Raising IndexError"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">error_type</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising </span><span class="si">{</span><span class="n">error_type</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error(): after raise"</span><span class="p">)</span>  <span class="c1"># noqa</span>
     <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; raise_and_handle_error(): caught LookupError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
@@ -13368,73 +13557,45 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=0662b27f5c036a75">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=a4cadf708f49ebf8">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): before call"</span><span class="p">)</span>
-    <span class="n">raise_and_handle_error</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): after call"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller</span><span class="p">(</span><span class="ne">LookupError</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=1e10b3ac111920a4">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=f9c5f3d6138e49f4">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span> <span class="o">=</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): before calling"</span><span class="p">)</span>
-    <span class="n">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): after calling"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller</span><span class="p">(</span><span class="ne">IndexError</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=1e3d3ed119af7697">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=04c06cfe2f190370">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">LOOKUP</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller(ValueError)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=206957e5043a56d4">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=11aba932f719176f">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">INDEX</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=173263245c8de1ba">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller(ErrorType.VALUE)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=b520c6d72311694a">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_with_try</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">ErrorType</span> <span class="o">=</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_with_try</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): before try"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): before calling"</span><span class="p">)</span>
@@ -13448,185 +13609,12 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=626acaf204465da2">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=55334602491c8f08">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">INDEX</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=a529854d27065af8">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b48c98ad765a944c"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop:-Verschachtelte-Ausnahmen">Workshop: Verschachtelte Ausnahmen<a class="anchor-link" href="#Workshop:-Verschachtelte-Ausnahmen">¶</a></h2><p>In diesem Workshop wollen wir betrachten, wie sich verschachtelte Ausnahmen
-verhalten.</p>
-<p>Gegeben seien die folgenden Funktionen.</p>
-<p>Welche Ausgabe erwarten Sie für Aufrufe von <code>outer_caller_ws()</code> und
-<code>outer_caller_with_try_ws()</code> mit den verschiedenen <code>ErrorType</code>-Werten?</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=a5e7c80a2b62447d">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): before try"</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): before raise"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">exception_type</span> <span class="o">==</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Raising ValueError"</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">exception_type</span> <span class="o">==</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">LOOKUP</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s2">"Raising LookupError"</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">"Raising IndexError"</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; raise_and_handle_error_ws(): caught LookupError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-        <span class="k">raise</span>
-    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; raise_and_handle_error_ws(): caught ValueError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): after except"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=d42b8bde7883b512">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">ErrorType</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws(): before call"</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">raise_and_handle_error_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught IndexError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising inner TypeError from [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
-    <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught LookupError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Raising inner TypeError"</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught Exception [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws(): re-raising exception"</span><span class="p">)</span>
-        <span class="k">raise</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws(): re-raised exception"</span><span class="p">)</span>  <span class="c1"># noqa</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws() after call"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=af504efd0d675623">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">ErrorType</span> <span class="o">=</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): before calling"</span><span class="p">)</span>
-    <span class="n">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): after calling"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=5e36996e6b8da1f4">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_ws</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=171eb655d7c7de3e">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller_ws(ErrorType.LOOKUP)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=d29bfa9b8e467954">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller_ws(ErrorType.INDEX)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=15a1823768ec026e">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_with_try_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">ErrorType</span> <span class="o">=</span> <span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): before try"</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): before calling"</span><span class="p">)</span>
-        <span class="n">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): after calling"</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; outer_caller_ws(): caught Exception [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): after except"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=713131f886785b0a">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try_ws</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">VALUE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=87a5c84511254671">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try_ws</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">LOOKUP</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=9cfa160a77dcf952">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try_ws</span><span class="p">(</span><span class="n">ErrorType</span><span class="o">.</span><span class="n">INDEX</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try</span><span class="p">(</span><span class="ne">IndexError</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13638,6 +13626,171 @@ verhalten.</p>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=5f7a02a5d7602349"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Verschachtelte-Ausnahmen">Workshop: Verschachtelte Ausnahmen<a class="anchor-link" href="#Workshop:-Verschachtelte-Ausnahmen">¶</a></h2><p>In diesem Workshop wollen wir betrachten, wie sich verschachtelte Ausnahmen
+verhalten.</p>
+<p>Gegeben seien die folgenden Funktionen.</p>
+<p>Welche Ausgabe erwarten Sie für Aufrufe von <code>outer_caller_ws()</code> und
+<code>outer_caller_with_try_ws()</code> mit den verschiedenen <code>Type</code>-Werten?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=9911af6e1141a9a3">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): before try"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): before raise"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">exception_type</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising </span><span class="si">{</span><span class="n">exception_type</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; raise_and_handle_error_ws(): caught LookupError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+        <span class="k">raise</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; raise_and_handle_error_ws(): caught ValueError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): after except"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=e787dcbe88d60b51">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws(): before call"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">raise_and_handle_error_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught IndexError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+        <span class="c1"># This causes Python to report that the IndexError is the</span>
+        <span class="c1"># "direct cause of" the TypeError</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising inner TypeError from [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
+    <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught LookupError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+        <span class="c1"># This causes Python to report that during handling of LookupError</span>
+        <span class="c1"># "another exception occurred"</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Raising inner TypeError"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught Exception [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws(): re-raising exception"</span><span class="p">)</span>
+        <span class="c1"># This causes Python to act as if the exception had never been caught</span>
+        <span class="k">raise</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws(): re-raised exception"</span><span class="p">)</span>  <span class="c1"># noqa</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws() after call"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=2034ebfe6de755ae">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): before calling"</span><span class="p">)</span>
+    <span class="n">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): after calling"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=dfd3dd6767ebc765">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_ws</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=855f0787354ef1ae">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller_ws(LookupError)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=2e7a5eefb877df5a">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># outer_caller_ws(IndexError)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b4ce2f65a1f670be">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0b566c171af96c8a">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=a43b891a07c15c8f">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try_ws</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=2795b11aa9c2430b">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try_ws</span><span class="p">(</span><span class="ne">LookupError</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=7e1a29b37b9e934d">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outer_caller_with_try_ws</span><span class="p">(</span><span class="ne">IndexError</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

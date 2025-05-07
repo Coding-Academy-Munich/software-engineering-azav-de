@@ -91,7 +91,13 @@ def better_user_input():
 # - Schreiben Sie das Programm so um, das dies nicht mehr möglich ist.
 
 # %%
-# # !python valid_mail.py
+# # %pycat valid_mail.py
 
 # %%
-# # !python -O valid_mail.py
+# # !echo "joe@example.com" | python valid_mail.py
+
+# %%
+# # !echo "hacker@example.com" | python valid_mail.py
+
+# %%
+# # !echo "hacker@example.com" | python -O valid_mail.py

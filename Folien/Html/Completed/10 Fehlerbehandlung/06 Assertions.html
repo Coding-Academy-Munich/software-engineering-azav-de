@@ -13284,7 +13284,7 @@ Fehler (einen <code>AssertionError</code>) auszulösen, wenn eine Bedingung fals
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>python: can't open file '/tmp/tmpestnh2mi/test_assert.py': [Errno 2] No such file or directory
+<pre>python: can't open file '/tmp/tmp7_spv5mn/test_assert.py': [Errno 2] No such file or directory
 </pre>
 </div>
 </div>
@@ -13306,7 +13306,7 @@ Fehler (einen <code>AssertionError</code>) auszulösen, wenn eine Bedingung fals
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>python: can't open file '/tmp/tmpestnh2mi/test_assert.py': [Errno 2] No such file or directory
+<pre>python: can't open file '/tmp/tmp7_spv5mn/test_assert.py': [Errno 2] No such file or directory
 </pre>
 </div>
 </div>
@@ -13368,23 +13368,45 @@ Verhalten.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=85193d6a5845e6c5">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=82c3037b3cb38378">
 <div class="input">
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># !python valid_mail.py</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># %pycat valid_mail.py</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d3cb03ade553c4f9">
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=b6a70fce2341b06e">
 <div class="input">
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># !python -O valid_mail.py</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># !echo "joe@example.com" | python valid_mail.py</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=9614a1f25ba26b4c">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># !echo "hacker@example.com" | python valid_mail.py</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=b5fc138e81acbbe6">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># !echo "hacker@example.com" | python -O valid_mail.py</span>
 </pre></div>
 </div>
 </div>

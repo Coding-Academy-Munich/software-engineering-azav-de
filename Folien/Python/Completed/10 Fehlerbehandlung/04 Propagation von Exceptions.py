@@ -14,6 +14,41 @@
 # Wenn eine Exception ausgelöst wird, werden geschachtelte Funktionsaufrufe so lange
 # abgebrochen, bis ein passender Handler gefunden wird:
 
+# %%
+def function_1():
+    local_var_1 = 10
+    local_var_2 = 20
+    function_2()
+    print("function_1(): done")
+
+# %%
+def function_2():
+    try:
+        local_var_1 = 5
+        local_var_2 = 10
+        local_var_3 = 15
+        function_3()
+        print("function_2(): done")
+    except Exception:
+        print("function_2(): caught Exception")
+
+# %%
+def function_3():
+    local_var_1 = 2
+    function_4()
+    print("function_3(): done")
+
+
+# %%
+def function_4():
+    local_var_1 = 4
+    raise ValueError("Raising ValueError")
+    print("function_4(): done")
+
+# %%
+function_1()
+
+
 # %% [markdown]
 #
 # <img src="img/stack-code.png" alt="Call Stack"
@@ -80,72 +115,113 @@
 
 
 # %%
-from enum import Enum
+from typing import Callable
+
+# %% [markdown]
+#
+# - Der Typ `Callable` kann z.B. verwendet werden, um auszudrücken, dass wir
+#   eine Funktion als Argument übergeben wollen.
+# - Das kann auch eine Konstruktorfunktion sein, wie z.B. `list` oder
+#   `ValueError`.
+
+# %%
+isinstance(function_1, Callable)
+
+# %%
+function_1()
+
+# %%
+isinstance(list, Callable)
+
+# %%
+list([1, 2, 3])
+
+# %%
+isinstance(ValueError, Callable)
+
+# %%
+ValueError("Created a ValueError instance")
+
+# %% [markdown]
+#
+# - Wir haben schon gesehen, dass Exceptions eine Hierarchie bilden:
+#   ```
+#   BaseException
+#    └── Exception
+#         ├── ArithmeticError
+#         ├── LookupError
+#         │    ├── IndexError
+#         │    └── KeyError
+#         ├── TypeError
+#         └── ValueError
+#   ```
+# - Mit `issubclass()` können wir das überprüfen.
+
+# %%
+issubclass(IndexError, Exception)
+
+# %%
+issubclass(IndexError, LookupError)
+
+# %%
+issubclass(IndexError, IndexError)
+
+# %%
+issubclass(IndexError, ValueError)
 
 
 # %%
-class ErrorType(Enum):
-    VALUE = "ValueError"
-    LOOKUP = "LookupError"
-    INDEX = "IndexError"
-
-
-# %%
-IndexError.mro()
-
-# %%
-ValueError.mro()
-
-
-# %%
-def outer_caller_v0(error_type: ErrorType = ErrorType.VALUE):
+def outer_caller_v0(error_type: Callable = ValueError):
     intermediate_fun_v0(error_type)
 
 
 # %%
-def intermediate_fun_v0(error_type: ErrorType):
-    raise_and_handle_error_v0(error_type)
+def intermediate_fun_v0(error_type: Callable):
+    try:
+        raise_and_handle_error_v0(error_type)
+    except:
+        raise
 
 
 # %%
-def raise_and_handle_error_v0(error_type: ErrorType):
+def raise_and_handle_error_v0(error_type: Callable):
     try:
-        if error_type == ErrorType.VALUE:
-            raise ValueError()
-        elif error_type == ErrorType.LOOKUP:
-            raise LookupError()
-        else:
-            raise IndexError()
+        raise error_type(f"Raising {error_type.__name__}")
     except LookupError:
         pass
 
+# %%
+# outer_caller_v0(ValueError)
 
 # %%
-def outer_caller_with_try_v0(error_type: ErrorType = ErrorType.VALUE):
+outer_caller_v0(LookupError)
+
+
+# %%
+def outer_caller(error_type: Callable = ValueError):
+    print("outer_caller(): before calling")
+    intermediate_fun(error_type)
+    print("outer_caller(): after calling")
+
+
+# %%
+def intermediate_fun(error_type: Callable):
+    print("  intermediate_fun(): before try")
     try:
-        intermediate_fun(error_type)
-    except Exception:
-        pass
+        print("  intermediate_fun(): before calling")
+        raise_and_handle_error(error_type)
+        print("  intermediate_fun(): after calling")
+    except:
+        raise
+    print("  intermediate_fun(): after except")
 
 
 # %%
-outer_caller_with_try_v0(ErrorType.VALUE)
-
-# %%
-# outer_caller_v0(ErrorType.VALUE)
-
-
-# %%
-def raise_and_handle_error(error_type: ErrorType):
+def raise_and_handle_error(error_type: Callable):
     print("    raise_and_handle_error(): before try")
     try:
         print("    raise_and_handle_error(): before raise")
-        if error_type == ErrorType.VALUE:
-            raise ValueError("Raising ValueError")
-        elif error_type == ErrorType.LOOKUP:
-            raise LookupError("Raising LookupError")
-        else:
-            raise IndexError("Raising IndexError")
+        raise error_type(f"Raising {error_type.__name__}")
         print("    raise_and_handle_error(): after raise")  # noqa
     except LookupError as error:
         print(f"<<< raise_and_handle_error(): caught LookupError [{error}]")
@@ -153,31 +229,17 @@ def raise_and_handle_error(error_type: ErrorType):
 
 
 # %%
-def intermediate_fun(error_type: ErrorType):
-    print("  intermediate_fun(): before call")
-    raise_and_handle_error(error_type)
-    print("  intermediate_fun(): after call")
+outer_caller(LookupError)
+
+# %%
+outer_caller(IndexError)
+
+# %%
+# outer_caller(ValueError)
 
 
 # %%
-def outer_caller(error_type: ErrorType = ErrorType.VALUE):
-    print("outer_caller(): before calling")
-    intermediate_fun(error_type)
-    print("outer_caller(): after calling")
-
-
-# %%
-outer_caller(ErrorType.LOOKUP)
-
-# %%
-outer_caller(ErrorType.INDEX)
-
-# %%
-# outer_caller(ErrorType.VALUE)
-
-
-# %%
-def outer_caller_with_try(error_type: ErrorType = ErrorType.VALUE):
+def outer_caller_with_try(error_type: Callable = ValueError):
     print("outer_caller(): before try")
     try:
         print("outer_caller(): before calling")
@@ -189,11 +251,10 @@ def outer_caller_with_try(error_type: ErrorType = ErrorType.VALUE):
 
 
 # %%
-outer_caller_with_try(ErrorType.INDEX)
+outer_caller_with_try(IndexError)
 
 
 # %%
-outer_caller_with_try(ErrorType.VALUE)
 
 
 # %% [markdown]
@@ -206,19 +267,14 @@ outer_caller_with_try(ErrorType.VALUE)
 # Gegeben seien die folgenden Funktionen.
 #
 # Welche Ausgabe erwarten Sie für Aufrufe von `outer_caller_ws()` und
-# `outer_caller_with_try_ws()` mit den verschiedenen `ErrorType`-Werten?
+# `outer_caller_with_try_ws()` mit den verschiedenen `Type`-Werten?
 
 # %%
-def raise_and_handle_error_ws(exception_type: ErrorType):
+def raise_and_handle_error_ws(exception_type: Callable):
     print("    raise_and_handle_error_ws(): before try")
     try:
         print("    raise_and_handle_error_ws(): before raise")
-        if exception_type == ErrorType.VALUE:
-            raise ValueError("Raising ValueError")
-        elif exception_type == ErrorType.LOOKUP:
-            raise LookupError("Raising LookupError")
-        else:
-            raise IndexError("Raising IndexError")
+        raise exception_type(f"Raising {exception_type.__name__}")
     except LookupError as error:
         print(f"<<< raise_and_handle_error_ws(): caught LookupError [{error}]")
         raise
@@ -228,43 +284,51 @@ def raise_and_handle_error_ws(exception_type: ErrorType):
 
 
 # %%
-def intermediate_fun_ws(exception_type: ErrorType):
+def intermediate_fun_ws(exception_type: Callable):
     print("  intermediate_fun_ws(): before call")
     try:
         raise_and_handle_error_ws(exception_type)
     except IndexError as error:
         print(f"<<< intermediate_fun_ws(): caught IndexError [{error}]")
+        # This causes Python to report that the IndexError is the
+        # "direct cause of" the TypeError
         raise TypeError(f"Raising inner TypeError from [{error}]") from error
     except LookupError as error:
         print(f"<<< intermediate_fun_ws(): caught LookupError [{error}]")
+        # This causes Python to report that during handling of LookupError
+        # "another exception occurred"
         raise TypeError("Raising inner TypeError")
     except Exception as error:
         print(f"<<< intermediate_fun_ws(): caught Exception [{error}]")
         print("  intermediate_fun_ws(): re-raising exception")
+        # This causes Python to act as if the exception had never been caught
         raise
         print("  intermediate_fun_ws(): re-raised exception")  # noqa
     print("  intermediate_fun_ws() after call")
 
 
 # %%
-def outer_caller_ws(exception_type: ErrorType = ErrorType.VALUE):
+def outer_caller_ws(exception_type: Callable = ValueError):
     print("outer_caller_ws(): before calling")
     intermediate_fun_ws(exception_type)
     print("outer_caller_ws(): after calling")
 
 
 # %%
-outer_caller_ws(ErrorType.VALUE)
+outer_caller_ws(ValueError)
 
 # %%
-# outer_caller_ws(ErrorType.LOOKUP)
+# outer_caller_ws(LookupError)
 
 # %%
-# outer_caller_ws(ErrorType.INDEX)
+# outer_caller_ws(IndexError)
+
+# %%
+# outer_caller_ws(ArithmeticError)
 
 
 # %%
-def outer_caller_with_try_ws(exception_type: ErrorType = ErrorType.VALUE):
+def outer_caller_with_try_ws(exception_type: Callable = ValueError):
     print("outer_caller_ws(): before try")
     try:
         print("outer_caller_ws(): before calling")
@@ -276,12 +340,10 @@ def outer_caller_with_try_ws(exception_type: ErrorType = ErrorType.VALUE):
 
 
 # %%
-outer_caller_with_try_ws(ErrorType.VALUE)
+outer_caller_with_try_ws(ValueError)
 
 # %%
-outer_caller_with_try_ws(ErrorType.LOOKUP)
+outer_caller_with_try_ws(LookupError)
 
 # %%
-outer_caller_with_try_ws(ErrorType.INDEX)
-
-# %%
+outer_caller_with_try_ws(IndexError)
