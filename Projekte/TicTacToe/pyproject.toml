@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=80.4.0", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "ttt"
+version = "0.0.1"
+description = "An implementation of the Tic Tac Toe game"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+classifiers = ["Programming Language :: Python :: 3", "Operating System :: OS Independent"]
+dependencies = ["attrs>=23.1", "cattrs>=23.1", "click>=8.0", "platformdirs>=1.4"]
+
+[[project.authors]]
+name = "Dr. Matthias Hölzl"
+email = "tc@xantira.com"
+
+[project.urls]
+Homepage = "https://github.com/hoelzl/TicTacToe/"
+"Bug Tracker" = "https://github.com/hoelzl/TicTacToe/issues"
+
+[project.scripts]
+tic_tac_toe = "ttt.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]

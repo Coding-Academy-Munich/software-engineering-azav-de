@@ -1,0 +1,42 @@
+[build-system]
+requires = [
+    "setuptools>=80.4.0",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crazyeights"
+version = "0.0.1"
+description = "An implementation of the Crazy Eights game"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Dr. Matthias Hölzl", email = "tc@xantira.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12"
+]
+dependencies = [
+    "click>=8.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/hoelzl/python-courses/"
+"Bug Tracker" = "https://github.com/hoelzl/python-courses/issues"
+
+[project.scripts]
+crazy-eights = "crazyeights.__main__:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
