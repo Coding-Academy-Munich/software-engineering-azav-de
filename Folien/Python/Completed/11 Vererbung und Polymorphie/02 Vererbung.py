@@ -124,11 +124,11 @@ cp.randomize()
 # Implementieren Sie Python Klassen `Mitarbeiter`, `Arbeiter` und `Manager` mit
 # geeigneten Attributen und einer Methode `gehalt()`, die das Gehalt berechnet.
 #
-# Implementieren Sie in der Klasse `Mitarbeiter` eine Version der `salary()`
+# Implementieren Sie in der Klasse `Mitarbeiter` eine Version der `gehalt()`
 # Methode, die das 13/12-fache des Grundgehalts zurückgibt. Überschreiben Sie in
-# den Klassen `Arbeiter` und `Manager` die Methode `salary()`, um das Gehalt
+# den Klassen `Arbeiter` und `Manager` die Methode `gehalt()`, um das Gehalt
 # entsprechend der angegebenen Formeln zu berechnen. Verwenden Sie dazu die Methode
-# `salary()` der Basisklasse `Mitarbeiter` mit `super()`.
+# `gehalt()` der Basisklasse `Mitarbeiter` mit `super()`.
 
 # %%
 from dataclasses import dataclass
