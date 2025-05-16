@@ -14,18 +14,15 @@
 # - Wir hatten bei einer Aufgabe zur Vererbung die folgende Klassenhierarchie:
 
 # %%
-class Employee:
-    ...
+class Employee: ...
 
 
 # %%
-class Manager(Employee):
-    ...
+class Manager(Employee): ...
 
 
 # %%
-class Worker(Employee):
-    ...
+class Worker(Employee): ...
 
 
 # %% [markdown]
@@ -62,12 +59,14 @@ from abc import ABC, abstractmethod
 # %%
 class Employee(ABC):
     @abstractmethod
-    def salary(self) -> float:
-        ...
+    def salary(self) -> float: ...
 
 
 # %%
 # e = Employee()
+
+# %%
+# e.salary()
 
 # %% [markdown]
 #
@@ -170,7 +169,7 @@ yc.my_method()
 
 # %% [markdown]
 #
-# ## Workshop: Geometrische Formen
+# ## Workshop: Nochmal Geometrische Formen
 #
 # In diesem Workshop implementieren Sie Klassen für geometrische Formen unter
 # Verwendung von abstrakten Basisklassen (ABCs).
@@ -201,12 +200,10 @@ import math
 # %%
 class Shape(ABC):
     @abstractmethod
-    def area(self):
-        ...
+    def area(self): ...
 
     @abstractmethod
-    def perimeter(self):
-        ...
+    def perimeter(self): ...
 
 
 # %%
@@ -346,3 +343,18 @@ assert isclose(
     rectangle.perimeter() + circle.perimeter() + triangle.perimeter(),
     abs_tol=1e-4,
 )
+
+
+# %% [markdown]
+#
+# ## Workshop: Bessere Versionen der bisherigen Aufgaben
+#
+# Wir haben in allen bisherigen Workshops Klassen definiert, von denen es keine
+# Instanzen geben sollte. Das konnten wir bisher im Code aber nicht ausdrücken.
+#
+# Im vorherigen Workshop haben wir das fur die geometrischen Formen explizit
+# geändert.
+#
+# Verbessern Sie die Lösungen der anderen Vererbungs-Workshops ebenfalls, indem
+# Sie die Basisklassen als abstrakte Klassen definieren.
+

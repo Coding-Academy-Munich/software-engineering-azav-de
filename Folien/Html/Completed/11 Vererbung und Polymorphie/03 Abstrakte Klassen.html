@@ -13153,37 +13153,34 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=fe6d93c2b5ecf8b8">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ef429ad2217c644d">
 <div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
-    <span class="o">...</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e9c298610c72379a">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=2da766af9368fc4a">
 <div class="input">
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Manager</span><span class="p">(</span><span class="n">Employee</span><span class="p">):</span>
-    <span class="o">...</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Manager</span><span class="p">(</span><span class="n">Employee</span><span class="p">):</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d22be5f39605e8ea">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=70faa0dd37564f21">
 <div class="input">
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Worker</span><span class="p">(</span><span class="n">Employee</span><span class="p">):</span>
-    <span class="o">...</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Worker</span><span class="p">(</span><span class="n">Employee</span><span class="p">):</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
@@ -13262,15 +13259,14 @@ zu definieren<ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ac49af2c13edc8a9">
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=e98f85977e4ab96e">
 <div class="input">
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">salary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">salary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
@@ -13287,6 +13283,17 @@ zu definieren<ul>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=dbd7a47d6bce72df">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># e.salary()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d72e2e19d9101d7f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13294,9 +13301,9 @@ zu definieren<ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=31f511e90a5cb180">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=31f511e90a5cb180">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Manager</span><span class="p">(</span><span class="n">Employee</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
@@ -13312,7 +13319,7 @@ zu definieren<ul>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=de92376aee8564f4">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">()</span>
@@ -13324,7 +13331,7 @@ zu definieren<ul>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[9]:</div>
+<div class="prompt output_prompt">Out[10]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>Manager()</pre>
 </div>
@@ -13334,7 +13341,7 @@ zu definieren<ul>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=5b0f6d4088f14c2b">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">salary</span><span class="p">()</span>
@@ -13345,7 +13352,7 @@ zu definieren<ul>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[10]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>100000.0</pre>
 </div>
@@ -13353,9 +13360,9 @@ zu definieren<ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=0dd5c730a63d2b9c">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=0dd5c730a63d2b9c">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Worker</span><span class="p">(</span><span class="n">Employee</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
@@ -13371,7 +13378,7 @@ zu definieren<ul>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=ba1061946c9c20a7">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Worker</span><span class="p">()</span>
@@ -13383,7 +13390,7 @@ zu definieren<ul>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[13]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>Worker()</pre>
 </div>
@@ -13393,7 +13400,7 @@ zu definieren<ul>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=0b2eab38f3822869">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">salary</span><span class="p">()</span>
@@ -13404,7 +13411,7 @@ zu definieren<ul>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="prompt output_prompt">Out[14]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>50000.0</pre>
 </div>
@@ -13423,7 +13430,7 @@ zu definieren<ul>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=b29eb753481e93ab">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Company</span><span class="p">:</span>
@@ -13442,7 +13449,7 @@ zu definieren<ul>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=cea37c60c33d21b2">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">Company</span><span class="p">([</span><span class="n">m</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
@@ -13454,7 +13461,7 @@ zu definieren<ul>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>Company([Manager(), Worker()])</pre>
 </div>
@@ -13464,7 +13471,7 @@ zu definieren<ul>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=ec21a5926f4ebe6d">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">monthly_expenses</span><span class="p">()</span>
@@ -13475,7 +13482,7 @@ zu definieren<ul>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
+<div class="prompt output_prompt">Out[17]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>150000.0</pre>
 </div>
@@ -13494,9 +13501,9 @@ Methoden überschreiben sind selber abstrakt.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=db5b6add2e9d775c">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=3a75f20626dd3047">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
@@ -13507,7 +13514,7 @@ Methoden überschreiben sind selber abstrakt.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=75d1d797cdeb3e05">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MyBase</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
@@ -13521,7 +13528,7 @@ Methoden überschreiben sind selber abstrakt.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=84955495d2a73d56">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="n">MyBase</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
@@ -13533,7 +13540,7 @@ Methoden überschreiben sind selber abstrakt.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=604ec87f54b735b7">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># mc = MyClass()</span>
@@ -13544,7 +13551,7 @@ Methoden überschreiben sind selber abstrakt.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=0b424e57c54e0a1c">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">YourClass</span><span class="p">(</span><span class="n">MyBase</span><span class="p">):</span>
@@ -13558,7 +13565,7 @@ Methoden überschreiben sind selber abstrakt.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=3bd07dfce69c5298">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">yc</span> <span class="o">=</span> <span class="n">YourClass</span><span class="p">()</span>
@@ -13580,10 +13587,10 @@ Hello!
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4998d4d51ce2bfa4"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7bba80f045c5c70b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop:-Geometrische-Formen">Workshop: Geometrische Formen<a class="anchor-link" href="#Workshop:-Geometrische-Formen">¶</a></h2><p>In diesem Workshop implementieren Sie Klassen für geometrische Formen unter
+<h2 id="Workshop:-Nochmal-Geometrische-Formen">Workshop: Nochmal Geometrische Formen<a class="anchor-link" href="#Workshop:-Nochmal-Geometrische-Formen">¶</a></h2><p>In diesem Workshop implementieren Sie Klassen für geometrische Formen unter
 Verwendung von abstrakten Basisklassen (ABCs).</p>
 <ul>
 <li>Erstellen Sie eine Basisklasse <code>Shape</code> mit abstrakten Methoden für die
@@ -13610,7 +13617,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=c3ea7087ea974cf8">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
@@ -13620,19 +13627,17 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=0c1aac054a9b77df">
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=6c11ecc8aa57851c">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Shape</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">perimeter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">perimeter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
@@ -13640,7 +13645,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=a5a26a09e50c9f4f">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rectangle</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
@@ -13663,7 +13668,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=3c745754492053e5">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Circle</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
@@ -13685,7 +13690,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=81b8b67ad5df951f">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">rectangle</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -13696,7 +13701,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=66210bbabc360d4f">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">area</span><span class="p">()</span> <span class="o">==</span> <span class="mi">20</span>
@@ -13707,7 +13712,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=44156815298b8abf">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">perimeter</span><span class="p">()</span> <span class="o">==</span> <span class="mi">18</span>
@@ -13718,7 +13723,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=a7dd87931d0064c7">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -13729,7 +13734,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=52e08812340f9b8f">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">isclose</span>
@@ -13740,7 +13745,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=2bf99cc809998b43">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">isclose</span><span class="p">(</span><span class="n">circle</span><span class="o">.</span><span class="n">area</span><span class="p">(),</span> <span class="mf">28.2743</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
@@ -13751,7 +13756,7 @@ Klasse <code>Shape</code> erben und die abstrakten Methoden implementieren.</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=8eb106d9713fbe8d">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">isclose</span><span class="p">(</span><span class="n">circle</span><span class="o">.</span><span class="n">perimeter</span><span class="p">(),</span> <span class="mf">18.8495</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
@@ -13777,7 +13782,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=7d4f7bd0a5a39bdb">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Triangle</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
@@ -13818,7 +13823,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=95270bbcc637d4fc">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">triangle</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -13829,7 +13834,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=73f0d9117907b22e">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">triangle</span><span class="o">.</span><span class="n">area</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span>
@@ -13840,7 +13845,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=e8e5431b93bb15d7">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">triangle</span><span class="o">.</span><span class="n">perimeter</span><span class="p">()</span> <span class="o">==</span> <span class="mi">12</span>
@@ -13851,7 +13856,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=837b30e743d9831d">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Drawing</span><span class="p">:</span>
@@ -13870,7 +13875,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=ea19596810b858fa">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">drawing</span> <span class="o">=</span> <span class="n">Drawing</span><span class="p">(</span><span class="n">shapes</span><span class="o">=</span><span class="p">[</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">triangle</span><span class="p">])</span>
@@ -13881,7 +13886,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=82cbe6f1c4b4ae3e">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">isclose</span><span class="p">(</span>
@@ -13896,7 +13901,7 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=731549eddb45b8d2">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">isclose</span><span class="p">(</span>
@@ -13906,6 +13911,18 @@ der Zeichnung implementiert (unter der Annahme, dass sie sich nicht
 <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=378cc7fb3e9e1a81"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Bessere-Versionen-der-bisherigen-Aufgaben">Workshop: Bessere Versionen der bisherigen Aufgaben<a class="anchor-link" href="#Workshop:-Bessere-Versionen-der-bisherigen-Aufgaben">¶</a></h2><p>Wir haben in allen bisherigen Workshops Klassen definiert, von denen es keine
+Instanzen geben sollte. Das konnten wir bisher im Code aber nicht ausdrücken.</p>
+<p>Im vorherigen Workshop haben wir das fur die geometrischen Formen explizit
+geändert.</p>
+<p>Verbessern Sie die Lösungen der anderen Vererbungs-Workshops ebenfalls, indem
+Sie die Basisklassen als abstrakte Klassen definieren.</p>
 </div>
 </div>
 </div>
