@@ -13165,15 +13165,25 @@ verwenden wir dafür in der Regel eine While-Schleife.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=10a86235cd71445f">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=24c789990bb26e9b">
 <div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">durchlauf</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">while</span> <span class="n">durchlauf</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Durchlauf </span><span class="si">{</span><span class="n">durchlauf</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="n">durchlauf</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># &lt;==</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">zahl</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e78f02adc70fc865">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">while</span> <span class="n">zahl</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Versuch </span><span class="si">{</span><span class="n">zahl</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">zahl</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1">#</span>
 </pre></div>
 </div>
 </div>
@@ -13183,29 +13193,165 @@ verwenden wir dafür in der Regel eine While-Schleife.</p>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Durchlauf 0
-Durchlauf 1
-Durchlauf 2
+<pre>Versuch 0
+Versuch 1
+Versuch 2
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=06ef688472b56120">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=c3944ce674d5d4bc">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=cd9cab7f89b0ae39">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9d86253e418db8d2">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">starte_rakete</span><span class="p">(</span><span class="n">countdown</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Willkommen zum Raketenstart-Simulator!"</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">countdown</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rakete startet in </span><span class="si">{</span><span class="n">countdown</span><span class="si">}</span><span class="s2"> Sekunden..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">countdown</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Start! 🚀"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=7536b2f4818367db">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">starte_rakete</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Willkommen zum Raketenstart-Simulator!
+Rakete startet in 10 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 9 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 8 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 7 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 6 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 5 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 4 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 3 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 2 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rakete startet in 1 Sekunden...
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Start! 🚀
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8f9d2308b4203a5d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Die bisherigen Beispiele hätten wir auch mit einer <code>for</code>-Schleife
+implementieren können.</li>
+<li>Das wäre die elegantere Lösung gewesen.</li>
+<li>Wenn wir aber nicht wissen, wie oft wir die Schleife durchlaufen wollen, ist
+eine <code>while</code>-Schleife die bessere Wahl.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=0f3d4cec2bd63937">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b1a7feafb4931361">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">führe_ein_experiment_aus</span><span class="p">(</span><span class="n">versuch_nr</span><span class="p">):</span>
@@ -13214,7 +13360,7 @@ Durchlauf 2
 <span class="sd">    """</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Versuch Nr. </span><span class="si">{</span><span class="n">versuch_nr</span><span class="si">}</span><span class="s2"> gestartet..."</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"Erfolg!"</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
@@ -13225,17 +13371,14 @@ Durchlauf 2
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=915d66d29e311d8c">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=38ccd524f2198032">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">versuch_nr</span> <span class="o">=</span> <span class="mi">0</span>
-
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">versuch_nr</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">while</span> <span class="ow">not</span> <span class="n">führe_ein_experiment_aus</span><span class="p">(</span><span class="n">versuch_nr</span><span class="p">):</span>
     <span class="n">versuch_nr</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Wir haben einen erfolgreichen Versuch ausgeführt."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13245,8 +13388,7 @@ Durchlauf 2
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Versuch Nr. 0 gestartet...Erfolg!
-Wir haben einen erfolgreichen Versuch ausgeführt.
+<pre>Versuch Nr. 1 gestartet...Erfolg!
 </pre>
 </div>
 </div>
@@ -13262,9 +13404,9 @@ Schleife vorzeitig beenden:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4942f3d701f29768">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=4942f3d701f29768">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
@@ -13293,29 +13435,36 @@ Nach der Schleife: 3
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=57a1889a5728326d">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=843077395a8201ab"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hier ist ein realistischeres Beispiel:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a585de11b530e653">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">annoy_user</span><span class="p">():</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">nerve_benutzer</span><span class="p">():</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Say hi! "</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Gib hi ein! "</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"hi"</span><span class="p">:</span>
             <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">"You chose"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Du hast"</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="s2">"eingegeben."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=0217f384da595161">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=fa51770cee20fe38">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># annoy_user()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># nerve_benutzer()</span>
 </pre></div>
 </div>
 </div>
@@ -13334,7 +13483,7 @@ lange nach einem Wort fragt, bis das eingegebene Wort der Lösung entspricht.</p
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=f40b599f0d914723">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rate_wort</span><span class="p">(</span><span class="n">lösung</span><span class="p">):</span>
@@ -13349,7 +13498,7 @@ lange nach einem Wort fragt, bis das eingegebene Wort der Lösung entspricht.</p
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=8d642716038f4511">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># rate_wort("Haus")</span>
@@ -13358,134 +13507,196 @@ lange nach einem Wort fragt, bis das eingegebene Wort der Lösung entspricht.</p
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a9af821b641da287"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=011dcf920c190489"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Zahlenraten">Zahlenraten<a class="anchor-link" href="#Zahlenraten">¶</a></h3><p>Implementieren Sie eine Funktion <code>rate_zahl(lösung)</code>, die den Benutzer so
-lange nach einer Zahl fragt, bis er die Lösung erraten hat. Nach jeder
-Eingabe soll dem Benutzer angezeigt werden, ob die eingegebene Zahl zu
-groß, zu klein oder richtig ist.</p>
+<h2 id="Zahlenraten">Zahlenraten<a class="anchor-link" href="#Zahlenraten">¶</a></h2><ul>
+<li>Schreiben Sie eine Funktion <code>rate_zahl()</code>, die eine Zufallszahl zwischen 1
+und 100 erzeugt und den Benutzer solange raten lässt, bis er die Zahl
+erraten hat.</li>
+<li>Nach jedem Versuch soll dem Benutzer angezeigt werden, ob die geratene Zahl
+zu groß oder zu klein war.</li>
+<li>Hinweis: Verwenden Sie die Funktion <code>random.randint(min, max)</code> aus dem Modul
+<code>random</code>.</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=845a13aec2443b98">
-<div class="input">
-<div class="prompt input_prompt">In [10]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rate_zahl</span><span class="p">(</span><span class="n">lösung</span><span class="p">):</span>
-    <span class="n">geratene_zahl</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte geben Sie eine Zahl ein: "</span><span class="p">)</span>
-    <span class="k">while</span> <span class="nb">int</span><span class="p">(</span><span class="n">geratene_zahl</span><span class="p">)</span> <span class="o">!=</span> <span class="n">lösung</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">geratene_zahl</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lösung</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">geratene_zahl</span><span class="si">}</span><span class="s2"> ist zu klein."</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">geratene_zahl</span><span class="si">}</span><span class="s2"> ist zu groß."</span><span class="p">)</span>
-        <span class="n">geratene_zahl</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte versuchen Sie es noch einmal: "</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Sie haben gewonnen!"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=1c8b493f22c52f26">
-<div class="input">
-<div class="prompt input_prompt">In [11]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># rate_zahl(23)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b529c111ae20f8df"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Wie müssen Sie Ihre Lösung modifizieren, damit der Spieler durch Eingabe
-einer leeren Zeichenkette das Spiel abbrechen kann?</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=40c289928ae35888">
-<div class="input">
-<div class="prompt input_prompt">In [12]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rate_zahl_1</span><span class="p">(</span><span class="n">lösung</span><span class="p">):</span>
-    <span class="n">geratene_zahl</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte geben Sie eine Zahl ein: "</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">geratene_zahl</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">geratene_zahl</span><span class="p">)</span> <span class="o">!=</span> <span class="n">lösung</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">geratene_zahl</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">lösung</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">geratene_zahl</span><span class="si">}</span><span class="s2"> ist zu klein."</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">geratene_zahl</span><span class="si">}</span><span class="s2"> ist zu groß."</span><span class="p">)</span>
-        <span class="n">geratene_zahl</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte versuchen Sie es noch einmal: "</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">geratene_zahl</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Sie haben gewonnen!"</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Aufgeben ist feige!"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=bfaa968a0fc051fa">
-<div class="input">
-<div class="prompt input_prompt">In [13]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># rate_zahl_1(23)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_alt" id="cell-id=5ecdcb92ce365488"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Lösung unter Zuhilfenahme der Funktion <code>klassifiziere_zahl</code></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=869360dac0bdb711">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=06ef688472b56120">
 <div class="input">
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">classify_number</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">solution</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="n">solution</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"Your guess is too small! "</span>
-    <span class="k">elif</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">solution</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"Your guess is too large! "</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"You won!"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=adaa6e9f92838a54">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=38878d2a1b560a9b">
 <div class="input">
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">guess_number_2</span><span class="p">(</span><span class="n">solution</span><span class="p">):</span>
-    <span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Please enter a guess: "</span><span class="p">)</span>
-    <span class="n">is_success</span><span class="p">,</span> <span class="n">hint</span> <span class="o">=</span> <span class="n">classify_number</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">guess</span><span class="p">),</span> <span class="n">solution</span><span class="p">)</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">is_success</span><span class="p">:</span>
-        <span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">hint</span><span class="p">)</span>
-        <span class="n">is_success</span><span class="p">,</span> <span class="n">hint</span> <span class="o">=</span> <span class="n">classify_number</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">guess</span><span class="p">),</span> <span class="n">solution</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"You won!"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rate_zahl</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Lässt den Benutzer eine Zufallszahl zwischen 1 und 100 raten."""</span>
+    <span class="n">zufallszahl</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht."</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">geraten</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte geben Sie eine Zahl ein: "</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">geraten</span> <span class="o">&lt;</span> <span class="n">zufallszahl</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Zu klein!"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">geraten</span> <span class="o">&gt;</span> <span class="n">zufallszahl</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Zu groß!"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Genau richtig!"</span><span class="p">)</span>
+            <span class="k">break</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=876c0539dec1f1ea">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=96096187b6a2673f">
 <div class="input">
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># rate_zahl_2(23)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># rate_zahl()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7946ebd76e4e0080"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Fügen Sie Ihrer Funktion eine Begrenzung der Rate-Versuche hinzu. Wenn der
+Benutzer die Zahl in weniger als 6 Versuchen errät, soll die Meldung <code>Gut geraten!</code> ausgegeben werden, ansonsten <code>Schlecht geraten!</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=eaabae19547b75bf">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0018adf4f012d78f">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rate_zahl</span><span class="p">():</span>
+    <span class="n">tries</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">solution</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Willkommen zu dem Zahlenratespiel!"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht. Du hast 6 Versuche, um sie zu erraten."</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte Zahl eingeben: "</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="n">solution</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Zu niedrig!"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">solution</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Zu hoch!"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Gut geraten!"</span><span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="n">tries</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">solution</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Schlecht geraten! Die Zahl war."</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=bae4cf76fbc40023">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># guess_number()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=78158fea7d8fbaa6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Erweitern Sie die Funktion, so dass der Benutzer entscheiden kann, ob er
+erneut spielen möchte.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=59176e7c18f4e83c">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b536fc86265d1c16">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rate_zahl</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">tries</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Willkommen zu dem Zahlenratespiel!"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht. Du hast 6 Versuche, um sie zu erraten."</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">guess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte Zahl eingeben: "</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="n">solution</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Zu niedrig!"</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">solution</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Zu hoch!"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Gut geraten!"</span><span class="p">)</span>
+                <span class="k">break</span>
+
+            <span class="n">tries</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">tries</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">solution</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Schlecht geraten! Die Zahl war."</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+
+        <span class="n">play_again</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Möchten Sie noch einmal spielen? (j/n): "</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">play_again</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">"j"</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Auf Wiedersehen!"</span><span class="p">)</span>
+            <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=3301db7701c0c2d4">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># rate_zahl()</span>
 </pre></div>
 </div>
 </div>

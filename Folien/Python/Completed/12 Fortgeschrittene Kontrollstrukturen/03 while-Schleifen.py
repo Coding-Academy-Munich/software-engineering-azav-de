@@ -25,14 +25,42 @@
 #  verwenden wir dafür in der Regel eine While-Schleife.
 
 # %%
-durchlauf = 0
-while durchlauf < 3:
-    print(f"Durchlauf {durchlauf}")
-    durchlauf += 1  # <==
+zahl = 0
+
+# %%
+while zahl < 3:
+    print(f"Versuch {zahl}")
+    zahl += 1  #
+
+# %%
+import time
+
+# %%
+def starte_rakete(countdown):
+    print("Willkommen zum Raketenstart-Simulator!")
+
+    while countdown > 0:
+        print(f"Rakete startet in {countdown} Sekunden...")
+        time.sleep(1)
+        countdown -= 1
+
+    print("Start! 🚀")
 
 
 # %%
-import random
+starte_rakete(10)
+
+
+# %% [markdown]
+#
+# - Die bisherigen Beispiele hätten wir auch mit einer `for`-Schleife
+#   implementieren können.
+# - Das wäre die elegantere Lösung gewesen.
+# - Wenn wir aber nicht wissen, wie oft wir die Schleife durchlaufen wollen, ist
+#   eine `while`-Schleife die bessere Wahl.
+
+# %%
+from random import random
 
 # %%
 def führe_ein_experiment_aus(versuch_nr):
@@ -41,21 +69,18 @@ def führe_ein_experiment_aus(versuch_nr):
     """
     print(f"Versuch Nr. {versuch_nr} gestartet...", end="")
 
-    if random.random() > 0.8:
+    if random() > 0.8:
         print("Erfolg!")
         return True
     else:
         print("Fehlschlag.")
         return False
 
-
 # %%
-versuch_nr = 0
-
+versuch_nr = 1
 while not führe_ein_experiment_aus(versuch_nr):
     versuch_nr += 1
 
-print("Wir haben einen erfolgreichen Versuch ausgeführt.")
 
 # %% [markdown]
 #
@@ -75,18 +100,22 @@ while i < 10:
 print("Nach der Schleife:", i)
 
 
+# %% [markdown]
+#
+# Hier ist ein realistischeres Beispiel:
+
 # %%
-def annoy_user():
+def nerve_benutzer():
     while True:
-        text = input("Say hi! ")
+        text = input("Gib hi ein! ")
         if text.lower() == "hi":
             break
         else:
-            print("You chose", text)
+            print("Du hast", text, "eingegeben.")
 
 
 # %%
-# annoy_user()
+# nerve_benutzer()
 
 # %% [markdown]
 # ## Ratespiele
@@ -112,72 +141,113 @@ def rate_wort(lösung):
 # rate_wort("Haus")
 
 # %% [markdown]
-# ### Zahlenraten
 #
-# Implementieren Sie eine Funktion `rate_zahl(lösung)`, die den Benutzer so
-# lange nach einer Zahl fragt, bis er die Lösung erraten hat. Nach jeder
-# Eingabe soll dem Benutzer angezeigt werden, ob die eingegebene Zahl zu
-# groß, zu klein oder richtig ist.
+# ## Zahlenraten
+#
+# - Schreiben Sie eine Funktion `rate_zahl()`, die eine Zufallszahl zwischen 1
+#   und 100 erzeugt und den Benutzer solange raten lässt, bis er die Zahl
+#   erraten hat.
+# - Nach jedem Versuch soll dem Benutzer angezeigt werden, ob die geratene Zahl
+#   zu groß oder zu klein war.
+# - Hinweis: Verwenden Sie die Funktion `random.randint(min, max)` aus dem Modul
+#   `random`.
 
 # %%
-def rate_zahl(lösung):
-    geratene_zahl = input("Bitte geben Sie eine Zahl ein: ")
-    while int(geratene_zahl) != lösung:
-        if int(geratene_zahl) < lösung:
-            print(f"{geratene_zahl} ist zu klein.")
+import random
+
+# %%
+def rate_zahl():
+    """Lässt den Benutzer eine Zufallszahl zwischen 1 und 100 raten."""
+    zufallszahl = random.randint(1, 100)
+    print("Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht.")
+
+    while True:
+        geraten = int(input("Bitte geben Sie eine Zahl ein: "))
+        if geraten < zufallszahl:
+            print("Zu klein!")
+        elif geraten > zufallszahl:
+            print("Zu groß!")
         else:
-            print(f"{geratene_zahl} ist zu groß.")
-        geratene_zahl = input("Bitte versuchen Sie es noch einmal: ")
-    print("Sie haben gewonnen!")
-
+            print("Genau richtig!")
+            break
 
 # %%
-# rate_zahl(23)
+# rate_zahl()
 
 # %% [markdown]
 #
-# Wie müssen Sie Ihre Lösung modifizieren, damit der Spieler durch Eingabe
-# einer leeren Zeichenkette das Spiel abbrechen kann?
+# - Fügen Sie Ihrer Funktion eine Begrenzung der Rate-Versuche hinzu. Wenn der
+#   Benutzer die Zahl in weniger als 6 Versuchen errät, soll die Meldung `Gut
+#   geraten!` ausgegeben werden, ansonsten `Schlecht geraten!`.
 
 # %%
-def rate_zahl_1(lösung):
-    geratene_zahl = input("Bitte geben Sie eine Zahl ein: ")
-    while geratene_zahl and int(geratene_zahl) != lösung:
-        if int(geratene_zahl) < lösung:
-            print(f"{geratene_zahl} ist zu klein.")
+import random
+
+# %%
+def rate_zahl():
+    tries = 6
+    solution = random.randint(1, 100)
+
+    print("Willkommen zu dem Zahlenratespiel!")
+    print("Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht. Du hast 6 Versuche, um sie zu erraten.")
+
+    while tries > 0:
+        guess = int(input("Bitte Zahl eingeben: "))
+
+        if guess < solution:
+            print("Zu niedrig!")
+        elif guess > solution:
+            print("Zu hoch!")
         else:
-            print(f"{geratene_zahl} ist zu groß.")
-        geratene_zahl = input("Bitte versuchen Sie es noch einmal: ")
-    if geratene_zahl:
-        print("Sie haben gewonnen!")
-    else:
-        print("Aufgeben ist feige!")
+            print("Gut geraten!")
+            break
 
+        tries -= 1
+
+    if tries == 0 and guess != solution:
+        print("Schlecht geraten! Die Zahl war.", solution)
 
 # %%
-# rate_zahl_1(23)
+# guess_number()
 
 # %% [markdown]
-# Lösung unter Zuhilfenahme der Funktion `klassifiziere_zahl`
+#
+# - Erweitern Sie die Funktion, so dass der Benutzer entscheiden kann, ob er
+#   erneut spielen möchte.
 
 # %%
-def classify_number(guess, solution):
-    if guess < solution:
-        return False, "Your guess is too small! "
-    elif guess > solution:
-        return False, "Your guess is too large! "
-    else:
-        return True, "You won!"
+import random
 
 
 # %%
-def guess_number_2(solution):
-    guess = input("Please enter a guess: ")
-    is_success, hint = classify_number(int(guess), solution)
-    while not is_success:
-        guess = input(hint)
-        is_success, hint = classify_number(int(guess), solution)
-    print("You won!")
+def rate_zahl():
+    while True:
+        tries = 6
+        solution = random.randint(1, 100)
+
+        print("Willkommen zu dem Zahlenratespiel!")
+        print("Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht. Du hast 6 Versuche, um sie zu erraten.")
+
+        while tries > 0:
+            guess = int(input("Bitte Zahl eingeben: "))
+
+            if guess < solution:
+                print("Zu niedrig!")
+            elif guess > solution:
+                print("Zu hoch!")
+            else:
+                print("Gut geraten!")
+                break
+
+            tries -= 1
+
+        if tries == 0 and guess != solution:
+            print("Schlecht geraten! Die Zahl war.", solution)
+
+        play_again = input("Möchten Sie noch einmal spielen? (j/n): ")
+        if play_again.lower() != "j":
+            print("Auf Wiedersehen!")
+            break
 
 # %%
-# rate_zahl_2(23)
+# rate_zahl()
