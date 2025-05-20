@@ -1,7 +1,7 @@
 # %% [markdown]
 #
 # <div style="text-align:center; font-size:200%;">
-#  <b>Einführung in Objektorientiertes Design</b>
+#  <b>Einführung in OOAD</b>
 # </div>
 # <br/>
 # <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -9,10 +9,34 @@
 
 # %% [markdown]
 #
+# # Objektorientierte Analyse und Design (OOAD)
+#
+# - Idee
+# - ???
+# - Programm
+
+# %% [markdown]
+#
+# - Idee
+# - Analyse
+# - Design
+# - Programm
+
+# %% [markdown]
+#
+# - Wie läuft das ab?
+#   - Entwicklungsprozess (Agil, Spiral, V-Modell, ...)
+# - Was ist Analyse?
+# - Was ist Design?
+# - Wie gehen wir dabei vor?
+#   - OOAD
+
+# %% [markdown]
+#
 # - Whs ist objektorientierte Programmierung?
-# - Was ist objektorientiertes Design?
+# - Was ist objektorientierte Analyse und Design?
 # - Warum ist das ein guter Ansatz?
-# - Wie gehen wir vor?
+# - Wie funktioniert OOAD?
 # - Welche Alternativen gibt es?
 # - Müssen wir uns entscheiden?
 
