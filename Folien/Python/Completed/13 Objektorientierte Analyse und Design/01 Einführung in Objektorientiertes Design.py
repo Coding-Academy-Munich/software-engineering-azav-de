@@ -9,8 +9,8 @@
 
 # %% [markdown]
 #
-# - Whs ist Objektorientierung?
-# - Was ist Objektorientiertes Design?
+# - Whs ist objektorientierte Programmierung?
+# - Was ist objektorientiertes Design?
 # - Warum ist das ein guter Ansatz?
 # - Wie gehen wir vor?
 # - Welche Alternativen gibt es?
@@ -18,7 +18,7 @@
 
 # %% [markdown]
 #
-# ## Was ist Objektorientierung?
+# ## Was ist objektorientierte Programmierung?
 #
 # - Objekte
 #   - Daten (Zustand) + Verhalten
@@ -30,14 +30,16 @@
 
 # %% [markdown]
 #
-# ## Was ist Objektorientiertes Design?
+# ## Was ist OOAD?
 #
-# - **Design** mit Klassen/Objekten
+# - **Analyse** und **Design** mit Klassen/Objekten
 #   - *Das ist noch nicht die Implementierung!*
 #   - Modellierung von Systemen/Problemen als interagierende Objekte
 #   - Klassen beschreiben die Struktur und das Verhalten von Objekten
 #   - Assoziationen beschreiben die Beziehungen zwischen Objekten
 # - Designs werden oft grafisch (z.B. UML) dargestellt
+#   - Struktur (z.B. Klassendiagramme, Objektdiagramme)
+#   - Verhalten (z.B. Aktivitätsdiagramme, Sequenzdiagramme)
 # - Umsetzung als objektorientiertes Programm
 
 # %% [markdown]
@@ -47,13 +49,17 @@
 
 # %% [markdown]
 #
-# ## Warum ist das ein guter Ansatz?
+# ## Warum ist OOAD/OOP ein guter Ansatz?
 #
-# - "Intuitive" Modellierung von Systemen/Problemen
+# - Code:
+#   - Struktur/Modularität
+#   - Wiederverwendung
+# - Design:
+#   - "Intuitive" Modellierung von Systemen/Problemen
+#   - **Kontrolle von Abhängigkeiten** (Dependency Inversion)
+# - Kombination:
 #   - **Niedrige Repräsentationslücke**
-# - Strukturierung von Code
-# - **Kontrolle von Abhängigkeiten** (Dependency Inversion)
-# - Wiederverwendung von Code
+
 
 # %% [markdown]
 #
@@ -85,4 +91,4 @@
 # - Programmierung: Nein!
 #   - Python unterstützt verschiedene Programmierparadigmen
 #   - Verwenden Sie diejenigen, die auf Ihr Problem passen
-#   - Aber: Objektorientierung ist ein guter Ansatz für viele Probleme
+#   - Aber: OOP ist ein guter Ansatz für viele Probleme

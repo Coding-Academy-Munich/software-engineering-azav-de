@@ -13144,16 +13144,16 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=56697ea0066bdadd"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7c339d9698624c39"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Was-ist-ein-Dom%C3%A4nenmodell?">Was ist ein Domänenmodell?<a class="anchor-link" href="#Was-ist-ein-Dom%C3%A4nenmodell?">¶</a></h2><ul>
 <li>Eine <strong>konzeptionelle Repräsentation</strong> einer bestimmten Domäne.</li>
 <li><strong>Zweck</strong>: Verständnis und Dokumentation, wie Daten-Elemente innerhalb einer
 Domäne interagieren.</li>
-<li><strong>Beinhaltet</strong>:<ul>
-<li>Entitäten</li>
-<li>Beziehungen</li>
+<li><strong>Beinhaltet</strong> (bei OOAD):<ul>
+<li>Klassen</li>
+<li>Assoziationen (Beziehungen)</li>
 <li>Attribute</li>
 <li>Operationen</li>
 </ul>
@@ -13162,25 +13162,33 @@ Domäne interagieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e07bdd349ea07ff0"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d7c794ac35f37de8"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dom%C3%A4nenmodelle-in-verschiedenen-Branchen">Domänenmodelle in verschiedenen Branchen<a class="anchor-link" href="#Dom%C3%A4nenmodelle-in-verschiedenen-Branchen">¶</a></h2>
+<div style="display: flex; align-items: flex-start;">
+<div style="flex: 1; padding-right: 20px;">
+<h2>Domänenmodelle</h2>
+<p>Wir wollen Domänenmodelle in verschiedenen Branchen betrachten.</p>
+<ul>
+<li>E-Commerce</li>
+<li>Selbstfahrende Autos</li>
+<li>Bankenwesen</li>
+</ul>
+</div>
+<div style="flex: 1;">
+<img alt="E-commerce" src="img/e-commerce.png" style="width: 100%; max-width: 500px;"/>
+<img alt="Selbstfahrende Autos" src="img/cars.png" style="width: 100%; max-width: 500px;"/>
+<img alt="Selbstfahrende Autos" src="img/bank.png" style="width: 100%; max-width: 500px;"/>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=710a4b45e399fb01"><div class="prompt input_prompt">
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=551cc32ed9539ba0"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<img alt="No description has been provided for this image" src="img/e-commerce.png" width="100%"/>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3ee7c04a39bc3ebe"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Wie-finden-wir-Entit%C3%A4ten-und-Operationen?">Wie finden wir Entitäten und Operationen?<a class="anchor-link" href="#Wie-finden-wir-Entit%C3%A4ten-und-Operationen?">¶</a></h3><ul>
-<li>Entitäten sind of Konzepte, die in der Domäne vorkommen<ul>
+<h3 id="Wie-finden-wir-Klassen-und-Operationen?">Wie finden wir Klassen und Operationen?<a class="anchor-link" href="#Wie-finden-wir-Klassen-und-Operationen?">¶</a></h3><ul>
+<li>Klassen sind oft Konzepte, die in der Domäne vorkommen<ul>
 <li>Personen, Orte, Dinge, ...</li>
 <li>Abstrakte Konzepte</li>
 <li>Im Beschreibungen oft Substantive</li>
@@ -13207,11 +13215,18 @@ Domäne interagieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dbc170135947a1cd"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e6c12bb915521160"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="No description has been provided for this image" src="img/e-commerce.png" style="margin-left: auto; margin-right: auto;" width="85%"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d8ebc3925794b0c6"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="E-Commerce">E-Commerce<a class="anchor-link" href="#E-Commerce">¶</a></h3><ul>
-<li>Entitäten: Unternehmen, Produkte, Kunden, Bestellungen, Positionen</li>
+<li>Klassen: Unternehmen, Produkte, Kunden, Bestellungen, Positionen</li>
 <li>Beziehungen:<ul>
 <li>Unternehmen verkaufen Produkte</li>
 <li>Unternehmen haben Kunden und offene Bestellungen</li>
@@ -13242,10 +13257,38 @@ Domäne interagieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7bc4579902bce7a5"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7c2c38c5e07cc47b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img alt="No description has been provided for this image" src="img/e-commerce-dm.svg" style="margin-left: auto; margin-right: auto;" width="85%"/></p>
+<p><img alt="No description has been provided for this image" src="img/e-commerce-dm.png" style="margin-left: auto; margin-right: auto;" width="65%"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5b5fe2b0bb9a5c58"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="No description has been provided for this image" src="img/act-placing-order.png" style="margin-left: auto; margin-right: auto;" width="55%"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=731bb8b3ad51a908"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="No description has been provided for this image" src="img/sq-product-selection-simple.png" style="margin-left: auto; margin-right: auto;" width="85%"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bc4ac5b0c1c7eb6b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="No description has been provided for this image" src="img/sq-product-selection.png" style="margin-left: auto; margin-right: auto;" width="85%"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=934818469d577c11"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="No description has been provided for this image" src="img/sq-checkout-success.png" style="margin-left: auto; margin-right: auto;" width="65%"/></p>
 </div>
 </div>
 </div>
@@ -13256,11 +13299,11 @@ Domäne interagieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=124af481f232cccb"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7d09e76f45198a58"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Selbstfahrende-Autos">Selbstfahrende Autos<a class="anchor-link" href="#Selbstfahrende-Autos">¶</a></h3><ul>
-<li>Entitäten: Autos, Sensoren, GPS, Karten, Fahrbahn, Route, Orte</li>
+<li>Klassen: Autos, Sensoren, GPS, Karten, Fahrbahn, Route, Orte</li>
 <li>Beziehungen:<ul>
 <li>Autos haben Sensoren und GPS</li>
 <li>Autos haben Karten</li>
@@ -13277,10 +13320,10 @@ Domäne interagieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ec04ee4f8f01cce1"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7f06179af5de7ff4"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img alt="No description has been provided for this image" src="img/cars-dm.svg" style="margin-left: auto; margin-right: auto;" width="70%"/></p>
+<p><img alt="No description has been provided for this image" src="img/cars-dm.png" style="margin-left: auto; margin-right: auto;" width="70%"/></p>
 </div>
 </div>
 </div>
@@ -13291,11 +13334,11 @@ Domäne interagieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=add9f0a236628464"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=fd01f0df3220d9cf"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bankenwesen">Bankenwesen<a class="anchor-link" href="#Bankenwesen">¶</a></h3><ul>
-<li>Entitäten: Konten, Transaktionen, Kunden</li>
+<li>Klassen: Konten, Transaktionen, Kunden</li>
 <li>Beziehungen:<ul>
 <li>Kunden besitzen Konten</li>
 <li>Konten erfassen Transaktionen</li>
@@ -13311,19 +13354,19 @@ Domäne interagieren.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6556a2c98c4eeef1"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c264fc2f82caf9b3"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img alt="No description has been provided for this image" src="img/bank-dm.svg" style="margin-left: auto; margin-right: auto;" width="60%"/></p>
+<p><img alt="No description has been provided for this image" src="img/bank-dm.png" style="margin-left: auto; margin-right: auto;" width="60%"/></p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e1de226a704aefa7"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ac0472c4f5b856bb"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Workshop:-Dom%C3%A4nenmodelle">Workshop: Domänenmodelle<a class="anchor-link" href="#Workshop:-Dom%C3%A4nenmodelle">¶</a></h2><p>Im Folgenden sind einige Domänen aufgeführt. Versuchen Sie, für jede Domäne
 ein (einfaches) Domänenmodell zu erstellen.</p>
-<p>Zeichnen Sie jeweils ein UML-Klassendiagramm mit den Entitäten und Beziehungen.</p>
+<p>Zeichnen Sie jeweils ein UML-Klassendiagramm mit den Klassen und Beziehungen.</p>
 <p>Falls Sie an einem Software-Projekt in einer bestimmten Domäne arbeiten,
 versuchen Sie, ein Domänenmodell für Ihr Projekt zu erstellen.</p>
 </div>

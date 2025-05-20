@@ -14,25 +14,35 @@
 # - Eine **konzeptionelle Repräsentation** einer bestimmten Domäne.
 # - **Zweck**: Verständnis und Dokumentation, wie Daten-Elemente innerhalb einer
 #   Domäne interagieren.
-# - **Beinhaltet**:
-#   - Entitäten
-#   - Beziehungen
+# - **Beinhaltet** (bei OOAD):
+#   - Klassen
+#   - Assoziationen (Beziehungen)
 #   - Attribute
 #   - Operationen
 
 # %% [markdown]
-#
-# ## Domänenmodelle in verschiedenen Branchen
+# <div style="display: flex; align-items: flex-start;">
+#     <div style="flex: 1; padding-right: 20px;">
+#         <h2>Domänenmodelle</h2>
+#         <p>Wir wollen Domänenmodelle in verschiedenen Branchen betrachten.</p>
+#         <ul>
+#             <li>E-Commerce</li>
+#             <li>Selbstfahrende Autos</li>
+#             <li>Bankenwesen</li>
+#         </ul>
+#     </div>
+#     <div style="flex: 1;">
+#         <img src="img/e-commerce.png" alt="E-commerce" style="width: 100%; max-width: 500px;">
+#         <img src="img/cars.png" alt="Selbstfahrende Autos" style="width: 100%; max-width: 500px;">
+#         <img src="img/bank.png" alt="Selbstfahrende Autos" style="width: 100%; max-width: 500px;">
+#     </div>
+# </div>
 
 # %% [markdown]
 #
-# <img src="img/e-commerce.png" width="100%">
-
-# %% [markdown]
+# ### Wie finden wir Klassen und Operationen?
 #
-# ### Wie finden wir Entitäten und Operationen?
-#
-# - Entitäten sind of Konzepte, die in der Domäne vorkommen
+# - Klassen sind oft Konzepte, die in der Domäne vorkommen
 #   - Personen, Orte, Dinge, ...
 #   - Abstrakte Konzepte
 #   - Im Beschreibungen oft Substantive
@@ -52,9 +62,14 @@
 
 # %% [markdown]
 #
+# <img src="img/e-commerce.png" width="85%"
+#      style="margin-left: auto; margin-right: auto;">
+
+# %% [markdown]
+#
 # ### E-Commerce
 #
-# - Entitäten: Unternehmen, Produkte, Kunden, Bestellungen, Positionen
+# - Klassen: Unternehmen, Produkte, Kunden, Bestellungen, Positionen
 # - Beziehungen:
 #   - Unternehmen verkaufen Produkte
 #   - Unternehmen haben Kunden und offene Bestellungen
@@ -77,7 +92,27 @@
 
 # %% [markdown]
 #
-# <img src="img/e-commerce-dm.svg" width="85%"
+# <img src="img/e-commerce-dm.png" width="65%"
+#      style="margin-left: auto; margin-right: auto;">
+
+# %% [markdown]
+#
+# <img src="img/act-placing-order.png" width="55%"
+#      style="margin-left: auto; margin-right: auto;">
+
+# %% [markdown]
+#
+# <img src="img/sq-product-selection-simple.png" width="85%"
+#      style="margin-left: auto; margin-right: auto;">
+
+# %% [markdown]
+#
+# <img src="img/sq-product-selection.png" width="85%"
+#      style="margin-left: auto; margin-right: auto;">
+
+# %% [markdown]
+#
+# <img src="img/sq-checkout-success.png" width="65%"
 #      style="margin-left: auto; margin-right: auto;">
 
 # %% [markdown]
@@ -88,7 +123,7 @@
 #
 # ### Selbstfahrende Autos
 #
-# - Entitäten: Autos, Sensoren, GPS, Karten, Fahrbahn, Route, Orte
+# - Klassen: Autos, Sensoren, GPS, Karten, Fahrbahn, Route, Orte
 # - Beziehungen:
 #   - Autos haben Sensoren und GPS
 #   - Autos haben Karten
@@ -100,7 +135,7 @@
 
 # %% [markdown]
 #
-# <img src="img/cars-dm.svg" width="70%"
+# <img src="img/cars-dm.png" width="70%"
 #      style="margin-left: auto; margin-right: auto;">
 
 # %% [markdown]
@@ -111,7 +146,7 @@
 #
 # ### Bankenwesen
 #
-# - Entitäten: Konten, Transaktionen, Kunden
+# - Klassen: Konten, Transaktionen, Kunden
 # - Beziehungen:
 #   - Kunden besitzen Konten
 #   - Konten erfassen Transaktionen
@@ -122,7 +157,7 @@
 
 # %% [markdown]
 #
-# <img src="img/bank-dm.svg" width="60%"
+# <img src="img/bank-dm.png" width="60%"
 #      style="margin-left: auto; margin-right: auto;">
 
 
@@ -133,7 +168,7 @@
 # Im Folgenden sind einige Domänen aufgeführt. Versuchen Sie, für jede Domäne
 # ein (einfaches) Domänenmodell zu erstellen.
 #
-# Zeichnen Sie jeweils ein UML-Klassendiagramm mit den Entitäten und Beziehungen.
+# Zeichnen Sie jeweils ein UML-Klassendiagramm mit den Klassen und Beziehungen.
 #
 # Falls Sie an einem Software-Projekt in einer bestimmten Domäne arbeiten,
 # versuchen Sie, ein Domänenmodell für Ihr Projekt zu erstellen.
@@ -148,7 +183,7 @@
 
 # %% [markdown]
 #
-# - Entitäten: Personen, Gruppen, Beiträge, Kommentare
+# - Klassen: Personen, Gruppen, Beiträge, Kommentare
 # - Beziehungen:
 #   - Personen sind Mitglieder von Gruppen
 #   - Beiträge sind in Gruppen veröffentlicht
@@ -159,7 +194,7 @@
 
 # %% [markdown]
 #
-# <img src="img/social-network-dm.svg" width="50%"
+# <img src="img/social-network-dm.png" width="50%"
 #      style="margin-left: auto; margin-right: auto;">
 
 # %% [markdown]
@@ -172,7 +207,7 @@
 
 # %% [markdown]
 #
-# - Entitäten: Patienten, Ärzte, Termine, Rezepte
+# - Klassen: Patienten, Ärzte, Termine, Rezepte
 # - Beziehungen: Ärzte und Patienten haben Termine
 # - Operationen:
 #   - Patienten vereinbaren Termine mit Ärzten
@@ -180,7 +215,7 @@
 
 # %% [markdown]
 #
-# <img src="img/medicine-dm.svg" width="60%"
+# <img src="img/medicine-dm.png" width="60%"
 #      style="margin-left: auto; margin-right: auto;">
 
 # %% [markdown]
@@ -194,7 +229,7 @@
 
 # %% [markdown]
 #
-# - Entitäten: Studierende, Kurse, Dozierende, Hörsäle
+# - Klassen: Studierende, Kurse, Dozierende, Hörsäle
 # - Beziehungen:
 #   - Dozierende halten Kurse (unterrichten Kurse)
 #   - Studierende sind in Kurse eingeschrieben
@@ -205,5 +240,5 @@
 
 # %% [markdown]
 #
-# <img src="img/uni-dm.svg" width="35%"
+# <img src="img/uni-dm.png" width="35%"
 #      style="margin-left: auto; margin-right: auto;">
