@@ -13612,19 +13612,17 @@ eine Klasse, usw.) sein</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dee17d3c8326c7e7"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=186e46ed1b8827a5"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Workshop:-Pers%C3%B6nlicher-Finanz-Tracker">Workshop: Persönlicher Finanz-Tracker<a class="anchor-link" href="#Workshop:-Pers%C3%B6nlicher-Finanz-Tracker">¶</a></h2><h3 id="%C3%9Cbersicht">Übersicht<a class="anchor-link" href="#%C3%9Cbersicht">¶</a></h3><p>In diesem Workshop werden Sie einen einfachen persönlichen Finanz-Tracker
 entwickeln. Dieses Programm hilft den Benutzern, ihre persönlichen Finanzen,
-einschließlich Ausgaben und Einkommen, zu verfolgen und zu analysieren. Ihre Aufgabe
-wird es sein, diese Anwendung in Pakete und Module zu strukturieren, um eine
-ordnungsgemäße Funktionalität zu gewährleisten und Ihr Verständnis von
-Python-Paketverwaltung und Modulreferenzen zu demonstrieren.</p>
+zu verfolgen und zu analysieren.</p>
+<p>Wir wollen das Programm in mehrere Pakete und Module einteilen.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a8da6fdffaff6c84"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f39fa5ff8f697ce0"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Problem--und-Funktionsdom%C3%A4ne">Problem- und Funktionsdomäne<a class="anchor-link" href="#Problem--und-Funktionsdom%C3%A4ne">¶</a></h3><p>Der persönliche Finanz-Tracker besteht aus zwei Hauptkomponenten: Ausgabenverfolgung
@@ -13636,39 +13634,24 @@ Finanzberichten und das Erstellen von Budgets haben.</p>
 <li><strong>Einkommen verfolgen:</strong> Verschiedene Einkommensquellen aufzeichnen und
 kategorisieren.</li>
 <li><strong>Berichte generieren:</strong> Zusammenfassungen von Finanzaktivitäten erstellen.</li>
-<li><strong>Budgetanalyse:</strong> Ausgaben und Einkommen vergleichen, um Budgets zu setzen und
-zu analysieren.</li>
+<li><strong>Budgetanalyse:</strong> Überprüfen ob Ausgaben in einem Budget liegen</li>
 </ol>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5e0ee3986ff626f5"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6ac64a7124eb1a87"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Paket--und-Modulstruktur">Paket- und Modulstruktur<a class="anchor-link" href="#Paket--und-Modulstruktur">¶</a></h3><p>Ihr Programm wird in zwei Hauptpakete unterteilt: <code>finance</code> und <code>analytics</code>. Jedes
 Paket enthält spezifische Module, die mit ihren Funktionalitäten verbunden sind.</p>
 <ol>
-<li><p><strong>Paket: <code>finance</code></strong></p>
-<ul>
-<li><strong>Modul: <code>expenses.py</code></strong><ul>
-<li>Funktionen zum Hinzufügen, Kategorisieren und Zusammenfassen von Ausgaben.</li>
+<li><strong>Paket: <code>finance</code></strong><ul>
+<li><strong>Modul: <code>expenses</code></strong><ul>
+<li>Klassen und Funktionen zum Hinzufügen, Kategorisieren und Zusammenfassen von Ausgaben.</li>
 </ul>
 </li>
-<li><strong>Modul: <code>income.py</code></strong><ul>
-<li>Funktionen zum Aufzeichnen und Kategorisieren von Einkommensquellen.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Paket: <code>analytics</code></strong> (ein Unter-Paket innerhalb von <code>finance</code>)</p>
-<ul>
-<li><strong>Modul: <code>reports.py</code></strong><ul>
-<li>Funktionen zum Erstellen von Finanzberichten basierend auf Einkommen und
-Ausgaben.</li>
-</ul>
-</li>
-<li><strong>Modul: <code>budget.py</code></strong><ul>
-<li>Funktionen zum Erstellen und Analysieren von Budgets.</li>
+<li><strong>Modul: <code>income</code></strong><ul>
+<li>Klassen und Funktionen zum Aufzeichnen und Kategorisieren von Einkommensquellen.</li>
 </ul>
 </li>
 </ul>
@@ -13677,84 +13660,146 @@ Ausgaben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=73ea784da0b3502b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7052c16e73fce437"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Spezifikationen-von-Funktionen-und-Klassen">Spezifikationen von Funktionen und Klassen<a class="anchor-link" href="#Spezifikationen-von-Funktionen-und-Klassen">¶</a></h3><ul>
-<li><p><code>expenses.py</code>:</p>
-<ul>
-<li><code>add_expense()</code></li>
-<li><code>categorize_expense()</code></li>
-<li><code>summarize_expenses()</code></li>
+<ol start="2">
+<li><strong>Paket: <code>analytics</code></strong> (ein Unter-Paket innerhalb von <code>finance</code>)<ul>
+<li><strong>Modul: <code>reporting</code></strong><ul>
+<li>Funktionen zum Erstellen von Finanzberichten basierend auf Einkommen und
+Ausgaben.</li>
 </ul>
 </li>
-<li><p><code>income.py</code>:</p>
-<ul>
-<li><code>record_income()</code></li>
-<li><code>categorize_income()</code></li>
-</ul>
-</li>
-<li><p><code>reports.py</code>:</p>
-<ul>
-<li><code>generate_financial_report()</code></li>
-</ul>
-</li>
-<li><p><code>budget.py</code>:</p>
-<ul>
-<li><code>create_budget()</code></li>
-<li><code>compare_budget_to_actual()</code></li>
+<li><strong>Modul: <code>budget</code></strong><ul>
+<li>Klassen und Funktionen zum Erstellen und Analysieren von Budgets.</li>
 </ul>
 </li>
 </ul>
+</li>
+</ol>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bd093c6dfdd8d2c3"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cf3c6d296691e64d"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Paketreferenzen-und-Abh%C3%A4ngigkeiten">Paketreferenzen und Abhängigkeiten<a class="anchor-link" href="#Paketreferenzen-und-Abh%C3%A4ngigkeiten">¶</a></h3><p>Realisieren Sie die folgenden Abhängigkeiten zwischen den Paketen und Modulen:</p>
-<ul>
-<li><code>budget.py</code> sollte sowohl auf <code>expenses.py</code> als auch auf <code>income.py</code> zugreifen
-können, um alle Daten für die Budgetanalyse zu erhalten.</li>
-<li><code>reports.py</code> sollte auf <code>budget.py</code> zugreifen können, um Budgetanalysen in
-Finanzberichte aufzunehmen.</li>
-<li><code>reports.py</code> sollte auf die Funktion <code>summarize_expenses()</code> in <code>expenses.py</code>
-zugreifen können, um Ausgaben in Finanzberichten zu berücksichtigen.</li>
+<h3 id="Spezifikationen-der-Klassen-und-Funktionen">Spezifikationen der Klassen und Funktionen<a class="anchor-link" href="#Spezifikationen-der-Klassen-und-Funktionen">¶</a></h3><ul>
+<li><code>expenses</code>:<ul>
+<li>Klasse <code>Expense</code> with attributes <code>amount</code> and <code>category</code></li>
+<li>Funktion <code>summarize_expenses(expenses: list[Expense]) -&gt; dict[str, float]</code><ul>
+<li>Fasst Ausgaben nach Kategorien zusammen und berechnet die Gesamtsumme pro Kategorie.</li>
 </ul>
-<p><em>Hinweis:</em> Die Abhängigkeiten zwischen den Modulen dienen dazu, die verschiedenen
-Import-Möglichkeiten zu demonstrieren. Sie sind nicht unbedingt das beste Beispiel för
-die Organisation von Funktionalität</p>
+</li>
+<li>Funktion <code>total_expenses(expenses: list[Expense]) -&gt; float</code><ul>
+<li>Berechnet die Gesamtausgaben.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e1e98bd2fd7ef7b3"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=aa084aa7d213341b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Programm">Programm<a class="anchor-link" href="#Programm">¶</a></h3><p>Legen Sie eine Datei <code>main.py</code> an, die folgendes Budget erzeugt:</p>
-<div class="highlight"><pre><span></span><span class="n">incomes</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">record_income</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="s2">"Salary"</span><span class="p">),</span>
-    <span class="n">record_income</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">"Interest"</span><span class="p">),</span>
-<span class="p">]</span>
-<span class="n">expenses</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">add_expense</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">"Groceries"</span><span class="p">),</span>
-    <span class="n">add_expense</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="s2">"Utilities"</span><span class="p">),</span>
-    <span class="n">add_expense</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">"Rent"</span><span class="p">),</span>
-<span class="p">]</span>
-</pre></div>
-<p>Verwenden Sie die Funktionen <code>generate_financial_report()</code> und
-<code>compare_budget_to_actual()</code> um einen Finanzbericht zu erstellen und das Budget zu
-analysieren.</p>
-<p>Stellen Sie sicher, dass die Funktionalität nur ausgeführt wird, wenn <code>main.py</code> direkt
-ausgeführt wird (d.h. nicht, wenn das Modul <code>main</code> importiert wird).</p>
+<ul>
+<li><code>income</code>:<ul>
+<li>Klasse <code>Income</code> with attributes <code>amount</code> and <code>source</code></li>
+<li>Funktion <code>summarize_incomes(incomes: list[Income]) -&gt; dict[str, float]</code><ul>
+<li>Fasst Einkommen nach Quellen zusammen und berechnet die Gesamtsumme pro Quelle.</li>
+</ul>
+</li>
+<li>Funktion <code>total_income(incomes: list[Income]) -&gt; float</code><ul>
+<li>Berechnet das Gesamteinkommen.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=30bd4067a289fe7e">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=73029284a04a41d0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><code>analytics.reporting</code>:<ul>
+<li>Funktion <code>print_financial_report(incomes: list[Income], expenses: list[Expense]) -&gt; None</code><ul>
+<li>Druckt folgende Informationen aus:<ul>
+<li>Einnahmen pro Quelle</li>
+<li>Ausgaben pro Kategorie</li>
+<li>Gesamteinnahmen und -ausgaben.</li>
+<li>Überschuss oder Defizit.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3126ba1ebd85d23f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><code>analytics.budget</code>:<ul>
+<li>Klasse <code>Budget</code> mit Attribut <code>limit</code><ul>
+<li>Methode <code>can_afford(expenses: list[Expense]) -&gt; bool</code><ul>
+<li>Überprüft, ob die Gesamtausgaben innerhalb des Budgets liegen.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d0b4c054656b7334"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fügen Sie ein Modul <code>main</code> hinzu, die die Funktionalität des Programms testet,
+indem Sie Listen von Einnahmen und Ausgaben, sowie ein Budget erstellt,
+überprüft ob die Ausgaben im Budget liegen und einen Finanzbericht generiert.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3093e51b8941ace0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Paketreferenzen-und-Abh%C3%A4ngigkeiten">Paketreferenzen und Abhängigkeiten<a class="anchor-link" href="#Paketreferenzen-und-Abh%C3%A4ngigkeiten">¶</a></h3><p>Dabei benötigen Sie folgende Abhängigkeiten zwischen Modulen:</p>
+<ul>
+<li><code>analytics.budget</code> muss auf <code>expenses</code> zugreifen, um die Daten für die
+Budgetanalyse zu erhalten.</li>
+<li><code>analytics.reporting</code> muss auf <code>income</code> und <code>expenses</code> zugreifen, um die
+Finanzberichte zu erstellen.</li>
+<li><code>main</code> muss auf alle Module (<code>income</code>, <code>expenses</code>, <code>analytics.budget</code>,
+<code>analytics.reporting</code>) zugreifen.</li>
+</ul>
+<p><em>Hinweis:</em> Die Abhängigkeiten zwischen den Modulen dienen dazu, die
+verschiedenen Import-Möglichkeiten zu demonstrieren. Sie sind nicht unbedingt
+das beste Beispiel för die Organisation von Funktionalität in Python.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=13a935b48b1014da"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ausf%C3%BChren-des-Programms">Ausführen des Programms<a class="anchor-link" href="#Ausf%C3%BChren-des-Programms">¶</a></h3><p>Im dem Verzeichnis, in dem sich das <code>finance</code> Paket befindet, können Sie das
+Programm mit dem Befehl <code>python -m finance.main</code> ausführen:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=14c6ab415e4fa505">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>finance.main
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># !python -m finance.main</span>
 </pre></div>
 </div>
 </div>
@@ -13771,31 +13816,14 @@ ausgeführt wird (d.h. nicht, wenn das Modul <code>main</code> importiert wird).
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4e3171e4b7858c75"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Workshop-Ziel">Workshop-Ziel<a class="anchor-link" href="#Workshop-Ziel">¶</a></h3><p>Ihre Aufgabe ist es, diese Module und Funktionen zu implementieren und dabei die
-angegebene Struktur einzuhalten. Dabei sollten Sie sicherstellen, dass:</p>
-<ul>
-<li>Jedes Modul die angegebenen Funktionen oder Klassen enthält.</li>
-<li>Richtige Verweise zwischen den Modulen verwendet werden, um auf notwendige
-Funktionen anderer Module zuzugreifen.</li>
-<li>Zyklische Abhängigkeiten vermieden werden, um eine klare und effiziente
-Code-Struktur zu erhalten.</li>
-</ul>
-<p><strong>Hinweis:</strong> Da der Fokus dieses Workshops auf der Strukturierung von Paketen und
-Modulen liegt, müssen Sie die Funktionen nicht vollständig implementieren. Sie
-können stattdessen Platzhalter verwenden, um die Funktionalität zu simulieren.</p>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=bc43394ba83f8874">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># finance.main.main()</span>
+</pre></div>
 </div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5c120d64d02c9fa2"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Erwartetes-Ergebnis">Erwartetes Ergebnis<a class="anchor-link" href="#Erwartetes-Ergebnis">¶</a></h3><p>Am Ende dieses Workshops werden Sie einen grundlegenden, aber funktionalen
-Persönlichen Finanz-Tracker haben. Dieses Projekt wird Ihre Fähigkeit demonstrieren,
-eine Python-Anwendung in logische Pakete und Module zu strukturieren,
-Inter-Modul-Abhängigkeiten zu verwalten und Kernfunktionalitäten zu implementieren.</p>
 </div>
 </div>
 </div>
