@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=80.4.0", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "simple_packaging"
+version = "0.0.1"
+description = "A simple example for an installable package"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+classifiers = ["Programming Language :: Python :: 3", "Operating System :: OS Independent"]
+dependencies = []
+
+[[project.authors]]
+name = "Dr. Matthias Hölzl"
+email = "tc@xantira.com"
+
+[project.urls]
+Homepage = "https://github.com/hoelzl/python-programmierer/simple_packaging"
+"Bug Tracker" = "https://github.com/hoelzl/python-programmierer/simple_packaging/issues"
+
+[project.scripts]
+simple-packaging = "simple_packaging.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
