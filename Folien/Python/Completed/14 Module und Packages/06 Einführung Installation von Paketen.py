@@ -36,7 +36,7 @@
 #
 # - `pip` ist das Standard-Tool zum Installieren von Paketen
 # - `pip` kann
-#   - Pakete von PyPI herunterladen und installieren7
+#   - Pakete von PyPI herunterladen und installieren
 #   - Pakete aus lokalen Verzeichnissen oder von Git-Repositories installieren
 
 # %% [markdown]
@@ -44,7 +44,7 @@
 # Installation eines Pakets:
 #
 # ```shell
-# pip install <package>`
+# pip install <package>
 # ```
 #
 # Entfernen eines Pakets:
@@ -57,7 +57,7 @@
 #
 # ### Einschub: Die `-c` Option von `python`
 #
-# - Mit `python -c "<code>" kann Python-Code direkt in der Kommandozeile
+# - Mit `python -c "<code>"` kann Python-Code direkt in der Kommandozeile
 #   ausgeführt werden
 # - Nützlich für kurze Skripte oder Einzeiler
 
@@ -103,7 +103,7 @@
 # - Enthalten alle Dateien, die für die Installation benötigt werden
 # - Haben Metadaten wie Versionsnummer und Abhängigkeiten
 # - Können mit `pip` installiert werden
-# - Erstellung mit Tools wie `setuptools`, `hatchling`, `poetry` oder `flit`
+# - Erstellung mit Tools wie `setuptools`, `hatchling`, `poetry`, `flit` oder `uv`
 
 # %% [markdown]
 #
