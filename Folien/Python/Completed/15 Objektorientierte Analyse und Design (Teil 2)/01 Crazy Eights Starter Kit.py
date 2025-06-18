@@ -9,12 +9,6 @@
 
 # %% [markdown]
 #
-# - Die Implementierung in Notebooks wird unübersichtlich
-# - Wir wechseln in eine IDE
-# - Ich verwende PyCharm, aber jede andere IDE ist auch möglich
-
-# %% [markdown]
-#
 # - Drei Projekte für Crazy Eights:
 #   - `CrazyEightsSk`: Starter Kit
 #   - `CrazyEightsSimple`: Einfache Implementierung
@@ -27,8 +21,7 @@
 # - `src`: Quellcode
 #   - `src/crazyeights{_sk,_simple}`: Package für die Implementierung
 # - `tests`: Tests
-# - `pyproject.toml`: Festlegen des Build-Systems (setuptools)
-# - `setup.cfg`: Konfiguration des Build-Systems
+# - `pyproject.toml`: Festlegen/Konfigurieren des Build-Systems (setuptools)
 # - `pytest.ini`: Konfiguration für `pytest`
 # - `tox.ini`: Automatisierung der Tests für verschiedene Python-Versionen
 # - `.bumpversion.cfg`: Inkrementieren der Versionsnummer mit `bumpversion`
@@ -36,40 +29,11 @@
 
 # %% [markdown]
 #
-# ### Erstellen eines installierbaren Wheels
+# ### Installieren für die Entwicklung
 #
 # ```bash
 # $ cd CrazyEightsSimple
-# $ python -m build
-# ```
-#
-# Das Wheel wird in `dist` abgelegt:
-#
-# ```bash
-# $ ls dist
-# crazyeights_simple-0.0.1-py3-none-any.whl
-# ```
-
-# %% [markdown]
-#
-# ### Installation des Wheels
-#
-# ```bash
-# $ cd CrazyEightsSimple
-# $ python -m pip install dist/crazyeights_simple-0.0.1-py3-none-any.whl
-# ```
-#
-# Das Package ist jetzt installiert:
-#
-# ```bash
-# $ python -m pip list | grep crazy  # Linux/Mac
-# crazyeights-simple 0.0.1
-# ```
-#
-# ```powershell
-# > python -m pip list | Select-String crazy  # Windows PowerShell
-# crazyeights-simple 0.0.1
-# C:\Users\tc\Python\crazyeights-simple
+# $ python -m pip install -e .
 # ```
 
 # %% [markdown]
@@ -154,17 +118,37 @@
 
 # %% [markdown]
 #
-# ### Verwenden des Pakets in PyCharm
+# ### Erstellen eines installierbaren Wheels
 #
-# - Markieren Sie das Verzeichnis `CrazyEightsSimple/src` als Source Root
-# - Markieren Sie das Verzeichnis `CrazyEightsSimple/tests` als Test Root
+# ```bash
+# $ cd CrazyEightsSimple
+# $ python -m build
+# ```
+#
+# Das Wheel wird in `dist` abgelegt:
+#
+# ```bash
+# $ ls dist
+# crazyeights_simple-0.0.1-py3-none-any.whl
+# ```
 
 # %% [markdown]
 #
-# ### Erstellen der Package-Struktur für eigene Projekte
+# ### Installation des Wheels
 #
 # ```bash
-# $ cookiecutter https://github.com/hoelzl/trivial_python_project
+# $ cd CrazyEightsSimple
+# $ python -m pip install dist/crazyeights_simple-0.0.1-py3-none-any.whl
 # ```
 #
-# Die Template stellt einige Fragen zum Projekt und legt dann die Struktur an.
+# Das Package ist jetzt installiert:
+#
+# ```bash
+# $ python -m pip list | grep crazy  # Linux/Mac
+# crazyeights-simple 0.0.1
+# ```
+#
+# ```powershell
+# > python -m pip list | Select-String crazy  # Windows PowerShell
+# crazyeights-simple 0.0.1
+# ```

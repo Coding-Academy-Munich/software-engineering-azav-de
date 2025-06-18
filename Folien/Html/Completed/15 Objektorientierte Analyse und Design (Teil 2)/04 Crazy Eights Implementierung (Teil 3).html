@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=228049cd906c4c22"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=be2b75c0eff53368"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,7 +13136,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Crazy Eights Implementierung</b>
+<b>Crazy Eights Implementierung (Teil 3)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13151,137 +13151,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d3fe4602b92627d9"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Wie-l%C3%A4uft-ein-Spiel-ab?">Wie läuft ein Spiel ab?<a class="anchor-link" href="#Wie-l%C3%A4uft-ein-Spiel-ab?">¶</a></h2><ul>
-<li>Spieler bekommen Karten ✔</li>
-<li>Einer der Spieler beginnt</li>
-<li>Spieler führt seinen Zug aus<ul>
-<li>Spieler legt eine Karte ab</li>
-<li>Wenn er das nicht kann<ul>
-<li>Zieht er eine Karte</li>
-<li>Legt diese wieder ab, falls möglich</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Wenn er keine Karten mehr hat, hat er gewonnen</li>
-<li>Ansonsten ist der nächste Spieler dran</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=61522a8a8357e544"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Auswahl-des-Startspielers">Auswahl des Startspielers<a class="anchor-link" href="#Auswahl-des-Startspielers">¶</a></h3><div style="float:left;margin:auto;padding:80px 0;width:60%">
-<ul>
-<li class="fragment">Wer ist der Informationsexperte?</li>
-<li class="fragment">Die <code>Game</code> Klasse</li>
-<li class="fragment">
-    Wer ist verantwortlich für das Speichern des aktuellen Spielers?
-  </li>
-<li class="fragment">Die <code>Game</code> Klasse</li>
-</ul>
-</div>
-<div style="float:right;margin:auto;padding:80px 0;width:40%">
-<img alt="No description has been provided for this image" src="img/crazy-eights-dm.svg" style="float:right;margin:auto;width:100%">
-</img></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a2999bcceff5981c"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementierung">Implementierung<a class="anchor-link" href="#Implementierung">¶</a></h3><ul>
-<li><code>Game</code> bekommt<ul>
-<li>Attribut <code>current_player_index</code></li>
-<li>Property <code>current_player</code></li>
-<li>Methode <code>pick_next_player()</code></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=902b5ed27d3700a6"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ausf%C3%BChren-eines-Zuges">Ausführen eines Zuges<a class="anchor-link" href="#Ausf%C3%BChren-eines-Zuges">¶</a></h3><div style="float:left;margin:auto;padding:80px 0;width:60%">
-<ul>
-<li class="fragment">Wer ist der Informationsexperte?</li>
-<li class="fragment"><code>Game</code>, <code>Player</code> oder <code>Deck</code>
-    (oder <code>DiscardPile</code>)
-  </li>
-<li class="fragment">
-    Hier liefert uns der Informationsexperte keine gute Antwort
-  </li>
-<li class="fragment">
-    Wir überlegen, welche Lösung die höchste Kohäsion und niedrigste Kopplung
-    hat
-  </li>
-<li class="fragment">
-    $\rightarrow$ <code>Player</code>
-</li>
-</ul>
-</div>
-<div style="float:right;margin:auto;padding:80px 0;width:40%">
-<img alt="No description has been provided for this image" src="img/crazy-eights-dm.svg" style="float:right;margin:auto;width:100%"/>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=43bf0126070f4bd0"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementierung">Implementierung<a class="anchor-link" href="#Implementierung">¶</a></h3><ul>
-<li><code>TurnAction</code> Enumeration</li>
-<li><code>Player</code> bekommt<ul>
-<li>Methode <code>take_turn(game) -&gt; TurnAction</code></li>
-<li>Hilfsmethoden:<ul>
-<li>...</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>Game</code> bekommt<ul>
-<li>Property <code>top_discard</code></li>
-<li>Method <code>discard()</code></li>
-</ul>
-</li>
-<li><code>Card</code> bekommt<ul>
-<li>Methode <code>matches(top_discard)</code></li>
-</ul>
-</li>
-<li>Freistehende Funktion:<ul>
-<li><code>short_string(cards)</code></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d7cba50d2429514d"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Hilfsmethoden-von-Player">Hilfsmethoden von <code>Player</code><a class="anchor-link" href="#Hilfsmethoden-von-Player">¶</a></h4><ul>
-<li><code>notify_turn(top_discard)</code></li>
-<li><code>try_to_play_card(game)</code></li>
-<li><code>draw_and_play_card(game)</code></li>
-<li><code>notify_card_drawn(card)</code></li>
-<li><code>pick_card_to_play(top_discard)</code></li>
-<li><code>get_playable_cards(top_discard)</code></li>
-<li><code>draw_card(game)</code></li>
-<li><code>play_card(card, game)</code></li>
-<li><code>notify_card_played(card)</code></li>
-<li><code>pick_suit()</code></li>
-<li><code>notify_suit_picked(suit)</code></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6193e620ab5add25"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d5605c9d3b316f9b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Feststellen,-ob-ein-Spieler-gewonnen-hat">Feststellen, ob ein Spieler gewonnen hat<a class="anchor-link" href="#Feststellen,-ob-ein-Spieler-gewonnen-hat">¶</a></h3><div style="float:left;margin:auto;padding:80px 0;width:60%">
@@ -13291,8 +13161,8 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </ul>
 </div>
 <div style="float:right;margin:auto;padding:80px 0;width:40%">
-<img alt="No description has been provided for this image" src="img/crazy-eights-dm.svg" style="float:right;margin:auto;width:100%"/>
-</div>
+<img alt="No description has been provided for this image" src="img/crazy-eights-dm.png" style="float:right;margin:auto;width:100%">
+</img></div>
 </div>
 </div>
 </div>
@@ -13302,38 +13172,6 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <h3 id="Implementierung">Implementierung<a class="anchor-link" href="#Implementierung">¶</a></h3><ul>
 <li><code>Player</code> bekommt<ul>
 <li>Methode <code>has_won() -&gt; bool</code></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a648f37849334747"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ausf%C3%BChren-eines-Spiels">Ausführen eines Spiels<a class="anchor-link" href="#Ausf%C3%BChren-eines-Spiels">¶</a></h3><div style="float:left;margin:auto;padding:80px 0;width:60%">
-<ul>
-<li class="fragment">Wer ist der Informationsexperte?</li>
-<li class="fragment"><code>Game</code></li>
-</ul>
-</div>
-<div style="float:right;margin:auto;padding:80px 0;width:40%">
-<img alt="No description has been provided for this image" src="img/crazy-eights-dm.svg" style="float:right;margin:auto;width:100%"/>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dbb484f596782ce5"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementierung">Implementierung<a class="anchor-link" href="#Implementierung">¶</a></h3><ul>
-<li><code>Game</code> bekommt<ul>
-<li>Methode <code>play()</code></li>
-<li>Hilfsmethoden:<ul>
-<li><code>play_all_rounds()</code></li>
-<li><code>print_result()</code></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

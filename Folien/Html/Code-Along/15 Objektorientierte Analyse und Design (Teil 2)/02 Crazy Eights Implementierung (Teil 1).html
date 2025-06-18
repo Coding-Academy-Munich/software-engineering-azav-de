@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=39a0938c89364b9b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=831d7336622a7bbc"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,7 +13136,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Crazy Eights Starter Kit</b>
+<b>Crazy Eights Implementierung (Teil 1)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13144,143 +13144,64 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=078e1953d0d572a8"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=2b3efa222464c6ab"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<img alt="No description has been provided for this image" src="img/cards-18.png" width="100%"/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d3fe4602b92627d9"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wie-l%C3%A4uft-ein-Spiel-ab?">Wie läuft ein Spiel ab?<a class="anchor-link" href="#Wie-l%C3%A4uft-ein-Spiel-ab?">¶</a></h2><ul>
+<li>Spieler bekommen Karten ✔</li>
+<li>Einer der Spieler beginnt</li>
+<li>Spieler führt seinen Zug aus<ul>
+<li>Spieler legt eine Karte ab</li>
+<li>Wenn er das nicht kann<ul>
+<li>Zieht er eine Karte</li>
+<li>Legt diese wieder ab, falls möglich</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Wenn er keine Karten mehr hat, hat er gewonnen</li>
+<li>Ansonsten ist der nächste Spieler dran</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0cfeacf35d86cff0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Auswahl-des-Startspielers">Auswahl des Startspielers<a class="anchor-link" href="#Auswahl-des-Startspielers">¶</a></h3><div style="float:left;margin:auto;padding:80px 0;width:60%">
 <ul>
-<li>Drei Projekte für Crazy Eights:<ul>
-<li><code>CrazyEightsSk</code>: Starter Kit</li>
-<li><code>CrazyEightsSimple</code>: Einfache Implementierung</li>
-<li><code>CrazyEights</code>: Vollständige Implementierung</li>
+<li class="fragment">Wer ist der Informationsexperte?</li>
+<li class="fragment">Die <code>Game</code> Klasse</li>
+<li class="fragment">
+    Wer ist verantwortlich für das Speichern des aktuellen Spielers?
+  </li>
+<li class="fragment">Die <code>Game</code> Klasse</li>
+</ul>
+</div>
+<div style="float:right;margin:auto;padding:80px 0;width:40%">
+<img alt="No description has been provided for this image" src="img/crazy-eights-dm.png" style="float:right;margin:auto;width:100%">
+</img></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a2999bcceff5981c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implementierung">Implementierung<a class="anchor-link" href="#Implementierung">¶</a></h3><ul>
+<li><code>Game</code> bekommt<ul>
+<li>Attribut <code>current_player_index</code></li>
+<li>Property <code>current_player</code></li>
+<li>Methode <code>pick_next_player()</code></li>
 </ul>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=81ed6cc7835fddf7"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Aufbau-der-Projekte">Aufbau der Projekte<a class="anchor-link" href="#Aufbau-der-Projekte">¶</a></h2><ul>
-<li><code>src</code>: Quellcode<ul>
-<li><code>src/crazyeights{_sk,_simple}</code>: Package für die Implementierung</li>
-</ul>
-</li>
-<li><code>tests</code>: Tests</li>
-<li><code>pyproject.toml</code>: Festlegen/Konfigurieren des Build-Systems (setuptools)</li>
-<li><code>pytest.ini</code>: Konfiguration für <code>pytest</code></li>
-<li><code>tox.ini</code>: Automatisierung der Tests für verschiedene Python-Versionen</li>
-<li><code>.bumpversion.cfg</code>: Inkrementieren der Versionsnummer mit <code>bumpversion</code></li>
-<li><code>.gitignore</code>: Dateien, die nicht in Git aufgenommen werden sollen</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bf8c3a327dae7f64"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Installieren-f%C3%BCr-die-Entwicklung">Installieren für die Entwicklung<a class="anchor-link" href="#Installieren-f%C3%BCr-die-Entwicklung">¶</a></h3><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=60c46ac497394b91"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Verwenden-des-installierten-Pakets-(1)">Verwenden des installierten Pakets (1)<a class="anchor-link" href="#Verwenden-des-installierten-Pakets-(1)">¶</a></h3><p>Das Wheel enthält ein ausführbares Skript, das das Package verwendet:</p>
-<div class="highlight"><pre><span></span>$<span class="w"> </span>crazyeights-simple
-Crazy<span class="w"> </span>Eights<span class="w"> </span>with<span class="w"> </span><span class="m">2</span><span class="w"> </span>players:
-<span class="w">  </span>Computer<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>A♠,<span class="w"> </span><span class="m">3</span>♥,<span class="w"> </span><span class="m">3</span>♦,<span class="w"> </span>T♣,<span class="w"> </span><span class="m">8</span>♠,<span class="w"> </span><span class="m">8</span>♥,<span class="w"> </span><span class="m">2</span>♠<span class="o">)</span>
-<span class="w">  </span>Computer<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span><span class="m">5</span>♥,<span class="w"> </span><span class="m">8</span>♣,<span class="w"> </span><span class="m">2</span>♦,<span class="w"> </span>K♠,<span class="w"> </span>Q♠,<span class="w"> </span>J♥,<span class="w"> </span><span class="m">8</span>♦<span class="o">)</span>
-</pre></div>
-<div class="highlight"><pre><span></span>$<span class="w"> </span>crazy-eights-simple<span class="w"> </span>--help
-Usage:<span class="w"> </span>crazy-eights-simple<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
-...
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5e8fc7ef462ca856"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Verwenden-des-installierten-Pakets-(2)">Verwenden des installierten Pakets (2)<a class="anchor-link" href="#Verwenden-des-installierten-Pakets-(2)">¶</a></h3><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">crazyeights_simple</span> <span class="kn">import</span> <span class="n">Card</span><span class="p">,</span> <span class="n">Deck</span><span class="p">,</span> <span class="n">Player</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">deck</span> <span class="o">=</span> <span class="n">Deck</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">player</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="s2">"Alice"</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">player</span><span class="o">.</span><span class="n">draw_n_cards</span><span class="p">(</span><span class="n">deck</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">player</span>
-<span class="n">Player</span><span class="p">(</span><span class="s1">'Alice'</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">player</span><span class="o">.</span><span class="n">hand</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">Card</span><span class="p">(</span><span class="s1">'♥'</span><span class="p">,</span> <span class="s1">'5'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d9decf98a6e08737"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ausf%C3%BChren-der-Tests-mit-Pytest">Ausführen der Tests mit Pytest<a class="anchor-link" href="#Ausf%C3%BChren-der-Tests-mit-Pytest">¶</a></h3><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pytest
-</pre></div>
-<p>oder</p>
-<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>pytest
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=473b1329edfd1270"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ausf%C3%BChren-der-Tests-mit-Tox">Ausführen der Tests mit Tox<a class="anchor-link" href="#Ausf%C3%BChren-der-Tests-mit-Tox">¶</a></h3><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>tox
-</pre></div>
-<p>oder</p>
-<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>tox
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=19edf470ddce5dfa"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Inkrementieren-der-Versionsnummer">Inkrementieren der Versionsnummer<a class="anchor-link" href="#Inkrementieren-der-Versionsnummer">¶</a></h3><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>crazyeights-simple<span class="w"> </span>--version
-crazyeights-simple,<span class="w"> </span>version<span class="w"> </span><span class="m">0</span>.0.1
-$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>bumpversion<span class="w"> </span>patch
-$<span class="w"> </span>crazyeights-simple<span class="w"> </span>--version
-crazyeights-simple,<span class="w"> </span>version<span class="w"> </span><span class="m">0</span>.0.2
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b41d87dfc84ddf23"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Erstellen-eines-installierbaren-Wheels">Erstellen eines installierbaren Wheels<a class="anchor-link" href="#Erstellen-eines-installierbaren-Wheels">¶</a></h3><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>build
-</pre></div>
-<p>Das Wheel wird in <code>dist</code> abgelegt:</p>
-<div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>dist
-crazyeights_simple-0.0.1-py3-none-any.whl
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=84238e5ec53d97ad"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Installation-des-Wheels">Installation des Wheels<a class="anchor-link" href="#Installation-des-Wheels">¶</a></h3><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>CrazyEightsSimple
-$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dist/crazyeights_simple-0.0.1-py3-none-any.whl
-</pre></div>
-<p>Das Package ist jetzt installiert:</p>
-<div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>crazy<span class="w">  </span><span class="c1"># Linux/Mac</span>
-crazyeights-simple<span class="w"> </span><span class="m">0</span>.0.1
-</pre></div>
-<div class="highlight"><pre><span></span><span class="p">&gt;</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">list</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">crazy</span>  <span class="c"># Windows PowerShell</span>
-<span class="n">crazyeights-simple</span> <span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span>
-</pre></div>
 </div>
 </div>
 </div>
