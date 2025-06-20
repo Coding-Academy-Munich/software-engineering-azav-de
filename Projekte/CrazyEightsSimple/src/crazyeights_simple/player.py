@@ -1,5 +1,5 @@
 from enum import StrEnum
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from .deck import Card, Deck, RANKS, SUITS
 
@@ -18,7 +18,7 @@ class TurnAction(StrEnum):
 class Player:
     def __init__(self, name: str):
         self.name = name
-        self.hand = []
+        self.hand: list[Card] = []
 
     def __repr__(self) -> str:
         return f"Player({self.name!r})"
@@ -98,7 +98,7 @@ class Player:
         if playable_cards:
             print(f"Playable cards: {short_string(playable_cards)}")
 
-    def notify_card_drawn(self, card_drawn: Optional["Card"]) -> None:
+    def notify_card_drawn(self, card_drawn: Card | None) -> None:
         print("No playable card.", end=" ")
         if card_drawn:
             print(f"{self.name} draws {card_drawn}")

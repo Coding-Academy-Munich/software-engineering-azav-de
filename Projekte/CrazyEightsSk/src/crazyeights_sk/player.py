@@ -1,12 +1,10 @@
-from typing import Optional
-
 from .deck import Card, Deck
 
 
 class Player:
     def __init__(self, name: str):
         self.name = name
-        self.hand = []
+        self.hand: list[Card] = []
 
     def __repr__(self) -> str:
         return f"Player({self.name!r})"
@@ -18,7 +16,7 @@ class Player:
         for _ in range(n):
             self.draw_card(deck)
 
-    def draw_card(self, deck: "Deck") -> Optional["Card"]:
+    def draw_card(self, deck: "Deck") -> Card | None:
         card = deck.draw_card()
         if card:
             self.hand.append(card)

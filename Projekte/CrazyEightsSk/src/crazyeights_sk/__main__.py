@@ -13,6 +13,7 @@ def main(player, seed):
         random.seed(seed)
     game = CrazyEightsGame(players)
     print(game)
+    print(game.current_player.name, "starts the game.")
 
 
 @click.command()
