@@ -7,7 +7,6 @@ class CrazyEightsGame:
         self.deck: Deck = Deck()
         self.players: list[Player] = players
         self.deal_cards()
-        self.current_player_index: int = 0
 
     def __repr__(self):
         return f"CrazyEightsGame({self.players!r})"
@@ -21,10 +20,3 @@ class CrazyEightsGame:
     def deal_cards(self):
         for player in self.players:
             player.draw_n_cards(self.deck, 7)
-
-    @property
-    def current_player(self) -> Player:
-        return self.players[self.current_player_index]
-
-    def pick_next_player(self):
-        self.current_player_index = (self.current_player_index + 1) % len(self.players)
