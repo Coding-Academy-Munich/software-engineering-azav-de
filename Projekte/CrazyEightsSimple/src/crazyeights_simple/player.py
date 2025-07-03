@@ -40,18 +40,18 @@ class Player:
         self.notify_turn(game.top_discard)
 
         played_card = self.try_to_play_card(game)
-        if not played_card:
-            drawn_card = self.draw_and_play_card(game)
-            return TurnAction.DREW_CARD if drawn_card else TurnAction.FAILED_DRAW
+        while not played_card:
+            played_card = self.draw_and_play_card(game)
+            return TurnAction.DREW_CARD if played_card else TurnAction.FAILED_DRAW
         return TurnAction.PLAYED_CARD
 
-    def try_to_play_card(self, game: "CrazyEightsGame") -> bool:
+    def try_to_play_card(self, game: "CrazyEightsGame") -> "Card | None":
         card_to_play = self.pick_card_to_play(game.top_discard)
         if card_to_play is None:
-            return False
+            return None
 
         self.play_card(game, card_to_play)
-        return True
+        return card_to_play
 
     def pick_card_to_play(self, top_discard: Card) -> Card | None:
         """Pick the highest ranked playable card."""
