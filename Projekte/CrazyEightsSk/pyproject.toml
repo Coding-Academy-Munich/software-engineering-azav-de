@@ -21,7 +21,7 @@ Homepage = "https://github.com/hoelzl/python-courses/"
 "Bug Tracker" = "https://github.com/hoelzl/python-courses/issues"
 
 [project.scripts]
-crazy-eights-sk = "crazyeights_sk.__main__:app"
+crazy-eights-sk = "crazyeights_sk.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
