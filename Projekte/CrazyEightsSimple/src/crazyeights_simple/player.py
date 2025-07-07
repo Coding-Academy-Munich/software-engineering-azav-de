@@ -40,9 +40,12 @@ class Player:
         self.notify_turn(game.top_discard)
 
         played_card = self.try_to_play_card(game)
-        while not played_card:
-            played_card = self.draw_and_play_card(game)
-            return TurnAction.DREW_CARD if played_card else TurnAction.FAILED_DRAW
+        if not played_card:
+            drawn_card = self.draw_and_play_card(game)
+            if drawn_card:
+                return TurnAction.DREW_CARD
+            else:
+                return TurnAction.FAILED_DRAW
         return TurnAction.PLAYED_CARD
 
     def try_to_play_card(self, game: "CrazyEightsGame") -> "Card | None":
