@@ -1,4 +1,11 @@
+from enum import StrEnum
 from .deck import Card, Deck
+
+
+class TurnAction(StrEnum):
+    PLAYED_CARD = "played"
+    DREW_CARD = "drew"
+    FAILED_DRAW = "failed to draw"
 
 
 class Player:
@@ -21,3 +28,30 @@ class Player:
         if card:
             self.hand.append(card)
         return card
+
+    def take_turn(self, game) -> TurnAction:
+        if self.try_to_play_card(game):
+            return TurnAction.PLAYED_CARD
+        if self.draw_card(game.deck):
+            return TurnAction.DREW_CARD
+        return TurnAction.FAILED_DRAW
+
+    def try_to_play_card(self, game) -> "Card | None":
+        card_to_play = self.pick_card_to_play(game.top_discard)
+        if card_to_play is None:
+            return None
+        self.play_card(game, card_to_play)
+        return card_to_play
+
+    def pick_card_to_play(self, top_discard: Card) -> Card | None:
+        playable_cards = self.get_playable_cards(top_discard)
+        if playable_cards:
+            return playable_cards[0]
+        return None
+
+    def get_playable_cards(self, top_discard: Card) -> list[Card]:
+        return [card for card in self.hand if card.matches(top_discard)]
+
+    def play_card(self, game, card: Card) -> None:
+        self.hand.remove(card)
+        game.discard(card)

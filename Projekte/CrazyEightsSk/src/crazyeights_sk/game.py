@@ -1,4 +1,4 @@
-from .deck import Deck
+from .deck import Card, Deck
 from .player import Player
 
 
@@ -7,7 +7,7 @@ class CrazyEightsGame:
         self.deck: Deck = Deck()
         self.players: list[Player] = players
         self.current_player_index: int = 0
-
+        self.discard_pile: list = [self.deck.draw_card()]
         self.deal_cards()
 
     def __repr__(self):
@@ -22,6 +22,13 @@ class CrazyEightsGame:
     def deal_cards(self):
         for player in self.players:
             player.draw_n_cards(self.deck, 7)
+
+    @property
+    def top_discard(self):
+        return self.discard_pile[-1]
+
+    def discard(self, card: Card):
+        self.discard_pile.append(card)
 
     @property
     def current_player(self) -> Player:
