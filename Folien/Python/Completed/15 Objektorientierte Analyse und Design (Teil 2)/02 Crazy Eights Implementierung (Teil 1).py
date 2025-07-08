@@ -18,11 +18,10 @@
 # - Einer der Spieler beginnt
 # - Spieler führt seinen Zug aus
 #   - Spieler legt eine Karte ab
-#   - Wenn er das nicht kann
-#       - Zieht er eine Karte
-#       - Legt diese wieder ab, falls möglich
+#   - Wenn er das nicht kann, zieht er eine Karte
 # - Wenn er keine Karten mehr hat, hat er gewonnen
 # - Ansonsten ist der nächste Spieler dran
+# - Wenn der Stapel leer ist, ist das Spiel unentschieden
 
 # %% [markdown]
 #

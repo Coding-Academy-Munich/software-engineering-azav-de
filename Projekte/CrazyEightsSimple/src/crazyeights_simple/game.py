@@ -47,22 +47,16 @@ class CrazyEightsGame:
         self.deck = Deck()
         self.deal_cards()
 
-        num_players_skipped = 0
-
         while True:
             action_taken = self.current_player.take_turn(self)
             if action_taken == TurnAction.FAILED_DRAW:
-                num_players_skipped += 1
-                if num_players_skipped == len(self.players):
-                    return GameResult.NO_PLAYABLE_CARDS
-            else:
-                num_players_skipped = 0
-
-            # Check for win
-            if not self.current_player.hand:
+                return GameResult.NO_PLAYABLE_CARDS
+            if self.has_current_player_won():
                 return GameResult.CURRENT_PLAYER_WON
-
             self.pick_next_player()
+
+    def has_current_player_won(self):
+        return not self.current_player.hand
 
     def print_result(self, reason: GameResult):
         if reason == GameResult.NO_PLAYABLE_CARDS:

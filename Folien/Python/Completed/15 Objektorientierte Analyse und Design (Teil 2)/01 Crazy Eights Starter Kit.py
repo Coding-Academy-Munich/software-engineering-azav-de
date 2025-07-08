@@ -32,8 +32,12 @@
 # ### Installieren für die Entwicklung
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ python -m pip install -e .
+# > cd CrazyEightsSimple
+# > python -m venv .venv
+# > source .venv/bin/activate  # Linux/Mac
+# > .venv\Scripts\activate  # Windows PowerShell
+# > python -m pip install pip --upgrade
+# > pip install -e . --group dev
 # ```
 
 # %% [markdown]
@@ -43,14 +47,16 @@
 # Das Wheel enthält ein ausführbares Skript, das das Package verwendet:
 #
 # ```bash
-# $ crazyeights-simple
-# Crazy Eights with 2 players:
-#   Computer 1 (A♠, 3♥, 3♦, T♣, 8♠, 8♥, 2♠)
-#   Computer 2 (5♥, 8♣, 2♦, K♠, Q♠, J♥, 8♦)
+# > crazy-eights-simple
+# Computer 1's turn. Top of discard pile: 5♦
+# Computer 1's hand: J♥, 3♣, A♣, 6♦, 7♣, 2♠, A♦
+# Playable cards: 6♦, A♦
+# Computer 1 plays A♦
+# ...
 # ```
 #
 # ```bash
-# $ crazy-eights-simple --help
+# > crazy-eights-simple --help
 # Usage: crazy-eights-simple [OPTIONS]
 # ...
 # ```
@@ -76,15 +82,15 @@
 # ### Ausführen der Tests mit Pytest
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ python -m pytest
+# > cd CrazyEightsSimple
+# > python -m pytest
 # ```
 #
 # oder
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ pytest
+# > cd CrazyEightsSimple
+# > pytest
 # ```
 
 # %% [markdown]
@@ -92,15 +98,15 @@
 # ### Ausführen der Tests mit Tox
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ python -m tox
+# > cd CrazyEightsSimple
+# > python -m tox
 # ```
 #
 # oder
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ tox
+# > cd CrazyEightsSimple
+# > tox
 # ```
 
 # %% [markdown]
@@ -108,11 +114,11 @@
 # ### Inkrementieren der Versionsnummer
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ crazyeights-simple --version
+# > cd CrazyEightsSimple
+# > crazyeights-simple --version
 # crazyeights-simple, version 0.0.1
-# $ python -m bumpversion patch
-# $ crazyeights-simple --version
+# > python -m bumpversion patch
+# > crazyeights-simple --version
 # crazyeights-simple, version 0.0.2
 # ```
 
@@ -121,14 +127,14 @@
 # ### Erstellen eines installierbaren Wheels
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ python -m build
+# > cd CrazyEightsSimple
+# > python -m build
 # ```
 #
 # Das Wheel wird in `dist` abgelegt:
 #
 # ```bash
-# $ ls dist
+# > ls dist
 # crazyeights_simple-0.0.1-py3-none-any.whl
 # ```
 
@@ -137,14 +143,14 @@
 # ### Installation des Wheels
 #
 # ```bash
-# $ cd CrazyEightsSimple
-# $ python -m pip install dist/crazyeights_simple-0.0.1-py3-none-any.whl
+# > cd CrazyEightsSimple
+# > python -m pip install dist/crazyeights_simple-0.0.1-py3-none-any.whl
 # ```
 #
 # Das Package ist jetzt installiert:
 #
 # ```bash
-# $ python -m pip list | grep crazy  # Linux/Mac
+# > python -m pip list | grep crazy  # Linux/Mac
 # crazyeights-simple 0.0.1
 # ```
 #

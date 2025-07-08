@@ -53,19 +53,3 @@
 #   - Methode `matches(top_discard)`
 # - Freistehende Funktion:
 #   - `short_string(cards)`
-
-# %% [markdown]
-#
-# #### Hilfsmethoden von `Player`
-#
-# - `notify_turn(top_discard)`
-# - `try_to_play_card(game)`
-# - `draw_and_play_card(game)`
-# - `notify_card_drawn(card)`
-# - `pick_card_to_play(top_discard)`
-# - `get_playable_cards(top_discard)`
-# - `draw_card(game)`
-# - `play_card(card, game)`
-# - `notify_card_played(card)`
-# - `pick_suit()`
-# - `notify_suit_picked(suit)`

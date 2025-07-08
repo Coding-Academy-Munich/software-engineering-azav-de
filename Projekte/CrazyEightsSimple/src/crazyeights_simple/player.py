@@ -39,14 +39,13 @@ class Player:
     def take_turn(self, game: "CrazyEightsGame") -> TurnAction:
         self.notify_turn(game.top_discard)
 
-        played_card = self.try_to_play_card(game)
-        if not played_card:
-            drawn_card = self.draw_and_play_card(game)
-            if drawn_card:
-                return TurnAction.DREW_CARD
-            else:
-                return TurnAction.FAILED_DRAW
-        return TurnAction.PLAYED_CARD
+        if self.try_to_play_card(game):
+            return TurnAction.PLAYED_CARD
+
+        if self.draw_card(game.deck):
+            return TurnAction.DREW_CARD
+        else:
+            return TurnAction.FAILED_DRAW
 
     def try_to_play_card(self, game: "CrazyEightsGame") -> "Card | None":
         card_to_play = self.pick_card_to_play(game.top_discard)
@@ -65,15 +64,6 @@ class Player:
 
     def get_playable_cards(self, top_discard: Card) -> list[Card]:
         return [card for card in self.hand if card.matches(top_discard)]
-
-    def draw_and_play_card(self, game: "CrazyEightsGame") -> bool:
-        drawn_card = self.draw_card(game.deck)
-        self.notify_card_drawn(drawn_card)
-
-        if drawn_card:
-            self.try_to_play_card(game)
-            return True
-        return False
 
     def play_card(self, game: "CrazyEightsGame", card: Card) -> None:
         self.hand.remove(card)
