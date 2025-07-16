@@ -1,4 +1,11 @@
+from enum import Enum, auto
 from .deck import Card, Deck
+
+
+class TurnAction(Enum):
+    PLAYED_CARD = auto()
+    DREW_CARD = auto()
+    FAILED_DRAW = auto()
 
 
 class Player:
@@ -21,3 +28,34 @@ class Player:
         if card:
             self.hand.append(card)
         return card
+
+    def take_turn(self, game) -> TurnAction:
+        if self.try_to_play_card(game):
+            return TurnAction.PLAYED_CARD
+
+        if self.draw_card(game.deck):
+            return TurnAction.DREW_CARD
+        else:
+            return TurnAction.FAILED_DRAW
+
+    def try_to_play_card(self, game) -> bool:
+        card_to_play = self.pick_card_to_play(game)
+        if card_to_play:
+            self.play_card(game, card_to_play)
+            return True
+        return False
+
+    def pick_card_to_play(self, game) -> Card | None:
+        playable_cards = self.get_playable_cards(game)
+        if playable_cards:
+            return playable_cards[0]
+        return None
+
+    def get_playable_cards(self, game) -> list[Card]:
+        top_discard = game.top_discard
+        return [card for card in self.hand if card.matches(top_discard)]
+
+    def play_card(self, game, card: Card) -> None:
+        self.hand.remove(card)
+        game.discard(card)
+
