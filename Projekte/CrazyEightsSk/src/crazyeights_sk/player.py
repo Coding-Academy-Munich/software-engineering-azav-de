@@ -72,6 +72,9 @@ class Player:
     def pick_suit(self) -> str:
         return random.choice(SUITS)
 
+    def has_won(self) -> bool:
+        return not self.hand
+
     def notify_turn(self, top_discard: Card) -> None:
         print(f"{self.name}'s turn. Top discard: {top_discard}")
 
