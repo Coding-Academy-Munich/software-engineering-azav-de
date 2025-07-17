@@ -9,6 +9,13 @@ def main(player_names=None):
     game = CrazyEightsGame(players)
     print(game)
 
+    for _ in range(7):  # Each player takes 7 turns
+        for player in players:
+            player.take_turn(game)
+
+    print("Game over!")
+    print(game)
+
 
 if __name__ == "__main__":
     main()

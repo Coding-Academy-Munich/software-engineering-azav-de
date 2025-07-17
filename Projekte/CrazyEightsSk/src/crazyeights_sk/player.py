@@ -31,12 +31,17 @@ class Player:
         return card
 
     def take_turn(self, game) -> TurnAction:
+        self.notify_turn(game.top_discard)
+
         if self.try_to_play_card(game):
             return TurnAction.PLAYED_CARD
 
-        if self.draw_card(game.deck):
+        drawn_card = self.draw_card(game.deck)
+        if drawn_card:
+            self.notify_card_drawn(drawn_card)
             return TurnAction.DREW_CARD
         else:
+            self.notify_failed_draw()
             return TurnAction.FAILED_DRAW
 
     def try_to_play_card(self, game) -> bool:
@@ -59,8 +64,25 @@ class Player:
     def play_card(self, game, card: Card) -> None:
         self.hand.remove(card)
         game.discard(card)
+        self.notify_card_played(card)
         if card.rank == "8":
             card.suit = self.pick_suit()
+            self.notify_suit_picked(card.suit)
 
     def pick_suit(self) -> str:
         return random.choice(SUITS)
+
+    def notify_turn(self, top_discard: Card) -> None:
+        print(f"{self.name}'s turn. Top discard: {top_discard}")
+
+    def notify_card_drawn(self, card: Card) -> None:
+        print(f"{self.name} drew a card: {card}")
+
+    def notify_failed_draw(self) -> None:
+        print(f"{self.name} failed to draw a card.")
+
+    def notify_card_played(self, card: Card) -> None:
+        print(f"{self.name} played a card: {card}")
+
+    def notify_suit_picked(self, suit: str) -> None:
+        print(f"{self.name} picked a new suit: {suit}")
