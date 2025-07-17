@@ -7,13 +7,9 @@ def main(player_names=None):
         player_names = ["Jack", "Jill"]
     players = [Player(name) for name in player_names]
     game = CrazyEightsGame(players)
-    print(game)
 
-    for _ in range(7):  # Each player takes 7 turns
-        for player in players:
-            player.take_turn(game)
-
-    print("Game over!")
+    game.play()
+    print()
     print(game)
 
 

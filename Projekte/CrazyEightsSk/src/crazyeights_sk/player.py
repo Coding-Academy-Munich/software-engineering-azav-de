@@ -76,7 +76,7 @@ class Player:
         return not self.hand
 
     def notify_turn(self, top_discard: Card) -> None:
-        print(f"{self.name}'s turn. Top discard: {top_discard}")
+        print(f"\n{self.name}'s turn. Top discard: {top_discard}")
 
     def notify_card_drawn(self, card: Card) -> None:
         print(f"{self.name} drew a card: {card}")
