@@ -1,5 +1,6 @@
 from enum import Enum, auto
-from .deck import Card, Deck
+import random
+from .deck import SUITS, Card, Deck
 
 
 class TurnAction(Enum):
@@ -58,4 +59,8 @@ class Player:
     def play_card(self, game, card: Card) -> None:
         self.hand.remove(card)
         game.discard(card)
+        if card.rank == "8":
+            card.suit = self.pick_suit()
 
+    def pick_suit(self) -> str:
+        return random.choice(SUITS)

@@ -6,6 +6,7 @@ class CrazyEightsGame:
     def __init__(self, players):
         self.deck: Deck = Deck()
         self.players: list[Player] = players
+        self.discard_pile = [self.deck.draw_card()]
         self.current_player_index: int = 0
 
         self.deal_cards()
@@ -22,6 +23,13 @@ class CrazyEightsGame:
     def deal_cards(self):
         for player in self.players:
             player.draw_n_cards(self.deck, 7)
+
+    def discard(self, card):
+        self.discard_pile.append(card)
+
+    @property
+    def top_discard(self):
+        return self.discard_pile[-1]
 
     @property
     def current_player(self) -> Player:

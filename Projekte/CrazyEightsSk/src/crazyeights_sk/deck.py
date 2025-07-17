@@ -17,6 +17,9 @@ class Card:
             return NotImplemented
         return self.suit == other.suit and self.rank == other.rank
 
+    def matches(self, other: "Card") -> bool:
+        return self.suit == other.suit or self.rank == other.rank or self.rank == "8"
+
 
 SUITS = ["♥", "♦", "♣", "♠"]
 RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
