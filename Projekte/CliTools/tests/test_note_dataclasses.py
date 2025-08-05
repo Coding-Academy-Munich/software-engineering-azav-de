@@ -14,7 +14,7 @@ class TestNote:
 
     def test_note_creation_with_list_tags(self):
         """Test note creation with tags as list (should convert to set)."""
-        note = Note("Test Title", "Test text", ["tag1", "tag2", "tag1"])
+        note = Note("Test Title", "Test text", ["tag1", "tag2", "tag1"])  # noqa
         assert note.tags == {"tag1", "tag2"}
 
     def test_note_creation_without_tags(self):
