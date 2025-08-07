@@ -9,11 +9,11 @@
 
 # %% [markdown]
 #
-#  # Benutzereingaben
+# # Benutzereingaben
 #
-#  - Die Funktion `input()` erlaubt es dem Benutzer einen Text einzugeben.
-#  - Optional kann sie einen Eingabeprompt ausgeben.
-#  - Die Funktion gibt den vom Benutzer eingegebenen Text *als String* zurück.
+# - Die Funktion `input()` erlaubt es dem Benutzer einen Text einzugeben.
+# - Optional kann sie einen Eingabeprompt ausgeben.
+# - Die Funktion gibt den vom Benutzer eingegebenen Text *als String* zurück.
 
 # %%
 # input("What is your name? ")

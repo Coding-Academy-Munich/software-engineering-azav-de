@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e6d9689363a65b29"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f616753d53980b78"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,7 +13136,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Benutzereingaben</b>
+<b>Relationale Datenbanken (Teil 1)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13144,494 +13144,253 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=7d21bd649b9ad36c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6375633c1227f112"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Benutzereingaben">Benutzereingaben<a class="anchor-link" href="#Benutzereingaben">¶</a></h1><ul>
-<li>Die Funktion <code>input()</code> erlaubt es dem Benutzer einen Text einzugeben.</li>
-<li>Optional kann sie einen Eingabeprompt ausgeben.</li>
-<li>Die Funktion gibt den vom Benutzer eingegebenen Text <em>als String</em> zurück.</li>
+<h2 id="Relationale-Datenbanken:">Relationale Datenbanken:<a class="anchor-link" href="#Relationale-Datenbanken:">¶</a></h2><p><img alt="Relationale Datenbank" src="img/relational-db-01.png" style="width:100%;margin:auto"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e26598f427fc94bb"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Relationale-Datenbanken">Relationale Datenbanken<a class="anchor-link" href="#Relationale-Datenbanken">¶</a></h1><ul>
+<li>Speichert Daten in Tabellen mit vordefinierten Beziehungen<ul>
+<li>Tabellen bestehen aus Zeilen und Spalten</li>
+<li>Jede Tabelle hat einen Primärschlüssel, der jede Zeile eindeutig identifiziert</li>
+<li>Beziehungen zwischen Tabellen werden über Fremdschlüssel hergestellt</li>
+</ul>
+</li>
+<li>Verwendet in der Regel SQL als Abfragesprache</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=804488a647b28d22">
-<div class="input">
-<div class="prompt input_prompt">In [1]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># input("What is your name? ")</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7a88a62aed6353a2">
-<div class="input">
-<div class="prompt input_prompt">In [2]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">query_name</span><span class="p">():</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"What is your name? "</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You entered </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ead9803f2b86d2b3">
-<div class="input">
-<div class="prompt input_prompt">In [3]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># query_name()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0c4f27d350ef10a2"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1e5767f358e2ca0f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Beispiel:-Konvertierung-von-Temperaturen">Beispiel: Konvertierung von Temperaturen<a class="anchor-link" href="#Beispiel:-Konvertierung-von-Temperaturen">¶</a></h2><p>Wir wollen eine Anwendung schreiben, die den Benutzer nach einer Temperatur
-in Fahrenheit fragt und die entsprechende Temperatur in Grad Celsius
-zurückgibt.</p>
+<h2 id="Tabellen-und-Zeilen">Tabellen und Zeilen<a class="anchor-link" href="#Tabellen-und-Zeilen">¶</a></h2><ul>
+<li>Daten werden in Tabellen organisiert</li>
+<li>Jede Tabelle hat eine feste Struktur:<ul>
+<li>Einen Namen</li>
+<li>Benannte Spalten mit vorgegebenen Datentypen</li>
+</ul>
+</li>
+<li>Jede Zeile in einer Tabelle stellt einen einzelnen Datensatz dar</li>
+<li>Zeilen werden durch einen eindeutigen Bezeichner oder Primärschlüssel
+identifiziert</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=72f6d79597084cd1">
-<div class="input">
-<div class="prompt input_prompt">In [4]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">konvertiere_fahrenheit_nach_celsius</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">fahrenheit</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c2a0290a2a4f135a">
-<div class="input">
-<div class="prompt input_prompt">In [5]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">konvertiere_fahrenheit_nach_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=0151ef07d3827efa">
-<div class="input">
-<div class="prompt input_prompt">In [6]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">konvertiere_fahrenheit_nach_celsius</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span> <span class="mf">32.222</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=53a5674320fba2c0"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0a38221b41000b8b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir müssen den Rückgabewert von <code>input()</code> manuell in eine
-Zahl konvertieren, wenn wir damit rechnen wollen.</p>
+<h2 id="Beispiel:-Datenbank-f%C3%BCr-ein-Online-Lebensmittelgesch%C3%A4ft">Beispiel: Datenbank für ein Online-Lebensmittelgeschäft<a class="anchor-link" href="#Beispiel:-Datenbank-f%C3%BCr-ein-Online-Lebensmittelgesch%C3%A4ft">¶</a></h2><ul>
+<li>Gespeicherte Daten:<ul>
+<li>Speisen und Getränke</li>
+<li>Kunden</li>
+<li>Bestellungen</li>
+<li>Rechnungen</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4ad07470c4ac3424">
-<div class="input">
-<div class="prompt input_prompt">In [7]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="s2">"1.23"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>1.23</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=897de8afd0640236">
-<div class="input">
-<div class="prompt input_prompt">In [8]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">konvertiere_temperatur_1</span><span class="p">():</span>
-    <span class="n">fahrenheit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte geben Sie die Temperatur in Fahrenheit ein: "</span><span class="p">)</span>
-    <span class="n">celsius</span> <span class="o">=</span> <span class="n">konvertiere_fahrenheit_nach_celsius</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">fahrenheit</span><span class="si">}</span><span class="s2">F sind </span><span class="si">{</span><span class="n">celsius</span><span class="si">}</span><span class="s2">°C"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c6ec0053a290f57f">
-<div class="input">
-<div class="prompt input_prompt">In [9]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># konvertiere_temperatur_1()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=effe663117b56944"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=49576d868886c9a8"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir können eine Meldung ausgeben, wenn der Benutzer nichts eingibt (und die
-Ausgabe etwas schöner gestalten):</p>
+<p>Tabelle <strong>Kunden</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>customer_id</th>
+<th>name</th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>John Smith</td>
+<td>123 Elm St</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Jane Doe</td>
+<td>456 Oak St</td>
+</tr>
+</tbody>
+</table>
+<p>Tabelle <strong>Produkte</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>item_id</th>
+<th>item_name</th>
+<th>price</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2341</td>
+<td>Tomatensuppe</td>
+<td>1.99</td>
+<td>Unsere fantastische Tomatensuppe in Dosen.</td>
+</tr>
+<tr>
+<td>346</td>
+<td>Kichererbsen</td>
+<td>0.59</td>
+<td>In Wasser einweichen und genießen...</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e5bdab2765a3486c">
-<div class="input">
-<div class="prompt input_prompt">In [10]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">konvertiere_temperatur_2</span><span class="p">():</span>
-    <span class="n">fahrenheit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte geben Sie die Temperatur in Fahrenheit ein: "</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">fahrenheit</span> <span class="o">!=</span> <span class="s2">""</span><span class="p">:</span>
-        <span class="n">celsius</span> <span class="o">=</span> <span class="n">konvertiere_fahrenheit_nach_celsius</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">F sind </span><span class="si">{</span><span class="n">celsius</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°C"</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Bitte geben Sie eine gültige Temperatur ein."</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6c5ac1cdfd716f70">
-<div class="input">
-<div class="prompt input_prompt">In [11]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># konvertiere_temperatur_2()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=47e9e639fe9e18b3"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bbb3fdddd800f53a"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir können in der <code>if</code>-Anweisung Truthiness ausnutzen:</p>
+<h2 id="Spalten-und-Datentypen">Spalten und Datentypen<a class="anchor-link" href="#Spalten-und-Datentypen">¶</a></h2><ul>
+<li>Spalten stellen die Attribute oder Eigenschaften eines jeden Datensatzes
+dar.</li>
+<li>Jede Spalte hat einen bestimmten Datentyp, z. B. String, Integer oder Datum<ul>
+<li>Datentypen sind weniger flexibel als in Python</li>
+<li>Sie helfen, die Konsistenz und Genauigkeit der Daten zu
+gewährleisten.</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=80d6df70e72d93a7">
-<div class="input">
-<div class="prompt input_prompt">In [12]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">konvertiere_temperatur_3</span><span class="p">():</span>
-    <span class="n">fahrenheit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte geben Sie die Temperatur in Fahrenheit ein: "</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">fahrenheit</span><span class="p">:</span>
-        <span class="n">celsius</span> <span class="o">=</span> <span class="n">konvertiere_fahrenheit_nach_celsius</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">F sind </span><span class="si">{</span><span class="n">celsius</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°C"</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Bitte geben Sie eine gültige Temperatur ein."</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4490a92b4ff21512">
-<div class="input">
-<div class="prompt input_prompt">In [13]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># konvertiere_temperatur_3()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e37a740d27547022"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=55e019eedeb3e148"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mini-Workshop:-Umrechnung-in-Meilen">Mini-Workshop: Umrechnung in Meilen<a class="anchor-link" href="#Mini-Workshop:-Umrechnung-in-Meilen">¶</a></h2><p>Schreiben Sie eine Funktion <code>konvertiere_km_nach_meilen(km)</code> die den Wert
-<code>km</code> von Kilometer in Meilen umrechnet (d.h. die den Wert in Meilen
-zurückgibt).</p>
-<p><em>Hinweis:</em></p>
+<h2 id="Das-SQLite-Datenbanksystem">Das SQLite-Datenbanksystem<a class="anchor-link" href="#Das-SQLite-Datenbanksystem">¶</a></h2><ul>
+<li><a href="https://www.sqlite.org/">SQLite</a> ist eine leichtgewichtige, dateibasierte
+relationale Datenbank<ul>
+<li>Streng genommen: ein Datenbanksystem (DBMS)</li>
+</ul>
+</li>
+<li>Sie ist in C geschrieben und benötigt keine separate Serverinstallation<ul>
+<li>SQLite kann in Anwendungen eingebettet werden</li>
+</ul>
+</li>
+<li>SQLite ist ideal für kleine bis mittelgroße Anwendungen und
+Entwicklungsumgebungen</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1d10130738c1fc5d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ausf%C3%BChren-von-SQLite">Ausführen von SQLite<a class="anchor-link" href="#Ausf%C3%BChren-von-SQLite">¶</a></h2><ul>
+<li>SQLite kann über die Kommandozeile oder in Python-Skripten verwendet werden</li>
+<li>Um die SQLite-Shell zu starten, geben Sie <code>sqlite3</code> in der Kommandozeile ein</li>
+<li>Um eine Datenbank zu erstellen oder zu öffnen, geben Sie den Namen der Datenbankdatei an</li>
+<li>Beispiel:</li>
+</ul>
+<div class="highlight"><pre><span></span>sqlite3<span class="w"> </span>shop.db
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=fda41e6371934839"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DB-Browser-f%C3%BCr-SQLite">DB-Browser für SQLite<a class="anchor-link" href="#DB-Browser-f%C3%BCr-SQLite">¶</a></h2><ul>
+<li>Der DB-Browser für SQLite ist eine grafische Benutzeroberfläche zur
+Verwaltung von SQLite-Datenbanken</li>
+<li>Er ermöglicht das Erstellen, Bearbeiten und Abfragen von Datenbanken</li>
+<li>Das ist oft einfacher als die Verwendung der Kommandozeile</li>
+</ul>
+<p><img alt="DB-Browser für SQLite" src="https://sqlitebrowser.org/"/></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=331b0ce33b483395"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Beispiel:-Erstellen-einer-Datenbank-in-DB-Browser-f%C3%BCr-SQLite">Beispiel: Erstellen einer Datenbank in DB-Browser für SQLite<a class="anchor-link" href="#Beispiel:-Erstellen-einer-Datenbank-in-DB-Browser-f%C3%BCr-SQLite">¶</a></h2><ol>
+<li>Öffnen Sie DB-Browser für SQLite</li>
+<li>Klicken Sie auf "Neue Datenbank"</li>
+<li>Wählen Sie einen Speicherort aus und geben Sie <code>shop.sqlite</code> als Dateinamen
+ein</li>
+<li>Klicken Sie auf OK<ul>
+<li>Es öffnet sich ein Fenster zum Erstellen einer Tabelle</li>
+</ul>
+</li>
+<li>Erstellen Sie eine Tabelle:<ul>
+<li>Geben Sie den Tabellennamen <code>customers</code> ein</li>
+<li>Fügen Sie Felder hinzu:<ul>
+<li><code>id</code> (INTEGER)</li>
+<li><code>name</code> (TEXT)</li>
+<li><code>email</code> (TEXT)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Klicken Sie auf "OK" und dann auf "Änderungen schreiben"</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3d56a711bb45afd6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Einf%C3%BCgen-von-Daten-in-eine-Tabelle">Einfügen von Daten in eine Tabelle<a class="anchor-link" href="#Einf%C3%BCgen-von-Daten-in-eine-Tabelle">¶</a></h2><ul>
+<li>Gehen Sie zum Reiter "Daten durchsuchen"</li>
+<li>Klicken Sie auf das Icon zum Einfügen einer neuen Zeile</li>
+<li>Geben Sie Werte für die Felder ein<ul>
+<li>Sie können das direkt in der Tabelle tun</li>
+<li>Es empfiehlt sich, die Breite der Spalten anpassen, um mehr Platz zu haben</li>
+<li>Sie können Änderungen auch im Fenster "Datenbankzelle bearbeiten"
+vornehmen</li>
+<li>Danach müssen Sie auf "Übernehmen" klicken, um die Änderungen in die
+Tabelle zu übernehmen</li>
+</ul>
+</li>
+<li>Klicken Sie auf "Änderungen schreiben", um die Daten zu speichern</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=66dfea8ab75edcfa"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Erstellen-der-Produkt-Tabelle">Workshop: Erstellen der Produkt-Tabelle<a class="anchor-link" href="#Workshop:-Erstellen-der-Produkt-Tabelle">¶</a></h2><p>Erstellen Sie die Tabelle <code>products</code> mit den folgenden Feldern:</p>
 <ul>
-<li>Ein Kilometer entspricht $0,621371$ Meilen</li>
+<li><code>id</code> (INTEGER)</li>
+<li><code>name</code> (TEXT)</li>
+<li><code>price</code> (REAL)</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=1a4b7d4ab6c73be0">
-<div class="input">
-<div class="prompt input_prompt">In [14]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">konvertiere_km_nach_meilen</span><span class="p">(</span><span class="n">km</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">km</span> <span class="o">*</span> <span class="mf">0.621371</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4e213d3b3c1d25b1"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a32b22ca86d0a056"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Testen Sie <code>konvertiere_km_nach_meilen(km)</code> für 1 und 5 km.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=65b156018b2d9778">
-<div class="input">
-<div class="prompt input_prompt">In [15]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">konvertiere_km_nach_meilen</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mf">0.621371</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=398561809fcfb205">
-<div class="input">
-<div class="prompt input_prompt">In [16]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">konvertiere_km_nach_meilen</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="mf">3.107</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d2291018ddd0018e"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Schreiben Sie eine Funktion <code>meilen_app()</code>, die eine Länge in Kilometern einliest
-und die äquivalente Entfernung in Meilen ausgibt. Wenn die Eingabe ein leerer
-String ist, soll der String <code>Bitte geben Sie eine gültige Entfernung in km ein.</code>
-ausgegeben werden.</p>
-<p><em>Hinweise</em></p>
+<p>Fügen Sie einige Produkte hinzu:</p>
 <ul>
-<li>Ein String kann mit <code>float()</code> in einen Float-Wert umgewandelt werden.</li>
-<li>Verwenden Sie Truthiness in der Bedingung der <code>if</code>-Anweisung.</li>
+<li><code>id</code>: 2341, <code>name</code>: "Tomatensuppe", <code>price</code>: 1.99</li>
+<li><code>id</code>: 346, <code>name</code>: "Kichererbsen", <code>price</code>: 0.59</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=31ddb4d281547642">
-<div class="input">
-<div class="prompt input_prompt">In [17]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">meilen_app</span><span class="p">():</span>
-    <span class="n">km</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Bitte geben Sie eine Entfernung in km ein: "</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">km</span><span class="p">:</span>
-        <span class="n">meilen</span> <span class="o">=</span> <span class="n">konvertiere_km_nach_meilen</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">km</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">km</span><span class="si">}</span><span class="s2"> km sind </span><span class="si">{</span><span class="n">meilen</span><span class="si">}</span><span class="s2"> Meilen."</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Bitte geben Sie eine gültige Entfernung in km ein."</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ed949dbeeb22ab7c">
-<div class="input">
-<div class="prompt input_prompt">In [18]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># meilen_app()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5b73e29c1bb3da8b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=baddb9ce726fdfdd"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mini-Workshop:-Kino-Preis">Mini-Workshop: Kino-Preis<a class="anchor-link" href="#Mini-Workshop:-Kino-Preis">¶</a></h2><p>Das Python-Lichtspielhaus hat folgende Eintrittspreise:</p>
 <ul>
-<li>Kleinkinder unter 2 Jahren sind frei.</li>
-<li>Kinder von 2 bis 12 Jahren zahlen 2 Euro.</li>
-<li>Teenager von 13 bis 17 Jahren zahlen 5 Euro.</li>
-<li>Erwachsene zahlen 10 Euro.</li>
-<li>Rentner (ab 65) zahlen 6 Euro.</li>
+<li>Was passiert, wenn Sie versuchen, zwei Zeilen mit den gleichen Werten für
+alle Felder einzufügen?</li>
 </ul>
-<p>Schreiben Sie eine Funktion <code>kinopreis(alter)</code>, die den Preis in Abhängigkeit vom
-Alter berechnet und zurückgibt.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=7f97e3823508f0b5">
-<div class="input">
-<div class="prompt input_prompt">In [19]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">kinopreis</span><span class="p">(</span><span class="n">alter</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">alter</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">elif</span> <span class="n">alter</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">2</span>
-    <span class="k">elif</span> <span class="n">alter</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">5</span>
-    <span class="k">elif</span> <span class="n">alter</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">10</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">6</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5f92071cb83d493f"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Testen Sie die Funktion <code>kinopreis()</code> für einige repräsentative Werte.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4a74a9d25c682214">
-<div class="input">
-<div class="prompt input_prompt">In [20]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">kinopreis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-<span class="k">assert</span> <span class="n">kinopreis</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
-<span class="k">assert</span> <span class="n">kinopreis</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
-<span class="k">assert</span> <span class="n">kinopreis</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span>
-<span class="k">assert</span> <span class="n">kinopreis</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=11cf21cd3278ac4e"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Schreiben Sie eine Funktion <code>drucke_kinopreis(alter)</code>,
-die einen Text der folgenden Art auf dem Bildschirm ausgibt:</p>
-<pre><code>Sie sind 1 Jahr alt. Ihr Preis beträgt 0 Euro.
-Sie sind 15 Jahre alt. Ihr Preis beträgt 5 Euro.
-</code></pre>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=29238126039dfe32">
-<div class="input">
-<div class="prompt input_prompt">In [21]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">drucke_kinopreis</span><span class="p">(</span><span class="n">alter</span><span class="p">):</span>
-    <span class="n">preis</span> <span class="o">=</span> <span class="n">kinopreis</span><span class="p">(</span><span class="n">alter</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">alter</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sie sind 1 Jahr alt. Ihr Preis beträgt </span><span class="si">{</span><span class="n">preis</span><span class="si">}</span><span class="s2"> Euro."</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sie sind </span><span class="si">{</span><span class="n">alter</span><span class="si">}</span><span class="s2"> Jahre alt. Ihr Preis beträgt </span><span class="si">{</span><span class="n">preis</span><span class="si">}</span><span class="s2"> Euro."</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=128cd87361f81f87"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Testen Sie <code>drucke_kinopreis()</code> für repräsentative Werte.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e07e7db3311e6049">
-<div class="input">
-<div class="prompt input_prompt">In [22]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">drucke_kinopreis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">drucke_kinopreis</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">drucke_kinopreis</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">drucke_kinopreis</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
-<span class="n">drucke_kinopreis</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Sie sind 1 Jahr alt. Ihr Preis beträgt 0 Euro.
-Sie sind 7 Jahre alt. Ihr Preis beträgt 2 Euro.
-Sie sind 15 Jahre alt. Ihr Preis beträgt 5 Euro.
-Sie sind 25 Jahre alt. Ihr Preis beträgt 10 Euro.
-Sie sind 70 Jahre alt. Ihr Preis beträgt 6 Euro.
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=02f5c1afb98f1f24"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Schreiben Sie eine Funktion <code>kino_app()</code>, die ein Alter einliest und den
-Kinopreis für eine Person dieses Alters im gerade beschriebenen Format
-ausgibt. Zwei Beispielinteraktionen:</p>
-<pre><code>Wie alt sind Sie? 37
-Sie sind 37 Jahre alt. Ihr Preis beträgt 10 Euro.
-
-Wie alt sind Sie? 12
-Sie sind 12 Jahre alt. Ihr Preis beträgt 2 Euro.
-</code></pre>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=502d3ce5d4f4aa47">
-<div class="input">
-<div class="prompt input_prompt">In [23]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">kino_app</span><span class="p">():</span>
-    <span class="n">alter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Wie alt sind Sie? "</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">alter</span><span class="p">:</span>
-        <span class="n">drucke_kinopreis</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">alter</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Bitte geben Sie ein gültiges Alter ein."</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f0da391be51e4ae4">
-<div class="input">
-<div class="prompt input_prompt">In [24]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># kino_app()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6b4e03423667dbb7">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>
