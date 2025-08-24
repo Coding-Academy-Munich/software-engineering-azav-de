@@ -12,7 +12,7 @@
 # ## Was ist eine Datenbank?
 #
 # - Sammlung von Daten
-#   - Effiziente zum Speichern, Abrufen und Manipulieren von großen Datenmengen
+#   - Effizientes Speichern, Abrufen und Manipulieren von großen Datenmengen
 # - Die Software, die eine Datenbank verwaltet, wird als Datenbanksystem (Data
 #   Base Management System, DBMS) bezeichnet
 # - Eine Datenbank ist eine Sammlung von Daten, die in einem DBMS organisiert
