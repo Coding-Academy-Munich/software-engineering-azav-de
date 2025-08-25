@@ -107,7 +107,7 @@
 # - Er ermöglicht das Erstellen, Bearbeiten und Abfragen von Datenbanken
 # - Das ist oft einfacher als die Verwendung der Kommandozeile
 #
-# ![DB-Browser für SQLite](https://sqlitebrowser.org/)
+# [DB-Browser für SQLite](https://sqlitebrowser.org/)
 
 # %% [markdown]
 #
@@ -124,7 +124,7 @@
 #    - Fügen Sie Felder hinzu:
 #      - `id` (INTEGER)
 #      - `name` (TEXT)
-#      - `email` (TEXT)
+#      - `address` (TEXT)
 # 6. Klicken Sie auf "OK" und dann auf "Änderungen schreiben"
 
 # %% [markdown]
@@ -148,15 +148,15 @@
 # ## Workshop: Erstellen der Produkt-Tabelle
 #
 # Erstellen Sie die Tabelle `products` mit den folgenden Feldern:
-# - `id` (INTEGER)
-# - `name` (TEXT)
-# - `price` (REAL)
+# - `id` (`INTEGER`)
+# - `product_name` (`TEXT`)
+# - `price` (`REAL`)
 
 # %% [markdown]
 #
 # Fügen Sie einige Produkte hinzu:
-# - `id`: 2341, `name`: "Tomatensuppe", `price`: 1.99
-# - `id`: 346, `name`: "Kichererbsen", `price`: 0.59
+# - `id`: 2341, `product_name`: "Tomatensuppe", `price`: 1.99, `description`: "Leckere Tomatensuppe"
+# - `id`: 346, `product_name`: "Kichererbsen", `price`: 0.59, `description`: "Gesunde Kichererbsen"
 
 # %% [markdown]
 #

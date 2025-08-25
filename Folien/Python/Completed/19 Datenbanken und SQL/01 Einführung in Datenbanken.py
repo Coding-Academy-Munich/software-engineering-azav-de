@@ -9,14 +9,27 @@
 
 # %% [markdown]
 #
-# ## Was ist eine Datenbank?
+# ## Welches Problem lösen Datenbanken?
 #
-# - Sammlung von Daten
-#   - Effizientes Speichern, Abrufen und Manipulieren von großen Datenmengen
-# - Die Software, die eine Datenbank verwaltet, wird als Datenbanksystem (Data
-#   Base Management System, DBMS) bezeichnet
-# - Eine Datenbank ist eine Sammlung von Daten, die in einem DBMS organisiert
-#   und gespeichert ist
+# - Große Datenmengen (Terabyte und mehr)
+# - Persistenz (dauerhafte Speicherung)
+# - Effizientes Speichern, Abrufen und _Manipulieren_
+# - Nutzung in mehreren Anwendungen
+# - Integrität der Daten
+# - Standardisierung von Daten und Zugriff
+
+# %% [markdown]
+#
+# ## Datenbank und Datenbanksystem
+#
+# - Datenbank
+#   - Sammlung von Daten
+#   - Gespeichert in einem Datenbanksystem
+# - Datenbanksystem (Datenbankmanagementsystem, DBMS):
+#   - Software, die Datenbanken speichert und verwaltet
+#   - Funktionen:
+#     - Administration der Datenbanken
+#     - Speichern, Abrufen und Manipulieren von Daten
 # - Oft sagt man aber auch einfach "Datenbank" für das DBMS
 
 # %% [markdown]
@@ -32,9 +45,9 @@
 #
 # ## Merkmale einer Datenbank
 #
-# - Konsistente und genaue Datenspeicherung
+# - Konsistente und exakte Datenspeicherung
 # - Effiziente Datenabfrage und -manipulation
-# - Einfache gemeinsame Nutzung von Daten zwischen Anwendungen
+# - Gemeinsame Nutzung von Daten zwischen Anwendungen
 # - Datensicherheit und Zugriffskontrolle
 # - Skalierbarkeit und Flexibilität
 
@@ -45,7 +58,7 @@
 # Verschiedene Arten von Datenbanken bieten unterschiedliche Kompromisse
 # zwischen diesen Merkmalen
 #
-# - **Relationale Datenbanken**
+# - **Relationale Datenbanken** (RDBMS, SQL-Datenbanken)
 # - NoSQL-Datenbanken
 #   - Graph-Datenbanken
 #   - Objektorientierte Datenbanken

@@ -13144,7 +13144,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4fedbecfa3acc755"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3a35c18a228a0c7d"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Fremdschl%C3%BCssel-und-Beziehungen">Fremdschlüssel und Beziehungen<a class="anchor-link" href="#Fremdschl%C3%BCssel-und-Beziehungen">¶</a></h2><ul>
@@ -13156,15 +13156,15 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <li>Wir merken uns den Primärschlüssel!</li>
 <li>Dazu fügen wir eine Spalte in der Tabelle hinzu, die den Primärschlüssel der
 anderen Tabelle referenziert</li>
-<li>Das nennen wir einen Fremdschlüssel</li>
+<li>Das nennen wir einen <strong>Fremdschlüssel</strong></li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=057154f21eaac743"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ac149021a1647c78"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Table <strong>Orders</strong>:</p>
+<p>Table <code>orders</code>:</p>
 <table>
 <thead>
 <tr>
@@ -13203,8 +13203,30 @@ anderen Tabelle referenziert</li>
 </table>
 <ul>
 <li><code>order_id</code> ist der Primärschlüssel</li>
-<li><code>customer_id</code> ist ein Fremdschlüssel, der auf die Tabelle <strong>Kunden</strong> verweist</li>
-<li><code>item_id</code> ist ein Fremdschlüssel, der auf die Tabelle <strong>Produkte</strong> verweist</li>
+<li><code>customer_id</code> ist ein Fremdschlüssel, der auf die Tabelle <code>customers</code> verweist</li>
+<li><code>item_id</code> ist ein Fremdschlüssel, der auf die Tabelle <code>products</code> verweist</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c9e3a17729bdb6b5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Fremdschl%C3%BCssel">Workshop: Fremdschlüssel<a class="anchor-link" href="#Workshop:-Fremdschl%C3%BCssel">¶</a></h2><ul>
+<li>Modifizieren Sie die Tabelle <code>orders</code>, so dass die Fremdschlüssel korrekt
+definiert sind.</li>
+</ul>
+<p><em>Hinweis:</em></p>
+<ul>
+<li>Wenn Sie die Tabelle bearbeiten, gibt es einen Reiter <code>Fremdschlüssel</code>, in
+dem Sie die Fremdschlüssel definieren können.</li>
+<li>Geben Sie dazu Werte für folgende Spalten ein:<ul>
+<li><code>Spalten</code>: Die Spalte in der aktuellen Tabelle, die den Fremdschlüssel
+enthält, z. B. <code>customer_id</code></li>
+<li><code>Referenz</code>: Die Spalte und Tabelle, auf die verwiesen wird, z.B.
+<code>"customers"("id")</code></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

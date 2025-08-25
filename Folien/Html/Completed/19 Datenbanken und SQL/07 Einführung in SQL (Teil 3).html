@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ebfb9941df94ed1b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f37b3d94231e8706"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,108 +13136,12 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Einführung in SQL</b>
+<b>Einführung in SQL (Teil 3)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
 <br/>
 </br></div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=77cd35f959db6975"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>SQL steht für Structured Query Language (strukturierte Abfragesprache)</li>
-<li>SQL ist eine Programmiersprache zur Verwaltung und Manipulation von Daten in
-einer relationalen Datenbank</li>
-<li>SQL wird verwendet, um Tabellen und Daten in einer Datenbank zu erstellen,
-zu ändern und abzufragen</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4e1912483841194b"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Erstellen-von-Tabellen">Erstellen von Tabellen<a class="anchor-link" href="#Erstellen-von-Tabellen">¶</a></h2><ul>
-<li>Erinnerung: In einer relationalen Datenbank werden Daten in Tabellen
-organisiert</li>
-<li>Jede Tabelle besteht aus Zeilen und Spalten, wobei jede Zeile einen
-Datensatz und jede Spalte ein Attribut des Datensatzes darstellt</li>
-<li>Um Daten in einer Datenbank zu speichern, müssen wir zunächst eine Tabelle
-erstellen</li>
-<li>Diesen Teil von SQL nennt man Data Definition Language (DDL)</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2f627373424b0b79"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <strong>Customers</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>name</th>
-<th>email</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Alice</td>
-<td>alice@example.com</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Bob</td>
-<td>bob@example.com</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Charlie</td>
-<td>charlie@example.com</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9559f0c8a1c2f060"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tabellen-erstellen">Tabellen erstellen<a class="anchor-link" href="#Tabellen-erstellen">¶</a></h2><ul>
-<li>Der Befehl <code>CREATE TABLE</code> wird verwendet, um eine neue Tabelle in einer
-Datenbank zu erstellen.</li>
-<li>Man muss den Tabellennamen sowie die Spalten und Datentypen für die Tabelle
-angeben</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="n">email</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=477ea854b444a4ff"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Verwalten-von-Daten">Verwalten von Daten<a class="anchor-link" href="#Verwalten-von-Daten">¶</a></h2><ul>
-<li>Mit unseren Kundendaten wollen wir verschiedene Operationen durchführen:<ul>
-<li>Neue Kunden hinzufügen</li>
-<li>Daten abfragen (z.B. alle Kunden anzeigen)</li>
-<li>Bestehende Kunden aktualisieren (z.B. E-Mail-Adresse ändern)</li>
-<li>Kunden löschen</li>
-</ul>
-</li>
-<li>Diese Operationen werden in SQL als Data Manipulation Language (DML)
-bezeichnet</li>
-</ul>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2d2ee655351c81d4"><div class="prompt input_prompt">
@@ -13255,14 +13159,10 @@ Bedingungen für Filterung der Ergebnisse angeben</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2bca738f38587665"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=46bd28d041722ef6"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Einf%C3%BCgen-von-Zeilen">Einfügen von Zeilen<a class="anchor-link" href="#Einf%C3%BCgen-von-Zeilen">¶</a></h2><ul>
-<li>Der Befehl <code>INSERT INTO</code> wird verwendet, um Daten in eine Tabelle einzufügen.</li>
-<li>Er benötigt die Namen der Spalten und die Werte, die eingefügt werden sollen:</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">'Alice'</span><span class="p">,</span><span class="w"> </span><span class="s1">'alice@example.com'</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -13282,7 +13182,31 @@ verbindet</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3510c34621d06520"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=df224b95bf5ee4e6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=3668f7f3798fc3cd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=452def5b68ac4d73"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6d1624c39570923d"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
@@ -13292,145 +13216,33 @@ verbindet</li>
 <li>Man kann Vergleichsoperatoren (z.B.  <code>=</code>, <code>&lt;</code>, <code>&gt;</code>) und logische Operatoren
 (z.B. <code>AND</code>, <code>OR</code>, <code>NOT</code>) verwenden, um die Bedingungen zu spezifizieren</li>
 </ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=28bdd07f3af85731"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=78789fe1dc7888f1"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=43d1c064ddd8f29f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>GROUP BY</code>:</li>
-<li>Die <code>GROUP BY</code>-Klausel wird verwendet, um die Ergebnisse einer
-<code>SELECT</code>-Anweisung nach einer oder mehreren Spalten zu gruppieren</li>
-<li>Man kann Aggregatfunktionen (z.B. <code>SUM</code>, <code>AVG</code>, <code>COUNT</code>) verwenden, um
-Berechnungen mit den gruppierten Daten durchzuführen</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2996c7aa774d2242"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>ORDER BY</code>:</li>
-<li>Die <code>ORDER BY</code>-Klausel wird verwendet, um die Ergebnisse einer
-<code>SELECT</code>-Anweisung nach einer oder mehreren Spalten zu sortieren</li>
-<li>Man kann angeben, ob die Daten in aufsteigender oder absteigender
-Reihenfolge sortiert werden sollen (<code>ASC</code>, <code>DESC</code>)</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7afcf888cfaeb2c5"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>LIMIT</code>:</li>
-<li>Die <code>LIMIT</code>-Klausel wird verwendet, um die Anzahl der Ergebnisse , die von
-einer <code>SELECT</code> Anweisung zurückgegeben werden, zu begrenzen</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dc8e07b2c7041842"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="L%C3%B6schen-von-Zeilen">Löschen von Zeilen<a class="anchor-link" href="#L%C3%B6schen-von-Zeilen">¶</a></h2><ul>
-<li>Der Befehl <code>DELETE FROM</code> wird verwendet, um Zeilen aus einer Tabelle zu
-löschen</li>
-<li>Die zu löschenden Zeilen werden oft mit einer <code>WHERE</code>-Klausel angegeben,
-ähnlich der des Befehls <code>SELECT FROM</code></li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Charlie'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b32fc9310252d7ef"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=7d3d69122cf80a3e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%C3%84ndern-von-Tabellen">Ändern von Tabellen<a class="anchor-link" href="#%C3%84ndern-von-Tabellen">¶</a></h2><ul>
-<li>Der Befehl <code>ALTER TABLE</code> wird verwendet, um die Struktur einer bestehenden
-Tabelle zu ändern</li>
-<li>Man kann Spalten in einer Tabelle hinzufügen, ändern oder löschen, sowie
-Beschränkungen für die Daten in der Tabelle einführen oder löschen</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="p">)</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">products</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">;</span>
 </pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c678219430bff82f"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tabellen-l%C3%B6schen:">Tabellen löschen:<a class="anchor-link" href="#Tabellen-l%C3%B6schen:">¶</a></h2><ul>
-<li>Der Befehl <code>DROP TABLE</code> wird verwendet, um eine bestehende Tabelle aus einer
-Datenbank zu entfernen</li>
-<li>Dieser Befehl löscht dauerhaft alle Daten in der Tabelle, daher sollte er
-mit mit Vorsicht verwendet werden</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8d6023679342968b"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Indizes">Indizes<a class="anchor-link" href="#Indizes">¶</a></h2><ul>
-<li>Indizes werden verwendet, um die Leistung von Abfragen auf großen Tabellen
-zu verbessern.</li>
-<li>Der Befehl <code>CREATE INDEX</code> wird verwendet, um einen neuen Index auf einer
-oder mehreren Spalten in einer Tabelle zu erstellen</li>
-<li>Man kann angeben, ob der Index eindeutig sein soll und ob er aufsteigend
-oder absteigend sortiert werden soll</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=857971898882991c"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<pre><code class="language-sqlite">sqlite
-$ sqlite3 shop.db
-
--- create a new table
-sqlite&gt; CREATE TABLE customers (
-   ...&gt; id INTEGER PRIMARY KEY,
-   ...&gt; name TEXT NOT NULL,
-   ...&gt; email TEXT NOT NULL UNIQUE
-   ...&gt; );
-
--- add some data to the table
-sqlite&gt; INSERT INTO customers (name, email) VALUES ('Alice', 'alice@example.com');
-sqlite&gt; INSERT INTO customers (name, email) VALUES ('Bob', 'bob@example.com');
-sqlite&gt; INSERT INTO customers (name, email) VALUES ('Charlie', 'charlie@example.com');
-
--- display the contents of the table
-sqlite&gt; SELECT * FROM customers;
-1|Alice|alice@example.com
-2|Bob|bob@example.com
-3|Charlie|charlie@example.com
-
--- add a new column to the table
-sqlite&gt; ALTER TABLE customers ADD COLUMN age INTEGER;
-
--- update some data in the table
-sqlite&gt; UPDATE customers SET age = 25 WHERE name = 'Alice';
-
--- delete a row from the table
-sqlite&gt; DELETE FROM customers WHERE name = 'Charlie';
-
--- display the updated contents of the table
-sqlite&gt; SELECT * FROM customers;
-1|Alice|alice@example.com|25
-2|Bob|bob@example.com|
-
--- exit the SQLite3 shell
-sqlite&gt; .exit
-</code></pre>
 </div>
 </div>
 </div>

@@ -17,11 +17,11 @@
 # - Wir merken uns den Primärschlüssel!
 # - Dazu fügen wir eine Spalte in der Tabelle hinzu, die den Primärschlüssel der
 #   anderen Tabelle referenziert
-# - Das nennen wir einen Fremdschlüssel
+# - Das nennen wir einen **Fremdschlüssel**
 
 # %% [markdown]
 #
-# Table **Orders**:
+# Table `orders`:
 #
 # | order_id | customer_id | item_id | quantity |
 # |----------|-------------|---------|----------|
@@ -31,6 +31,22 @@
 # |        4 |           1 |    2341 |        2 |
 #
 # - `order_id` ist der Primärschlüssel
-# - `customer_id` ist ein Fremdschlüssel, der auf die Tabelle **Kunden** verweist
-# - `item_id` ist ein Fremdschlüssel, der auf die Tabelle **Produkte** verweist
+# - `customer_id` ist ein Fremdschlüssel, der auf die Tabelle `customers` verweist
+# - `item_id` ist ein Fremdschlüssel, der auf die Tabelle `products` verweist
 
+
+# %% [markdown]
+#
+# ## Workshop: Fremdschlüssel
+#
+# - Modifizieren Sie die Tabelle `orders`, so dass die Fremdschlüssel korrekt
+#   definiert sind.
+#
+# *Hinweis:*
+# - Wenn Sie die Tabelle bearbeiten, gibt es einen Reiter `Fremdschlüssel`, in
+#   dem Sie die Fremdschlüssel definieren können.
+# - Geben Sie dazu Werte für folgende Spalten ein:
+#   - `Spalten`: Die Spalte in der aktuellen Tabelle, die den Fremdschlüssel
+#     enthält, z. B. `customer_id`
+#   - `Referenz`: Die Spalte und Tabelle, auf die verwiesen wird, z.B.
+#     `"customers"("id")`

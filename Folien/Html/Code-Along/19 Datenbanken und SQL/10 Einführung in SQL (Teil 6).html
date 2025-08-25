@@ -13086,7 +13086,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=68e82aca3c457cc2"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=520dfea2253e4523"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13136,7 +13136,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Relationale Datenbanken (Teil 2)</b>
+<b>Einführung in SQL (Teil 6)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13144,519 +13144,44 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9f4ab34611f3a2f8"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b32fc9310252d7ef"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Prim%C3%A4rschl%C3%BCssel">Primärschlüssel<a class="anchor-link" href="#Prim%C3%A4rschl%C3%BCssel">¶</a></h2><ul>
-<li>Primärschlüssel sind eindeutige Bezeichner für jede Zeile in einer Tabelle</li>
-<li>Sie können aus einer oder mehreren Spalten bestehen<ul>
-<li>Mehrere Spalten: zusammengesetzter Primärschlüssel</li>
+<h2 id="%C3%84ndern-von-Tabellen">Ändern von Tabellen<a class="anchor-link" href="#%C3%84ndern-von-Tabellen">¶</a></h2><ul>
+<li>Der Befehl <code>ALTER TABLE</code> wird verwendet, um die Struktur einer bestehenden
+Tabelle zu ändern</li>
+<li>Man kann Spalten in einer Tabelle hinzufügen, ändern oder löschen, sowie
+Beschränkungen für die Daten in der Tabelle einführen oder löschen</li>
 </ul>
-</li>
-<li>Die Werte der Spalte(n) des Primärschlüssels müssen eindeutig sein</li>
-</ul>
+<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">;</span>
+</pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6c74d283546b7b39"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c678219430bff82f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <code>customers</code> für Kunden mit Primärschlüssel <code>name</code>:</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>John Smith</td>
-<td>123 Elm St</td>
-</tr>
-<tr>
-<td>Jane Doe</td>
-<td>456 Oak St</td>
-</tr>
-</tbody>
-</table>
-<p class="fragment">Problem mit dem Primärschlüssel <tt>name</tt>:</p>
-<ul>
-<li class="fragment">Was passiert, wenn wir einen zweiten Kunden mit dem
-    Namen "John Smith" hinzufügen wollen?</li>
-<li class="fragment">Das ist nicht möglich, da der Primärschlüssel eindeutig
-    sein muss!</li>
+<h2 id="Tabellen-l%C3%B6schen:">Tabellen löschen:<a class="anchor-link" href="#Tabellen-l%C3%B6schen:">¶</a></h2><ul>
+<li>Der Befehl <code>DROP TABLE</code> wird verwendet, um eine bestehende Tabelle aus einer
+Datenbank zu entfernen</li>
+<li>Dieser Befehl löscht dauerhaft alle Daten in der Tabelle, daher sollte er
+mit mit Vorsicht verwendet werden</li>
 </ul>
+<div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=607e4f877b0208e3"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8d6023679342968b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <code>customers</code> für Kunden mit zusammengesetztem Primärschlüssel <code>name</code>
-und <code>address</code>:</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>John Smith</td>
-<td>123 Elm St</td>
-</tr>
-<tr>
-<td>Jane Doe</td>
-<td>456 Oak St</td>
-</tr>
-</tbody>
-</table>
-<p class="fragment">
-  Problem mit dem zusammengesetzten Primärschlüssel:
-</p>
-<ul>
-<li class="fragment">Theoretisch könnte es zwei Kunden mit dem Namen "John
-    Smith" geben, die an der gleichen Adresse wohnen</li>
-<li class="fragment">Unwahrscheinlich, aber möglich</li>
-<li class="fragment">Was ist, wenn ein Kunde umzieht?</li>
-<ul>
-<li class="fragment">Dann ändert sich der Primärschlüssel</li>
-<li class="fragment">Das kann zu Problemen führen, wenn der Primärschlüssel in anderen Tabellen referenziert wird</li>
-</ul>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bd52fcca6a7727cc"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <code>customers</code> für Kunden mit synthetischem Primärschlüssel:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>name</th>
-<th>address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>John Smith</td>
-<td>123 Elm St</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Jane Doe</td>
-<td>456 Oak St</td>
-</tr>
-</tbody>
-</table>
-<p class="fragment">
-  "Synthetischer" Primärschlüssel:
-</p>
-<ul class="fragment">
-<li>Statt <tt>name</tt> und <tt>address</tt> als Primärschlüssel zu verwenden, wird eine
-    zusätzliche Spalte <tt>customer_id</tt> eingeführt, die einen eindeutigen
-    Bezeichner für jeden Kunden darstellt.</li>
-<li>Der <tt>customer_id</tt> kann dann als Primärschlüssel verwendet werden.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8d421a7606ff947b"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Warum-sind-Prim%C3%A4rschl%C3%BCssel-wichtig?">Warum sind Primärschlüssel wichtig?<a class="anchor-link" href="#Warum-sind-Prim%C3%A4rschl%C3%BCssel-wichtig?">¶</a></h2><ul>
-<li>Primärschlüssel gewährleisten die Eindeutigkeit von Datensätzen in einer Tabelle</li>
-<li>Sie ermöglichen die effiziente Identifizierung und den Zugriff auf Daten</li>
-<li>Sie werden verwendet, um Beziehungen zwischen Tabellen herzustellen<ul>
-<li>Man nennt sie in diesem Kontext Fremdschlüssel</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0f332059b070942f"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Beispiel:-Bestellungen">Beispiel: Bestellungen<a class="anchor-link" href="#Beispiel:-Bestellungen">¶</a></h2><ul>
-<li>Wie können wir eine Bestellung in unserer Datenbank speichern?<ul>
-<li>Der Einfachheit halber nehmen wir an, dass eine Bestellung immer nur ein
-Produkt enthält.</li>
-</ul>
-</li>
-<li>Naiv:<ul>
-<li>Name des Kunden</li>
-<li>Name des Produkts</li>
-<li>Anzahl der bestellten Produkte</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b65a68d87f9e59f6"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <code>customers</code> für Kunden:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>name</th>
-<th>address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>John Smith</td>
-<td>123 Elm St</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Jane Doe</td>
-<td>456 Oak St</td>
-</tr>
-</tbody>
-</table>
-<p>Tabelle <code>products</code> für Produkte:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>name</th>
-<th>price</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2341</td>
-<td>Tomatensuppe</td>
-<td>1.99</td>
-<td>Unsere fantastische Tomatensuppe in Dosen.</td>
-</tr>
-<tr>
-<td>346</td>
-<td>Kichererbsen</td>
-<td>0.59</td>
-<td>In Wasser einweichen und genießen...</td>
-</tr>
-</tbody>
-</table>
-<p>Tabelle <code>orders</code> für Bestellungen:</p>
-<table>
-<thead>
-<tr>
-<th>customer_name</th>
-<th>product_name</th>
-<th>quantity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>John Smith</td>
-<td>Tomato soup</td>
-<td>2</td>
-</tr>
-<tr>
-<td>Jane Doe</td>
-<td>Tomato soup</td>
-<td>1</td>
-</tr>
-<tr>
-<td>John Smith</td>
-<td>Chickpeas</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e1a5bb6d30decbc7"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problem-mit-der-naiven-L%C3%B6sung:">Problem mit der naiven Lösung:<a class="anchor-link" href="#Problem-mit-der-naiven-L%C3%B6sung:">¶</a></h2><ul>
-<li>Kunden mit dem gleichen Namen können nicht unterschieden werden</li>
-<li>Produkte mit dem gleichen Namen können nicht unterschieden werden</li>
-<li>Bestellungen können nicht eindeutig zugeordnet werden</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=aa40b98d0be0d398"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <code>customers</code>:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>name</th>
-<th>address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>John Smith</td>
-<td>123 Elm St</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Jane Doe</td>
-<td>456 Oak St</td>
-</tr>
-<tr>
-<td>3</td>
-<td>John Smith</td>
-<td>789 Maple St</td>
-</tr>
-</tbody>
-</table>
-<p>Tabelle <code>products</code>:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>product_name</th>
-<th>price</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2341</td>
-<td>Tomatensuppe</td>
-<td>1.99</td>
-<td>Unsere fantastische Tomatensuppe in Dosen.</td>
-</tr>
-<tr>
-<td>939504</td>
-<td>Tomatensuppe</td>
-<td>2.49</td>
-<td>Premium-Tomatensuppe in Glasflaschen.</td>
-</tr>
-<tr>
-<td>346</td>
-<td>Kichererbsen</td>
-<td>0.59</td>
-<td>In Wasser einweichen und genießen...</td>
-</tr>
-</tbody>
-</table>
-<p>Tabelle <code>orders</code>:</p>
-<table>
-<thead>
-<tr>
-<th>customer_name</th>
-<th>product_name</th>
-<th>quantity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>John Smith</td>
-<td>Tomatensuppe</td>
-<td>2</td>
-</tr>
-<tr>
-<td>Jane Doe</td>
-<td>Tomatensuppe</td>
-<td>1</td>
-</tr>
-<tr>
-<td>John Smith</td>
-<td>Kichererbsen</td>
-<td>3</td>
-</tr>
-<tr>
-<td>John Smith</td>
-<td>Tomatensuppe</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f94b004d70b3d82e"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="L%C3%B6sung">Lösung<a class="anchor-link" href="#L%C3%B6sung">¶</a></h2><ul>
-<li>Wir verwenden in der Bestellung nicht Kunden- und Produktnamen</li>
-<li>Wir verwenden stattdessen die IDs<ul>
-<li>Diese sind Primärschlüssel in den Tabellen <code>customers</code> und <code>products</code></li>
-<li>Damit wissen wir, dass sie eindeutig sind</li>
-</ul>
-</li>
-<li>Wir geben jeder Bestellung eine eindeutige ID<ul>
-<li>Diese wird Primärschlüssel in der Tabelle <code>orders</code></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=35caca33291d1ade"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <code>customers</code>:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>name</th>
-<th>address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>John Smith</td>
-<td>123 Elm St</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Jane Doe</td>
-<td>456 Oak St</td>
-</tr>
-<tr>
-<td>3</td>
-<td>John Smith</td>
-<td>789 Maple St</td>
-</tr>
-</tbody>
-</table>
-<p>Tabelle <code>products</code>:</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>product_name</th>
-<th>price</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2341</td>
-<td>Tomatensuppe</td>
-<td>1.99</td>
-<td>Unsere fantastische Tomatensuppe in Dosen.</td>
-</tr>
-<tr>
-<td>939504</td>
-<td>Tomatensuppe</td>
-<td>2.49</td>
-<td>Premium-Tomatensuppe in Glasflaschen.</td>
-</tr>
-<tr>
-<td>346</td>
-<td>Kichererbsen</td>
-<td>0.59</td>
-<td>In Wasser einweichen und genießen...</td>
-</tr>
-</tbody>
-</table>
-<p>Tabelle <code>orders</code>:</p>
-<table>
-<thead>
-<tr>
-<th>order_id</th>
-<th>customer_id</th>
-<th>product_id</th>
-<th>quantity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>2341</td>
-<td>2</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2</td>
-<td>939504</td>
-<td>1</td>
-</tr>
-<tr>
-<td>3</td>
-<td>1</td>
-<td>346</td>
-<td>3</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1</td>
-<td>2341</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=05192c92b4fb43aa"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop:-Prim%C3%A4rschl%C3%BCssel">Workshop: Primärschlüssel<a class="anchor-link" href="#Workshop:-Prim%C3%A4rschl%C3%BCssel">¶</a></h2><ul>
-<li>Wandeln Sie die folgenden Spalten in Primärschlüssel um:<ul>
-<li><code>customers</code>: <code>id</code></li>
-<li><code>products</code>: <code>id</code></li>
-</ul>
-</li>
-<li>Was passiert dabei, wenn die Tabelle bereits zwei Zeilen mit dem gleichen
-Primärschlüssel hat?</li>
-<li>Wie können Sie das Problem beheben?</li>
-<li>Was passiert, wenn Sie nach dem Einführen von Primärschlüsseln versuchen,
-zwei Zeilen hinzuzufügen, die denselben Primärschlüssel haben?</li>
-</ul>
-<p><em>Hinweis:</em></p>
-<ul>
-<li>Klicken Sie mit der rechten Maustaste auf eine Tabelle und wählen Sie
-<code>Tabelle verändern</code> um sie zu bearbeiten</li>
-<li>Die Checkbox <code>PK</code> markiert eine Spalte als Primärschlüssel</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d0d197bd976f6d3c"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Erstellen Sie eine Tabelle <code>orders</code> mit den folgenden Spalten:<ul>
-<li><code>id</code> (INTEGER, Primärschlüssel)</li>
-<li><code>customer_id</code> (INTEGER)</li>
-<li><code>product_id</code> (INTEGER)</li>
-<li><code>quantity</code> (INTEGER)</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f2ab336a9a4ab9f8"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Fügen Sie die folgenden Bestellungen in die Tabelle <code>orders</code> ein:<ul>
-<li><code>id</code>: 1, <code>customer_id</code>: 1, <code>product_id</code>: 2341, <code>quantity</code>: 2</li>
-<li><code>id</code>: 2, <code>customer_id</code>: 2, <code>product_id</code>: 939504, <code>quantity</code>: 1</li>
-<li><code>id</code>: 3, <code>customer_id</code>: 1, <code>product_id</code>: 346, <code>quantity</code>: 3</li>
-<li><code>id</code>: 4, <code>customer_id</code>: 1, <code>product_id</code>: 2341, <code>quantity</code>: 2</li>
-</ul>
-</li>
-<li>Was passiert, wenn Sie eine Bestellung einfügen, bei der der Wert von
-<code>customer_id</code> nicht in der Tabelle <code>customers</code> vorhanden ist?</li>
+<h2 id="Indizes">Indizes<a class="anchor-link" href="#Indizes">¶</a></h2><ul>
+<li>Indizes werden verwendet, um die Leistung von Abfragen auf großen Tabellen
+zu verbessern.</li>
+<li>Der Befehl <code>CREATE INDEX</code> wird verwendet, um einen neuen Index auf einer
+oder mehreren Spalten in einer Tabelle zu erstellen</li>
+<li>Man kann angeben, ob der Index eindeutig sein soll und ob er aufsteigend
+oder absteigend sortiert werden soll</li>
 </ul>
 </div>
 </div>

@@ -13158,10 +13158,10 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c8d98979c5540c15"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6c74d283546b7b39"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <strong>Kunden</strong> mit Primärschlüssel <code>name</code>:</p>
+<p>Tabelle <code>customers</code> für Kunden mit Primärschlüssel <code>name</code>:</p>
 <table>
 <thead>
 <tr>
@@ -13190,10 +13190,11 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=011ddac3ad8e24e4"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=607e4f877b0208e3"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <strong>Kunden</strong> mit zusammengesetztem Primärschlüssel <code>name</code> und <code>address</code>:</p>
+<p>Tabelle <code>customers</code> für Kunden mit zusammengesetztem Primärschlüssel <code>name</code>
+und <code>address</code>:</p>
 <table>
 <thead>
 <tr>
@@ -13228,14 +13229,14 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=aeeb2be683fe4baf"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bd52fcca6a7727cc"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <strong>Kunden</strong> mit synthetischem Primärschlüssel:</p>
+<p>Tabelle <code>customers</code> für Kunden mit synthetischem Primärschlüssel:</p>
 <table>
 <thead>
 <tr>
-<th>customer_id</th>
+<th>id</th>
 <th>name</th>
 <th>address</th>
 </tr>
@@ -13298,14 +13299,14 @@ Produkt enthält.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c3bd46a850353934"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b65a68d87f9e59f6"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <strong>Kunden</strong>:</p>
+<p>Tabelle <code>customers</code> für Kunden:</p>
 <table>
 <thead>
 <tr>
-<th>customer_id</th>
+<th>id</th>
 <th>name</th>
 <th>address</th>
 </tr>
@@ -13323,12 +13324,12 @@ Produkt enthält.</li>
 </tr>
 </tbody>
 </table>
-<p>Tabelle <strong>Produkte</strong>:</p>
+<p>Tabelle <code>products</code> für Produkte:</p>
 <table>
 <thead>
 <tr>
-<th>item_id</th>
-<th>item_name</th>
+<th>id</th>
+<th>name</th>
 <th>price</th>
 <th>description</th>
 </tr>
@@ -13348,29 +13349,29 @@ Produkt enthält.</li>
 </tr>
 </tbody>
 </table>
-<p>Tabelle <strong>Bestellungen</strong>:</p>
+<p>Tabelle <code>orders</code> für Bestellungen:</p>
 <table>
 <thead>
 <tr>
 <th>customer_name</th>
-<th>item_name</th>
+<th>product_name</th>
 <th>quantity</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>John Smith</td>
-<td>Tomatensuppe</td>
+<td>Tomato soup</td>
 <td>2</td>
 </tr>
 <tr>
 <td>Jane Doe</td>
-<td>Tomatensuppe</td>
+<td>Tomato soup</td>
 <td>1</td>
 </tr>
 <tr>
 <td>John Smith</td>
-<td>Kichererbsen</td>
+<td>Chickpeas</td>
 <td>3</td>
 </tr>
 </tbody>
@@ -13389,14 +13390,14 @@ Produkt enthält.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=670f80c009108a35"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=aa40b98d0be0d398"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <strong>Kunden</strong>:</p>
+<p>Tabelle <code>customers</code>:</p>
 <table>
 <thead>
 <tr>
-<th>customer_id</th>
+<th>id</th>
 <th>name</th>
 <th>address</th>
 </tr>
@@ -13419,12 +13420,12 @@ Produkt enthält.</li>
 </tr>
 </tbody>
 </table>
-<p>Tabelle <strong>Produkte</strong>:</p>
+<p>Tabelle <code>products</code>:</p>
 <table>
 <thead>
 <tr>
-<th>item_id</th>
-<th>item_name</th>
+<th>id</th>
+<th>product_name</th>
 <th>price</th>
 <th>description</th>
 </tr>
@@ -13450,12 +13451,12 @@ Produkt enthält.</li>
 </tr>
 </tbody>
 </table>
-<p>Tabelle <strong>Bestellungen</strong>:</p>
+<p>Tabelle <code>orders</code>:</p>
 <table>
 <thead>
 <tr>
 <th>customer_name</th>
-<th>item_name</th>
+<th>product_name</th>
 <th>quantity</th>
 </tr>
 </thead>
@@ -13485,32 +13486,32 @@ Produkt enthält.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c16f2b247cb27979"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f94b004d70b3d82e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="L%C3%B6sung">Lösung<a class="anchor-link" href="#L%C3%B6sung">¶</a></h2><ul>
 <li>Wir verwenden in der Bestellung nicht Kunden- und Produktnamen</li>
 <li>Wir verwenden stattdessen die IDs<ul>
-<li>Diese sind Primärschlüssel in den Tabellen <strong>Kunden</strong> und <strong>Produkte</strong></li>
+<li>Diese sind Primärschlüssel in den Tabellen <code>customers</code> und <code>products</code></li>
 <li>Damit wissen wir, dass sie eindeutig sind</li>
 </ul>
 </li>
 <li>Wir geben jeder Bestellung eine eindeutige ID<ul>
-<li>Diese wird Primärschlüssel in der Tabelle <strong>Bestellungen</strong></li>
+<li>Diese wird Primärschlüssel in der Tabelle <code>orders</code></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3d27d951b855a710"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=35caca33291d1ade"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tabelle <strong>Kunden</strong>:</p>
+<p>Tabelle <code>customers</code>:</p>
 <table>
 <thead>
 <tr>
-<th>customer_id</th>
+<th>id</th>
 <th>name</th>
 <th>address</th>
 </tr>
@@ -13533,12 +13534,12 @@ Produkt enthält.</li>
 </tr>
 </tbody>
 </table>
-<p>Tabelle <strong>Produkte</strong>:</p>
+<p>Tabelle <code>products</code>:</p>
 <table>
 <thead>
 <tr>
-<th>item_id</th>
-<th>item_name</th>
+<th>id</th>
+<th>product_name</th>
 <th>price</th>
 <th>description</th>
 </tr>
@@ -13564,13 +13565,13 @@ Produkt enthält.</li>
 </tr>
 </tbody>
 </table>
-<p>Tabelle <strong>Bestellungen</strong>:</p>
+<p>Tabelle <code>orders</code>:</p>
 <table>
 <thead>
 <tr>
 <th>order_id</th>
 <th>customer_id</th>
-<th>item_id</th>
+<th>product_id</th>
 <th>quantity</th>
 </tr>
 </thead>
@@ -13601,6 +13602,62 @@ Produkt enthält.</li>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=05192c92b4fb43aa"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Prim%C3%A4rschl%C3%BCssel">Workshop: Primärschlüssel<a class="anchor-link" href="#Workshop:-Prim%C3%A4rschl%C3%BCssel">¶</a></h2><ul>
+<li>Wandeln Sie die folgenden Spalten in Primärschlüssel um:<ul>
+<li><code>customers</code>: <code>id</code></li>
+<li><code>products</code>: <code>id</code></li>
+</ul>
+</li>
+<li>Was passiert dabei, wenn die Tabelle bereits zwei Zeilen mit dem gleichen
+Primärschlüssel hat?</li>
+<li>Wie können Sie das Problem beheben?</li>
+<li>Was passiert, wenn Sie nach dem Einführen von Primärschlüsseln versuchen,
+zwei Zeilen hinzuzufügen, die denselben Primärschlüssel haben?</li>
+</ul>
+<p><em>Hinweis:</em></p>
+<ul>
+<li>Klicken Sie mit der rechten Maustaste auf eine Tabelle und wählen Sie
+<code>Tabelle verändern</code> um sie zu bearbeiten</li>
+<li>Die Checkbox <code>PK</code> markiert eine Spalte als Primärschlüssel</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d0d197bd976f6d3c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Erstellen Sie eine Tabelle <code>orders</code> mit den folgenden Spalten:<ul>
+<li><code>id</code> (INTEGER, Primärschlüssel)</li>
+<li><code>customer_id</code> (INTEGER)</li>
+<li><code>product_id</code> (INTEGER)</li>
+<li><code>quantity</code> (INTEGER)</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f2ab336a9a4ab9f8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Fügen Sie die folgenden Bestellungen in die Tabelle <code>orders</code> ein:<ul>
+<li><code>id</code>: 1, <code>customer_id</code>: 1, <code>product_id</code>: 2341, <code>quantity</code>: 2</li>
+<li><code>id</code>: 2, <code>customer_id</code>: 2, <code>product_id</code>: 939504, <code>quantity</code>: 1</li>
+<li><code>id</code>: 3, <code>customer_id</code>: 1, <code>product_id</code>: 346, <code>quantity</code>: 3</li>
+<li><code>id</code>: 4, <code>customer_id</code>: 1, <code>product_id</code>: 2341, <code>quantity</code>: 2</li>
+</ul>
+</li>
+<li>Was passiert, wenn Sie eine Bestellung einfügen, bei der der Wert von
+<code>customer_id</code> nicht in der Tabelle <code>customers</code> vorhanden ist?</li>
+</ul>
 </div>
 </div>
 </div>
