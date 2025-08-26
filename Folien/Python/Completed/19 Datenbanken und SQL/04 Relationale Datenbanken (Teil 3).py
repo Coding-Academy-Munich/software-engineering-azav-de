@@ -23,16 +23,16 @@
 #
 # Table `orders`:
 #
-# | order_id | customer_id | item_id | quantity |
-# |----------|-------------|---------|----------|
-# |        1 |           1 |    2341 |        2 |
-# |        2 |           2 |  939504 |        1 |
-# |        3 |           1 |     346 |        3 |
-# |        4 |           1 |    2341 |        2 |
+# | order_id | customer_id | product_id | quantity |
+# |----------|-------------|------------|----------|
+# |        1 |           1 |       2341 |        2 |
+# |        2 |           2 |     939504 |        1 |
+# |        3 |           1 |        346 |        3 |
+# |        4 |           1 |       2341 |        2 |
 #
 # - `order_id` ist der Primärschlüssel
 # - `customer_id` ist ein Fremdschlüssel, der auf die Tabelle `customers` verweist
-# - `item_id` ist ein Fremdschlüssel, der auf die Tabelle `products` verweist
+# - `product_id` ist ein Fremdschlüssel, der auf die Tabelle `products` verweist
 
 
 # %% [markdown]

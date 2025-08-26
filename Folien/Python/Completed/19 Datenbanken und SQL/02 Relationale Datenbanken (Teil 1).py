@@ -49,19 +49,19 @@
 
 # %% [markdown]
 #
-# Tabelle **Kunden**:
+# Tabelle `customers` für Kunden:
 #
-# | customer_id | name         | address      |
-# |-------------|--------------|--------------|
-# |           1 | John Smith   | 123 Elm St   |
-# |           2 | Jane Doe     | 456 Oak St   |
+# | id | name         | address      |
+# |----|--------------|--------------|
+# |  1 | John Smith   | 123 Elm St   |
+# |  2 | Jane Doe     | 456 Oak St   |
 #
-# Tabelle **Produkte**:
+# Tabelle `products` für Produkte:
 #
-# | item_id | item_name    | price | description                                |
-# |---------|--------------|-------|--------------------------------------------|
-# |    2341 | Tomatensuppe | 1.99  | Unsere fantastische Tomatensuppe in Dosen. |
-# |     346 | Kichererbsen | 0.59  | In Wasser einweichen und genießen...       |
+# | id   | product_name | price | description                                |
+# |------|--------------|-------|--------------------------------------------|
+# | 2341 | Tomatensuppe |  1.99 | Unsere fantastische Tomatensuppe in Dosen. |
+# |  346 | Kichererbsen |  0.59 | In Wasser einweichen und genießen...       |
 
 # %% [markdown]
 #
