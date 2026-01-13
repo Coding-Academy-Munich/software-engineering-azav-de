@@ -16,9 +16,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .hll { background-color: #ffffcc }
 .highlight { background: #f8f8f8; }
 .highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .err { border: 1px solid #F00 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
+.highlight .o { color: #666 } /* Operator */
 .highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #9C6500 } /* Comment.Preproc */
@@ -35,34 +35,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .gt { color: #04D } /* Generic.Traceback */
 .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
 .highlight .kp { color: #008000 } /* Keyword.Pseudo */
 .highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
 .highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .m { color: #666 } /* Literal.Number */
 .highlight .s { color: #BA2121 } /* Literal.String */
 .highlight .na { color: #687822 } /* Name.Attribute */
 .highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
 .highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
 .highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nf { color: #00F } /* Name.Function */
 .highlight .nl { color: #767600 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
 .highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
@@ -77,12 +77,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
   </style>
 <style type="text/css">
 /*!
@@ -13069,6 +13069,7 @@ div#notebook {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -13169,7 +13170,7 @@ werden</li>
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">html</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">html</span>
 </pre></div>
 </div>
 </div>
@@ -13222,7 +13223,7 @@ werden</li>
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">html.entities</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">html.entities</span>
 </pre></div>
 </div>
 </div>
@@ -13275,7 +13276,7 @@ werden</li>
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">html.parser</span> <span class="kn">import</span> <span class="n">HTMLParser</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">html.parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTMLParser</span>
 </pre></div>
 </div>
 </div>
@@ -13286,16 +13287,16 @@ werden</li>
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">PrintingHTMLParser</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">handle_starttag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PrintingHTMLParser</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_starttag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"Start tag:"</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">"     attr:"</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">handle_endtag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_endtag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"End tag:  "</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">handle_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"Data:     "</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -13359,7 +13360,7 @@ End tag:   div
 <div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">dirtree</span> <span class="kn">import</span> <span class="n">dir_tree</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dirtree</span><span class="w"> </span><span class="kn">import</span> <span class="n">dir_tree</span>
 </pre></div>
 </div>
 </div>
@@ -13382,19 +13383,11 @@ End tag:   div
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>greetings/
     __init__.py
-    __pycache__/
-        __init__.cpython-311.pyc
-        formal.cpython-311.pyc
-        generic.cpython-311.pyc
-        informal.cpython-311.pyc
     formal.py
     generic.py
     informal.py
     intl/
         __init__.py
-        __pycache__/
-            __init__.cpython-311.pyc
-            generic.cpython-311.pyc
         generic.py
 </pre>
 </div>
@@ -13460,7 +13453,7 @@ End tag:   div
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">greetings.formal</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">greetings.formal</span>
 </pre></div>
 </div>
 </div>
@@ -13493,7 +13486,7 @@ End tag:   div
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">greetings</span> <span class="kn">import</span> <span class="n">informal</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">greetings</span><span class="w"> </span><span class="kn">import</span> <span class="n">informal</span>
 </pre></div>
 </div>
 </div>
@@ -13526,7 +13519,7 @@ End tag:   div
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">greetings.generic</span> <span class="kn">import</span> <span class="n">say_hello</span><span class="p">,</span> <span class="n">greet</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">greetings.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">say_hello</span><span class="p">,</span> <span class="n">greet</span>
 </pre></div>
 </div>
 </div>
@@ -13625,7 +13618,7 @@ End tag:   div
 <div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">greetings.intl.generic</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">greetings.intl.generic</span>
 </pre></div>
 </div>
 </div>
@@ -13658,7 +13651,7 @@ End tag:   div
 <div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">greetings.intl.generic</span> <span class="k">as</span> <span class="nn">gg</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">greetings.intl.generic</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gg</span>
 </pre></div>
 </div>
 </div>
@@ -13726,7 +13719,7 @@ Python aus beeinflusst werden.</li>
 <div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 </pre></div>
 </div>
 </div>
@@ -13747,12 +13740,17 @@ Python aus beeinflusst werden.</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[28]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>['/app',
- '/opt/conda/lib/python311.zip',
- '/opt/conda/lib/python3.11',
- '/opt/conda/lib/python3.11/lib-dynload',
+<pre>['C:\\Users\\tc\\AppData\\Roaming\\uv\\python\\cpython-3.12.9-windows-x86_64-none\\python312.zip',
+ 'C:\\Users\\tc\\AppData\\Roaming\\uv\\python\\cpython-3.12.9-windows-x86_64-none\\DLLs',
+ 'C:\\Users\\tc\\AppData\\Roaming\\uv\\python\\cpython-3.12.9-windows-x86_64-none\\Lib',
+ 'C:\\Users\\tc\\AppData\\Roaming\\uv\\python\\cpython-3.12.9-windows-x86_64-none',
+ 'C:\\Users\\tc\\Programming\\Python\\Courses\\Own\\PythonCourses\\.venv',
  '',
- '/opt/conda/lib/python3.11/site-packages']</pre>
+ 'C:\\Users\\tc\\Programming\\Python\\Courses\\Own\\PythonCourses\\.venv\\Lib\\site-packages',
+ 'C:\\Users\\tc\\Programming\\Python\\Projects\\clx\\src',
+ 'C:\\Users\\tc\\Programming\\Python\\Courses\\Own\\PythonCourses\\.venv\\Lib\\site-packages\\win32',
+ 'C:\\Users\\tc\\Programming\\Python\\Courses\\Own\\PythonCourses\\.venv\\Lib\\site-packages\\win32\\lib',
+ 'C:\\Users\\tc\\Programming\\Python\\Courses\\Own\\PythonCourses\\.venv\\Lib\\site-packages\\Pythonwin']</pre>
 </div>
 </div>
 </div>

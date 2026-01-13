@@ -92,7 +92,7 @@
 # INSERT INTO products (id, product_name, price, description)
 #   VALUES(2341, 'Tomatensuppe', 1.99, 'Leckere Tomatensuppe');
 # INSERT INTO products (id, product_name, price, description)
-#   VALUES(9395094, 'Tomatensuppe', 2.49, 'Premium Tomatensuppe');
+#   VALUES(939504, 'Tomatensuppe', 2.49, 'Premium Tomatensuppe');
 # ```
 
 # %% [markdown]

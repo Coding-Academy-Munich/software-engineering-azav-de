@@ -16,9 +16,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .hll { background-color: #ffffcc }
 .highlight { background: #f8f8f8; }
 .highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .err { border: 1px solid #F00 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
+.highlight .o { color: #666 } /* Operator */
 .highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #9C6500 } /* Comment.Preproc */
@@ -35,34 +35,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .gt { color: #04D } /* Generic.Traceback */
 .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
 .highlight .kp { color: #008000 } /* Keyword.Pseudo */
 .highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
 .highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .m { color: #666 } /* Literal.Number */
 .highlight .s { color: #BA2121 } /* Literal.String */
 .highlight .na { color: #687822 } /* Name.Attribute */
 .highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
 .highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
 .highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nf { color: #00F } /* Name.Function */
 .highlight .nl { color: #767600 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
 .highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
@@ -77,12 +77,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
   </style>
 <style type="text/css">
 /*!
@@ -13069,6 +13069,7 @@ div#notebook {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -13157,7 +13158,7 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_1</span><span class="p">():</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_1</span><span class="p">():</span>
     <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">10</span>
     <span class="n">local_var_2</span> <span class="o">=</span> <span class="mi">20</span>
     <span class="n">function_2</span><span class="p">()</span>
@@ -13172,7 +13173,7 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_2</span><span class="p">():</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_2</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">5</span>
         <span class="n">local_var_2</span> <span class="o">=</span> <span class="mi">10</span>
@@ -13191,7 +13192,7 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_3</span><span class="p">():</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_3</span><span class="p">():</span>
     <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">function_4</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"function_3(): done"</span><span class="p">)</span>
@@ -13205,7 +13206,7 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function_4</span><span class="p">():</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_4</span><span class="p">():</span>
     <span class="n">local_var_1</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Raising ValueError"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"function_4(): done"</span><span class="p">)</span>
@@ -13294,7 +13295,7 @@ abgebrochen, bis ein passender Handler gefunden wird:</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 </pre></div>
 </div>
 </div>
@@ -13446,7 +13447,7 @@ eine Funktion als Argument übergeben wollen.</li>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">outer_caller_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
     <span class="n">intermediate_fun_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -13458,7 +13459,7 @@ eine Funktion als Argument übergeben wollen.</li>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intermediate_fun_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">raise_and_handle_error_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
@@ -13473,7 +13474,7 @@ eine Funktion als Argument übergeben wollen.</li>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">raise_and_handle_error_v0</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">error_type</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising </span><span class="si">{</span><span class="n">error_type</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
@@ -13510,7 +13511,7 @@ eine Funktion als Argument übergeben wollen.</li>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">outer_caller</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): before calling"</span><span class="p">)</span>
     <span class="n">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): after calling"</span><span class="p">)</span>
@@ -13524,7 +13525,7 @@ eine Funktion als Argument übergeben wollen.</li>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intermediate_fun</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): before try"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun(): before calling"</span><span class="p">)</span>
@@ -13543,7 +13544,7 @@ eine Funktion als Argument übergeben wollen.</li>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">raise_and_handle_error</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error(): before try"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error(): before raise"</span><span class="p">)</span>
@@ -13595,7 +13596,7 @@ eine Funktion als Argument übergeben wollen.</li>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_with_try</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">outer_caller_with_try</span><span class="p">(</span><span class="n">error_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): before try"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller(): before calling"</span><span class="p">)</span>
@@ -13647,7 +13648,7 @@ verhalten.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_and_handle_error_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">raise_and_handle_error_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): before try"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"    raise_and_handle_error_ws(): before raise"</span><span class="p">)</span>
@@ -13668,7 +13669,7 @@ verhalten.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"  intermediate_fun_ws(): before call"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">raise_and_handle_error_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
@@ -13676,7 +13677,7 @@ verhalten.</p>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught IndexError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
         <span class="c1"># This causes Python to report that the IndexError is the</span>
         <span class="c1"># "direct cause of" the TypeError</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising inner TypeError from [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raising inner TypeError from [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">error</span>
     <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&lt;&lt;&lt; intermediate_fun_ws(): caught LookupError [</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
         <span class="c1"># This causes Python to report that during handling of LookupError</span>
@@ -13699,7 +13700,7 @@ verhalten.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_caller_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">outer_caller_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): before calling"</span><span class="p">)</span>
     <span class="n">intermediate_fun_ws</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"outer_caller_ws(): after calling"</span><span class="p">)</span>

@@ -1,0 +1,83 @@
+# %% [markdown]
+#
+# <div style="text-align:center; font-size:200%;">
+#  <b>Funktionen</b>
+# </div>
+# <br/>
+# <div style="text-align:center;">Dr. Matthias Hölzl</div>
+# <br/>
+
+# %% [markdown]
+# # Funktionen
+#
+# Wir haben eine Firma zum Einzäunen dreieckiger Grundstücke gegründet.
+#
+# Für jedes von Straßen $A$, $B$ und $C$ begrenze Grundstück berechnen wir:
+
+# %%
+länge_a = 10  # Beispielwert
+länge_b = 40  # Beispielwert
+länge_c = (länge_a**2 + länge_b**2) ** 0.5
+länge_gesamt = länge_a + länge_b + länge_c
+print(länge_gesamt)
+
+# %% [markdown]
+# Können wir das etwas eleganter gestalten?
+
+# %% [markdown]
+# ## Satz von Pythagoras
+#
+# Wir berechnen die Länge von $C$ aus $A$ und $B$ immer nach dem Satz von
+# Pythagoras: $C = \sqrt{A^2 + B^2}$.
+#
+# Das können wir in Python durch eine *Funktion* ausdrücken:
+
+# %%
+
+# %%
+
+# %%
+
+# %% [markdown]
+# ## Funktionsdefinition
+# - Schlüsselwort `def`
+# - Name der Funktion
+# - Parameter der Funktion, in Klammern
+# - **Doppelpunkt**
+# - Rumpf der Funktion, *4 Leerzeichen eingerückt*
+# - Im Rumpf können die Parameter wie Variablen verwendet werden
+# - Schlüsselwort `return`
+#     - Beendet die Funktion
+#     - Bestimmt welcher Wert zurückgegeben wird
+
+# %% [markdown]
+# ## Funktionsaufruf
+#
+# - Name der Funktion
+# - Argumente des Aufrufs, in Klammern
+# - Ein Argument für jeden Parameter
+
+# %%
+
+
+# %% [markdown]
+# ### Mini-Workshop
+#
+# Schreiben Sie eine Funktion `begrüßung(name)`, die eine Begrüßung in der Form
+# "Hallo *name*!" zurückgibt, z.B.
+# ```python
+# >>> begrüßung("Max")
+# 'Hallo Max!'
+# >>>
+# ```
+#
+# *Hinweis:* Sie können Strings mit dem `+`-Operator konkatenieren:
+# ```python
+# >>> name = "Max"
+# >>> "Hallo, " + name
+# 'Hallo, Max'
+# ```
+
+# %%
+
+# %%
