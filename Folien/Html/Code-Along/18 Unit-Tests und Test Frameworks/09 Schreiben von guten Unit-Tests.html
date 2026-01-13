@@ -13087,7 +13087,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a4298339ba0e4e85"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=b656aef44ec4eddb"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13137,7 +13137,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Enumerationen</b>
+<b>Schreiben von guten Unit-Tests</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13145,718 +13145,758 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=29063906130e8a9f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5671f1c8fa87210a"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h2><ul>
-<li>Oft müssen wir einen Zustand repräsentieren, der einen von mehreren
-vordefinierten Werten annehmen kann.</li>
-<li>Ein häufiger, aber fehleranfälliger Ansatz ist die Verwendung von "Magic
-Strings" oder Zahlen.</li>
-</ul>
-<p><strong>Beispiel:</strong> Eine Funktion, die den Status einer Aufgabe verarbeitet.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1e6f5a43c34e620f">
-<div class="input">
-<div class="prompt input_prompt">In [1]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process_task</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">"new"</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Starting a new task."</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">"in_progress"</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Task is currently in progress."</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">"done"</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Task completed."</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown status: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=13dbc0ca2d9b5e34">
-<div class="input">
-<div class="prompt input_prompt">In [2]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">process_task</span><span class="p">(</span><span class="s2">"new"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Starting a new task.
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=7eaec6423aa3e17e">
-<div class="input">
-<div class="prompt input_prompt">In [3]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">process_task</span><span class="p">(</span><span class="s2">"in progress"</span><span class="p">)</span>  <span class="c1"># Typo!</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Unknown status: in progress
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=57ed809dbc7c5bd8">
-<div class="input">
-<div class="prompt input_prompt">In [4]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">process_task</span><span class="p">(</span><span class="s2">"Done"</span><span class="p">)</span>         <span class="c1"># Upper/lower case mismatch</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Unknown status: Done
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=eb15326a7fb4d74f"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Probleme-mit-diesem-Ansatz">Probleme mit diesem Ansatz<a class="anchor-link" href="#Probleme-mit-diesem-Ansatz">¶</a></h3><ul>
-<li><strong>Tippfehler:</strong> Falsch geschriebene Strings führen zu stillem Versagen oder
-unerwartetem Verhalten.</li>
-<li><strong>Keine "Single Source of Truth":</strong> Die gültigen Werte sind im Code
-verstreut.</li>
-<li><strong>Schlechte Lesbarkeit:</strong> Man muss den Code lesen, um alle möglichen
-Zustände zu finden.</li>
-<li><strong>Keine Typsicherheit:</strong> Jede beliebige Zeichenkette kann an die Funktion
-übergeben werden.</li>
+<h2 id="Welche-Form-hat-ein-Unit-Test?">Welche Form hat ein Unit Test?<a class="anchor-link" href="#Welche-Form-hat-ein-Unit-Test?">¶</a></h2><ul>
+<li>Arrange / Given</li>
+<li>Act / When</li>
+<li>Assert / Then</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e4656a96feb1d95c"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Aufz%C3%A4hlungen-(Enumerationen,-Enum)">Aufzählungen (Enumerationen, <code>Enum</code>)<a class="anchor-link" href="#Aufz%C3%A4hlungen-(Enumerationen,-Enum)">¶</a></h2><ul>
-<li>Eine Aufzählung ist ein Satz von symbolischen Namen (Mitgliedern), die an
-eindeutige, konstante Werte gebunden sind.</li>
-<li>Das <code>enum</code>-Modul stellt die <code>Enum</code>-Basisklasse zur Verfügung.</li>
-<li>Sie lösen die Probleme von "Magic Strings", indem sie eine robuste,
-typsichere Alternative bieten.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9f8b0092a2b98ca5"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Vorteile:</strong></p>
-<ul>
-<li><strong>Lesbarkeit:</strong> Code wird selbsterklärend.</li>
-<li><strong>Wartbarkeit:</strong> Zustände sind an einem Ort zentralisiert.</li>
-<li><strong>Sicherheit:</strong> Verhindert die Verwendung ungültiger Werte. Moderne IDEs
-bieten Autovervollständigung.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0b3e859d2daf05e0"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Definition-einer-einfachen-Aufz%C3%A4hlung">Definition einer einfachen Aufzählung<a class="anchor-link" href="#Definition-einer-einfachen-Aufz%C3%A4hlung">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=072056a394d95262">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=f85a2b93c46ebd4e">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
+<div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f1297504f36aa89a"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=be1fad3b00349645"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wie-finden-wir-gute-Tests?">Wie finden wir gute Tests?<a class="anchor-link" href="#Wie-finden-wir-gute-Tests?">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e0bcc6a38135448f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Versuch:-Ersch%C3%B6pfendes-Testen">Versuch: Erschöpfendes Testen<a class="anchor-link" href="#Versuch:-Ersch%C3%B6pfendes-Testen">¶</a></h2><ul>
+<li>Wir schreiben erschöpfende Tests, d.h. Tests, die alle möglichen Eingaben eines
+Programms abdecken</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b7793ebb941374a1"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Wir definieren eine Aufzählung für den Task-Status.</li>
-<li><code>auto()</code> weist automatisch einen ganzzahligen Wert zu.</li>
+<li>Erschöpfendes Testen ist nicht möglich</li>
+<li>Beispiel Passworteingabe:<ul>
+<li>Angenommen, Passwörter mit maximal 20 Zeichen sind zulässig,
+80 Eingabezeichen sind erlaubt (große und kleine Buchstaben, Sonderzeichen)</li>
+<li>Das ergibt $80^{20}$ = 115.292.150.460.684.697.600.000.000.000.000.000.000
+mögliche Eingaben</li>
+<li>Bei 10ns für einen Test würde man ca. $10^{24}$ Jahre brauchen, um alle Eingaben
+zu testen</li>
+<li>Das Universum ist ungefähr $1.4 \times 10^{10}$ Jahre alt</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3690322a7e626f06">
-<div class="input">
-<div class="prompt input_prompt">In [6]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Status</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">NEW</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-    <span class="n">IN_PROGRESS</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-    <span class="n">DONE</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7869b614f694c918"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c8b1528062f74783"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Verwendung-der-Aufz%C3%A4hlung">Verwendung der Aufzählung<a class="anchor-link" href="#Verwendung-der-Aufz%C3%A4hlung">¶</a></h3><ul>
-<li>Auf Mitglieder wird über den Klassennamen zugegriffen.</li>
-<li>Jedes Mitglied ist eine eindeutige Instanz.</li>
-<li><code>name</code> und <code>value</code> Attribute geben den Namen und den zugewiesenen Wert des
-Mitglieds zurück.</li>
+<h2 id="Effektivit%C3%A4t-und-Effizienz-von-Tests">Effektivität und Effizienz von Tests<a class="anchor-link" href="#Effektivit%C3%A4t-und-Effizienz-von-Tests">¶</a></h2><ul>
+<li>Unit-Tests sollen effektiv und effizient sein<ul>
+<li>Effektiv: Die Tests sollen so viele Fehler wie möglich finden</li>
+<li>Effizient: Wir wollen die größte Anzahl an Fehlern mit der geringsten Anzahl
+an möglichst einfachen Tests finden</li>
+</ul>
+</li>
+<li>Effizienz ist wichtig, da Tests selbst Code sind, der gewartet werden muss und
+Fehler enthalten kann</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=dc6cfea37edb709e">
-<div class="input">
-<div class="prompt input_prompt">In [7]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">current_status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">IN_PROGRESS</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">current_status</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Status.IN_PROGRESS
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6b912c8f66447c3f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ce8257bdc31273ad"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Enums sind Singletons</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a54e4dc8517a008f">
-<div class="input">
-<div class="prompt input_prompt">In [8]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">Status</span><span class="o">.</span><span class="n">IN_PROGRESS</span> <span class="ow">is</span> <span class="n">Status</span><span class="o">.</span><span class="n">IN_PROGRESS</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=427a2cc6c9d90bef"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Zugriff auf Name und Wert</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=97b06a1c2487a8b9">
-<div class="input">
-<div class="prompt input_prompt">In [9]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Name: </span><span class="si">{</span><span class="n">current_status</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, Value: </span><span class="si">{</span><span class="n">current_status</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Name: IN_PROGRESS, Value: 2
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=2490f37104a4df46"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Iteration über alle Mitglieder</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=53842df039080687">
-<div class="input">
-<div class="prompt input_prompt">In [10]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">Status</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">member</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;Status.NEW: 1&gt;
-&lt;Status.IN_PROGRESS: 2&gt;
-&lt;Status.DONE: 3&gt;
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1cb531eba804142e"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="%C3%9Cberarbeitete-Funktion">Überarbeitete Funktion<a class="anchor-link" href="#%C3%9Cberarbeitete-Funktion">¶</a></h3><p>Wir können unsere Funktion nun so umschreiben, dass sie Typsicherheit mit
-<code>Status</code> bietet.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=96e869c87ecd5b7d">
-<div class="input">
-<div class="prompt input_prompt">In [11]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process_task_enum</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="n">Status</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">status</span> <span class="ow">is</span> <span class="n">Status</span><span class="o">.</span><span class="n">NEW</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Starting a new task."</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">status</span> <span class="ow">is</span> <span class="n">Status</span><span class="o">.</span><span class="n">IN_PROGRESS</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Task is currently in progress."</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">status</span> <span class="ow">is</span> <span class="n">Status</span><span class="o">.</span><span class="n">DONE</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Task completed."</span><span class="p">)</span>
-    <span class="c1"># else may not be needed, as Status is exhaustive</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=8652989919b9d4e5">
-<div class="input">
-<div class="prompt input_prompt">In [12]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">process_task_enum</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">NEW</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Starting a new task.
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d18c122705a07a16">
-<div class="input">
-<div class="prompt input_prompt">In [13]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># process_task_enum("new")</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=052f3a43ce10ec66"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="String-Enumerationen-(StrEnum)">String-Enumerationen (<code>StrEnum</code>)<a class="anchor-link" href="#String-Enumerationen-(StrEnum)">¶</a></h2><ul>
-<li>Manchmal ist es nützlich, wenn ein Enum-Mitglied sich auch wie ein String
-verhält.</li>
-<li>Anwendungsfälle: JSON-Serialisierung, Speicherung in Datenbanken,
-Konfigurationsdateien.</li>
-<li><code>StrEnum</code> erbt von <code>str</code> und <code>Enum</code>.</li>
-<li>Die Mitglieder sind sowohl Enum-Mitglieder als auch Strings.</li>
-<li>Verfügbar seit Python 3.11.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1c7d93dff17bba5a"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Beispiel:-StrEnum-f%C3%BCr-Loglevel">Beispiel: <code>StrEnum</code> für Loglevel<a class="anchor-link" href="#Beispiel:-StrEnum-f%C3%BCr-Loglevel">¶</a></h3><ul>
-<li>Die Werte der Mitglieder müssen Strings sein.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=f5e5fea6efdc0183">
-<div class="input">
-<div class="prompt input_prompt">In [14]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrEnum</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=0464c7cf88b93a07">
-<div class="input">
-<div class="prompt input_prompt">In [15]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LogLevel</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
-    <span class="n">DEBUG</span> <span class="o">=</span> <span class="s2">"debug"</span>
-    <span class="n">INFO</span> <span class="o">=</span> <span class="s2">"info"</span>
-    <span class="n">WARNING</span> <span class="o">=</span> <span class="s2">"warning"</span>
-    <span class="n">ERROR</span> <span class="o">=</span> <span class="s2">"error"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5b11db6a051e5b08"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Instanzen von <code>StrEnum</code> können wie Strings verwendet werden.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=0ace4e30d3b6f4b7">
-<div class="input">
-<div class="prompt input_prompt">In [16]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_message</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">level</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">]: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=af931cd71570acf9">
-<div class="input">
-<div class="prompt input_prompt">In [17]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">log_message</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">"User logged in."</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[INFO]: User logged in.
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4f1b15f3e1cbeebc"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Eigenschaften-von-guten-Unit-Tests">Eigenschaften von guten Unit-Tests<a class="anchor-link" href="#Eigenschaften-von-guten-Unit-Tests">¶</a></h2><p>Unit-Tests sollen</p>
 <ul>
-<li><code>StrEnum</code>-Instanzen bieten aber auch alle Methoden und Eigenschaften von
-Enums.</li>
+<li>automatisiert sein: keine manuelle Interaktion</li>
+<li>selbsttestend sein: Pass/Fail</li>
+<li>feingranular sein</li>
+<li>isoliert sein</li>
+<li>zu jedem Zeitpunkt erfolgreich ausführbar sein</li>
+<li>effektiv und effizient sein<ul>
+<li>nicht viel Zeit zur Ausführung benötigen</li>
+<li>für alle wichtigen Systembestandteile geschrieben werden</li>
+<li>alle wichtigen Zustände jedes getesteten Elements abdecken</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ade717228a364ad5">
-<div class="input">
-<div class="prompt input_prompt">In [18]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span> <span class="o">==</span> <span class="s2">"info"</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[18]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=22e9530986a724fb">
-<div class="input">
-<div class="prompt input_prompt">In [19]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">WARNING</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[19]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c28fafbb1c1c1c1c">
-<div class="input">
-<div class="prompt input_prompt">In [20]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="o">.</span><span class="n">name</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[20]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>'INFO'</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=177dcb661ebd5fb0">
-<div class="input">
-<div class="prompt input_prompt">In [21]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="o">.</span><span class="n">value</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[21]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>'info'</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e4289333339ffc13"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4e007f0ff21788eb"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop-1:-Ampelsteuerung">Workshop 1: Ampelsteuerung<a class="anchor-link" href="#Workshop-1:-Ampelsteuerung">¶</a></h2><p>In diesem Workshop implementieren Sie eine Ampelsteuerung mit einer
-Aufzählung.</p>
-<ul>
-<li>Erstellen Sie eine <code>Enum</code>-Klasse namens <code>TrafficLight</code> mit den Zuständen
-<code>RED</code>, <code>GREEN</code> und <code>YELLOW</code>.</li>
-<li>Schreiben Sie eine Funktion <code>next_state(current_state: TrafficLight) -&gt; TrafficLight</code>, die den nächsten Zustand im Zyklus zurückgibt.</li>
-<li>Der Zyklus ist: <code>RED</code> -&gt; <code>GREEN</code> -&gt; <code>YELLOW</code> -&gt; <code>RED</code>.</li>
-<li>Testen Sie Ihre Funktion für alle Zustände.</li>
+<h2 id="Wie-schreibt-man-gute-Unit-Tests?">Wie schreibt man gute Unit-Tests?<a class="anchor-link" href="#Wie-schreibt-man-gute-Unit-Tests?">¶</a></h2><ul>
+<li>Teste beobachtbares Verhalten, nicht Implementierung</li>
+<li>Teste kleine Einheiten</li>
+<li>Verwende Test-Doubles dann (aber auch nur dann), wenn eine Abhängigkeit
+"eine Rakete abfeuert"</li>
+<li>Bevorzuge Tests von Werten gegenüber Tests von Zuständen</li>
+<li>Bevorzuge Tests von Zuständen gegenüber Tests von Verhalten</li>
+<li>(Diese Regeln setzen voraus, dass der Code solche Tests erlaubt)</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=1e7b04148183248d">
-<div class="input">
-<div class="prompt input_prompt">In [22]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=2a97ca8a5e2b245a">
-<div class="input">
-<div class="prompt input_prompt">In [23]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TrafficLight</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">RED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-    <span class="n">GREEN</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-    <span class="n">YELLOW</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=3e2ef93f3f0c836f">
-<div class="input">
-<div class="prompt input_prompt">In [24]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">next_state</span><span class="p">(</span><span class="n">current_state</span><span class="p">:</span> <span class="n">TrafficLight</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrafficLight</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">current_state</span> <span class="ow">is</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">RED</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">GREEN</span>
-    <span class="k">elif</span> <span class="n">current_state</span> <span class="ow">is</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">GREEN</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">YELLOW</span>
-    <span class="k">else</span><span class="p">:</span>  <span class="c1"># current_state is TrafficLight.YELLOW</span>
-        <span class="k">return</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">RED</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=7d5deafcd0cdbe90">
-<div class="input">
-<div class="prompt input_prompt">In [25]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">next_state</span><span class="p">(</span><span class="n">TrafficLight</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span> <span class="ow">is</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">GREEN</span>
-<span class="k">assert</span> <span class="n">next_state</span><span class="p">(</span><span class="n">TrafficLight</span><span class="o">.</span><span class="n">GREEN</span><span class="p">)</span> <span class="ow">is</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">YELLOW</span>
-<span class="k">assert</span> <span class="n">next_state</span><span class="p">(</span><span class="n">TrafficLight</span><span class="o">.</span><span class="n">YELLOW</span><span class="p">)</span> <span class="ow">is</span> <span class="n">TrafficLight</span><span class="o">.</span><span class="n">RED</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Traffic light tests passed!"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Traffic light tests passed!
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a62d8b1416b60d4a"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a753ed99ded7cfa4"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop-2:-Konfigurationseinstellungen">Workshop 2: Konfigurationseinstellungen<a class="anchor-link" href="#Workshop-2:-Konfigurationseinstellungen">¶</a></h2><p>In diesem Workshop verwenden Sie <code>StrEnum</code>, um Konfigurationen für
-verschiedene Umgebungen zu verwalten.</p>
+<h3 id="Warum-Tests-von-beobachtbarem-Verhalten,-nicht-Implementierung?">Warum Tests von beobachtbarem Verhalten, nicht Implementierung?<a class="anchor-link" href="#Warum-Tests-von-beobachtbarem-Verhalten,-nicht-Implementierung?">¶</a></h3><p>Beobachtbares Verhalten</p>
 <ul>
-<li>Erstellen Sie eine <code>StrEnum</code> namens <code>Environment</code> mit den Mitgliedern
-<code>DEVELOPMENT</code>, <code>STAGING</code> und <code>PRODUCTION</code>. Die Werte sollen die
-kleingeschriebenen Namen sein (z.B. <code>"development"</code>).</li>
-<li>Schreiben Sie eine Funktion <code>get_database_url(env: Environment) -&gt; str</code>, die
-je nach Umgebung eine andere Dummy-Datenbank-URL zurückgibt.</li>
-<li>Testen Sie Ihre Funktion. Zeigen Sie, dass Sie das <code>Environment</code>-Mitglied
-direkt in einen f-String einfügen können.</li>
+<li>ist leichter zu verstehen</li>
+<li>ist stabiler als Implementierung</li>
+<li>entspricht eher dem Kundennutzen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e2a5f43a8b492bc5">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=717a3a5a91936e57"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Teste-beobachtbares-Verhalten,-nicht-Implementierung">Teste beobachtbares Verhalten, nicht Implementierung<a class="anchor-link" href="#Teste-beobachtbares-Verhalten,-nicht-Implementierung">¶</a></h2><ul>
+<li>Abstrahiere so weit wie möglich von Implementierungsdetails<ul>
+<li>Auch auf Unit-Test Ebene</li>
+</ul>
+</li>
+<li>Oft testen sich verschiedene Methoden gegenseitig</li>
+<li>Dies erfordert manchmal die Einführung von zusätzlichen Methoden<ul>
+<li>Diese Methoden sollen für Anwender sinnvoll sein, nicht nur für Tests</li>
+<li>Oft "abstrakter Zustand" von Objekten</li>
+<li><strong>Nicht:</strong> konkreten Zustand öffentlich machen</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_start" id="cell-id=398f8f4460bcac42">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrEnum</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Stack</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_item</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=981e1b7d1abb99f6">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=8933e13f315b1e1a">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Environment</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
-    <span class="n">DEVELOPMENT</span> <span class="o">=</span> <span class="s2">"development"</span>
-    <span class="n">STAGING</span> <span class="o">=</span> <span class="s2">"staging"</span>
-    <span class="n">PRODUCTION</span> <span class="o">=</span> <span class="s2">"production"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">my_stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+<span class="n">my_stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=1cdd645e0700a477">
+<div class="cell border-box-sizing code_cell rendered celltag_start" id="cell-id=83622880f7ed7a06">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_database_url</span><span class="p">(</span><span class="n">env</span><span class="p">:</span> <span class="n">Environment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="c1"># Der env-Parameter kann wie ein String verwendet werden</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">"db://user:pass@host_</span><span class="si">{</span><span class="n">env</span><span class="si">}</span><span class="s2">:5432/</span><span class="si">{</span><span class="n">env</span><span class="si">}</span><span class="s2">_db"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">my_stack</span><span class="o">.</span><span class="n">_items</span> <span class="o">==</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># noqa &lt;- This might tell you something :)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=84ccb4325a7ed5e7">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=19e89ed9273ee7fd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Teste-kleine-Einheiten-(bei-Unit-Tests)">Teste kleine Einheiten (bei Unit-Tests)<a class="anchor-link" href="#Teste-kleine-Einheiten-(bei-Unit-Tests)">¶</a></h2><ul>
+<li>Test von kleinen Einheiten<ul>
+<li>spezifizieren das Verhalten der getesteten Einheit besser</li>
+<li>erleichtern die Lokalisierung von Fehlern</li>
+<li>sind leichter zu pflegen</li>
+</ul>
+</li>
+<li>Tests größerer Einheiten oder des Gesamtsystems sind wichtig als<ul>
+<li>Integrationstests</li>
+<li>Systemtests</li>
+<li>Akzeptanztests</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a211cde9ea57e889"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test-Doubles">Test Doubles<a class="anchor-link" href="#Test-Doubles">¶</a></h2><ul>
+<li>Test Double: Vereinfachte Version einer Abhängigkeit im System<ul>
+<li>Dummy, Stub, Fake, Spy, Mock</li>
+</ul>
+</li>
+<li>Test Doubles sind wichtig zum Vereinfachen von Tests</li>
+<li>Aber: zu viele oder komplexe Test Doubles machen Tests unübersichtlich<ul>
+<li>Was wird von einem Test eigentlich getestet?</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=605e07a6925357cd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Typischer-Einsatz-von-Test-Doubles">Typischer Einsatz von Test Doubles<a class="anchor-link" href="#Typischer-Einsatz-von-Test-Doubles">¶</a></h2><ul>
+<li>Zugriff auf Datenbank, Dateisystem</li>
+<li>Zeit, Zufallswerte</li>
+<li>Nichtdeterminismus</li>
+<li>Verborgener Zustand</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=84d072a63ae89a46"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Werte-%3E-Zustand-%3E-Kommunikation">Werte &gt; Zustand &gt; Kommunikation<a class="anchor-link" href="#Werte-%3E-Zustand-%3E-Kommunikation">¶</a></h2><ul>
+<li>Verständlicher</li>
+<li>Leichter zu testen</li>
+<li>Oft stabiler gegenüber Refactorings</li>
+</ul>
+<p>Ausnahme: Testen von Protokollen</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=950cc9b75ff080fe"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Funktionen/Werte">Funktionen/Werte<a class="anchor-link" href="#Funktionen/Werte">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=f21ecbe2fda4e4de">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Tests</span>
-<span class="n">dev_url</span> <span class="o">=</span> <span class="n">get_database_url</span><span class="p">(</span><span class="n">Environment</span><span class="o">.</span><span class="n">DEVELOPMENT</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">dev_url</span> <span class="o">==</span> <span class="s2">"db://user:pass@host_development:5432/development_db"</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Development URL: </span><span class="si">{</span><span class="n">dev_url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">prod_url</span> <span class="o">=</span> <span class="n">get_database_url</span><span class="p">(</span><span class="n">Environment</span><span class="o">.</span><span class="n">PRODUCTION</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">prod_url</span> <span class="o">==</span> <span class="s2">"db://user:pass@host_production:5432/production_db"</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Production URL: </span><span class="si">{</span><span class="n">prod_url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="c1"># Vergleiche funktionieren wie erwartet</span>
-<span class="k">assert</span> <span class="n">Environment</span><span class="o">.</span><span class="n">STAGING</span> <span class="o">==</span> <span class="s2">"staging"</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Configuration settings tests passed!"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Development URL: db://user:pass@host_development:5432/development_db
-Production URL: db://user:pass@host_production:5432/production_db
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=debb542028998ca5">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bbab80f4677e09a3"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Zustand">Zustand<a class="anchor-link" href="#Zustand">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d2c5eb76d0229fe5">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Adder</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-Configuration settings tests passed!
-</pre>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e9a2d4e5df3637db">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=251787afe083d127">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=8157f15fb849a553">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d1271fb855123896"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Verhalten">Verhalten<a class="anchor-link" href="#Verhalten">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=f1b04df0bac62ce4">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">call_fun</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
+    <span class="n">_hidden_result</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># Presumably do something with _hidden_result...</span>
+    <span class="k">return</span> <span class="s2">"How do you test that fun was called?"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7883227258433914">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=fd60c84996fec0ad">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AdderSpy</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">was_called</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">was_called</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=163050f28384b565">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=735185281d2b8b15">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c75c766f63931f9a">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=d79d9e82153f1da8">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=828e36e9854928ff">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=702ba2eb959638e3">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=bafecd4e50de6e98"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wie-schreibt-man-testbaren-Code?">Wie schreibt man testbaren Code?<a class="anchor-link" href="#Wie-schreibt-man-testbaren-Code?">¶</a></h2><ul>
+<li>Umwandeln von weniger testbarem in besser testbaren Stil<ul>
+<li>Beobachtbarkeit</li>
+<li>Keine globalen oder statischen Daten</li>
+<li>Funktionale (unveränderliche) Datenstrukturen</li>
+</ul>
+</li>
+<li>Gutes objektorientiertes Design<ul>
+<li>Hohe Kohäsion</li>
+<li>Geringe Kopplung, Management von Abhängigkeiten</li>
+</ul>
+</li>
+<li>Etc.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d0d4180493c09270"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Prozess">Prozess<a class="anchor-link" href="#Prozess">¶</a></h2><ul>
+<li>Iteratives Vorgehen<ul>
+<li>Kleine Schritte mit Tests</li>
+</ul>
+</li>
+<li>Test-Driven Development (TDD)<ul>
+<li>Schreiben von Tests vor Code</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=43a7a034fdd91995"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Bessere-Testbarkeit">Workshop: Bessere Testbarkeit<a class="anchor-link" href="#Workshop:-Bessere-Testbarkeit">¶</a></h2><ul>
+<li>Wie können Sie Tests für die folgenden Funktionen/Klassen schreiben?</li>
+<li>Wie können Sie die folgenden Funktionen/Klassen verbessern, um sie besser
+testbar zu machen?</li>
+<li>Was für Nachteile ergeben sich dadurch?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=d2d7a2dc40d38447">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_counter</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">count</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">result</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=2c53586522160f4e">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="n">make_counter</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ed0c07bde98a5726">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=fad1268a318c4a71">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=888e114dc9d7b647">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c85577bb10b998ee">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=22fc661b2eeb0d03">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">OFF</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ON</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=66035e006c6796af">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Switch</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">OFF</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">ON</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="n">OFF</span> <span class="k">else</span> <span class="n">State</span><span class="o">.</span><span class="n">OFF</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Switch is </span><span class="si">{</span><span class="s1">'OFF'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">State</span><span class="o">.</span><span class="n">OFF</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'ON'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=c6a8c73b64faab50">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">Switch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=fcc70446f8b28530">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=03f78d408832eaaa">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=3df069ada60203ae">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b1ebc8c5a3902bd5">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=4ff33e4527e76d21">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ea1248425a43783a">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"fib(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b637d42f14c5af8c">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">print_fib</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a64295c70b06c83f">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2c04a9488dfff4e2">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=fb011e1d6a5e1062">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=206a3bd25faadcb7">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=57391102a89d466f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Tests-f%C3%BCr-die-Einkaufslisten-Implementierung">Workshop: Tests für die Einkaufslisten-Implementierung<a class="anchor-link" href="#Workshop:-Tests-f%C3%BCr-die-Einkaufslisten-Implementierung">¶</a></h2><p>Fügen Sie zur Implementierung einer Einkaufsliste in <code>examples/ShoppingListPytestSK</code>
+geeignete Unit-Tests hinzu.</p>
+<p>Beachten Sie, dass Sie manche der Tests auch als Doctests schreiben können.</p>
+<p>(Falls Sie die Einkaufsliste in einem vorherigen Workshop bereits implementiert haben,
+ist es besser, Sie verwenden stattdessen Ihre eigene Implementierung.)</p>
 </div>
 </div>
 </div>
