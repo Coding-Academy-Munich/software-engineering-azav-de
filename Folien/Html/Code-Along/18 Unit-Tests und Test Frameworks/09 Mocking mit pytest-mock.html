@@ -13087,7 +13087,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=d06963f90e035b0c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=8a902c8933517f50"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13137,7 +13137,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Test Doubles</b>
+<b>Mocking mit pytest-mock</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13145,325 +13145,347 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d5f194736e9b8ff4"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=69b066c9b42f266e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Test-Doubles">Test Doubles<a class="anchor-link" href="#Test-Doubles">¶</a></h2><ul>
-<li>Test Double: Vereinfachte Version einer Abhängigkeit im System<ul>
-<li>z.B. Ersetzen einer Datenbankabfrage durch einen fixen Wert</li>
-</ul>
-</li>
-<li>Test Doubles sind wichtig zum Vereinfachen von Tests</li>
-<li>Sie benötigen typischerweise ein Interface, das sie implementieren</li>
-<li>Aber: zu viele oder komplexe Test Doubles machen Tests unübersichtlich<ul>
-<li>Was wird von einem Test eigentlich getestet?</li>
-</ul>
-</li>
+<h2 id="Mocking-Frameworks">Mocking-Frameworks<a class="anchor-link" href="#Mocking-Frameworks">¶</a></h2><ul>
+<li>Manuelle Test Doubles sind einfach und explizit</li>
+<li>Aber: Viel Boilerplate-Code für viele Tests</li>
+<li>Mocking-Frameworks automatisieren die Erstellung</li>
+<li>Python: <code>unittest.mock</code> und <code>pytest-mock</code></li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8ce9a91d894b8af2"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cd1b7d9b1149e14b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Arten-von-Test-Doubles">Arten von Test Doubles<a class="anchor-link" href="#Arten-von-Test-Doubles">¶</a></h2><ul>
-<li>Ausgehende Abhängigkeiten ("Mocks")<ul>
-<li>Mocks</li>
-<li>Spies</li>
-</ul>
-</li>
-<li>Eingehende Abhängigkeiten ("Stubs")<ul>
-<li>Dummies</li>
-<li>Stubs</li>
-<li>Fakes</li>
-</ul>
-</li>
+<h2 id="Installation-von-pytest-mock">Installation von pytest-mock<a class="anchor-link" href="#Installation-von-pytest-mock">¶</a></h2><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pytest-mock
+<span class="c1"># oder</span>
+uv<span class="w"> </span>add<span class="w"> </span>pytest-mock
+</pre></div>
+<ul>
+<li>Wrapper um <code>unittest.mock</code></li>
+<li>Bietet <code>mocker</code> Fixture für einfache Verwendung</li>
+<li>Automatisches Cleanup nach jedem Test</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5e84bd54ccda4e48"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6e59ec0cba56d8c7"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dummy">Dummy<a class="anchor-link" href="#Dummy">¶</a></h2><ul>
-<li>Objekt, das nur als Platzhalter dient</li>
-<li>Wird übergeben, aber nicht verwendet</li>
-<li>In Python manchmal <code>None</code></li>
-<li>Auch für ausgehende Abhängigkeiten</li>
+<h2 id="Mock-und-MagicMock">Mock und MagicMock<a class="anchor-link" href="#Mock-und-MagicMock">¶</a></h2><ul>
+<li><code>Mock</code>: Objekt, das jeden Methodenaufruf akzeptiert</li>
+<li><code>MagicMock</code>: Wie Mock, aber mit Magic Methods</li>
+<li>Beide zeichnen alle Interaktionen auf</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8c368fe353d5215d"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stub">Stub<a class="anchor-link" href="#Stub">¶</a></h2><ul>
-<li>Objekt, das eine minimale Implementierung einer Abhängigkeit bereitstellt</li>
-<li>Gibt typischerweise immer den gleichen Wert zurück</li>
-<li>Wird verwendet um</li>
-<li>komplexe Abhängigkeiten zu ersetzen</li>
-<li>Tests deterministisch zu machen</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8377a04e228048ac"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Fake">Fake<a class="anchor-link" href="#Fake">¶</a></h2><ul>
-<li>Objekt, das eine einfachere Implementierung einer Abhängigkeit bereitstellt</li>
-<li>Kann z.B. eine In-Memory-Datenbank sein</li>
-<li>Wird verwendet um<ul>
-<li>Tests zu beschleunigen</li>
-<li>Konfiguration von Tests zu vereinfachen</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0b683ec83c76569c"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Spy">Spy<a class="anchor-link" href="#Spy">¶</a></h2><ul>
-<li>Objekt, das Informationen über die Interaktion mit ihm speichert</li>
-<li>Wird verwendet um<ul>
-<li>zu überprüfen, ob eine Abhängigkeit korrekt verwendet wird</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e9ec6b5fe0648bcd"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mock">Mock<a class="anchor-link" href="#Mock">¶</a></h2><ul>
-<li>Objekt, das Information über die erwartete Interaktion speichert</li>
-<li>Typischerweise deklarativ konfigurierbar</li>
-<li>Automatisierte Implementierung von Spies</li>
-<li>Wird verwendet um<ul>
-<li>zu überprüfen, ob eine Abhängigkeit korrekt verwendet wird</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=358d3acdd9f86a51">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=655883048869e002">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">MagicMock</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=064634dfd3968d51">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=04cfb22bf5fbd989">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_service</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4a9b12b625f0a140">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5e9b06069ebfcd8e">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_service</span><span class="o">.</span><span class="n">some_method</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=cb40ea05dc8a034e">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=34e18579de781024">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_service</span><span class="o">.</span><span class="n">any_attribute</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="s2">"arg1"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">"value"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=1404dafacb53ba83">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=e85945c975e35148">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_service</span><span class="o">.</span><span class="n">some_method</span><span class="o">.</span><span class="n">call_count</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6f1c261d52e231d1">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d2f593c82a315c5a">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_service</span><span class="o">.</span><span class="n">any_attribute</span><span class="o">.</span><span class="n">nested</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">call_count</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=0c7d820373007d16">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=241bf623bb8e1fdf">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=605e07a6925357cd"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=51ef5419ef3317ec"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Typischer-Einsatz-von-Test-Doubles">Typischer Einsatz von Test Doubles<a class="anchor-link" href="#Typischer-Einsatz-von-Test-Doubles">¶</a></h2><ul>
-<li>Zugriff auf Datenbank, Dateisystem</li>
-<li>Zeit, Zufallswerte</li>
-<li>Nichtdeterminismus</li>
-<li>Verborgener Zustand</li>
+<h2 id="R%C3%BCckgabewerte-konfigurieren">Rückgabewerte konfigurieren<a class="anchor-link" href="#R%C3%BCckgabewerte-konfigurieren">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=0f8e0f9783f25a62">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_inventory</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4a33603c3e11f3ae">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_inventory</span><span class="o">.</span><span class="n">check_stock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=290227c632c8b245">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_inventory</span><span class="o">.</span><span class="n">check_stock</span><span class="p">(</span><span class="s2">"PROD-1"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=f7959d563ad921f6">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_inventory</span><span class="o">.</span><span class="n">reserve_items</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">mock_inventory</span><span class="o">.</span><span class="n">reserve_items</span><span class="p">(</span><span class="s2">"PROD-1"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ea4702a1246b6eec"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Side-Effects">Side Effects<a class="anchor-link" href="#Side-Effects">¶</a></h2><ul>
+<li>Verschiedene Rückgabewerte bei mehreren Aufrufen</li>
+<li>Oder: Exceptions auslösen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9ef6cc33687cf1a4"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop:-Test-Doubles-in-der-Praxis">Workshop: Test Doubles in der Praxis<a class="anchor-link" href="#Workshop:-Test-Doubles-in-der-Praxis">¶</a></h2><ul>
-<li>Wir entwickeln ein Bestellsystem</li>
-<li>Der <code>OrderProcessor</code> verarbeitet Bestellungen</li>
-<li>Er verwendet drei externe Dienste:<ul>
-<li><code>InventoryService</code>: Prüft und reserviert Lagerbestand</li>
-<li><code>PaymentGateway</code>: Verarbeitet Zahlungen</li>
-<li><code>NotificationService</code>: Sendet Bestätigungen</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f339c2bb819c59db"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Domain-Modelle">Domain-Modelle<a class="anchor-link" href="#Domain-Modelle">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=45ef1dfc03bd2170">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=f21b5e75bfbe532c">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+<span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9bfca8df17e783c9">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=39e8cb288663a651">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">OrderStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">PENDING</span> <span class="o">=</span> <span class="s2">"pending"</span>
-    <span class="n">CONFIRMED</span> <span class="o">=</span> <span class="s2">"confirmed"</span>
-    <span class="n">FAILED</span> <span class="o">=</span> <span class="s2">"failed"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=df771ec513b0e542">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b695b1ca48edb458">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">OrderItem</span><span class="p">:</span>
-    <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">unit_price</span><span class="p">:</span> <span class="nb">float</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=bc2894cdd6dc3037">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=e43b43695adf41ea">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_payment</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+<span class="n">mock_payment</span><span class="o">.</span><span class="n">process_payment</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">"Network error"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=eca00b311cd3ac15">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">mock_payment</span><span class="o">.</span><span class="n">process_payment</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="s2">"test@example.com"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Caught: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ff1f240fe0832667"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Assertions-auf-Mocks">Assertions auf Mocks<a class="anchor-link" href="#Assertions-auf-Mocks">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b797d654f87f6659">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+<span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="s2">"arg1"</span><span class="p">,</span> <span class="s2">"arg2"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">"value"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ce7104ddcaa2e630">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">assert_called</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4c332ee6293bc987">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=db2448cd9a50c3cd">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s2">"arg1"</span><span class="p">,</span> <span class="s2">"arg2"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">"value"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=b558a13faa0ede60">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s2">"arg1"</span><span class="p">,</span> <span class="s2">"arg2"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">"value"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1af382f57ea1d640">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">call_args</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=938425f069ebff3f">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">call_args_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5bf45133a951e1ad"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Typsichere-Mocks-mit-spec">Typsichere Mocks mit <code>spec</code><a class="anchor-link" href="#Typsichere-Mocks-mit-spec">¶</a></h2><ul>
+<li><code>spec</code>: Mock hat nur Attribute des angegebenen Typs</li>
+<li>Verhindert Tippfehler und falsche Methodenaufrufe</li>
+<li>Empfohlen für alle produktiven Tests</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e1a92ca2f7129d2e">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">total_price</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_price</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ef004f8a56bf0d65">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Order</span><span class="p">:</span>
-    <span class="n">order_id</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">customer_email</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OrderItem</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">total_amount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">total_price</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=2b318db07c582226">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">OrderResult</span><span class="p">:</span>
-    <span class="n">status</span><span class="p">:</span> <span class="n">OrderStatus</span>
-    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6c91e34bb2f47a82"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Service-Interfaces">Service-Interfaces<a class="anchor-link" href="#Service-Interfaces">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5c92a830019f0958">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InventoryService</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">InventoryService</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">check_stock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="o">...</span>
@@ -13476,160 +13498,150 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=682457f4781d390a">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=c553bf14b782aaec">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PaymentGateway</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">process_payment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">customer_email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="o">...</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_inventory</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">InventoryService</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=fd5a5df79f2df289">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=22d4b7556082491a">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">NotificationService</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">send_order_confirmation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">:</span> <span class="n">Order</span><span class="p">,</span> <span class="n">customer_email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="o">...</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mock_inventory</span><span class="o">.</span><span class="n">check_stock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">mock_inventory</span><span class="o">.</span><span class="n">check_stock</span><span class="p">(</span><span class="s2">"PROD-1"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b0ce39ff1f872aff"><div class="prompt input_prompt">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ccb5ec6c55c6424b">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">mock_inventory</span><span class="o">.</span><span class="n">nonexistent_method</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1fffda6144c2cb8e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Warum-brauchen-wir-Test-Doubles?">Warum brauchen wir Test Doubles?<a class="anchor-link" href="#Warum-brauchen-wir-Test-Doubles?">¶</a></h3><p>Echte Implementierungen haben Testbarkeitsprobleme:</p>
-<ul>
-<li><code>StripePaymentGateway</code>: HTTP-Aufrufe, API-Keys, echtes Geld!</li>
-<li><code>DatabaseInventoryService</code>: PostgreSQL-Datenbank erforderlich</li>
-<li><code>SmtpNotificationService</code>: Sendet echte E-Mails</li>
+<h2 id="Die-mocker-Fixture">Die <code>mocker</code> Fixture<a class="anchor-link" href="#Die-mocker-Fixture">¶</a></h2><ul>
+<li>pytest-mock stellt die <code>mocker</code> Fixture bereit</li>
+<li>Automatisches Cleanup nach jedem Test</li>
+<li>Zugriff auf alle Mock-Funktionen</li>
 </ul>
-<p>Diese sind für Unit-Tests ungeeignet.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d09c6ff9b89f2a48"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2237af51d975616f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Der-OrderProcessor-(System-Under-Test)">Der OrderProcessor (System Under Test)<a class="anchor-link" href="#Der-OrderProcessor-(System-Under-Test)">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=c9e7d08b0f9fe8e7">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">OrderProcessor</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">inventory</span><span class="p">:</span> <span class="n">InventoryService</span><span class="p">,</span>
-        <span class="n">payment</span><span class="p">:</span> <span class="n">PaymentGateway</span><span class="p">,</span>
-        <span class="n">notifications</span><span class="p">:</span> <span class="n">NotificationService</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inventory</span> <span class="o">=</span> <span class="n">inventory</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">payment</span> <span class="o">=</span> <span class="n">payment</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notifications</span> <span class="o">=</span> <span class="n">notifications</span>
+<h3 id="Beispiel:-Test-mit-mocker">Beispiel: Test mit mocker<a class="anchor-link" href="#Beispiel:-Test-mit-mocker">¶</a></h3><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_order_with_mocks</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="c1"># Create mocks</span>
+    <span class="n">mock_inventory</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">InventoryService</span><span class="p">)</span>
+    <span class="n">mock_payment</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">PaymentGateway</span><span class="p">)</span>
+    <span class="n">mock_notifications</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">NotificationService</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">process_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">:</span> <span class="n">Order</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrderResult</span><span class="p">:</span>
-        <span class="c1"># Check stock for all items</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">order</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">check_stock</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">product_id</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">quantity</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">OrderResult</span><span class="p">(</span>
-                    <span class="n">OrderStatus</span><span class="o">.</span><span class="n">FAILED</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Insufficient stock for </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">product_id</span><span class="si">}</span><span class="s2">"</span>
-                <span class="p">)</span>
+    <span class="c1"># Configure behavior</span>
+    <span class="n">mock_inventory</span><span class="o">.</span><span class="n">check_stock</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">mock_inventory</span><span class="o">.</span><span class="n">reserve_items</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">mock_payment</span><span class="o">.</span><span class="n">process_payment</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="c1"># Reserve items</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">order</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">reserve_items</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">product_id</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">quantity</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">OrderResult</span><span class="p">(</span>
-                    <span class="n">OrderStatus</span><span class="o">.</span><span class="n">FAILED</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Could not reserve </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">product_id</span><span class="si">}</span><span class="s2">"</span>
-                <span class="p">)</span>
+    <span class="c1"># Create processor with mocks</span>
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">OrderProcessor</span><span class="p">(</span><span class="n">mock_inventory</span><span class="p">,</span> <span class="n">mock_payment</span><span class="p">,</span> <span class="n">mock_notifications</span><span class="p">)</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="s2">"ORD-001"</span><span class="p">,</span> <span class="s2">"test@example.com"</span><span class="p">,</span> <span class="p">[</span><span class="n">OrderItem</span><span class="p">(</span><span class="s2">"P1"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)])</span>
 
-        <span class="c1"># Process payment</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">payment</span><span class="o">.</span><span class="n">process_payment</span><span class="p">(</span><span class="n">order</span><span class="o">.</span><span class="n">total_amount</span><span class="p">,</span> <span class="n">order</span><span class="o">.</span><span class="n">customer_email</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">OrderResult</span><span class="p">(</span><span class="n">OrderStatus</span><span class="o">.</span><span class="n">FAILED</span><span class="p">,</span> <span class="s2">"Payment failed"</span><span class="p">)</span>
+    <span class="c1"># Act</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">process_order</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
 
-        <span class="c1"># Send confirmation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notifications</span><span class="o">.</span><span class="n">send_order_confirmation</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">order</span><span class="o">.</span><span class="n">customer_email</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">OrderResult</span><span class="p">(</span><span class="n">OrderStatus</span><span class="o">.</span><span class="n">CONFIRMED</span><span class="p">,</span> <span class="s2">"Order processed successfully"</span><span class="p">)</span>
+    <span class="c1"># Assert</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">OrderStatus</span><span class="o">.</span><span class="n">CONFIRMED</span>
+    <span class="n">mock_notifications</span><span class="o">.</span><span class="n">send_order_confirmation</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f036031b49130252"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=98f750b3c0d6e76b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Workshop-Aufgabe">Workshop-Aufgabe<a class="anchor-link" href="#Workshop-Aufgabe">¶</a></h3><p>Schreiben Sie Tests für die folgenden Szenarien:</p>
-<ol>
-<li>Erfolgreiche Bestellungsverarbeitung</li>
-<li>Bestellung schlägt fehl wegen unzureichendem Lagerbestand</li>
-<li>Bestellung schlägt fehl wegen Zahlungsfehler</li>
-</ol>
-<p>Implementieren Sie die benötigten Test Doubles.</p>
-<p>Siehe <code>examples/TestDoublesStarterKit</code> für den Starter-Code.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ab1c29a82f38b603"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Diskussion:-Welche-Test-Doubles-haben-Sie-verwendet?">Diskussion: Welche Test Doubles haben Sie verwendet?<a class="anchor-link" href="#Diskussion:-Welche-Test-Doubles-haben-Sie-verwendet?">¶</a></h3><table>
+<h2 id="Manuelle-Doubles-vs.-Mock-Framework">Manuelle Doubles vs. Mock-Framework<a class="anchor-link" href="#Manuelle-Doubles-vs.-Mock-Framework">¶</a></h2><table>
 <thead>
 <tr>
-<th>Abhängigkeit</th>
-<th>Typ</th>
-<th>Grund</th>
+<th>Aspekt</th>
+<th>Manuelle Doubles</th>
+<th>Mock-Framework</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>InventoryService</td>
-<td><strong>Stub</strong></td>
-<td>Eingehend: Liefert Werte für Bestandsprüfung</td>
+<td>Lesbarkeit</td>
+<td>Explizit, klar</td>
+<td>Kann unübersichtlich werden</td>
 </tr>
 <tr>
-<td>PaymentGateway</td>
-<td><strong>Stub</strong></td>
-<td>Eingehend: Liefert Ergebnis der Zahlung</td>
+<td>Wiederverwendbarkeit</td>
+<td>Hoch</td>
+<td>Gering</td>
 </tr>
 <tr>
-<td>NotificationService</td>
-<td><strong>Spy</strong></td>
-<td>Ausgehend: Wir prüfen, ob Benachrichtigung gesendet wurde</td>
+<td>Flexibilität</td>
+<td>Begrenzt</td>
+<td>Sehr hoch</td>
+</tr>
+<tr>
+<td>Setup-Aufwand</td>
+<td>Höher</td>
+<td>Geringer</td>
+</tr>
+<tr>
+<td>Typsicherheit</td>
+<td>Vollständig</td>
+<td>Mit <code>spec</code> möglich</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a9b836c84d7a4520"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=613b0bb6bf852d08"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Wichtige-Erkenntnis">Wichtige Erkenntnis<a class="anchor-link" href="#Wichtige-Erkenntnis">¶</a></h3><ul>
-<li><strong>Stubs</strong> für eingehende Abhängigkeiten<ul>
-<li>Wir kontrollieren die Rückgabewerte</li>
-<li>Ermöglicht deterministische Tests</li>
+<h2 id="Empfehlung">Empfehlung<a class="anchor-link" href="#Empfehlung">¶</a></h2><ul>
+<li>Beginnen Sie mit manuellen Doubles für häufig verwendete Abhängigkeiten</li>
+<li>Verwenden Sie Mocks für einmalige oder komplexe Szenarien</li>
+<li>Immer <code>spec</code> verwenden für Typsicherheit</li>
+<li>Bevorzugen Sie <code>assert_called_once_with()</code> gegenüber <code>assert_called()</code></li>
 </ul>
-</li>
-<li><strong>Spies/Mocks</strong> für ausgehende Abhängigkeiten<ul>
-<li>Wir überprüfen die Seiteneffekte</li>
-<li>Stellt sicher, dass Aktionen ausgeführt wurden</li>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=69997e7ae6d5d0c4"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Tests-mit-pytest-mock">Workshop: Tests mit pytest-mock<a class="anchor-link" href="#Workshop:-Tests-mit-pytest-mock">¶</a></h2><p>Öffnen Sie das Projekt <code>TestDoubles</code> und betrachten Sie die Tests:</p>
+<ol>
+<li><code>tests/test_with_doubles.py</code> - Tests mit manuellen Doubles</li>
+<li><code>tests/test_with_mocks.py</code> - Tests mit pytest-mock</li>
+</ol>
+<p>Vergleichen Sie die beiden Ansätze und diskutieren Sie:</p>
+<ul>
+<li>Welcher Ansatz ist lesbarer?</li>
+<li>Welcher ist flexibler?</li>
+<li>Wann würden Sie welchen verwenden?</li>
 </ul>
-</li>
-</ul>
-<p>Vollständige Lösung: siehe <code>examples/TestDoubles</code></p>
 </div>
 </div>
 </div>
