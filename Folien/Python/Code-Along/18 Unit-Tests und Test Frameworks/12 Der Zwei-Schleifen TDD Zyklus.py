@@ -67,7 +67,7 @@
 #     von der Systemgrenze nach innen.
 
 # %% [markdown]
-# ## Workshop: Eine To-Do-Listen-Anwendung
+# ## Kata: Eine To-Do-Listen-Anwendung
 #
 # **Ziel:** Wir werden eine einfache In-Memory-To-Do-Listen-Anwendung mit dem
 # Zwei-Schleifen-Ansatz entwickeln.
@@ -76,6 +76,7 @@
 # 1. Eine Aufgabe zu einer Liste hinzufügen.
 # 2. Alle Aufgaben in der Liste anzeigen.
 # 3. Eine Aufgabe als erledigt markieren.
+# 4. Eine erledigte Aufgabe löschen.
 #
 # **Hinweis:** Ein Starter-Kit für diese Übung ist im Ordner
 # `code/starter_kits/two_loop_cycle_sk` verfügbar.
@@ -132,70 +133,325 @@
 # ```
 
 # %% [markdown]
+# ## Der Akzeptanztest definiert das Design
+#
+# - Das Schreiben des Akzeptanztests ist eine **Designentscheidung**.
+# - Wir entscheiden, wie die API unseres Systems aussehen soll.
+# - Verschiedene Designs führen zu unterschiedlichen Akzeptanztests.
+# - Wir werden drei verschiedene Designansätze erkunden:
+#   1. **Objektorientiert mit Property**: Zugriff über `.tasks`-Eigenschaft
+#   2. **Listen-ähnlich**: `len(todo_list)`, `todo_list[0]`, `del todo_list[...]`
+#   3. **Funktional**: Freie Funktionen + einfache Dictionaries
+
+# %% [markdown]
+# ### Variante 1: Objektorientiert mit Property
+#
+# ```python
+# def test_todo_list_scenario_v1():
+#     todo_list = TodoListV1()
+#
+#     todo_list.add("Implement TDD")
+#     todo_list.add("Write slides")
+#     todo_list.add("Review materials")
+# ```
+#
+# ```python
+#     assert len(todo_list.tasks) == 3
+#     assert todo_list.tasks[0].description == "Implement TDD"
+#
+#     todo_list.mark_completed("Write slides")
+#     todo_list.delete("Write slides")
+#
+#     assert len(todo_list.tasks) == 2
+# ```
+
+# %% [markdown]
+# ### Variante 2: Listen-ähnliche Schnittstelle
+#
+# ```python
+# def test_todo_list_scenario_v2():
+#     todo_list = TodoListV2()
+#
+#     todo_list.add("Implement TDD")
+#     todo_list.add("Write slides")
+#     todo_list.add("Review materials")
+# ```
+#
+# ```python
+#     assert len(todo_list) == 3                     # __len__
+#     assert todo_list[0].description == "Implement TDD"  # __getitem__(int)
+#     assert "Write slides" in todo_list            # __contains__
+#
+#     todo_list["Write slides"].completed = True    # __getitem__(str)
+#     del todo_list["Write slides"]                 # __delitem__
+#
+#     assert len(todo_list) == 2
+# ```
+
+# %% [markdown]
+# ### Variante 3: Funktional mit Dictionaries
+#
+# ```python
+# def test_todo_list_scenario_v3():
+#     todo_list: list[dict] = []                    # Einfache Liste!
+#
+#     add_task(todo_list, "Implement TDD")
+#     add_task(todo_list, "Write slides")
+#     add_task(todo_list, "Review materials")
+# ```
+#
+# ```python
+#     assert len(todo_list) == 3
+#     assert todo_list[0]["description"] == "Implement TDD"
+#
+#     mark_task_completed(todo_list, "Write slides")
+#     delete_task(todo_list, "Write slides")
+#
+#     assert len(todo_list) == 2
+# ```
+
+# %% [markdown]
+# ### Design-Kompromisse
+#
+# | Ansatz | Vorteile | Nachteile |
+# |--------|----------|-----------|
+# | **OO mit Property** | Klare Kapselung, explizite Methoden | Mehr Boilerplate |
+# | **Listen-ähnlich** | Pythonisch, vertraute Syntax | Komplexere Implementierung |
+# | **Funktional** | Einfache Daten, leicht zu serialisieren | Keine Kapselung |
+#
+# Wir implementieren alle drei Varianten, um die unterschiedlichen
+# Designentscheidungen zu demonstrieren.
+
+# %% [markdown]
+# ## Implementierung: Variante 1 (OO mit Property)
+#
+# Wir beginnen mit der objektorientierten Variante als Übung für die innere
+# Schleife.
+
+# %% [markdown]
 # ### Schritt 1: Die äußere Schleife (Rot)
 #
 # Zuerst schreiben wir einen Akzeptanztest, der das gesamte gewünschte
 # Verhalten beschreibt. Dieser Code wird fehlschlagen, weil die Klassen
-# `Task` und `TodoList` noch nicht existieren. Das ist der rote Zustand unserer
-# äußeren Schleife.
-
-# %% [markdown]
-#
-# Das ist unser Akzeptanztest.
-# Er wird fehlschlagen, weil die Klassen `Task` und `TodoList`
-# noch nicht existieren.
-
-# %% [markdown]
-# ```python
-# def test_full_todo_list_scenario():
-#     # Arrange
-#     todo_list = TodoList()
-#
-#     # Act 1: Add tasks
-#     todo_list.add_task("Implement Two-Loop TDD")
-#     todo_list.add_task("Write workshop slides")
-#
-#     # Assert 1
-#     tasks1 = todo_list.get_tasks()
-#     assert len(tasks1) == 2, "Should have 2 tasks after adding"
-#     assert tasks1[0].description == "Implement Two-Loop TDD"
-#     assert tasks1[0].completed is False, "New task should not be completed"
-#
-#     # Act 2: Complete a task
-#     todo_list.mark_as_complete("Write workshop slides")
-#
-#     # Assert 2
-#     tasks2 = todo_list.get_tasks()
-#     completed_task = next(
-#         (t for t in tasks2 if t.description == "Write workshop slides"), None
-#     )
-#     assert completed_task is not None, "Completed task should be found"
-#     assert completed_task.completed is True, "Task should be marked as complete"
-#     print("Acceptance test passed!")
-# ```
+# `TaskV1` und `TodoListV1` noch nicht existieren.
 
 # %% [markdown]
 # ### Schritt 2: Die innere Schleife (Rot-Grün-Refaktor)
 #
-# Jetzt konzentrieren wir uns auf den ersten Fehler.
-# Python wird sich beschweren, dass `TodoList` nicht existiert. Das ist unser
-# Signal, in die innere Schleife einzutauchen.
-#
 # **Ihre Aufgabe:**
-# 1.  Schreiben Sie den **allerersten, kleinsten Unit-Test**, um den Prozess zu
-#     starten. Ein guter Anfang wäre ein Test, der prüft, ob eine neu erstellte
-#     `TodoList` leer ist.
-# 2.  Erstellen Sie die minimalen Klassen (`Task`, `TodoList`) und Methoden,
-#     damit dieser erste Unit-Test besteht.
-# 3.  Arbeiten Sie sich durch die Fehler des Akzeptanztests. Für jede fehlende
-#     Funktionalität (z. B. `add_task`, `mark_as_complete`), schreiben Sie
-#     einen neuen, fokussierten Unit-Test und implementieren Sie die
-#     Funktionalität.
-# 4.  Führen Sie nach jedem inneren Zyklus den Akzeptanztest erneut aus, um
-#     Ihren Fortschritt zu sehen.
+# 1. Schreiben Sie den **allerersten, kleinsten Unit-Test**, z.B. ob eine neue
+#    `TodoListV1` leer ist.
+# 2. Erstellen Sie die minimalen Klassen (`TaskV1`, `TodoListV1`) und Methoden.
+# 3. Arbeiten Sie sich durch die Fehler des Akzeptanztests.
+# 4. Führen Sie nach jedem Zyklus den Akzeptanztest erneut aus.
+
+# %%
+from dataclasses import dataclass
+
 
 # %%
 
 # %%
+
+# %% [markdown]
+# ### Lösung Variante 1: Unit-Tests
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %% [markdown]
+# ### Lösung Variante 1: Vollständiger Akzeptanztest
+
+# %%
+
+# %%
+
+# %% [markdown]
+# ## Implementierung: Variante 2 (Listen-ähnlich)
+#
+# Diese Variante implementiert das Python Data Model für eine listen-ähnliche
+# Schnittstelle.
+
+# %%
+@dataclass
+class TaskV2:
+    description: str
+    completed: bool = False
+
+
+# %%
+class TodoListV2:
+    def __init__(self):
+        self._tasks: list[TaskV2] = []
+
+    def __len__(self) -> int:
+        return len(self._tasks)
+
+    def __getitem__(self, key: int | str) -> TaskV2:
+        if isinstance(key, int):
+            return self._tasks[key]
+        for task in self._tasks:
+            if task.description == key:
+                return task
+        raise KeyError(key)
+
+    def __contains__(self, description: str) -> bool:
+        return any(t.description == description for t in self._tasks)
+
+    def __iter__(self):
+        return iter(self._tasks)
+
+    def __delitem__(self, description: str) -> None:
+        self._tasks = [t for t in self._tasks if t.description != description]
+
+    def add(self, description: str) -> None:
+        self._tasks.append(TaskV2(description))
+
+
+# %% [markdown]
+# ### Variante 2: Akzeptanztest
+
+# %%
+def test_full_todo_list_scenario_v2():
+    # Arrange
+    todo_list = TodoListV2()
+
+    # Act 1: Add tasks
+    todo_list.add("Implement Two-Loop TDD")
+    todo_list.add("Write workshop slides")
+    todo_list.add("Review course materials")
+
+    # Assert 1: List-like access
+    assert len(todo_list) == 3
+    assert todo_list[0].description == "Implement Two-Loop TDD"
+    assert todo_list["Write workshop slides"].description == "Write workshop slides"
+    assert "Write workshop slides" in todo_list
+
+    # Act 2: Complete a task using bracket access
+    todo_list["Write workshop slides"].completed = True
+
+    # Assert 2: Check completion using iteration
+    completed_task = todo_list["Write workshop slides"]
+    assert completed_task.completed is True
+    assert sum(1 for t in todo_list if not t.completed) == 2
+
+    # Act 3: Delete the completed task using del
+    del todo_list["Write workshop slides"]
+
+    # Assert 3: Verify deletion
+    assert len(todo_list) == 2
+    assert "Write workshop slides" not in todo_list
+    print("Variant 2 acceptance test passed!")
+
+
+# %%
+test_full_todo_list_scenario_v2()
+
+
+# %% [markdown]
+# ## Implementierung: Variante 3 (Funktional)
+#
+# Diese Variante verwendet einfache Dictionaries und freie Funktionen.
+
+# %%
+def add_task(todo_list: list[dict], description: str) -> None:
+    """Add a new task to the todo list."""
+    todo_list.append({"description": description, "completed": False})
+
+
+def find_task(todo_list: list[dict], description: str) -> dict | None:
+    """Find a task by description."""
+    return next((t for t in todo_list if t["description"] == description), None)
+
+
+def mark_task_completed(todo_list: list[dict], description: str) -> None:
+    """Mark a task as completed."""
+    task = find_task(todo_list, description)
+    if task:
+        task["completed"] = True
+
+
+def delete_task(todo_list: list[dict], description: str) -> None:
+    """Delete a task from the todo list."""
+    for i, task in enumerate(todo_list):
+        if task["description"] == description:
+            del todo_list[i]
+            return
+
+
+# %% [markdown]
+# ### Variante 3: Akzeptanztest
+
+# %%
+def test_full_todo_list_scenario_v3():
+    # Arrange: Simple list of dicts - no class needed!
+    todo_list: list[dict] = []
+
+    # Act 1: Add tasks using free functions
+    add_task(todo_list, "Implement Two-Loop TDD")
+    add_task(todo_list, "Write workshop slides")
+    add_task(todo_list, "Review course materials")
+
+    # Assert 1: Direct list/dict access
+    assert len(todo_list) == 3
+    assert todo_list[0]["description"] == "Implement Two-Loop TDD"
+    assert all(not task.get("completed", False) for task in todo_list)
+
+    # Act 2: Complete a task
+    mark_task_completed(todo_list, "Write workshop slides")
+
+    # Assert 2: Check completion
+    completed = [t for t in todo_list if t.get("completed")]
+    pending = [t for t in todo_list if not t.get("completed")]
+    assert len(completed) == 1
+    assert completed[0]["description"] == "Write workshop slides"
+    assert len(pending) == 2
+
+    # Act 3: Delete completed task
+    delete_task(todo_list, "Write workshop slides")
+
+    # Assert 3: Verify deletion
+    assert len(todo_list) == 2
+    assert not any(t["description"] == "Write workshop slides" for t in todo_list)
+    print("Variant 3 acceptance test passed!")
+
+
+# %%
+test_full_todo_list_scenario_v3()
+
+
+# %% [markdown]
+# ## Zusammenfassung
+#
+# - Der Akzeptanztest definiert das Design der API.
+# - Drei verschiedene Designs führen zu drei unterschiedlichen Implementierungen:
+#   - **V1**: Objektorientiert mit `.tasks`-Property
+#   - **V2**: Listen-ähnlich mit `__len__`, `__getitem__`, `del`
+#   - **V3**: Funktional mit freien Funktionen und Dictionaries
+# - Alle erfüllen dieselben Anforderungen, aber mit unterschiedlicher API.
+
+# %%
+def run_all_variant_tests():
+    test_full_todo_list_scenario_v1()
+    test_full_todo_list_scenario_v2()
+    test_full_todo_list_scenario_v3()
+    print("\n--- All variant tests passed! ---")
+
+
+# %%
+run_all_variant_tests()
 
 # %%

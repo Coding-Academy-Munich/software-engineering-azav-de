@@ -13231,16 +13231,17 @@ von der Systemgrenze nach innen.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=810735f577569c85"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=62ba2f2e36c75c6c"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop:-Eine-To-Do-Listen-Anwendung">Workshop: Eine To-Do-Listen-Anwendung<a class="anchor-link" href="#Workshop:-Eine-To-Do-Listen-Anwendung">¶</a></h2><p><strong>Ziel:</strong> Wir werden eine einfache In-Memory-To-Do-Listen-Anwendung mit dem
+<h2 id="Kata:-Eine-To-Do-Listen-Anwendung">Kata: Eine To-Do-Listen-Anwendung<a class="anchor-link" href="#Kata:-Eine-To-Do-Listen-Anwendung">¶</a></h2><p><strong>Ziel:</strong> Wir werden eine einfache In-Memory-To-Do-Listen-Anwendung mit dem
 Zwei-Schleifen-Ansatz entwickeln.</p>
 <p><strong>Features:</strong></p>
 <ol>
 <li>Eine Aufgabe zu einer Liste hinzufügen.</li>
 <li>Alle Aufgaben in der Liste anzeigen.</li>
 <li>Eine Aufgabe als erledigt markieren.</li>
+<li>Eine erledigte Aufgabe löschen.</li>
 </ol>
 <p><strong>Hinweis:</strong> Ein Starter-Kit für diese Übung ist im Ordner
 <code>code/starter_kits/two_loop_cycle_sk</code> verfügbar.</p>
@@ -13300,105 +13301,177 @@ pytest<span class="w"> </span>-m<span class="w"> </span>acceptance
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=76cde6aee3c8073c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=53e2da0718b66681"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Der-Akzeptanztest-definiert-das-Design">Der Akzeptanztest definiert das Design<a class="anchor-link" href="#Der-Akzeptanztest-definiert-das-Design">¶</a></h2><ul>
+<li>Das Schreiben des Akzeptanztests ist eine <strong>Designentscheidung</strong>.</li>
+<li>Wir entscheiden, wie die API unseres Systems aussehen soll.</li>
+<li>Verschiedene Designs führen zu unterschiedlichen Akzeptanztests.</li>
+<li>Wir werden drei verschiedene Designansätze erkunden:<ol>
+<li><strong>Objektorientiert mit Property</strong>: Zugriff über <code>.tasks</code>-Eigenschaft</li>
+<li><strong>Listen-ähnlich</strong>: <code>len(todo_list)</code>, <code>todo_list[0]</code>, <code>del todo_list[...]</code></li>
+<li><strong>Funktional</strong>: Freie Funktionen + einfache Dictionaries</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ac71a570f359ee8e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Variante-1:-Objektorientiert-mit-Property">Variante 1: Objektorientiert mit Property<a class="anchor-link" href="#Variante-1:-Objektorientiert-mit-Property">¶</a></h3><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_todo_list_scenario_v1</span><span class="p">():</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV1</span><span class="p">()</span>
+
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Implement TDD"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Write slides"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Review materials"</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Implement TDD"</span>
+
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">mark_completed</span><span class="p">(</span><span class="s2">"Write slides"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">"Write slides"</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a1f10075dfb60019"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Variante-2:-Listen-%C3%A4hnliche-Schnittstelle">Variante 2: Listen-ähnliche Schnittstelle<a class="anchor-link" href="#Variante-2:-Listen-%C3%A4hnliche-Schnittstelle">¶</a></h3><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_todo_list_scenario_v2</span><span class="p">():</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV2</span><span class="p">()</span>
+
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Implement TDD"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Write slides"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Review materials"</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>                     <span class="c1"># __len__</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Implement TDD"</span>  <span class="c1"># __getitem__(int)</span>
+    <span class="k">assert</span> <span class="s2">"Write slides"</span> <span class="ow">in</span> <span class="n">todo_list</span>            <span class="c1"># __contains__</span>
+
+    <span class="n">todo_list</span><span class="p">[</span><span class="s2">"Write slides"</span><span class="p">]</span><span class="o">.</span><span class="n">completed</span> <span class="o">=</span> <span class="kc">True</span>    <span class="c1"># __getitem__(str)</span>
+    <span class="k">del</span> <span class="n">todo_list</span><span class="p">[</span><span class="s2">"Write slides"</span><span class="p">]</span>                 <span class="c1"># __delitem__</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2d29aca10930bce9"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Variante-3:-Funktional-mit-Dictionaries">Variante 3: Funktional mit Dictionaries<a class="anchor-link" href="#Variante-3:-Funktional-mit-Dictionaries">¶</a></h3><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_todo_list_scenario_v3</span><span class="p">():</span>
+    <span class="n">todo_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>                    <span class="c1"># Einfache Liste!</span>
+
+    <span class="n">add_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Implement TDD"</span><span class="p">)</span>
+    <span class="n">add_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Write slides"</span><span class="p">)</span>
+    <span class="n">add_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Review materials"</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"description"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Implement TDD"</span>
+
+    <span class="n">mark_task_completed</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Write slides"</span><span class="p">)</span>
+    <span class="n">delete_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Write slides"</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d98e91414c2856c5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Design-Kompromisse">Design-Kompromisse<a class="anchor-link" href="#Design-Kompromisse">¶</a></h3><table>
+<thead>
+<tr>
+<th>Ansatz</th>
+<th>Vorteile</th>
+<th>Nachteile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OO mit Property</strong></td>
+<td>Klare Kapselung, explizite Methoden</td>
+<td>Mehr Boilerplate</td>
+</tr>
+<tr>
+<td><strong>Listen-ähnlich</strong></td>
+<td>Pythonisch, vertraute Syntax</td>
+<td>Komplexere Implementierung</td>
+</tr>
+<tr>
+<td><strong>Funktional</strong></td>
+<td>Einfache Daten, leicht zu serialisieren</td>
+<td>Keine Kapselung</td>
+</tr>
+</tbody>
+</table>
+<p>Wir implementieren alle drei Varianten, um die unterschiedlichen
+Designentscheidungen zu demonstrieren.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ca06bb0380d882af"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Implementierung:-Variante-1-(OO-mit-Property)">Implementierung: Variante 1 (OO mit Property)<a class="anchor-link" href="#Implementierung:-Variante-1-(OO-mit-Property)">¶</a></h2><p>Wir beginnen mit der objektorientierten Variante als Übung für die innere
+Schleife.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dfc06dce12dbdf68"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Schritt-1:-Die-%C3%A4u%C3%9Fere-Schleife-(Rot)">Schritt 1: Die äußere Schleife (Rot)<a class="anchor-link" href="#Schritt-1:-Die-%C3%A4u%C3%9Fere-Schleife-(Rot)">¶</a></h3><p>Zuerst schreiben wir einen Akzeptanztest, der das gesamte gewünschte
 Verhalten beschreibt. Dieser Code wird fehlschlagen, weil die Klassen
-<code>Task</code> und <code>TodoList</code> noch nicht existieren. Das ist der rote Zustand unserer
-äußeren Schleife.</p>
+<code>TaskV1</code> und <code>TodoListV1</code> noch nicht existieren.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e7f52c7b0c527a5b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=28b0ab243f994a64"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Das ist unser Akzeptanztest.
-Er wird fehlschlagen, weil die Klassen <code>Task</code> und <code>TodoList</code>
-noch nicht existieren.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=2a9518eb1c00603e"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_full_todo_list_scenario</span><span class="p">():</span>
-    <span class="c1"># Arrange</span>
-    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoList</span><span class="p">()</span>
-
-    <span class="c1"># Act 1: Add tasks</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="s2">"Implement Two-Loop TDD"</span><span class="p">)</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
-
-    <span class="c1"># Assert 1</span>
-    <span class="n">tasks1</span> <span class="o">=</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tasks1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Should have 2 tasks after adding"</span>
-    <span class="k">assert</span> <span class="n">tasks1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Implement Two-Loop TDD"</span>
-    <span class="k">assert</span> <span class="n">tasks1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"New task should not be completed"</span>
-
-    <span class="c1"># Act 2: Complete a task</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">mark_as_complete</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
-
-    <span class="c1"># Assert 2</span>
-    <span class="n">tasks2</span> <span class="o">=</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()</span>
-    <span class="n">completed_task</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks2</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Write workshop slides"</span><span class="p">),</span> <span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="k">assert</span> <span class="n">completed_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"Completed task should be found"</span>
-    <span class="k">assert</span> <span class="n">completed_task</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"Task should be marked as complete"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Acceptance test passed!"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=96fafd590e370901"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Schritt-2:-Die-innere-Schleife-(Rot-Gr%C3%BCn-Refaktor)">Schritt 2: Die innere Schleife (Rot-Grün-Refaktor)<a class="anchor-link" href="#Schritt-2:-Die-innere-Schleife-(Rot-Gr%C3%BCn-Refaktor)">¶</a></h3><p>Jetzt konzentrieren wir uns auf den ersten Fehler.
-Python wird sich beschweren, dass <code>TodoList</code> nicht existiert. Das ist unser
-Signal, in die innere Schleife einzutauchen.</p>
-<p><strong>Ihre Aufgabe:</strong></p>
+<h3 id="Schritt-2:-Die-innere-Schleife-(Rot-Gr%C3%BCn-Refaktor)">Schritt 2: Die innere Schleife (Rot-Grün-Refaktor)<a class="anchor-link" href="#Schritt-2:-Die-innere-Schleife-(Rot-Gr%C3%BCn-Refaktor)">¶</a></h3><p><strong>Ihre Aufgabe:</strong></p>
 <ol>
-<li>Schreiben Sie den <strong>allerersten, kleinsten Unit-Test</strong>, um den Prozess zu
-starten. Ein guter Anfang wäre ein Test, der prüft, ob eine neu erstellte
-<code>TodoList</code> leer ist.</li>
-<li>Erstellen Sie die minimalen Klassen (<code>Task</code>, <code>TodoList</code>) und Methoden,
-damit dieser erste Unit-Test besteht.</li>
-<li>Arbeiten Sie sich durch die Fehler des Akzeptanztests. Für jede fehlende
-Funktionalität (z. B. <code>add_task</code>, <code>mark_as_complete</code>), schreiben Sie
-einen neuen, fokussierten Unit-Test und implementieren Sie die
-Funktionalität.</li>
-<li>Führen Sie nach jedem inneren Zyklus den Akzeptanztest erneut aus, um
-Ihren Fortschritt zu sehen.</li>
+<li>Schreiben Sie den <strong>allerersten, kleinsten Unit-Test</strong>, z.B. ob eine neue
+<code>TodoListV1</code> leer ist.</li>
+<li>Erstellen Sie die minimalen Klassen (<code>TaskV1</code>, <code>TodoListV1</code>) und Methoden.</li>
+<li>Arbeiten Sie sich durch die Fehler des Akzeptanztests.</li>
+<li>Führen Sie nach jedem Zyklus den Akzeptanztest erneut aus.</li>
 </ol>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_alt" id="cell-id=099345c444ae5247"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_alt" id="cell-id=457cdb83a2969bbb"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.-Die-Datenstrukturen">1. Die Datenstrukturen<a class="anchor-link" href="#1.-Die-Datenstrukturen">¶</a></h3>
+<h3 id="L%C3%B6sung-Variante-1:-Die-Datenstrukturen">Lösung Variante 1: Die Datenstrukturen<a class="anchor-link" href="#L%C3%B6sung-Variante-1:-Die-Datenstrukturen">¶</a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=f4c35f14c8bcec81">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=3f5203df18900b5a">
 <div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=8951055ad7a02215">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e13693554a1d819a">
 <div class="input">
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Task</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskV1</span><span class="p">:</span>
     <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">completed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
@@ -13406,237 +13479,201 @@ Ihren Fortschritt zu sehen.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_alt" id="cell-id=830ddab7c44659d3">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=b7de5501b098ffbd">
 <div class="input">
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TodoList</span><span class="p">:</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TodoListV1</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskV1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Task</span><span class="p">(</span><span class="n">description</span><span class="p">))</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">]:</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskV1</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">mark_as_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TaskV1</span><span class="p">(</span><span class="n">description</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mark_completed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="n">description</span><span class="p">:</span>
                 <span class="n">task</span><span class="o">.</span><span class="n">completed</span> <span class="o">=</span> <span class="kc">True</span>
-                <span class="k">break</span>
+                <span class="k">return</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">description</span> <span class="o">!=</span> <span class="n">description</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_alt" id="cell-id=e48d5d59a1f74791"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=35c291a1b10b0e10"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-Die-Unit-Tests,-die-die-Implementierung-vorantreiben">2. Die Unit-Tests, die die Implementierung vorantreiben<a class="anchor-link" href="#2.-Die-Unit-Tests,-die-die-Implementierung-vorantreiben">¶</a></h3>
+<h3 id="L%C3%B6sung-Variante-1:-Unit-Tests">Lösung Variante 1: Unit-Tests<a class="anchor-link" href="#L%C3%B6sung-Variante-1:-Unit-Tests">¶</a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=be8a5c548d2471bf">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a8ac1b80de95be08">
 <div class="input">
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_new_list_is_empty</span><span class="p">():</span>
-    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoList</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"New list should be empty"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Unit test 'test_new_list_is_empty' passed."</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_v1_new_list_is_empty</span><span class="p">():</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV1</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=2611c50fc6ec1410">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=98a9215189e139f2">
 <div class="input">
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_new_list_is_empty</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_v1_new_list_is_empty</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Unit test 'test_new_list_is_empty' passed.
-</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_alt" id="cell-id=424a67548d5549ff">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=98d1de61a19d35c5">
 <div class="input">
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_add_task_adds_correct_task</span><span class="p">():</span>
-    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoList</span><span class="p">()</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="s2">"Test adding a task"</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"List should have 1 task after adding"</span>
-    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Test adding a task"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Unit test 'test_add_task_adds_correct_task' passed."</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_v1_add_task</span><span class="p">():</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV1</span><span class="p">()</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Test task"</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Test task"</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=a7d9fa83f9ab8cee">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=99667bba27e59252">
 <div class="input">
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_add_task_adds_correct_task</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_v1_add_task</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Unit test 'test_add_task_adds_correct_task' passed.
-</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_alt" id="cell-id=1727a7f06a546c64">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=a471091b5c5204e9">
 <div class="input">
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_task_is_not_completed_by_default</span><span class="p">():</span>
-    <span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span><span class="s2">"Test task"</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">task</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"New task should not be completed by default"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Unit test 'test_task_is_not_completed_by_default' passed."</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_v1_mark_completed</span><span class="p">():</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV1</span><span class="p">()</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Task to complete"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">mark_completed</span><span class="p">(</span><span class="s2">"Task to complete"</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=bec29e2eaf8e606d">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7f22490691049ba1">
 <div class="input">
 <div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_task_is_not_completed_by_default</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_v1_mark_completed</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Unit test 'test_task_is_not_completed_by_default' passed.
-</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_alt" id="cell-id=b6ea4623a2714eca">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=35a04c8e6a67a4f4">
 <div class="input">
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_mark_task_as_complete</span><span class="p">():</span>
-    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoList</span><span class="p">()</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="s2">"Task to be completed"</span><span class="p">)</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">mark_as_complete</span><span class="p">(</span><span class="s2">"Task to be completed"</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"Task should be marked complete"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Unit test 'test_mark_task_as_complete' passed."</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_v1_delete</span><span class="p">():</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV1</span><span class="p">()</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Task to delete"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Task to keep"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">"Task to delete"</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Task to keep"</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=9b95cc931757b44d">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9d6c84decd4731da">
 <div class="input">
 <div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_mark_task_as_complete</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_v1_delete</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Unit test 'test_mark_task_as_complete' passed.
-</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide celltag_alt" id="cell-id=bb5b605e6953b206"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8b705a60ad22f4c4"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-Der-Akzeptanztest,-der-das-gesamte-Szenario-%C3%BCberpr%C3%BCft">3. Der Akzeptanztest, der das gesamte Szenario überprüft<a class="anchor-link" href="#3.-Der-Akzeptanztest,-der-das-gesamte-Szenario-%C3%BCberpr%C3%BCft">¶</a></h3><ul>
-<li>Das ist unser Akzeptanztest von oben.</li>
-<li>Er wird jetzt laufen, weil wir die Teile implementiert haben.</li>
-</ul>
+<h3 id="L%C3%B6sung-Variante-1:-Vollst%C3%A4ndiger-Akzeptanztest">Lösung Variante 1: Vollständiger Akzeptanztest<a class="anchor-link" href="#L%C3%B6sung-Variante-1:-Vollst%C3%A4ndiger-Akzeptanztest">¶</a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_alt" id="cell-id=774681b832cb8e68">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=bc1836e0e0d73ef1">
 <div class="input">
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_full_todo_list_scenario_solution</span><span class="p">():</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_full_todo_list_scenario_v1</span><span class="p">():</span>
     <span class="c1"># Arrange</span>
-    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoList</span><span class="p">()</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV1</span><span class="p">()</span>
 
     <span class="c1"># Act 1: Add tasks</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="s2">"Implement Two-Loop TDD"</span><span class="p">)</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Implement Two-Loop TDD"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Review course materials"</span><span class="p">)</span>
 
-    <span class="c1"># Assert 1</span>
-    <span class="n">tasks1</span> <span class="o">=</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tasks1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Should have 2 tasks after adding"</span>
-    <span class="k">assert</span> <span class="n">tasks1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Implement Two-Loop TDD"</span>
-    <span class="k">assert</span> <span class="n">tasks1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"New task should not be completed"</span>
+    <span class="c1"># Assert 1: Verify all tasks added via .tasks property</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Implement Two-Loop TDD"</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="n">task</span><span class="o">.</span><span class="n">completed</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span>
 
     <span class="c1"># Act 2: Complete a task</span>
-    <span class="n">todo_list</span><span class="o">.</span><span class="n">mark_as_complete</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">mark_completed</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
 
-    <span class="c1"># Assert 2</span>
-    <span class="n">tasks2</span> <span class="o">=</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()</span>
-    <span class="n">completed_task</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks2</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Write workshop slides"</span><span class="p">),</span> <span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="k">assert</span> <span class="n">completed_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"Completed task should be found"</span>
-    <span class="k">assert</span> <span class="n">completed_task</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"Task should be marked as complete"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Acceptance test passed!"</span><span class="p">)</span>
+    <span class="c1"># Assert 2: Verify completion state</span>
+    <span class="n">completed</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">completed</span><span class="p">]</span>
+    <span class="n">pending</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">completed</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">completed</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">completed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Write workshop slides"</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pending</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+
+    <span class="c1"># Act 3: Delete the completed task</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
+
+    <span class="c1"># Assert 3: Verify deletion</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">description</span> <span class="o">!=</span> <span class="s2">"Write workshop slides"</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Variant 1 acceptance test passed!"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_alt" id="cell-id=28edbea3e1b52080">
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=28d242691cb88363">
 <div class="input">
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_full_todo_list_scenario_solution</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_full_todo_list_scenario_v1</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -13646,35 +13683,124 @@ Ihren Fortschritt zu sehen.</li>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Acceptance test passed!
+<pre>Variant 1 acceptance test passed!
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_alt" id="cell-id=8e713de4ffbc1814">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=518dc4e2f7c15a0f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Implementierung:-Variante-2-(Listen-%C3%A4hnlich)">Implementierung: Variante 2 (Listen-ähnlich)<a class="anchor-link" href="#Implementierung:-Variante-2-(Listen-%C3%A4hnlich)">¶</a></h2><p>Diese Variante implementiert das Python Data Model für eine listen-ähnliche
+Schnittstelle.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=6f7bef3d3e27c832">
 <div class="input">
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_all_tests</span><span class="p">():</span>
-    <span class="n">test_new_list_is_empty</span><span class="p">()</span>
-    <span class="n">test_add_task_adds_correct_task</span><span class="p">()</span>
-    <span class="n">test_mark_task_as_complete</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"--- All unit tests passed ---"</span><span class="p">)</span>
-    <span class="n">test_full_todo_list_scenario_solution</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskV2</span><span class="p">:</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">completed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=323447b36b8c1f75">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=0e2281109c92fa87">
 <div class="input">
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">run_all_tests</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TodoListV2</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">TaskV2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TaskV2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">task</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="n">description</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">description</span> <span class="o">!=</span> <span class="n">description</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TaskV2</span><span class="p">(</span><span class="n">description</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6ab6ff7edaa3264f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Variante-2:-Akzeptanztest">Variante 2: Akzeptanztest<a class="anchor-link" href="#Variante-2:-Akzeptanztest">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=a731a96437ed5cec">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_full_todo_list_scenario_v2</span><span class="p">():</span>
+    <span class="c1"># Arrange</span>
+    <span class="n">todo_list</span> <span class="o">=</span> <span class="n">TodoListV2</span><span class="p">()</span>
+
+    <span class="c1"># Act 1: Add tasks</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Implement Two-Loop TDD"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Write workshop slides"</span><span class="p">)</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Review course materials"</span><span class="p">)</span>
+
+    <span class="c1"># Assert 1: List-like access</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Implement Two-Loop TDD"</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="p">[</span><span class="s2">"Write workshop slides"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">==</span> <span class="s2">"Write workshop slides"</span>
+    <span class="k">assert</span> <span class="s2">"Write workshop slides"</span> <span class="ow">in</span> <span class="n">todo_list</span>
+
+    <span class="c1"># Act 2: Complete a task using bracket access</span>
+    <span class="n">todo_list</span><span class="p">[</span><span class="s2">"Write workshop slides"</span><span class="p">]</span><span class="o">.</span><span class="n">completed</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Assert 2: Check completion using iteration</span>
+    <span class="n">completed_task</span> <span class="o">=</span> <span class="n">todo_list</span><span class="p">[</span><span class="s2">"Write workshop slides"</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">completed_task</span><span class="o">.</span><span class="n">completed</span> <span class="ow">is</span> <span class="kc">True</span>
+    <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">completed</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+
+    <span class="c1"># Act 3: Delete the completed task using del</span>
+    <span class="k">del</span> <span class="n">todo_list</span><span class="p">[</span><span class="s2">"Write workshop slides"</span><span class="p">]</span>
+
+    <span class="c1"># Assert 3: Verify deletion</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="s2">"Write workshop slides"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">todo_list</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Variant 2 acceptance test passed!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=7c08e6395aa872d2">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_full_todo_list_scenario_v2</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -13684,11 +13810,174 @@ Ihren Fortschritt zu sehen.</li>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Unit test 'test_new_list_is_empty' passed.
-Unit test 'test_add_task_adds_correct_task' passed.
-Unit test 'test_mark_task_as_complete' passed.
---- All unit tests passed ---
-Acceptance test passed!
+<pre>Variant 2 acceptance test passed!
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=07baf43d123c0a9b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Implementierung:-Variante-3-(Funktional)">Implementierung: Variante 3 (Funktional)<a class="anchor-link" href="#Implementierung:-Variante-3-(Funktional)">¶</a></h2><p>Diese Variante verwendet einfache Dictionaries und freie Funktionen.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=c126bdba9fb847b4">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Add a new task to the todo list."""</span>
+    <span class="n">todo_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"description"</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">"completed"</span><span class="p">:</span> <span class="kc">False</span><span class="p">})</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Find a task by description."""</span>
+    <span class="k">return</span> <span class="nb">next</span><span class="p">((</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span> <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="s2">"description"</span><span class="p">]</span> <span class="o">==</span> <span class="n">description</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mark_task_completed</span><span class="p">(</span><span class="n">todo_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Mark a task as completed."""</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">find_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">task</span><span class="p">:</span>
+        <span class="n">task</span><span class="p">[</span><span class="s2">"completed"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">delete_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Delete a task from the todo list."""</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">task</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">todo_list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">task</span><span class="p">[</span><span class="s2">"description"</span><span class="p">]</span> <span class="o">==</span> <span class="n">description</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">todo_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=51d81adb577e8147"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Variante-3:-Akzeptanztest">Variante 3: Akzeptanztest<a class="anchor-link" href="#Variante-3:-Akzeptanztest">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=e190ca6394a6fe1b">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_full_todo_list_scenario_v3</span><span class="p">():</span>
+    <span class="c1"># Arrange: Simple list of dicts - no class needed!</span>
+    <span class="n">todo_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Act 1: Add tasks using free functions</span>
+    <span class="n">add_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Implement Two-Loop TDD"</span><span class="p">)</span>
+    <span class="n">add_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Write workshop slides"</span><span class="p">)</span>
+    <span class="n">add_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Review course materials"</span><span class="p">)</span>
+
+    <span class="c1"># Assert 1: Direct list/dict access</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="n">todo_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"description"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Implement Two-Loop TDD"</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="ow">not</span> <span class="n">task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"completed"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">todo_list</span><span class="p">)</span>
+
+    <span class="c1"># Act 2: Complete a task</span>
+    <span class="n">mark_task_completed</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Write workshop slides"</span><span class="p">)</span>
+
+    <span class="c1"># Assert 2: Check completion</span>
+    <span class="n">completed</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"completed"</span><span class="p">)]</span>
+    <span class="n">pending</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"completed"</span><span class="p">)]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">completed</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">completed</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"description"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Write workshop slides"</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pending</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+
+    <span class="c1"># Act 3: Delete completed task</span>
+    <span class="n">delete_task</span><span class="p">(</span><span class="n">todo_list</span><span class="p">,</span> <span class="s2">"Write workshop slides"</span><span class="p">)</span>
+
+    <span class="c1"># Assert 3: Verify deletion</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">todo_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">"description"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Write workshop slides"</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">todo_list</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Variant 3 acceptance test passed!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=856afcee304646ad">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_full_todo_list_scenario_v3</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Variant 3 acceptance test passed!
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=a426e5a12da92d15"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Zusammenfassung">Zusammenfassung<a class="anchor-link" href="#Zusammenfassung">¶</a></h2><ul>
+<li>Der Akzeptanztest definiert das Design der API.</li>
+<li>Drei verschiedene Designs führen zu drei unterschiedlichen Implementierungen:<ul>
+<li><strong>V1</strong>: Objektorientiert mit <code>.tasks</code>-Property</li>
+<li><strong>V2</strong>: Listen-ähnlich mit <code>__len__</code>, <code>__getitem__</code>, <code>del</code></li>
+<li><strong>V3</strong>: Funktional mit freien Funktionen und Dictionaries</li>
+</ul>
+</li>
+<li>Alle erfüllen dieselben Anforderungen, aber mit unterschiedlicher API.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ad862074531168a0">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_all_variant_tests</span><span class="p">():</span>
+    <span class="n">test_full_todo_list_scenario_v1</span><span class="p">()</span>
+    <span class="n">test_full_todo_list_scenario_v2</span><span class="p">()</span>
+    <span class="n">test_full_todo_list_scenario_v3</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- All variant tests passed! ---"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e04015b331862038">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">run_all_variant_tests</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Variant 1 acceptance test passed!
+Variant 2 acceptance test passed!
+Variant 3 acceptance test passed!
+
+--- All variant tests passed! ---
 </pre>
 </div>
 </div>
