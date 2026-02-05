@@ -13145,25 +13145,80 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a38ac62ee0380ddd"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=4bd43194c0342cfe"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Positionen-in-Dateien">Positionen in Dateien<a class="anchor-link" href="#Positionen-in-Dateien">¶</a></h1><ul>
-<li>Mit den Methoden <code>tell()</code> und <code>seek()</code> kann die Position in der Datei
-abgefragt oder verändert werden.</li>
+<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h2><ul>
+<li>Bisher: Dateien sequentiell lesen oder schreiben</li>
+<li>Problem: Was wenn wir nur einen Teil der Datei ändern wollen?</li>
+<li>Lösung: Direkt zu bestimmten Positionen in der Datei springen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d6b386b2f03a0149">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=28f7909c6902b446"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Die-Methoden-tell()-und-seek()">Die Methoden <code>tell()</code> und <code>seek()</code><a class="anchor-link" href="#Die-Methoden-tell()-und-seek()">¶</a></h2><ul>
+<li><code>tell()</code>: Gibt die aktuelle Position in der Datei zurück</li>
+<li><code>seek(position)</code>: Springt zu einer bestimmten Position</li>
+<li>Position wird in <strong>Bytes</strong> gemessen (nicht Zeichen!)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a0883ab87dee5462"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wichtig:-Bytes-vs.-Zeichen">Wichtig: Bytes vs. Zeichen<a class="anchor-link" href="#Wichtig:-Bytes-vs.-Zeichen">¶</a></h2><ul>
+<li>ASCII-Zeichen: 1 Byte pro Zeichen</li>
+<li>UTF-8: 1-4 Bytes pro Zeichen</li>
+<li><code>seek()</code> arbeitet mit Bytes, nicht mit Zeichen!</li>
+<li>Bei reinem ASCII ist das kein Problem</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ef8491d268f3b64c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Beispiel:-Testdaten-erstellen">Beispiel: Testdaten erstellen<a class="anchor-link" href="#Beispiel:-Testdaten-erstellen">¶</a></h2><ul>
+<li>Wir erstellen eine Datei mit bekanntem Inhalt</li>
+<li>Jede Zeile hat 41 Zeichen (inkl. Newline)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=488006b894446129">
 <div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="s2">"0123456789A123456789B123456789C123456789</span><span class="se">\n</span><span class="s2">"</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">line</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0123456789A123456789B123456789C123456789
+0123456789a123456789b123456789c123456789
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dbe50b929581079b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Datei-schreiben-und-lesen">Datei schreiben und lesen<a class="anchor-link" href="#Datei-schreiben-und-lesen">¶</a></h2>
 </div>
 </div>
 </div>
@@ -13197,7 +13252,7 @@ abgefragt oder verändert werden.</li>
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0123456789A123456789B123456789C123456789
-0123456789A123456789B123456789C123456789
+0123456789a123456789b123456789c123456789
 
 </pre>
 </div>
@@ -13205,18 +13260,40 @@ abgefragt oder verändert werden.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ef19340e7e68a237">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=8d5eb0d5b49c3599"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Position-verfolgen-mit-tell()">Position verfolgen mit <code>tell()</code><a class="anchor-link" href="#Position-verfolgen-mit-tell()">¶</a></h2><ul>
+<li>Nach dem Öffnen: Position ist 0</li>
+<li>Nach jedem Lesen/Schreiben: Position rückt vor</li>
+<li><code>tell()</code> zeigt immer die aktuelle Position</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=0ba24f90972bde8b">
 <div class="input">
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=83d64de30a0592df">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="s2">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File position before reading: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="n">contents</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File position after reading: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File position after writing: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Position before reading: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">line1</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Position after first readline: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">line2</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Position after second readline: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13226,25 +13303,22 @@ abgefragt oder verändert werden.</li>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>File position before reading: 0
-File position after reading: 84
-File position after writing: 126
-0123456789A123456789B123456789C123456789
-0123456789A123456789B123456789C123456789
-
+<pre>Position before reading: 0
+Position after first readline: 42
+Position after second readline: 84
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5eed05063f311e69">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=d4750fc98d849668">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">new_line</span> <span class="o">=</span> <span class="s2">"!! Let's overwrite a part of the file !!"</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Line 1: </span><span class="si">{</span><span class="n">line1</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Line 2: </span><span class="si">{</span><span class="n">line2</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13252,23 +13326,125 @@ File position after writing: 126
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>40</pre>
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Line 1: '0123456789A123456789B123456789C123456789\n'
+Line 2: '0123456789a123456789b123456789c123456789\n'
+</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=52a4906666c3fedc">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f71d7cb3fa0b0b1f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mit-seek()-springen">Mit <code>seek()</code> springen<a class="anchor-link" href="#Mit-seek()-springen">¶</a></h2><ul>
+<li><code>seek(0)</code>: Zurück zum Anfang</li>
+<li><code>seek(n)</code>: Springe zu Byte n</li>
+<li>Ermöglicht erneutes Lesen oder gezieltes Überschreiben</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=96916fa984c82859">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=db6b89e4a1bfd874">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="s2">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span><span class="si">}</span><span class="s2"> lines."</span><span class="p">)</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">41</span><span class="p">)</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Position: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"After readline: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"After seek(0): </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Position: 0
+After readline: 42
+After seek(0): 0
+0123456789A123456789B123456789C123456789
+0123456789a123456789b123456789c123456789
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=f6fca8c5cd57d658"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Daten-%C3%BCberschreiben">Daten überschreiben<a class="anchor-link" href="#Daten-%C3%BCberschreiben">¶</a></h2><ul>
+<li>Mit <code>seek()</code> können wir zu einer Position springen</li>
+<li>Dann mit <code>write()</code> überschreiben</li>
+<li><strong>Wichtig</strong>: Die neuen Daten überschreiben die alten!</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d17cb33be7028f57">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">new_text</span> <span class="o">=</span> <span class="s2">"!!! OVERWRITTEN !!!"</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">new_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>19</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=0b05918a1f266d50">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0f6492290934938c">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="s2">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">41</span><span class="p">)</span>  <span class="c1"># Jump to second line</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">new_text</span><span class="p">)</span>
     <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
@@ -13280,14 +13456,373 @@ File position after writing: 126
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>File has 3 lines.
-0123456789A123456789B123456789C123456789
-!! Let's overwrite a part of the file !!9
-0123456789A123456789B123456789C123456789
+<pre>0123456789A123456789B123456789C123456789
+!!! OVERWRITTEN !!!89b123456789c123456789
 
 </pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=eb801ce646bb6017"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Problem:-Daten-einf%C3%BCgen">Problem: Daten einfügen<a class="anchor-link" href="#Problem:-Daten-einf%C3%BCgen">¶</a></h2><ul>
+<li><code>write()</code> überschreibt, fügt nicht ein!</li>
+<li>Dateien sind wie ein Band, nicht wie eine Liste</li>
+<li>Um Daten einzufügen, müssen wir den Rest verschieben</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=040f4b503fa1fbd3"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vergleich:-Listen-vs.-Dateien">Vergleich: Listen vs. Dateien<a class="anchor-link" href="#Vergleich:-Listen-vs.-Dateien">¶</a></h2><p>Listen können Elemente einfügen:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9cb338077e819c3a">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">my_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">]</span>
+<span class="n">my_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[12]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 'a', 'b', 'c', 'd', 'e', 4, 5]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=b72bdb3e315497ae"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Bei Dateien geht das <strong>nicht</strong> direkt!</li>
+<li>Wir müssen den Rest der Datei manuell verschieben</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=10312fedfac29b96"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="L%C3%B6sung:-Daten-in-der-Mitte-einf%C3%BCgen">Lösung: Daten in der Mitte einfügen<a class="anchor-link" href="#L%C3%B6sung:-Daten-in-der-Mitte-einf%C3%BCgen">¶</a></h2><p>Strategie:</p>
+<ol>
+<li>Lesen bis zur Einfügeposition</li>
+<li>Position merken mit <code>tell()</code></li>
+<li>Rest der Datei lesen und speichern</li>
+<li>Zurück zur gemerkten Position mit <code>seek()</code></li>
+<li>Neue Daten schreiben</li>
+<li>Gespeicherten Rest schreiben</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide celltag_keep" id="cell-id=4a52ae0d86e805d9">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Before insertion:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Before insertion:
+========================================
+0123456789A123456789B123456789C123456789
+0123456789a123456789b123456789c123456789
+
+========================================
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=4b2b7aa2bd59d148">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="c1"># Read initial part of file</span>
+    <span class="n">first_line</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="c1"># Remember position</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+    <span class="c1"># Read rest to preserve</span>
+    <span class="n">rest</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># Go back to remembered position</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+    <span class="c1"># Write new data</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"=== INSERTED LINE ===</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1"># Write rest</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=61cb299370abeba1">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"After insertion:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"my-data-file.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>After insertion:
+========================================
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0123456789A123456789B123456789C123456789
+=== INSERTED LINE ===
+0123456789a123456789b123456789c123456789
+
+========================================
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=e48a2f6150cd4a11"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Anwendungsfall:-Datenbl%C3%B6cke-fester-Gr%C3%B6%C3%9Fe">Anwendungsfall: Datenblöcke fester Größe<a class="anchor-link" href="#Anwendungsfall:-Datenbl%C3%B6cke-fester-Gr%C3%B6%C3%9Fe">¶</a></h2><ul>
+<li>Wenn alle Datensätze gleich groß sind:<ul>
+<li>Können wir direkt zu einem bestimmten Datensatz springen</li>
+<li>Position = Index × Datensatzgröße</li>
+</ul>
+</li>
+<li>Beispiel: Highscore-Tabelle eines Spiels</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f1dde78dfe225acb"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Highscore-Datei-erstellen">Highscore-Datei erstellen<a class="anchor-link" href="#Highscore-Datei-erstellen">¶</a></h3><ul>
+<li>Jeder Eintrag: Name (10 Zeichen) + Punktzahl (6 Ziffern) + Newline</li>
+<li>Feste Größe: 17 Bytes pro Eintrag</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b7a5051c98131172">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">format_record</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">10</span><span class="si">}{</span><span class="n">score</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+
+<span class="n">RECORD_SIZE</span> <span class="o">=</span> <span class="mi">17</span>  <span class="c1"># 10 + 6 + 1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=85aa79a23b4e223d">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">high_scores</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">"Alice"</span><span class="p">,</span> <span class="mi">950</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Bob"</span><span class="p">,</span> <span class="mi">875</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Carol"</span><span class="p">,</span> <span class="mi">820</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"David"</span><span class="p">,</span> <span class="mi">750</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Eve"</span><span class="p">,</span> <span class="mi">700</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2320c25a3915a1fa">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"highscores.dat"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">high_scores</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">format_record</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c309377c7138aef8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bestimmten-Rang-direkt-lesen">Bestimmten Rang direkt lesen<a class="anchor-link" href="#Bestimmten-Rang-direkt-lesen">¶</a></h3><ul>
+<li>Wer ist auf Platz 3?</li>
+<li>Position = (Rang - 1) × Datensatzgröße</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=1ab98b74ec60769f">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"highscores.dat"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">rank</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">((</span><span class="n">rank</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">RECORD_SIZE</span><span class="p">)</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">RECORD_SIZE</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">record</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Rank 3: 
+Carol     000820</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4c44cdb0eb21df7c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bestimmten-Rang-aktualisieren">Bestimmten Rang aktualisieren<a class="anchor-link" href="#Bestimmten-Rang-aktualisieren">¶</a></h3><ul>
+<li>Frank schlägt Carols Punktzahl und nimmt Platz 3 ein</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=71d2e614ac85117f">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"highscores.dat"</span><span class="p">,</span> <span class="s2">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">rank</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">((</span><span class="n">rank</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">RECORD_SIZE</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">format_record</span><span class="p">(</span><span class="s2">"Frank"</span><span class="p">,</span> <span class="mi">830</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c5806ff271f8caf9">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"highscores.dat"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Alice     000950
+Bob       000875Frank     000830
+
+David     000750
+Eve       000700
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1bddb267d15cad1d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hinweis:-Bin%C3%A4rdaten-f%C3%BCr-echte-Anwendungen">Hinweis: Binärdaten für echte Anwendungen<a class="anchor-link" href="#Hinweis:-Bin%C3%A4rdaten-f%C3%BCr-echte-Anwendungen">¶</a></h3><ul>
+<li>Unser Beispiel verwendet Text (ASCII)</li>
+<li>Problem: UTF-8-Zeichen haben unterschiedliche Byte-Längen</li>
+<li>Lösung: Binärdaten mit Pythons <code>struct</code>-Modul</li>
+<li>Beispiel: <code>struct.pack("10s i", name.encode(), score)</code></li>
+<li>Garantiert konsistente Datensatzgrößen</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=ef94ca7d652a093e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Zusammenfassung">Zusammenfassung<a class="anchor-link" href="#Zusammenfassung">¶</a></h2><ul>
+<li><code>tell()</code>: Aktuelle Position abfragen</li>
+<li><code>seek(n)</code>: Zu Position n springen</li>
+<li>Schreiben überschreibt, fügt nicht ein</li>
+<li>Für Einfügen: Rest lesen, verschieben, schreiben</li>
+<li>Besonders nützlich bei Daten fester Größe</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=aa869bef4757dea2"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wann-tell()-und-seek()-verwenden?">Wann <code>tell()</code> und <code>seek()</code> verwenden?<a class="anchor-link" href="#Wann-tell()-und-seek()-verwenden?">¶</a></h2><ul>
+<li><strong>Ja</strong>: Große Dateien, nur kleiner Teil zu ändern</li>
+<li><strong>Ja</strong>: Datenbanken mit festen Datensatzgrößen</li>
+<li><strong>Nein</strong>: Kleine Dateien (komplett neu schreiben ist einfacher)</li>
+<li><strong>Nein</strong>: Komplexe Textmanipulationen (besser im Speicher)</li>
+</ul>
 </div>
 </div>
 </div>
