@@ -44,9 +44,9 @@
 #
 # ```sql
 # -- Error: NOT NULL constraint failed: customers.address
-# INSERT INTO customers (name) VALUES ('Jane Doe');
+# INSERT INTO customers (address) VALUES ('456 Oak St');
 # -- OK
-# INSERT INTO customers (name, address) VALUES ('Jane Doe', '456 Oak St');
+# INSERT INTO customers (name) VALUES ('Jane Doe');
 # ```
 
 # %% [markdown]
@@ -77,12 +77,12 @@
 #
 # Tabelle `orders`:
 #
-# | order_id | customer_id | product_id | quantity |
-# |----------|-------------|------------|----------|
-# |        1 |           1 |       2341 |        2 |
-# |        2 |           2 |     939504 |        1 |
-# |        3 |           1 |        346 |        3 |
-# |        4 |           1 |       2341 |        2 |
+# | id | customer_id | product_id | quantity |
+# |----|-------------|------------|----------|
+# |  1 |           1 |       2341 |        2 |
+# |  2 |           2 |     939504 |        1 |
+# |  3 |           1 |        346 |        3 |
+# |  4 |           1 |       2341 |        2 |
 
 # %% [markdown]
 #

@@ -60,20 +60,22 @@
 #
 # Alternativ kann man Primär- und Fremdschlüssel auch nach den Spalten
 # definieren
-# - `PRIMARY KEY (id AUTOINCREMENT)`
+# - `PRIMARY KEY (id)`
 # - `FOREIGN KEY (product_id) REFERENCES products(id)`
 #
 # Tabellen- und Spaltennamen _können_ in doppelte Anführungszeichen gesetzt
 # werden.
+#
+# **Hinweis:** `AUTOINCREMENT` kann in SQLite nur in der Spaltendefinition
+# verwendet werden: `id INTEGER PRIMARY KEY AUTOINCREMENT`
 
 # %% [markdown]
 #
 # ```sql
 # CREATE TABLE customers (
-#   id INTEGER,
+#   id INTEGER PRIMARY KEY AUTOINCREMENT,
 #   name TEXT NOT NULL,
-#   address TEXT,
-#   PRIMARY KEY (id AUTOINCREMENT)
+#   address TEXT
 # );
 # ```
 

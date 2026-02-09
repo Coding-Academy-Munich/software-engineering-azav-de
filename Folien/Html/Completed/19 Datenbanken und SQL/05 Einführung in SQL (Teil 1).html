@@ -13230,28 +13230,29 @@ angeben</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e3eb61d7e46cd100"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=610f2f90c36be46c"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Alternativ kann man Primär- und Fremdschlüssel auch nach den Spalten
 definieren</p>
 <ul>
-<li><code>PRIMARY KEY (id AUTOINCREMENT)</code></li>
+<li><code>PRIMARY KEY (id)</code></li>
 <li><code>FOREIGN KEY (product_id) REFERENCES products(id)</code></li>
 </ul>
 <p>Tabellen- und Spaltennamen <em>können</em> in doppelte Anführungszeichen gesetzt
 werden.</p>
+<p><strong>Hinweis:</strong> <code>AUTOINCREMENT</code> kann in SQLite nur in der Spaltendefinition
+verwendet werden: <code>id INTEGER PRIMARY KEY AUTOINCREMENT</code></p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=6d1dbe5fa073b848"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=83e43aab6666c465"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
 <span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="n">address</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
-<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">)</span>
+<span class="w">  </span><span class="n">address</span><span class="w"> </span><span class="nb">TEXT</span>
 <span class="p">);</span>
 </pre></div>
 </div>

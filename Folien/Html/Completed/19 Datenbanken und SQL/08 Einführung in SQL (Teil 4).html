@@ -13145,11 +13145,10 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=78789fe1dc7888f1"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=aa5bda724253621e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>GROUP BY</code>:</li>
+<h3 id="GROUP-BY"><code>GROUP BY</code><a class="anchor-link" href="#GROUP-BY">¶</a></h3><ul>
 <li>Die <code>GROUP BY</code>-Klausel wird verwendet, um die Ergebnisse einer
 <code>SELECT</code>-Anweisung nach einer oder mehreren Spalten zu gruppieren</li>
 <li>Man kann Aggregatfunktionen (z.B. <code>SUM</code>, <code>AVG</code>, <code>COUNT</code>) verwenden, um
@@ -13170,11 +13169,10 @@ Berechnungen mit den gruppierten Daten durchzuführen</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2996c7aa774d2242"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=396de235416f4a53"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>ORDER BY</code>:</li>
+<h3 id="ORDER-BY"><code>ORDER BY</code><a class="anchor-link" href="#ORDER-BY">¶</a></h3><ul>
 <li>Die <code>ORDER BY</code>-Klausel wird verwendet, um die Ergebnisse einer
 <code>SELECT</code>-Anweisung nach einer oder mehreren Spalten zu sortieren</li>
 <li>Man kann angeben, ob die Daten in aufsteigender oder absteigender
@@ -13183,18 +13181,42 @@ Reihenfolge sortiert werden sollen (<code>ASC</code>, <code>DESC</code>)</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7afcf888cfaeb2c5"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=4e474a2ec84cc912"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>LIMIT</code>:</li>
-<li>Die <code>LIMIT</code>-Klausel wird verwendet, um die Anzahl der Ergebnisse , die von
-einer <code>SELECT</code> Anweisung zurückgegeben werden, zu begrenzen</li>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_price</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">products</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span>
+<span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_price</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4f891fb434072bc6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="LIMIT"><code>LIMIT</code><a class="anchor-link" href="#LIMIT">¶</a></h3><ul>
+<li>Die <code>LIMIT</code>-Klausel wird verwendet, um die Anzahl der Ergebnisse, die von
+einer <code>SELECT</code>-Anweisung zurückgegeben werden, zu begrenzen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4cdc134d150287e4"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=1b16ca2daebad93d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_price</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">products</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span>
+<span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_price</span><span class="w"> </span><span class="k">DESC</span>
+<span class="w">  </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f68dddfb374e44e3"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Workshop:-SQL-Abfragen">Workshop: SQL-Abfragen<a class="anchor-link" href="#Workshop:-SQL-Abfragen">¶</a></h2><ul>
@@ -13203,15 +13225,21 @@ einer <code>SELECT</code> Anweisung zurückgegeben werden, zu begrenzen</li>
 <li>Erstellen Sie SQL-Abfragen, die folgende Ergebnisse zurückgeben:<ol>
 <li>Den Namen und Gesamtumsatz eines bestimmten Kunden</li>
 <li>Die Namen und den Umsatz aller Kunden, die eine Bestellung aufgegeben
-haben</li>
+haben, absteigend nach Umsatz sortiert</li>
 <li>Die Namen der drei Kunden mit dem höchsten Gesamtumsatz</li>
 </ol>
 </li>
 </ul>
+<p><em>Hinweis:</em></p>
+<ul>
+<li>Verwenden Sie <code>SUM()</code> mit <code>GROUP BY</code> für den Gesamtumsatz</li>
+<li>Verwenden Sie <code>ORDER BY ... DESC</code> zum Sortieren</li>
+<li>Verwenden Sie <code>LIMIT</code> zur Begrenzung der Ergebnisse</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=6b3195ae35439a63"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=6b3195ae35439a63"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_sales</span>
@@ -13224,7 +13252,7 @@ haben</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=8b76a48a16be2fcb"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=8b76a48a16be2fcb"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_sales</span>
@@ -13237,7 +13265,7 @@ haben</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=b29a5f1960a873f0"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=b29a5f1960a873f0"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_sales</span>

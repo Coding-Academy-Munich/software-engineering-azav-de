@@ -13145,7 +13145,62 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dc8e07b2c7041842"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=fcd25f73b8638cdd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Aktualisieren-von-Daten">Aktualisieren von Daten<a class="anchor-link" href="#Aktualisieren-von-Daten">¶</a></h2><ul>
+<li>Der Befehl <code>UPDATE</code> wird verwendet, um bestehende Daten in einer Tabelle
+zu ändern</li>
+<li>Mit <code>SET</code> gibt man an, welche Spalten geändert werden sollen</li>
+<li>Mit <code>WHERE</code> begrenzt man die Änderung auf bestimmte Zeilen</li>
+<li><strong>Achtung:</strong> Ohne <code>WHERE</code> werden alle Zeilen geändert!</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=617b324abb5b5cbe"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'789 Pine St'</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=db03f944a70135f0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Mehrere-Spalten-aktualisieren">Mehrere Spalten aktualisieren<a class="anchor-link" href="#Mehrere-Spalten-aktualisieren">¶</a></h3><ul>
+<li>Man kann mehrere Spalten gleichzeitig aktualisieren:</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=fbdf34862ffaae30"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="mi">49</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Neue Rezeptur'</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2341</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ffaa85b4ad5de019"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Berechnete-Werte">Berechnete Werte<a class="anchor-link" href="#Berechnete-Werte">¶</a></h3><ul>
+<li>Man kann auch berechnete Werte verwenden:</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=8ac5ac151fe0fd09"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2a23d9e3495b6874"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="L%C3%B6schen-von-Zeilen">Löschen von Zeilen<a class="anchor-link" href="#L%C3%B6schen-von-Zeilen">¶</a></h2><ul>
@@ -13153,9 +13208,35 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 löschen</li>
 <li>Die zu löschenden Zeilen werden oft mit einer <code>WHERE</code>-Klausel angegeben,
 ähnlich der des Befehls <code>SELECT FROM</code></li>
+<li><strong>Achtung:</strong> Ohne <code>WHERE</code> werden alle Zeilen gelöscht!</li>
 </ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=4b26dcd2022d98a6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Charlie'</span><span class="p">;</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8aafb8b11e71c84a"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Daten-aktualisieren-und-l%C3%B6schen">Workshop: Daten aktualisieren und löschen<a class="anchor-link" href="#Workshop:-Daten-aktualisieren-und-l%C3%B6schen">¶</a></h2><p>Führen Sie die folgenden Aufgaben in DB Browser für SQLite aus:</p>
+<ol>
+<li>Ändern Sie die Adresse des Kunden mit <code>id</code> 2 zu <code>'100 Main St'</code></li>
+<li>Erhöhen Sie den Preis aller Produkte um 10%</li>
+<li>Fügen Sie einen neuen Kunden ein und löschen Sie ihn dann wieder</li>
+<li>Überprüfen Sie nach jeder Änderung die Daten mit <code>SELECT</code></li>
+</ol>
+<p><em>Hinweis:</em></p>
+<ul>
+<li>Verwenden Sie <code>UPDATE ... SET ... WHERE ...</code> zum Aktualisieren</li>
+<li>Verwenden Sie <code>DELETE FROM ... WHERE ...</code> zum Löschen</li>
+<li>Vergessen Sie nicht, die Änderungen zu speichern</li>
+</ul>
 </div>
 </div>
 </div>

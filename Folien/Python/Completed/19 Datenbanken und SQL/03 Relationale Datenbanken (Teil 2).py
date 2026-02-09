@@ -9,6 +9,32 @@
 
 # %% [markdown]
 #
+# ## Probleme ohne Primärschlüssel
+#
+# Im letzten Workshop konnten wir (möglicherweise) zwei identische Zeilen in
+# eine Tabelle einfügen. Welche Probleme verursacht das?
+#
+# | name       | address    |
+# |------------|------------|
+# | John Smith | 123 Elm St |
+# | Jane Doe   | 456 Oak St |
+# | John Smith | 123 Elm St |
+
+# %% [markdown]
+#
+# <ul>
+#   <li class="fragment">Welchen "John Smith" wollen wir aktualisieren, wenn er
+#     umzieht?</li>
+#   <li class="fragment">Wie können wir nur eine der doppelten Zeilen
+#     löschen?</li>
+#   <li class="fragment">Wie würden wir einen bestimmten Kunden in einer
+#     Bestellungstabelle referenzieren?</li>
+#   <li class="fragment">Wir brauchen eine Möglichkeit, jede Zeile eindeutig
+#     zu identifizieren!</li>
+# </ul>
+
+# %% [markdown]
+#
 # ## Primärschlüssel
 #
 # - Primärschlüssel sind eindeutige Bezeichner für jede Zeile in einer Tabelle
@@ -55,6 +81,8 @@
 #       <li class="fragment">Dann ändert sich der Primärschlüssel</li>
 #       <li class="fragment">Das kann zu Problemen führen, wenn der Primärschlüssel in anderen Tabellen referenziert wird</li>
 #     </ul>
+#    <li class="fragment">Es ist umständlich, mehrere Spalten zu verwenden, um einen Kunden in anderen
+#       Tabellen zu referenzieren</li>
 # </ul>
 
 # %% [markdown]
@@ -71,128 +99,10 @@
 # </p>
 # <ul class="fragment">
 #   <li>Statt <tt>name</tt> und <tt>address</tt> als Primärschlüssel zu verwenden, wird eine
-#     zusätzliche Spalte <tt>customer_id</tt> eingeführt, die einen eindeutigen
+#     zusätzliche Spalte <tt>id</tt> eingeführt, die einen eindeutigen
 #     Bezeichner für jeden Kunden darstellt.</li>
-#   <li>Der <tt>customer_id</tt> kann dann als Primärschlüssel verwendet werden.</li>
+#   <li>Die <tt>id</tt> kann dann als Primärschlüssel verwendet werden.</li>
 # </ul>
-
-# %% [markdown]
-#
-# ## Warum sind Primärschlüssel wichtig?
-#
-# - Primärschlüssel gewährleisten die Eindeutigkeit von Datensätzen in einer Tabelle
-# - Sie ermöglichen die effiziente Identifizierung und den Zugriff auf Daten
-# - Sie werden verwendet, um Beziehungen zwischen Tabellen herzustellen
-#   - Man nennt sie in diesem Kontext Fremdschlüssel
-
-# %% [markdown]
-#
-# ## Beispiel: Bestellungen
-#
-# - Wie können wir eine Bestellung in unserer Datenbank speichern?
-#   - Der Einfachheit halber nehmen wir an, dass eine Bestellung immer nur ein
-#     Produkt enthält.
-# - Naiv:
-#   - Name des Kunden
-#   - Name des Produkts
-#   - Anzahl der bestellten Produkte
-
-# %% [markdown]
-#
-# Tabelle `customers` für Kunden:
-#
-# | id | name         | address      |
-# |----|--------------|--------------|
-# |  1 | John Smith   | 123 Elm St   |
-# |  2 | Jane Doe     | 456 Oak St   |
-#
-# Tabelle `products` für Produkte:
-#
-# | id   | name         | price | description                                |
-# |------|--------------|-------|--------------------------------------------|
-# | 2341 | Tomatensuppe | 1.99  | Unsere fantastische Tomatensuppe in Dosen. |
-# | 346  | Kichererbsen | 0.59  | In Wasser einweichen und genießen...       |
-#
-# Tabelle `orders` für Bestellungen:
-#
-# | customer_name | product_name | quantity |
-# |---------------|--------------|----------|
-# | John Smith    | Tomato soup  |        2 |
-# | Jane Doe      | Tomato soup  |        1 |
-# | John Smith    | Chickpeas    |        3 |
-
-# %% [markdown]
-#
-# ## Problem mit der naiven Lösung:
-#
-# - Kunden mit dem gleichen Namen können nicht unterschieden werden
-# - Produkte mit dem gleichen Namen können nicht unterschieden werden
-# - Bestellungen können nicht eindeutig zugeordnet werden
-
-# %% [markdown]
-#
-# Tabelle `customers`:
-#
-# | id | name       | address      |
-# |----|------------|--------------|
-# |  1 | John Smith | 123 Elm St   |
-# |  2 | Jane Doe   | 456 Oak St   |
-# |  3 | John Smith | 789 Maple St |
-#
-# Tabelle `products`:
-#
-# | id     | product_name | price | description                                |
-# |--------|--------------|-------|--------------------------------------------|
-# | 2341   | Tomatensuppe | 1.99  | Unsere fantastische Tomatensuppe in Dosen. |
-# | 939504 | Tomatensuppe | 2.49  | Premium-Tomatensuppe in Glasflaschen.      |
-# | 346    | Kichererbsen | 0.59  | In Wasser einweichen und genießen...       |
-#
-# Tabelle `orders`:
-#
-# | customer_name | product_name | quantity |
-# |---------------|--------------|----------|
-# | John Smith    | Tomatensuppe |        2 |
-# | Jane Doe      | Tomatensuppe |        1 |
-# | John Smith    | Kichererbsen |        3 |
-# | John Smith    | Tomatensuppe |        2 |
-
-# %% [markdown]
-#
-# ## Lösung
-#
-# - Wir verwenden in der Bestellung nicht Kunden- und Produktnamen
-# - Wir verwenden stattdessen die IDs
-#   - Diese sind Primärschlüssel in den Tabellen `customers` und `products`
-#   - Damit wissen wir, dass sie eindeutig sind
-# - Wir geben jeder Bestellung eine eindeutige ID
-#   - Diese wird Primärschlüssel in der Tabelle `orders`
-
-# %% [markdown]
-#
-# Tabelle `customers`:
-#
-# | id | name         | address      |
-# |----|--------------|--------------|
-# |  1 | John Smith   | 123 Elm St   |
-# |  2 | Jane Doe     | 456 Oak St   |
-# |  3 | John Smith   | 789 Maple St |
-#
-# Tabelle `products`:
-#
-# | id     | product_name | price | description                                |
-# |--------|--------------|-------|--------------------------------------------|
-# |   2341 | Tomatensuppe | 1.99  | Unsere fantastische Tomatensuppe in Dosen. |
-# | 939504 | Tomatensuppe | 2.49  | Premium-Tomatensuppe in Glasflaschen.      |
-# |    346 | Kichererbsen | 0.59  | In Wasser einweichen und genießen...       |
-#
-# Tabelle `orders`:
-#
-# | order_id | customer_id | product_id | quantity |
-# |----------|-------------|------------|----------|
-# |        1 |           1 |       2341 |        2 |
-# |        2 |           2 |     939504 |        1 |
-# |        3 |           1 |        346 |        3 |
-# |        4 |           1 |       2341 |        2 |
 
 # %% [markdown]
 #

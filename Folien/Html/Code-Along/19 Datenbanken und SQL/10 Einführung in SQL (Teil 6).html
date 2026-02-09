@@ -13159,30 +13159,74 @@ Beschränkungen für die Daten in der Tabelle einführen oder löschen</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c678219430bff82f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6dba125d2797995d"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tabellen-l%C3%B6schen:">Tabellen löschen:<a class="anchor-link" href="#Tabellen-l%C3%B6schen:">¶</a></h2><ul>
+<h2 id="Tabellen-l%C3%B6schen">Tabellen löschen<a class="anchor-link" href="#Tabellen-l%C3%B6schen">¶</a></h2><ul>
 <li>Der Befehl <code>DROP TABLE</code> wird verwendet, um eine bestehende Tabelle aus einer
 Datenbank zu entfernen</li>
 <li>Dieser Befehl löscht dauerhaft alle Daten in der Tabelle, daher sollte er
-mit mit Vorsicht verwendet werden</li>
+mit Vorsicht verwendet werden</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8d6023679342968b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2c71681170ec0363"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Indizes">Indizes<a class="anchor-link" href="#Indizes">¶</a></h2><ul>
 <li>Indizes werden verwendet, um die Leistung von Abfragen auf großen Tabellen
-zu verbessern.</li>
+zu verbessern</li>
 <li>Der Befehl <code>CREATE INDEX</code> wird verwendet, um einen neuen Index auf einer
 oder mehreren Spalten in einer Tabelle zu erstellen</li>
-<li>Man kann angeben, ob der Index eindeutig sein soll und ob er aufsteigend
-oder absteigend sortiert werden soll</li>
+<li>Indizes beschleunigen das Suchen, verlangsamen aber das Einfügen und
+Aktualisieren</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=80267545de412d30"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customer_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2c07624dcc0014e5"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Eindeutiger-Index">Eindeutiger Index<a class="anchor-link" href="#Eindeutiger-Index">¶</a></h3><ul>
+<li>Mit <code>UNIQUE</code> kann man sicherstellen, dass alle Werte in der indizierten
+Spalte eindeutig sind:</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=c088112c3928cc85"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_product_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">(</span><span class="n">product_name</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3339e3ac3c2965dd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Tabellenstruktur-%C3%A4ndern">Workshop: Tabellenstruktur ändern<a class="anchor-link" href="#Workshop:-Tabellenstruktur-%C3%A4ndern">¶</a></h2><ol>
+<li>Fügen Sie der <code>customers</code>-Tabelle eine neue Spalte <code>email</code> (TEXT) hinzu</li>
+<li>Aktualisieren Sie einige Kunden mit E-Mail-Adressen</li>
+<li>Erstellen Sie einen Index auf der Spalte <code>name</code> der <code>customers</code>-Tabelle</li>
+<li>Erstellen Sie eine neue Tabelle <code>test_table</code> und löschen Sie sie dann wieder</li>
+</ol>
+<p><em>Hinweis:</em></p>
+<ul>
+<li>Verwenden Sie <code>ALTER TABLE ... ADD COLUMN ...</code> zum Hinzufügen</li>
+<li>Verwenden Sie <code>CREATE INDEX</code> zum Erstellen eines Index</li>
+<li>Verwenden Sie <code>DROP TABLE</code> zum Löschen der Test-Tabelle</li>
 </ul>
 </div>
 </div>

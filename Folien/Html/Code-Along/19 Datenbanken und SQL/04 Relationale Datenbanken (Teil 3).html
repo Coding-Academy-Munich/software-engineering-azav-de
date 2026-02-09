@@ -13145,27 +13145,312 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3a35c18a228a0c7d"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1e8494cbab85331d"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Fremdschl%C3%BCssel-und-Beziehungen">Fremdschlüssel und Beziehungen<a class="anchor-link" href="#Fremdschl%C3%BCssel-und-Beziehungen">¶</a></h2><ul>
-<li>Wir brauchen oft Beziehungen zwischen Tabellen, um Daten zu verknüpfen<ul>
-<li>Beispiel: Bestellung benötigt Kunden- und Produktinformationen</li>
+<h2 id="Warum-sind-Prim%C3%A4rschl%C3%BCssel-wichtig?">Warum sind Primärschlüssel wichtig?<a class="anchor-link" href="#Warum-sind-Prim%C3%A4rschl%C3%BCssel-wichtig?">¶</a></h2><ul>
+<li>Primärschlüssel gewährleisten die Eindeutigkeit von Datensätzen in einer Tabelle</li>
+<li>Sie ermöglichen die effiziente Identifizierung und den Zugriff auf Daten</li>
+<li>Sie werden verwendet, um Beziehungen zwischen Tabellen herzustellen<ul>
+<li>Spalten, die den Primärschlüssel einer anderen Tabelle referenzieren,
+nennt man Fremdschlüssel</li>
 </ul>
 </li>
-<li>Wie können wir eindeutig eine Zeile in einer anderen Tabelle referenzieren?</li>
-<li>Wir merken uns den Primärschlüssel!</li>
-<li>Dazu fügen wir eine Spalte in der Tabelle hinzu, die den Primärschlüssel der
-anderen Tabelle referenziert</li>
-<li>Das nennen wir einen <strong>Fremdschlüssel</strong></li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0f4249a5bbc25187"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0f332059b070942f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Table <code>orders</code>:</p>
+<h2 id="Beispiel:-Bestellungen">Beispiel: Bestellungen<a class="anchor-link" href="#Beispiel:-Bestellungen">¶</a></h2><ul>
+<li>Wie können wir eine Bestellung in unserer Datenbank speichern?<ul>
+<li>Der Einfachheit halber nehmen wir an, dass eine Bestellung immer nur ein
+Produkt enthält.</li>
+</ul>
+</li>
+<li>Naiv:<ul>
+<li>Name des Kunden</li>
+<li>Name des Produkts</li>
+<li>Anzahl der bestellten Produkte</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dedab167dfb74de1"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tabelle <code>customers</code> für Kunden:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>John Smith</td>
+<td>123 Elm St</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Jane Doe</td>
+<td>456 Oak St</td>
+</tr>
+</tbody>
+</table>
+<p>Tabelle <code>products</code> für Produkte:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>price</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2341</td>
+<td>Tomatensuppe</td>
+<td>1.99</td>
+<td>Unsere fantastische Tomatensuppe in Dosen.</td>
+</tr>
+<tr>
+<td>346</td>
+<td>Kichererbsen</td>
+<td>0.59</td>
+<td>In Wasser einweichen und genießen...</td>
+</tr>
+</tbody>
+</table>
+<p>Tabelle <code>orders</code> für Bestellungen:</p>
+<table>
+<thead>
+<tr>
+<th>customer_name</th>
+<th>product_name</th>
+<th>quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>John Smith</td>
+<td>Tomatensuppe</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Jane Doe</td>
+<td>Tomatensuppe</td>
+<td>1</td>
+</tr>
+<tr>
+<td>John Smith</td>
+<td>Kichererbsen</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e1a5bb6d30decbc7"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Problem-mit-der-naiven-L%C3%B6sung:">Problem mit der naiven Lösung:<a class="anchor-link" href="#Problem-mit-der-naiven-L%C3%B6sung:">¶</a></h2><ul>
+<li>Kunden mit dem gleichen Namen können nicht unterschieden werden</li>
+<li>Produkte mit dem gleichen Namen können nicht unterschieden werden</li>
+<li>Bestellungen können nicht eindeutig zugeordnet werden</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=aa40b98d0be0d398"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tabelle <code>customers</code>:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>John Smith</td>
+<td>123 Elm St</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Jane Doe</td>
+<td>456 Oak St</td>
+</tr>
+<tr>
+<td>3</td>
+<td>John Smith</td>
+<td>789 Maple St</td>
+</tr>
+</tbody>
+</table>
+<p>Tabelle <code>products</code>:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>product_name</th>
+<th>price</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2341</td>
+<td>Tomatensuppe</td>
+<td>1.99</td>
+<td>Unsere fantastische Tomatensuppe in Dosen.</td>
+</tr>
+<tr>
+<td>939504</td>
+<td>Tomatensuppe</td>
+<td>2.49</td>
+<td>Premium-Tomatensuppe in Glasflaschen.</td>
+</tr>
+<tr>
+<td>346</td>
+<td>Kichererbsen</td>
+<td>0.59</td>
+<td>In Wasser einweichen und genießen...</td>
+</tr>
+</tbody>
+</table>
+<p>Tabelle <code>orders</code>:</p>
+<table>
+<thead>
+<tr>
+<th>customer_name</th>
+<th>product_name</th>
+<th>quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>John Smith</td>
+<td>Tomatensuppe</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Jane Doe</td>
+<td>Tomatensuppe</td>
+<td>1</td>
+</tr>
+<tr>
+<td>John Smith</td>
+<td>Kichererbsen</td>
+<td>3</td>
+</tr>
+<tr>
+<td>John Smith</td>
+<td>Tomatensuppe</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e770ffe28893db05"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="L%C3%B6sung:-Fremdschl%C3%BCssel">Lösung: Fremdschlüssel<a class="anchor-link" href="#L%C3%B6sung:-Fremdschl%C3%BCssel">¶</a></h2><ul>
+<li>Wir verwenden in der Bestellung nicht Kunden- und Produktnamen</li>
+<li>Wir verwenden stattdessen die IDs<ul>
+<li>Diese sind Primärschlüssel in den Tabellen <code>customers</code> und <code>products</code></li>
+<li>Damit wissen wir, dass sie eindeutig sind</li>
+</ul>
+</li>
+<li>Spalten, die den Primärschlüssel einer anderen Tabelle referenzieren,
+nennt man <strong>Fremdschlüssel</strong><ul>
+<li><code>customer_id</code> und <code>product_id</code> sind Fremdschlüssel in <code>orders</code></li>
+</ul>
+</li>
+<li>Wir geben jeder Bestellung eine eindeutige ID<ul>
+<li>Diese wird Primärschlüssel in der Tabelle <code>orders</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ef2a14e270177a72"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tabelle <code>customers</code>:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>John Smith</td>
+<td>123 Elm St</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Jane Doe</td>
+<td>456 Oak St</td>
+</tr>
+<tr>
+<td>3</td>
+<td>John Smith</td>
+<td>789 Maple St</td>
+</tr>
+</tbody>
+</table>
+<p>Tabelle <code>products</code>:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>product_name</th>
+<th>price</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2341</td>
+<td>Tomatensuppe</td>
+<td>1.99</td>
+<td>Unsere fantastische Tomatensuppe in Dosen.</td>
+</tr>
+<tr>
+<td>939504</td>
+<td>Tomatensuppe</td>
+<td>2.49</td>
+<td>Premium-Tomatensuppe in Glasflaschen.</td>
+</tr>
+<tr>
+<td>346</td>
+<td>Kichererbsen</td>
+<td>0.59</td>
+<td>In Wasser einweichen und genießen...</td>
+</tr>
+</tbody>
+</table>
+<p>Tabelle <code>orders</code>:</p>
 <table>
 <thead>
 <tr>

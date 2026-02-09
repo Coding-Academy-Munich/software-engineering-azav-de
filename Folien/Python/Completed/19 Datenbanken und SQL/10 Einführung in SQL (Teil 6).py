@@ -22,12 +22,12 @@
 
 # %% [markdown]
 #
-# ## Tabellen löschen:
+# ## Tabellen löschen
 #
 # - Der Befehl `DROP TABLE` wird verwendet, um eine bestehende Tabelle aus einer
 #   Datenbank zu entfernen
 # - Dieser Befehl löscht dauerhaft alle Daten in der Tabelle, daher sollte er
-#   mit mit Vorsicht verwendet werden
+#   mit Vorsicht verwendet werden
 #
 # ```sql
 # DROP TABLE customers;
@@ -38,8 +38,58 @@
 # ## Indizes
 #
 # - Indizes werden verwendet, um die Leistung von Abfragen auf großen Tabellen
-#   zu verbessern.
+#   zu verbessern
 # - Der Befehl `CREATE INDEX` wird verwendet, um einen neuen Index auf einer
 #   oder mehreren Spalten in einer Tabelle zu erstellen
-# - Man kann angeben, ob der Index eindeutig sein soll und ob er aufsteigend
-#   oder absteigend sortiert werden soll
+# - Indizes beschleunigen das Suchen, verlangsamen aber das Einfügen und
+#   Aktualisieren
+
+# %% [markdown]
+#
+# ```sql
+# CREATE INDEX idx_customer_name ON customers(name);
+# ```
+
+# %% [markdown]
+#
+# ### Eindeutiger Index
+#
+# - Mit `UNIQUE` kann man sicherstellen, dass alle Werte in der indizierten
+#   Spalte eindeutig sind:
+
+# %% [markdown]
+#
+# ```sql
+# CREATE UNIQUE INDEX idx_product_name ON products(product_name);
+# ```
+
+# %% [markdown]
+#
+# ## Workshop: Tabellenstruktur ändern
+#
+# 1. Fügen Sie der `customers`-Tabelle eine neue Spalte `email` (TEXT) hinzu
+# 2. Aktualisieren Sie einige Kunden mit E-Mail-Adressen
+# 3. Erstellen Sie einen Index auf der Spalte `name` der `customers`-Tabelle
+# 4. Erstellen Sie eine neue Tabelle `test_table` und löschen Sie sie dann wieder
+#
+# *Hinweis:*
+# - Verwenden Sie `ALTER TABLE ... ADD COLUMN ...` zum Hinzufügen
+# - Verwenden Sie `CREATE INDEX` zum Erstellen eines Index
+# - Verwenden Sie `DROP TABLE` zum Löschen der Test-Tabelle
+
+# %% [markdown]
+#
+# ```sql
+# ALTER TABLE customers ADD COLUMN email TEXT;
+# UPDATE customers SET email = 'john@example.com' WHERE id = 1;
+# UPDATE customers SET email = 'jane@example.com' WHERE id = 2;
+# SELECT * FROM customers;
+# ```
+
+# %% [markdown]
+#
+# ```sql
+# CREATE INDEX idx_customer_name ON customers(name);
+# CREATE TABLE test_table (id INTEGER PRIMARY KEY, data TEXT);
+# DROP TABLE test_table;
+# ```

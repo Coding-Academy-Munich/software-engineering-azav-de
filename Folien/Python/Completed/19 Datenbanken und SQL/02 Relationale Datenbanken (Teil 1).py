@@ -151,6 +151,7 @@
 # - `id` (`INTEGER`)
 # - `product_name` (`TEXT`)
 # - `price` (`REAL`)
+# - `description` (`TEXT`)
 
 # %% [markdown]
 #

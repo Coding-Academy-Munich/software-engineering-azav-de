@@ -13145,15 +13145,25 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=1e9e3e58008e2354"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=65b38f4f1d80c0aa"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="SELECT-Abfragen"><code>SELECT</code> Abfragen<a class="anchor-link" href="#SELECT-Abfragen">¶</a></h2><ul>
-<li>Mit SELECT Abfragen kann manDaten aus einer oder mehreren Tabellen in einer
-Datenbank abzurufen</li>
+<li>Mit <code>SELECT</code> Abfragen kann man Daten aus einer oder mehreren Tabellen in
+einer Datenbank abrufen</li>
 <li>Man kann angeben, welche Spalten abgerufen werden sollen, sowie Bedingungen
-für Filterung der Ergebnisse angeben</li>
+für die Filterung der Ergebnisse angeben</li>
 <li>Das Ergebnis der Abfrage ist eine Tabelle mit den angeforderten Daten</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=038e09d4dd76986e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Alle-Daten-aus-einer-Tabelle-abrufen">Alle Daten aus einer Tabelle abrufen<a class="anchor-link" href="#Alle-Daten-aus-einer-Tabelle-abrufen">¶</a></h3><ul>
+<li><code>SELECT *</code> gibt alle Spalten zurück</li>
+<li><code>FROM customers</code> gibt an, aus welcher Tabelle die Daten kommen</li>
 </ul>
 </div>
 </div>
@@ -13163,6 +13173,15 @@ für Filterung der Ergebnisse angeben</li>
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=29ca62bcc0f9d90e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bestimmte-Spalten-ausw%C3%A4hlen">Bestimmte Spalten auswählen<a class="anchor-link" href="#Bestimmte-Spalten-ausw%C3%A4hlen">¶</a></h3><ul>
+<li>Man kann auch nur bestimmte Spalten auswählen:</li>
+</ul>
 </div>
 </div>
 </div>
@@ -13198,34 +13217,36 @@ verbindet.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=452def5b68ac4d73"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ec56fe7a2d4694b9"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2dcf47c77f352aa4"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>WHERE</code>:<ul>
+<h3 id="Die-WHERE-Klausel">Die <code>WHERE</code>-Klausel<a class="anchor-link" href="#Die-WHERE-Klausel">¶</a></h3><ul>
 <li>Die <code>WHERE</code>-Klausel wird verwendet, um die Ergebnisse einer
 <code>SELECT</code>-Anweisung zu filtern</li>
 <li>Man kann Vergleichsoperatoren (z.B.  <code>=</code>, <code>&lt;</code>, <code>&gt;</code>) und logische Operatoren
 (z.B. <code>AND</code>, <code>OR</code>, <code>NOT</code>) verwenden, um die Bedingungen zu spezifizieren</li>
 </ul>
-</li>
-</ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=15a2da1e657c6562"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=e8d3cc3a7d2ffb9f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=998879fbb3381c13"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Daten-aus-mehreren-Tabellen-verbinden">Daten aus mehreren Tabellen verbinden<a class="anchor-link" href="#Daten-aus-mehreren-Tabellen-verbinden">¶</a></h3><ul>
+<li>Wenn wir Daten aus mehreren Tabellen brauchen, können wir sie verbinden</li>
+<li>Dazu geben wir in der <code>WHERE</code>-Klausel an, welche Spalten übereinstimmen
+sollen</li>
+<li>Wenn Spaltennamen in mehreren Tabellen vorkommen, verwenden wir
+<code>tabellenname.spaltenname</code></li>
+</ul>
 </div>
 </div>
 </div>
@@ -13234,6 +13255,16 @@ verbindet.</li>
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c4360f75864a061a"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Spalten-Aliase">Spalten-Aliase<a class="anchor-link" href="#Spalten-Aliase">¶</a></h3><ul>
+<li>Wenn Spalten in verschiedenen Tabellen den gleichen Namen haben, können wir
+ihnen mit <code>AS</code> einen Alias geben:</li>
+</ul>
 </div>
 </div>
 </div>
@@ -13247,23 +13278,46 @@ verbindet.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=69ab1039a29d49c9"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=f876cafb9403f236"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_id</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=1e51b431b75651d1"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=54d4cc8378e94783"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_</span><span class="w"> </span><span class="n">id</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
-<span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+<h3 id="JOIN:-Tabellen-explizit-verbinden"><code>JOIN</code>: Tabellen explizit verbinden<a class="anchor-link" href="#JOIN:-Tabellen-explizit-verbinden">¶</a></h3><ul>
+<li>Statt Tabellen mit Komma und <code>WHERE</code> zu verbinden, kann man die
+<code>JOIN</code>-Klausel verwenden</li>
+<li><code>JOIN</code> macht deutlich, welche Tabellen verbunden werden und wie</li>
+<li>Die Bedingung für die Verbindung wird mit <code>ON</code> angegeben</li>
+<li><code>JOIN</code> ist die empfohlene Schreibweise</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=bd7593d55882e44d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_id</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4363a4c8199ab1e3"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Drei-Tabellen-verbinden">Drei Tabellen verbinden<a class="anchor-link" href="#Drei-Tabellen-verbinden">¶</a></h3><ul>
+<li>Man kann auch mehr als zwei Tabellen verbinden</li>
+<li>Hier verbinden wir Kunden, Bestellungen und Produkte:</li>
+</ul>
 </div>
 </div>
 </div>
@@ -13278,6 +13332,15 @@ verbindet.</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=99efdaa2d9b0d048"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Berechnete-Spalten">Berechnete Spalten<a class="anchor-link" href="#Berechnete-Spalten">¶</a></h3><ul>
+<li>Wir können auch Berechnungen in der <code>SELECT</code>-Klausel durchführen:</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered" id="cell-id=40d8aa43bf513432"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13286,6 +13349,15 @@ verbindet.</li>
 <span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
 <span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">;</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d899cdb3cba1992f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dasselbe-mit-JOIN">Dasselbe mit <code>JOIN</code><a class="anchor-link" href="#Dasselbe-mit-JOIN">¶</a></h3><ul>
+<li>Die gleiche Abfrage mit der empfohlenen <code>JOIN</code>-Syntax:</li>
+</ul>
 </div>
 </div>
 </div>
@@ -13300,27 +13372,34 @@ verbindet.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=4544b47ef6c0f9a7"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c51d9c7b98c89c4e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Unterabfragen-(Subqueries)">Unterabfragen (Subqueries)<a class="anchor-link" href="#Unterabfragen-(Subqueries)">¶</a></h3><ul>
+<li>Man kann auch das Ergebnis einer <code>SELECT</code>-Abfrage als Tabelle verwenden</li>
+<li>Solche verschachtelten Abfragen nennt man Unterabfragen (Subqueries)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=eccc5007a67f37ad"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">total_price</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_price</span>
 <span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">subquery</span><span class="p">;</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">subquery</span>
 <span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subquery</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c8c335594dc0e879"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=48f0e62145e51932"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><code>DISTINCT</code>:<ul>
+<h3 id="DISTINCT"><code>DISTINCT</code><a class="anchor-link" href="#DISTINCT">¶</a></h3><ul>
 <li>Der <code>DISTINCT</code>-Operator wird verwendet, um doppelte Werte aus den Ergebnissen
 einer <code>SELECT</code>-Anweisung zu entfernen</li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -13335,7 +13414,7 @@ einer <code>SELECT</code>-Anweisung zu entfernen</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5d3821f6f41f043a"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=37470610735f1ec0"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Workshop:-SQL-Abfragen">Workshop: SQL-Abfragen<a class="anchor-link" href="#Workshop:-SQL-Abfragen">¶</a></h2><ul>
@@ -13348,53 +13427,12 @@ einer <code>SELECT</code>-Anweisung zu entfernen</li>
 </ol>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5b7ffa74cccf470a"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
-<span class="c1">-- Alternative</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=a6354b3d12974156"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Die zweite Variante (Subquery) erlaubt es uns, Produkte zu finden, die nicht
-bestellt wurden:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=32ff7dcc1e0cb3fb"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">price</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">products</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">;</span>
-<span class="c1">-- Alternative</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">price</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">products</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=975d9c7a8b8304aa"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_price</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">products</span>
-<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span>
-<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-</pre></div>
+<p><em>Hinweis:</em></p>
+<ul>
+<li>Sie können <code>JOIN</code> oder die <code>WHERE</code>-Klausel zum Verbinden von Tabellen
+verwenden</li>
+<li>Verwenden Sie <code>DISTINCT</code>, um doppelte Ergebnisse zu vermeiden</li>
+</ul>
 </div>
 </div>
 </div>
