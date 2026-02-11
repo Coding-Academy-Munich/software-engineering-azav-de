@@ -1,0 +1,103 @@
+{
+  "menus": [
+    {
+      "_type": "menu",
+      "name": "Document",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "New Document",
+          "action": "new_file",
+          "shortcut": "Ctrl+N"
+        },
+        {
+          "_type": "separator"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Open Document...",
+          "action": "open_file",
+          "shortcut": "Ctrl+O"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Save Document",
+          "action": "save_file",
+          "shortcut": "Ctrl+S"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Save Document As...",
+          "action": "save_as_file"
+        }
+      ]
+    },
+    {
+      "_type": "menu",
+      "name": "Clipboard",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "Cut",
+          "action": "cut",
+          "shortcut": "Ctrl+X"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Copy",
+          "action": "copy",
+          "shortcut": "Ctrl+C"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Paste",
+          "action": "paste",
+          "shortcut": "Ctrl+V"
+        }
+      ]
+    },
+    {
+      "_type": "menu",
+      "name": "Selection",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "Select All",
+          "action": "select_all",
+          "shortcut": "Ctrl+A"
+        }
+      ]
+    },
+    {
+      "_type": "menu",
+      "name": "Settings",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "Load Menu Layout...",
+          "action": "load_menu_layout"
+        }
+      ]
+    },
+    {
+      "_type": "menu",
+      "name": "Help",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "About JSON Menu App",
+          "action": "about"
+        },
+        {
+          "_type": "separator"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Quit",
+          "action": "exit",
+          "shortcut": "Alt+F4"
+        }
+      ]
+    }
+  ]
+}

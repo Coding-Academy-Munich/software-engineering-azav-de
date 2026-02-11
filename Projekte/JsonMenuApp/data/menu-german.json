@@ -1,0 +1,94 @@
+{
+  "menus": [
+    {
+      "_type": "menu",
+      "name": "Datei",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "Neu",
+          "action": "new_file",
+          "shortcut": "Ctrl+N"
+        },
+        {
+          "_type": "menuitem",
+          "name": "\u00d6ffnen...",
+          "action": "open_file",
+          "shortcut": "Ctrl+O"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Speichern",
+          "action": "save_file",
+          "shortcut": "Ctrl+S"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Speichern unter...",
+          "action": "save_as_file"
+        },
+        {
+          "_type": "separator"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Men\u00fc-Layout laden...",
+          "action": "load_menu_layout"
+        },
+        {
+          "_type": "separator"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Beenden",
+          "action": "exit",
+          "shortcut": "Alt+F4"
+        }
+      ]
+    },
+    {
+      "_type": "menu",
+      "name": "Bearbeiten",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "Ausschneiden",
+          "action": "cut",
+          "shortcut": "Ctrl+X"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Kopieren",
+          "action": "copy",
+          "shortcut": "Ctrl+C"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Einf\u00fcgen",
+          "action": "paste",
+          "shortcut": "Ctrl+V"
+        },
+        {
+          "_type": "separator"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Alles ausw\u00e4hlen",
+          "action": "select_all",
+          "shortcut": "Ctrl+A"
+        }
+      ]
+    },
+    {
+      "_type": "menu",
+      "name": "Hilfe",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "\u00dcber",
+          "action": "about"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "menus": [
+    {
+      "_type": "menu",
+      "name": "File",
+      "items": [
+        {
+          "_type": "menuitem",
+          "name": "Open...",
+          "action": "open_file",
+          "shortcut": "Ctrl+O"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Save",
+          "action": "save_file",
+          "shortcut": "Ctrl+S"
+        },
+        {
+          "_type": "separator"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Load Menu Layout...",
+          "action": "load_menu_layout"
+        },
+        {
+          "_type": "separator"
+        },
+        {
+          "_type": "menuitem",
+          "name": "Exit",
+          "action": "exit"
+        }
+      ]
+    }
+  ]
+}
