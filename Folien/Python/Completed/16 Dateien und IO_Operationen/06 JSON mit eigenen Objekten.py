@@ -150,103 +150,113 @@ json.loads(json_string, object_hook=point_hook_v2)
 
 # %% [markdown]
 #
-# ## Praxisbeispiel: Menüs
+# ## Mehrere Typen und verschachtelte Objekte
 #
-# - Die Datei `simple-menu.json` enthält Menü-Daten
-# - Verschachtelte Struktur: Menüs enthalten Menüeinträge
-# - Das `_type`-Feld ist bereits vorhanden
+# - Wir erweitern unser Beispiel um eine `Line`-Klasse
+# - Eine Linie verbindet zwei Punkte
+# - Dies zeigt verschachtelte Objekt-Serialisierung
 
 # %%
-with open("simple-menu.json", encoding="utf-8") as file:
-    menu_data = json.load(file)
-
-# %%
-pprint(menu_data)
-
-# %% [markdown]
-#
-# Wir definieren Klassen für Menüs und Menüeinträge:
-
-# %%
-class MenuItem:
-    def __init__(self, name, onclick):
-        self.name = name
-        self.onclick = onclick
+class Line:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
 
     def __repr__(self):
-        return f"MenuItem({self.name!r}, {self.onclick!r})"
+        return f"Line({self.start!r}, {self.end!r})"
 
 
 # %%
-class Menu:
-    def __init__(self, id, name, items):
-        self.id = id
-        self.name = name
-        self.items = items
+line = Line(Point(1, 2), Point(3, 4))
 
-    def __repr__(self):
-        return f"Menu({self.id!r}, {self.name!r}, {self.items!r})"
-
+# %%
+line
 
 # %% [markdown]
 #
-# Der `object_hook` prüft das `_type`-Feld und erzeugt das passende Objekt:
+# Ein Serializer für mehrere geometrische Typen:
 
 # %%
-def menu_hook(d):
-    if d.get("_type") == "menu":
-        items = [MenuItem(m["name"], m["onclick"]) for m in d["menuitems"]]
-        return Menu(d["id"], d["name"], items)
-    return d
-
-
-# %%
-with open("simple-menu.json", encoding="utf-8") as file:
-    my_menu = json.load(file, object_hook=menu_hook)
-
-# %%
-pprint(my_menu)
-
-
-# %% [markdown]
-#
-# Der Serializer wandelt die Objekte zurück in Dictionaries:
-
-# %%
-def menu_serializer(obj):
-    if isinstance(obj, Menu):
-        return {
-            "_type": "menu",
-            "id": obj.id,
-            "name": obj.name,
-            "menuitems": obj.items,
-        }
-    if isinstance(obj, MenuItem):
-        return {"name": obj.name, "onclick": obj.onclick}
+def geo_serializer(obj):
+    if isinstance(obj, Point):
+        return {"_type": "point", "x": obj.x, "y": obj.y}
+    if isinstance(obj, Line):
+        return {"_type": "line", "start": obj.start, "end": obj.end}
     raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
 
 
 # %%
-print(json.dumps(my_menu, default=menu_serializer, indent=2))
+print(json.dumps(line, default=geo_serializer, indent=2))
+
+# %%
+geo_objects = [Point(1, 2), line, Point(5, 6)]
+
+# %%
+print(json.dumps(geo_objects, default=geo_serializer, indent=2))
 
 # %% [markdown]
 #
-# Überprüfung: Stimmt die Serialisierung mit der Originaldatei überein?
+# Der `object_hook` wird bottom-up aufgerufen:
+# - Zuerst werden die verschachtelten Objekte (Points) deserialisiert
+# - Dann das umschließende Objekt (Line)
 
 # %%
-with open("simple-menu.json", encoding="utf-8") as file:
-    file_contents = file.read()
+def geo_hook(d):
+    type_val = d.get("_type")
+    if type_val == "point":
+        return Point(d["x"], d["y"])
+    if type_val == "line":
+        return Line(d["start"], d["end"])
+    return d
+
 
 # %%
-json.dumps(my_menu, default=menu_serializer, indent=2) == file_contents
+geo_json = json.dumps(geo_objects, default=geo_serializer)
 
+# %%
+json.loads(geo_json, object_hook=geo_hook)
+
+# %% [markdown]
+#
+# ## Warum `_type` wichtig ist
+#
+# - Was passiert, wenn wir Objekte und normale Dictionaries mischen?
+# - Das `_type`-Feld unterscheidet zwischen getypten Objekten und einfachen Daten
+
+# %%
+mixed_data = [
+    Point(1, 2),
+    Line(Point(3, 4), Point(5, 6)),
+    {"x": 10, "y": 20},
+    {"start": "Hello", "end": "Goodbye"},
+]
+
+# %%
+mixed_json = json.dumps(mixed_data, default=geo_serializer, indent=2)
+
+# %%
+print(mixed_json)
+
+# %%
+json.loads(mixed_json, object_hook=geo_hook)
+
+
+# %% [markdown]
+#
+# - Objekte mit `_type` werden korrekt zu ihren Klassen konvertiert
+# - Dictionaries ohne `_type` bleiben Dictionaries
+# - So vermeiden wir falsche Konvertierungen
 
 # %% [markdown]
 #
 # ## Mini-Workshop: Rezepte mit Objekten
 #
-# Die Datei `recipes.json` enthält Kochrezepte im JSON-Format als Liste von
-# Objekten mit den Attributen `title`, `ingredients`, `instructions` und `tips`.
+# Die Datei `typed-recipes.json` enthält Kochrezepte im JSON-Format als Liste von
+# Objekten mit den Attributen `_type`, `title`, `ingredients`, `instructions`
+# und `tips`.
+#
+# *Hinweis:* Zum Testen können Sie `typed-recipes-short.json` verwenden, die nur
+# 2 einfache Rezepte enthält.
 
 # %% [markdown]
 #
@@ -268,8 +278,9 @@ class Recipe:
 #
 # Schreiben Sie Funktionen `recipe_hook` und `recipe_serializer` zum
 # Deserialisieren und Serialisieren von `Recipe`-Instanzen.
+# Verwenden Sie das `_type`-Feld zur Erkennung von Rezept-Objekten.
 #
-# Lesen Sie die Datei `recipes.json` mit `object_hook` ein.
+# Lesen Sie die Datei `typed-recipes.json` mit `object_hook` ein.
 #
 # Überprüfen Sie, dass die Serialisierung mit dem Dateiinhalt übereinstimmt.
 #
@@ -279,7 +290,7 @@ class Recipe:
 
 # %%
 def recipe_hook(d):
-    if {"title", "ingredients", "instructions"}.issubset(d.keys()):
+    if d.get("_type") == "recipe":
         return Recipe(
             d["title"], d["ingredients"], d["instructions"], d.get("tips", [])
         )
@@ -290,6 +301,7 @@ def recipe_hook(d):
 def recipe_serializer(obj):
     if isinstance(obj, Recipe):
         return {
+            "_type": "recipe",
             "title": obj.title,
             "ingredients": obj.ingredients,
             "instructions": obj.instructions,
@@ -299,14 +311,14 @@ def recipe_serializer(obj):
 
 
 # %%
-with open("recipes.json", "r", encoding="utf-8") as file:
+with open("typed-recipes.json", "r", encoding="utf-8") as file:
     recipes = json.load(file, object_hook=recipe_hook)
 
 # %%
 recipes
 
 # %%
-with open("recipes.json", "r", encoding="utf-8") as file:
+with open("typed-recipes.json", "r", encoding="utf-8") as file:
     recipe_str = file.read()
 
 # %%

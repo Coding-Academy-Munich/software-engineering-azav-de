@@ -13087,7 +13087,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=9a98cf53f80f48ee"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=686129663c8fae2d"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13137,7 +13137,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>JSON mit eigenen Objekten</b>
+<b>Daten abfragen (SELECT)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13145,655 +13145,233 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=0bd01b44186b5a6a"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=65b38f4f1d80c0aa"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="JSON-mit-eigenen-Objekten">JSON mit eigenen Objekten<a class="anchor-link" href="#JSON-mit-eigenen-Objekten">¶</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2c660aad624f8f33"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Das-Problem">Das Problem<a class="anchor-link" href="#Das-Problem">¶</a></h2><ul>
-<li><code>json.dumps()</code> kann nur Python-Grundtypen serialisieren:<ul>
-<li><code>dict</code>, <code>list</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>None</code></li>
-</ul>
-</li>
-<li>Was passiert, wenn wir eigene Objekte in JSON speichern wollen?</li>
+<h2 id="SELECT-Abfragen"><code>SELECT</code> Abfragen<a class="anchor-link" href="#SELECT-Abfragen">¶</a></h2><ul>
+<li>Mit <code>SELECT</code> Abfragen kann man Daten aus einer oder mehreren Tabellen in
+einer Datenbank abrufen</li>
+<li>Man kann angeben, welche Spalten abgerufen werden sollen, sowie Bedingungen
+für die Filterung der Ergebnisse angeben</li>
+<li>Das Ergebnis der Abfrage ist eine Tabelle mit den angeforderten Daten</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9024ad0defa86f1e">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=a3107e5ac7dcc69c">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Point(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">)"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=0b1eaaddef9e9cd6">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4295784315214500">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=23e9298ac9aa6fc4">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=e2df7da5b06fdc70"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=038e09d4dd76986e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Objekte-in-JSON-serialisieren">Objekte in JSON serialisieren<a class="anchor-link" href="#Objekte-in-JSON-serialisieren">¶</a></h2><ul>
-<li>Strategie: Objekt in ein Dictionary umwandeln</li>
-<li><code>json.dumps()</code> kann Dictionaries problemlos serialisieren</li>
-<li>Wir schreiben eine Funktion, die ein Objekt in ein Dict umwandelt</li>
+<h3 id="Alle-Daten-aus-einer-Tabelle-abrufen">Alle Daten aus einer Tabelle abrufen<a class="anchor-link" href="#Alle-Daten-aus-einer-Tabelle-abrufen">¶</a></h3><ul>
+<li><code>SELECT *</code> gibt alle Spalten zurück</li>
+<li><code>FROM customers</code> gibt an, aus welcher Tabelle die Daten kommen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=078bc73d5292e04a">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=b55877d706d8696c">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=9a3eabb3bd8a7b9f">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=75526e82af9e376f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=46bd28d041722ef6"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Der-default-Parameter">Der <code>default</code>-Parameter<a class="anchor-link" href="#Der-default-Parameter">¶</a></h2><ul>
-<li><code>json.dumps()</code> hat einen <code>default</code>-Parameter</li>
-<li>Eine Funktion, die für nicht-serialisierbare Objekte aufgerufen wird</li>
-<li>Bekommt das Objekt und muss etwas JSON-serialisierbares zurückgeben</li>
-<li>Typischerweise ein Dictionary</li>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=29ca62bcc0f9d90e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bestimmte-Spalten-ausw%C3%A4hlen">Bestimmte Spalten auswählen<a class="anchor-link" href="#Bestimmte-Spalten-ausw%C3%A4hlen">¶</a></h3><ul>
+<li>Man kann auch nur bestimmte Spalten auswählen:</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=5f7cdc28bfd3e601">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=40a218797c311c94">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=dbc9054f6da80b79">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4e8fe981d80e2cd2">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=09567fbc4639308a"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=a95cadd6fba68076"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Objekte-aus-JSON-erzeugen">Objekte aus JSON erzeugen<a class="anchor-link" href="#Objekte-aus-JSON-erzeugen">¶</a></h2><ul>
-<li><code>json.loads()</code> erzeugt aus JSON-Objekten Python-Dictionaries</li>
-<li>Wir wollen aber unsere eigenen Objekte zurückbekommen</li>
-<li>Dafür gibt es den <code>object_hook</code>-Parameter</li>
-<li>Eine Funktion, die für jedes geparste JSON-Objekt (Dict) aufgerufen wird</li>
-<li>Der Rückgabewert ersetzt das Dictionary</li>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b47e5dc8bc2499d0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Spalten-Aliase">Spalten-Aliase<a class="anchor-link" href="#Spalten-Aliase">¶</a></h3><ul>
+<li>Wir können Spalten mit <code>AS</code> einen Alias geben:</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=32ef750cf6b36490">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b3f44398dd454416">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">point_serializer</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=9680be5a9660c8b8">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c86c36130fef8c0e">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=0233a1872a0fa606"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=72f1a95b7bb256c2"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Typ-Erkennung-mit-_type">Typ-Erkennung mit <code>_type</code><a class="anchor-link" href="#Typ-Erkennung-mit-_type">¶</a></h2><ul>
-<li>Problem: Wenn mehrere Objekttypen ähnliche Felder haben</li>
-<li>Lösung: Ein <code>_type</code>-Feld beim Serialisieren hinzufügen</li>
-<li>Beim Deserialisieren prüfen wir <code>_type</code> um den richtigen Typ zu wählen</li>
-<li>Das ist ein gängiges Muster in JSON-APIs</li>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=9ef81af196f5730a"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_address</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ec56fe7a2d4694b9"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Die-WHERE-Klausel">Die <code>WHERE</code>-Klausel<a class="anchor-link" href="#Die-WHERE-Klausel">¶</a></h3><ul>
+<li>Die <code>WHERE</code>-Klausel wird verwendet, um die Ergebnisse einer
+<code>SELECT</code>-Anweisung zu filtern</li>
+<li>Man kann Vergleichsoperatoren (z.B.  <code>=</code>, <code>&lt;</code>, <code>&gt;</code>) und logische Operatoren
+(z.B. <code>AND</code>, <code>OR</code>, <code>NOT</code>) verwenden, um die Bedingungen zu spezifizieren</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=50609f511fcdb6a6">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d2124bf556574a06">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=33d875bbde112e82">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=783f57710ec84248">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f5059d105649baec">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1df9936b96cb123e"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=e8d3cc3a7d2ffb9f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mehrere-Typen-und-verschachtelte-Objekte">Mehrere Typen und verschachtelte Objekte<a class="anchor-link" href="#Mehrere-Typen-und-verschachtelte-Objekte">¶</a></h2><ul>
-<li>Wir erweitern unser Beispiel um eine <code>Line</code>-Klasse</li>
-<li>Eine Linie verbindet zwei Punkte</li>
-<li>Dies zeigt verschachtelte Objekt-Serialisierung</li>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=998879fbb3381c13"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Daten-aus-mehreren-Tabellen-verbinden">Daten aus mehreren Tabellen verbinden<a class="anchor-link" href="#Daten-aus-mehreren-Tabellen-verbinden">¶</a></h3><ul>
+<li>Wenn wir Daten aus mehreren Tabellen brauchen, können wir sie verbinden</li>
+<li>Dazu geben wir in der <code>WHERE</code>-Klausel an, welche Spalten übereinstimmen
+sollen</li>
+<li>Wenn Spaltennamen in mehreren Tabellen vorkommen, verwenden wir
+<code>tabellenname.spaltenname</code></li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=d316fabd8982084d">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Line</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Line(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="si">!r}</span><span class="s2">)"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=fe57a94b91574696">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f4515fd521633171">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5c144cb26f7aca45"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=43d1c064ddd8f29f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ein Serializer für mehrere geometrische Typen:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e8718ccd14ad4ddd">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a8528f2c7c8a577f">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d97d20f6675b15ff">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">geo_objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">line</span><span class="p">,</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=97cf74560dca4292">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=10e43e64d3a72367"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=54d4cc8378e94783"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Der <code>object_hook</code> wird bottom-up aufgerufen:</p>
+<h3 id="JOIN:-Tabellen-explizit-verbinden"><code>JOIN</code>: Tabellen explizit verbinden<a class="anchor-link" href="#JOIN:-Tabellen-explizit-verbinden">¶</a></h3><ul>
+<li>Statt Tabellen mit Komma und <code>WHERE</code> zu verbinden, kann man die
+<code>JOIN</code>-Klausel verwenden</li>
+<li><code>JOIN</code> macht deutlich, welche Tabellen verbunden werden und wie</li>
+<li>Die Bedingung für die Verbindung wird mit <code>ON</code> angegeben</li>
+<li><code>JOIN</code> ist die empfohlene Schreibweise</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=bd7593d55882e44d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_id</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4363a4c8199ab1e3"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Drei-Tabellen-verbinden">Drei Tabellen verbinden<a class="anchor-link" href="#Drei-Tabellen-verbinden">¶</a></h3><ul>
+<li>Man kann auch mehr als zwei Tabellen verbinden</li>
+<li>Hier verbinden wir Kunden, Bestellungen und Produkte:</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b3a0bf93201b7fd6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">price</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">products</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d899cdb3cba1992f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dasselbe-mit-JOIN">Dasselbe mit <code>JOIN</code><a class="anchor-link" href="#Dasselbe-mit-JOIN">¶</a></h3><ul>
+<li>Die gleiche Abfrage mit der empfohlenen <code>JOIN</code>-Syntax:</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=b76645b796dc331a"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">price</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=52e186e3e0858530"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Einfache-SQL-Abfragen">Workshop: Einfache SQL-Abfragen<a class="anchor-link" href="#Workshop:-Einfache-SQL-Abfragen">¶</a></h2><p>Erstellen Sie SQL-Abfragen, die folgende Ergebnisse zurückgeben:</p>
+<ol>
+<li>Alle Kunden mit ihren Bestellungen (Name, Adresse, Produktname, Menge)</li>
+<li>Alle Bestellungen von 'John Smith' (Name, Produktname, Menge)</li>
+<li>Alle Produkte, die der Kunde mit der ID 2 bestellt hat (Produktname, Preis)</li>
+</ol>
+<p><em>Hinweis:</em></p>
 <ul>
-<li>Zuerst werden die verschachtelten Objekte (Points) deserialisiert</li>
-<li>Dann das umschließende Objekt (Line)</li>
+<li>Verwenden Sie <code>JOIN</code> oder die <code>WHERE</code>-Klausel zum Verbinden von Tabellen</li>
+<li>Verwenden Sie <code>WHERE</code> zum Filtern</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=fa9697e47b618cdb">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ec0173654ce0828a">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">geo_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">geo_objects</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">geo_serializer</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f3812c5c2c8d312b">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=113b2f6cb3496c3c"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=3ba505b4cfa76d5c"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Warum-_type-wichtig-ist">Warum <code>_type</code> wichtig ist<a class="anchor-link" href="#Warum-_type-wichtig-ist">¶</a></h2><ul>
-<li>Was passiert, wenn wir Objekte und normale Dictionaries mischen?</li>
-<li>Das <code>_type</code>-Feld unterscheidet zwischen getypten Objekten und einfachen Daten</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=acb28d2af7eca84d">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">mixed_data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="n">Line</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span>
-    <span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"start"</span><span class="p">:</span> <span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">:</span> <span class="s2">"Goodbye"</span><span class="p">},</span>
-<span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=711fe013db39805a">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=db1b9674d0071487">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=0a714ed8e66fb2e4">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ae6554a6a6a10309"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=99c93b4e1d8aca30"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>Objekte mit <code>_type</code> werden korrekt zu ihren Klassen konvertiert</li>
-<li>Dictionaries ohne <code>_type</code> bleiben Dictionaries</li>
-<li>So vermeiden wir falsche Konvertierungen</li>
-</ul>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'John Smith'</span><span class="p">;</span>
+</pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1c66d0ed93b7d331"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=55eb5921816836d7"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mini-Workshop:-Rezepte-mit-Objekten">Mini-Workshop: Rezepte mit Objekten<a class="anchor-link" href="#Mini-Workshop:-Rezepte-mit-Objekten">¶</a></h2><p>Die Datei <code>typed-recipes.json</code> enthält Kochrezepte im JSON-Format als Liste von
-Objekten mit den Attributen <code>_type</code>, <code>title</code>, <code>ingredients</code>, <code>instructions</code>
-und <code>tips</code>.</p>
-<p><em>Hinweis:</em> Zum Testen können Sie <code>typed-recipes-short.json</code> verwenden, die nur
-2 einfache Rezepte enthält.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=97603d4210ed0066"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir verwenden folgende Klasse:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=09344a77b8cff5af">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Recipe</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">,</span> <span class="n">instructions</span><span class="p">,</span> <span class="n">tips</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ingredients</span> <span class="o">=</span> <span class="n">ingredients</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">instructions</span> <span class="o">=</span> <span class="n">instructions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tips</span> <span class="o">=</span> <span class="n">tips</span> <span class="k">if</span> <span class="n">tips</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Recipe(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="si">!r}</span><span class="s2">)"</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">price</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">products</span>
+<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">product_id</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=973febfdc18e5f6f"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Schreiben Sie Funktionen <code>recipe_hook</code> und <code>recipe_serializer</code> zum
-Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.
-Verwenden Sie das <code>_type</code>-Feld zur Erkennung von Rezept-Objekten.</p>
-<p>Lesen Sie die Datei <code>typed-recipes.json</code> mit <code>object_hook</code> ein.</p>
-<p>Überprüfen Sie, dass die Serialisierung mit dem Dateiinhalt übereinstimmt.</p>
-<p><em>Hinweis:</em> Verwenden Sie <code>ensure_ascii=False</code> bei <code>json.dumps()</code>.</p>
-<p>Geben Sie den Titel jedes Rezepts aus.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e429325fe593cfc0">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=af4fd847e510e992">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=1595b6b40d67839e">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=58c3e080e9f7d2e5">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=3071492c22aea34e">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"typed-recipes.json"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">recipe_str</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=77bc5d9c1fa06a66">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=187fd9a95dca491f">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>

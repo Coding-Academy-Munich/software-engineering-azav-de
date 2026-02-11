@@ -87,6 +87,9 @@ with open("simple-menu.json") as file:
 #   einen Schritt des Kochablaufs an
 # - `tips` (Liste von Strings): Weitere Hinweise
 #
+# *Hinweis:* Zum Testen können Sie `recipes-short.json` verwenden, die nur
+# 2 einfache Rezepte enthält.
+#
 # Lesen Sie diese Datei ein und geben Sie die Liste der Rezepte in folgendem
 # Format aus:
 #

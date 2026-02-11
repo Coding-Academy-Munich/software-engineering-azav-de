@@ -13582,144 +13582,51 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=cb708943fb3231df"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1df9936b96cb123e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Praxisbeispiel:-Men%C3%BCs">Praxisbeispiel: Menüs<a class="anchor-link" href="#Praxisbeispiel:-Men%C3%BCs">¶</a></h2><ul>
-<li>Die Datei <code>simple-menu.json</code> enthält Menü-Daten</li>
-<li>Verschachtelte Struktur: Menüs enthalten Menüeinträge</li>
-<li>Das <code>_type</code>-Feld ist bereits vorhanden</li>
+<h2 id="Mehrere-Typen-und-verschachtelte-Objekte">Mehrere Typen und verschachtelte Objekte<a class="anchor-link" href="#Mehrere-Typen-und-verschachtelte-Objekte">¶</a></h2><ul>
+<li>Wir erweitern unser Beispiel um eine <code>Line</code>-Klasse</li>
+<li>Eine Linie verbindet zwei Punkte</li>
+<li>Dies zeigt verschachtelte Objekt-Serialisierung</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=57498791b96075d3">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=d316fabd8982084d">
 <div class="input">
 <div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"simple-menu.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">menu_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Line</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Line(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="si">!r}</span><span class="s2">)"</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6c50afec16423287">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=fe57a94b91574696">
 <div class="input">
 <div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">menu_data</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{'menus': [{'_type': 'menu',
-            'id': 'file',
-            'menuitems': [{'name': 'New', 'onclick': 'CreateNewDoc()'},
-                          {'name': 'Open', 'onclick': 'OpenDoc()'},
-                          {'name': 'Close', 'onclick': 'CloseDoc()'}],
-            'name': 'File'},
-           {'_type': 'menu',
-            'id': 'edit',
-            'menuitems': [{'name': 'Cut', 'onclick': 'CutSelection()'},
-                          {'name': 'Copy', 'onclick': 'CopySelection()'},
-                          {'name': 'Paste', 'onclick': 'PasteSelection()'}],
-            'name': 'Edit'}]}
-</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0f93ce560fd75b39"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir definieren Klassen für Menüs und Menüeinträge:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6109825e4d62a8df">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f4515fd521633171">
 <div class="input">
 <div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MenuItem</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">onclick</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">onclick</span> <span class="o">=</span> <span class="n">onclick</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">"MenuItem(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">onclick</span><span class="si">!r}</span><span class="s2">)"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=3b80bdcace6e3c78">
-<div class="input">
-<div class="prompt input_prompt">In [25]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Menu</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Menu(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="si">!r}</span><span class="s2">)"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f6b79853d458beb4"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Der <code>object_hook</code> prüft das <code>_type</code>-Feld und erzeugt das passende Objekt:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=422571315a9caa13">
-<div class="input">
-<div class="prompt input_prompt">In [26]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">menu_hook</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"_type"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"menu"</span><span class="p">:</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">"name"</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s2">"onclick"</span><span class="p">])</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s2">"menuitems"</span><span class="p">]]</span>
-        <span class="k">return</span> <span class="n">Menu</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"id"</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"name"</span><span class="p">],</span> <span class="n">items</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">d</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=b554997d8b10a772">
-<div class="input">
-<div class="prompt input_prompt">In [27]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"simple-menu.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">my_menu</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">object_hook</span><span class="o">=</span><span class="n">menu_hook</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7eaa6b2b5f90ebd8">
-<div class="input">
-<div class="prompt input_prompt">In [28]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">my_menu</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">line</span>
 </pre></div>
 </div>
 </div>
@@ -13727,50 +13634,43 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{'menus': [Menu('file', 'File', [MenuItem('New', 'CreateNewDoc()'), MenuItem('Open', 'OpenDoc()'), MenuItem('Close', 'CloseDoc()')]),
-           Menu('edit', 'Edit', [MenuItem('Cut', 'CutSelection()'), MenuItem('Copy', 'CopySelection()'), MenuItem('Paste', 'PasteSelection()')])]}
-</pre>
+<div class="prompt output_prompt">Out[24]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>Line(Point(1, 2), Point(3, 4))</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cabd42a4d9d64c71"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5c144cb26f7aca45"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Der Serializer wandelt die Objekte zurück in Dictionaries:</p>
+<p>Ein Serializer für mehrere geometrische Typen:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7d31d6c7375f90f8">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e8718ccd14ad4ddd">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">menu_serializer</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Menu</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">"_type"</span><span class="p">:</span> <span class="s2">"menu"</span><span class="p">,</span>
-            <span class="s2">"id"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="s2">"name"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="s2">"menuitems"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">,</span>
-        <span class="p">}</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">MenuItem</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">"onclick"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">onclick</span><span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">geo_serializer</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Point</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"_type"</span><span class="p">:</span> <span class="s2">"point"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">y</span><span class="p">}</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Line</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"_type"</span><span class="p">:</span> <span class="s2">"line"</span><span class="p">,</span> <span class="s2">"start"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">end</span><span class="p">}</span>
     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2"> is not JSON serializable"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=423cf5f634d5cf8e">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a8528f2c7c8a577f">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">my_menu</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">menu_serializer</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">geo_serializer</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -13781,46 +13681,17 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{
-  "menus": [
-    {
-      "_type": "menu",
-      "id": "file",
-      "name": "File",
-      "menuitems": [
-        {
-          "name": "New",
-          "onclick": "CreateNewDoc()"
-        },
-        {
-          "name": "Open",
-          "onclick": "OpenDoc()"
-        },
-        {
-          "name": "Close",
-          "onclick": "CloseDoc()"
-        }
-      ]
-    },
-    {
-      "_type": "menu",
-      "id": "edit",
-      "name": "Edit",
-      "menuitems": [
-        {
-          "name": "Cut",
-          "onclick": "CutSelection()"
-        },
-        {
-          "name": "Copy",
-          "onclick": "CopySelection()"
-        },
-        {
-          "name": "Paste",
-          "onclick": "PasteSelection()"
-        }
-      ]
-    }
-  ]
+  "_type": "line",
+  "start": {
+    "_type": "point",
+    "x": 1,
+    "y": 2
+  },
+  "end": {
+    "_type": "point",
+    "x": 3,
+    "y": 4
+  }
 }
 </pre>
 </div>
@@ -13828,31 +13699,23 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=eeb42adb7b4c0593"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Überprüfung: Stimmt die Serialisierung mit der Originaldatei überein?</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=835c645dfef093b5">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d97d20f6675b15ff">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"simple-menu.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">file_contents</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">geo_objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">line</span><span class="p">,</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d65baa243d313ff4">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=97cf74560dca4292">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">my_menu</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">menu_serializer</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">file_contents</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">geo_objects</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">geo_serializer</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -13860,19 +13723,228 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[32]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[
+  {
+    "_type": "point",
+    "x": 1,
+    "y": 2
+  },
+  {
+    "_type": "line",
+    "start": {
+      "_type": "point",
+      "x": 1,
+      "y": 2
+    },
+    "end": {
+      "_type": "point",
+      "x": 3,
+      "y": 4
+    }
+  },
+  {
+    "_type": "point",
+    "x": 5,
+    "y": 6
+  }
+]
+</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=911a296941a3eede"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=10e43e64d3a72367"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mini-Workshop:-Rezepte-mit-Objekten">Mini-Workshop: Rezepte mit Objekten<a class="anchor-link" href="#Mini-Workshop:-Rezepte-mit-Objekten">¶</a></h2><p>Die Datei <code>recipes.json</code> enthält Kochrezepte im JSON-Format als Liste von
-Objekten mit den Attributen <code>title</code>, <code>ingredients</code>, <code>instructions</code> und <code>tips</code>.</p>
+<p>Der <code>object_hook</code> wird bottom-up aufgerufen:</p>
+<ul>
+<li>Zuerst werden die verschachtelten Objekte (Points) deserialisiert</li>
+<li>Dann das umschließende Objekt (Line)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=fa9697e47b618cdb">
+<div class="input">
+<div class="prompt input_prompt">In [29]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">geo_hook</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">type_val</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"_type"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">type_val</span> <span class="o">==</span> <span class="s2">"point"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"y"</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">type_val</span> <span class="o">==</span> <span class="s2">"line"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Line</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"start"</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"end"</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ec0173654ce0828a">
+<div class="input">
+<div class="prompt input_prompt">In [30]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">geo_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">geo_objects</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">geo_serializer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f3812c5c2c8d312b">
+<div class="input">
+<div class="prompt input_prompt">In [31]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">geo_json</span><span class="p">,</span> <span class="n">object_hook</span><span class="o">=</span><span class="n">geo_hook</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[31]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[Point(1, 2), Line(Point(1, 2), Point(3, 4)), Point(5, 6)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=113b2f6cb3496c3c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Warum-_type-wichtig-ist">Warum <code>_type</code> wichtig ist<a class="anchor-link" href="#Warum-_type-wichtig-ist">¶</a></h2><ul>
+<li>Was passiert, wenn wir Objekte und normale Dictionaries mischen?</li>
+<li>Das <code>_type</code>-Feld unterscheidet zwischen getypten Objekten und einfachen Daten</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=acb28d2af7eca84d">
+<div class="input">
+<div class="prompt input_prompt">In [32]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mixed_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">Line</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span>
+    <span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"start"</span><span class="p">:</span> <span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">:</span> <span class="s2">"Goodbye"</span><span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=711fe013db39805a">
+<div class="input">
+<div class="prompt input_prompt">In [33]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mixed_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">mixed_data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">geo_serializer</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=db1b9674d0071487">
+<div class="input">
+<div class="prompt input_prompt">In [34]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mixed_json</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[
+  {
+    "_type": "point",
+    "x": 1,
+    "y": 2
+  },
+  {
+    "_type": "line",
+    "start": {
+      "_type": "point",
+      "x": 3,
+      "y": 4
+    },
+    "end": {
+      "_type": "point",
+      "x": 5,
+      "y": 6
+    }
+  },
+  {
+    "x": 10,
+    "y": 20
+  },
+  {
+    "start": "Hello",
+    "end": "Goodbye"
+  }
+]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0a714ed8e66fb2e4">
+<div class="input">
+<div class="prompt input_prompt">In [35]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">mixed_json</span><span class="p">,</span> <span class="n">object_hook</span><span class="o">=</span><span class="n">geo_hook</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[35]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[Point(1, 2),
+ Line(Point(3, 4), Point(5, 6)),
+ {'x': 10, 'y': 20},
+ {'start': 'Hello', 'end': 'Goodbye'}]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=ae6554a6a6a10309"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Objekte mit <code>_type</code> werden korrekt zu ihren Klassen konvertiert</li>
+<li>Dictionaries ohne <code>_type</code> bleiben Dictionaries</li>
+<li>So vermeiden wir falsche Konvertierungen</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=1c66d0ed93b7d331"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mini-Workshop:-Rezepte-mit-Objekten">Mini-Workshop: Rezepte mit Objekten<a class="anchor-link" href="#Mini-Workshop:-Rezepte-mit-Objekten">¶</a></h2><p>Die Datei <code>typed-recipes.json</code> enthält Kochrezepte im JSON-Format als Liste von
+Objekten mit den Attributen <code>_type</code>, <code>title</code>, <code>ingredients</code>, <code>instructions</code>
+und <code>tips</code>.</p>
+<p><em>Hinweis:</em> Zum Testen können Sie <code>typed-recipes-short.json</code> verwenden, die nur
+2 einfache Rezepte enthält.</p>
 </div>
 </div>
 </div>
@@ -13885,7 +13957,7 @@ Objekten mit den Attributen <code>title</code>, <code>ingredients</code>, <code>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=09344a77b8cff5af">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Recipe</span><span class="p">:</span>
@@ -13902,25 +13974,26 @@ Objekten mit den Attributen <code>title</code>, <code>ingredients</code>, <code>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=2313bd54c842f499"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=973febfdc18e5f6f"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Schreiben Sie Funktionen <code>recipe_hook</code> und <code>recipe_serializer</code> zum
-Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
-<p>Lesen Sie die Datei <code>recipes.json</code> mit <code>object_hook</code> ein.</p>
+Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.
+Verwenden Sie das <code>_type</code>-Feld zur Erkennung von Rezept-Objekten.</p>
+<p>Lesen Sie die Datei <code>typed-recipes.json</code> mit <code>object_hook</code> ein.</p>
 <p>Überprüfen Sie, dass die Serialisierung mit dem Dateiinhalt übereinstimmt.</p>
 <p><em>Hinweis:</em> Verwenden Sie <code>ensure_ascii=False</code> bei <code>json.dumps()</code>.</p>
 <p>Geben Sie den Titel jedes Rezepts aus.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c83d2f3b30144735">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e429325fe593cfc0">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">recipe_hook</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="k">if</span> <span class="p">{</span><span class="s2">"title"</span><span class="p">,</span> <span class="s2">"ingredients"</span><span class="p">,</span> <span class="s2">"instructions"</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"_type"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"recipe"</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Recipe</span><span class="p">(</span>
             <span class="n">d</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"ingredients"</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"instructions"</span><span class="p">],</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"tips"</span><span class="p">,</span> <span class="p">[])</span>
         <span class="p">)</span>
@@ -13930,14 +14003,15 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=9006ca40f7d4d7db">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=af4fd847e510e992">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">recipe_serializer</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Recipe</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"_type"</span><span class="p">:</span> <span class="s2">"recipe"</span><span class="p">,</span>
             <span class="s2">"title"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
             <span class="s2">"ingredients"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">ingredients</span><span class="p">,</span>
             <span class="s2">"instructions"</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">instructions</span><span class="p">,</span>
@@ -13949,12 +14023,12 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ac165c08fa8ebdbd">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=1595b6b40d67839e">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"recipes.json"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"typed-recipes.json"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="n">recipes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">object_hook</span><span class="o">=</span><span class="n">recipe_hook</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -13963,7 +14037,7 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=58c3e080e9f7d2e5">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">recipes</span>
@@ -13974,7 +14048,7 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[37]:</div>
+<div class="prompt output_prompt">Out[40]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[Recipe('Spaghetti Carbonara'),
  Recipe('Chicken Teriyaki'),
@@ -13986,12 +14060,12 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1871c014fe80dfc1">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=3071492c22aea34e">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"recipes.json"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"typed-recipes.json"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="n">recipe_str</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -14000,7 +14074,7 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=77bc5d9c1fa06a66">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">recipes</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">recipe_serializer</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="n">recipe_str</span>
@@ -14011,7 +14085,7 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[39]:</div>
+<div class="prompt output_prompt">Out[42]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
@@ -14021,7 +14095,7 @@ Deserialisieren und Serialisieren von <code>Recipe</code>-Instanzen.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=187fd9a95dca491f">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In [43]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">recipe</span> <span class="ow">in</span> <span class="n">recipes</span><span class="p">:</span>
