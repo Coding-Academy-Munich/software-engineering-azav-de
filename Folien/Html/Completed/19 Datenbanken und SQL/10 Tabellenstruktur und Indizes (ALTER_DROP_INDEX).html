@@ -13145,109 +13145,324 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b32fc9310252d7ef"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a4642d77aadabd53"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="%C3%84ndern-von-Tabellen">Ändern von Tabellen<a class="anchor-link" href="#%C3%84ndern-von-Tabellen">¶</a></h2><ul>
-<li>Der Befehl <code>ALTER TABLE</code> wird verwendet, um die Struktur einer bestehenden
-Tabelle zu ändern</li>
-<li>Man kann Spalten in einer Tabelle hinzufügen, ändern oder löschen, sowie
-Beschränkungen für die Daten in der Tabelle einführen oder löschen</li>
+<h2 id="Tabellen-nachtr%C3%A4glich-%C3%A4ndern-(ALTER-TABLE)">Tabellen nachträglich ändern (ALTER TABLE)<a class="anchor-link" href="#Tabellen-nachtr%C3%A4glich-%C3%A4ndern-(ALTER-TABLE)">¶</a></h2><ul>
+<li>Der Befehl <code>ALTER TABLE</code> ändert die Struktur einer bestehenden Tabelle</li>
+<li>SQLite unterstützt nur vier Operationen:<ul>
+<li><code>RENAME TABLE</code> — Tabelle umbenennen</li>
+<li><code>RENAME COLUMN</code> — Spalte umbenennen</li>
+<li><code>ADD COLUMN</code> — Spalte hinzufügen</li>
+<li><code>DROP COLUMN</code> — Spalte entfernen</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6dba125d2797995d"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tabellen-l%C3%B6schen">Tabellen löschen<a class="anchor-link" href="#Tabellen-l%C3%B6schen">¶</a></h2><ul>
-<li>Der Befehl <code>DROP TABLE</code> wird verwendet, um eine bestehende Tabelle aus einer
-Datenbank zu entfernen</li>
-<li>Dieser Befehl löscht dauerhaft alle Daten in der Tabelle, daher sollte er
-mit Vorsicht verwendet werden</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2c71681170ec0363"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Indizes">Indizes<a class="anchor-link" href="#Indizes">¶</a></h2><ul>
-<li>Indizes werden verwendet, um die Leistung von Abfragen auf großen Tabellen
-zu verbessern</li>
-<li>Der Befehl <code>CREATE INDEX</code> wird verwendet, um einen neuen Index auf einer
-oder mehreren Spalten in einer Tabelle zu erstellen</li>
-<li>Indizes beschleunigen das Suchen, verlangsamen aber das Einfügen und
-Aktualisieren</li>
+</li>
+<li><strong>Nicht möglich</strong> in SQLite: Spaltentyp ändern, Constraints nachträglich
+hinzufügen oder entfernen</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=80267545de412d30"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cc15fc02bbdea579"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customer_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2c07624dcc0014e5"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Eindeutiger-Index">Eindeutiger Index<a class="anchor-link" href="#Eindeutiger-Index">¶</a></h3><ul>
-<li>Mit <code>UNIQUE</code> kann man sicherstellen, dass alle Werte in der indizierten
-Spalte eindeutig sind:</li>
+<h2 id="Spalte-hinzuf%C3%BCgen-(ADD-COLUMN)">Spalte hinzufügen (ADD COLUMN)<a class="anchor-link" href="#Spalte-hinzuf%C3%BCgen-(ADD-COLUMN)">¶</a></h2><ul>
+<li><code>ADD COLUMN</code> fügt eine neue Spalte zu einer bestehenden Tabelle hinzu</li>
+<li>Alle bestehenden Zeilen erhalten <code>NULL</code> in der neuen Spalte</li>
+<li>Optional kann ein Standardwert mit <code>DEFAULT</code> angegeben werden</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=c088112c3928cc85"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_product_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">(</span><span class="n">product_name</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3339e3ac3c2965dd"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop:-Tabellenstruktur-%C3%A4ndern">Workshop: Tabellenstruktur ändern<a class="anchor-link" href="#Workshop:-Tabellenstruktur-%C3%A4ndern">¶</a></h2><ol>
-<li>Fügen Sie der <code>customers</code>-Tabelle eine neue Spalte <code>email</code> (TEXT) hinzu</li>
-<li>Aktualisieren Sie einige Kunden mit E-Mail-Adressen</li>
-<li>Erstellen Sie einen Index auf der Spalte <code>name</code> der <code>customers</code>-Tabelle</li>
-<li>Erstellen Sie eine neue Tabelle <code>test_table</code> und löschen Sie sie dann wieder</li>
-</ol>
-<p><em>Hinweis:</em></p>
-<ul>
-<li>Verwenden Sie <code>ALTER TABLE ... ADD COLUMN ...</code> zum Hinzufügen</li>
-<li>Verwenden Sie <code>CREATE INDEX</code> zum Erstellen eines Index</li>
-<li>Verwenden Sie <code>DROP TABLE</code> zum Löschen der Test-Tabelle</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=d81312c6e2d569b9"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=fd1bea7b3b620fa3"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">;</span>
-<span class="k">UPDATE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'john@example.com'</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="k">UPDATE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'jane@example.com'</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=55a07d41358f00e3"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0c425bf06ace29d2"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customer_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">);</span>
-<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test_table</span><span class="p">;</span>
+<h2 id="Standardwerte-und-NOT-NULL">Standardwerte und NOT NULL<a class="anchor-link" href="#Standardwerte-und-NOT-NULL">¶</a></h2><ul>
+<li>Eine neue Spalte kann einen <code>DEFAULT</code>-Wert haben</li>
+<li>Wenn der Standardwert angegeben wird, erhalten bestehende Zeilen diesen Wert
+statt <code>NULL</code></li>
+<li>Wenn eine neue Spalte <code>NOT NULL</code> sein soll, <strong>muss</strong> ein <code>DEFAULT</code> angegeben
+werden</li>
+<li>Ohne <code>DEFAULT</code> würde SQLite einen Fehler ausgeben, da bestehende Zeilen <code>NULL</code>
+hätten</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=9b8f8bb848c9cbcd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">in_stock</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">products</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=385e09c53507349e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tabellen-und-Spalten-umbenennen">Tabellen und Spalten umbenennen<a class="anchor-link" href="#Tabellen-und-Spalten-umbenennen">¶</a></h2><ul>
+<li><code>RENAME TO</code> ändert den Tabellennamen</li>
+<li><code>RENAME COLUMN</code> ändert den Namen einer Spalte</li>
+<li>Die Daten in der Tabelle werden dabei nicht verändert</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=2e56b24e56bb75f9"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">clients</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">clients</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">full_name</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clients</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=65bb6c0cc3bcac36"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Spalte-entfernen-(DROP-COLUMN)">Spalte entfernen (DROP COLUMN)<a class="anchor-link" href="#Spalte-entfernen-(DROP-COLUMN)">¶</a></h2><ul>
+<li><code>DROP COLUMN</code> entfernt eine Spalte und alle ihre Daten</li>
+<li>Dieser Vorgang kann <strong>nicht rückgängig</strong> gemacht werden</li>
+<li><strong>Einschränkungen:</strong> Man kann keine Spalten entfernen, die Teil eines
+Primärschlüssels, eines Index oder eines Fremdschlüssels sind</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=1cdacb4df74a0ecd"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a0f663aa59014083"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tabellen-l%C3%B6schen-(DROP-TABLE)">Tabellen löschen (DROP TABLE)<a class="anchor-link" href="#Tabellen-l%C3%B6schen-(DROP-TABLE)">¶</a></h2><ul>
+<li><code>DROP TABLE</code> löscht eine Tabelle und <strong>alle ihre Daten</strong> dauerhaft</li>
+<li>Es gibt <strong>kein Rückgängigmachen</strong> — die Daten sind unwiderruflich verloren</li>
+<li><code>IF EXISTS</code> verhindert einen Fehler, wenn die Tabelle nicht existiert</li>
+<li><strong>Vorsicht</strong> bei Tabellen, auf die andere Tabellen per Fremdschlüssel
+verweisen — die verweisenden Tabellen können danach inkonsistent sein</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=315e45c441bf6a88"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">test_table</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5706ccf935e418a4"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Was-sind-Indizes?">Was sind Indizes?<a class="anchor-link" href="#Was-sind-Indizes?">¶</a></h2><ul>
+<li>Ein Index ist wie das Stichwortverzeichnis in einem Buch — er hilft, Daten
+schneller zu finden</li>
+<li>Ohne Index muss die Datenbank jede Zeile einzeln durchsuchen (langsam bei
+großen Tabellen)</li>
+<li>Mit einem Index kann die Datenbank direkt zu den passenden Zeilen springen</li>
+<li>Primärschlüssel haben automatisch einen Index</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=21ecc4abf051e9e0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Index-erstellen-(CREATE-INDEX)">Index erstellen (CREATE INDEX)<a class="anchor-link" href="#Index-erstellen-(CREATE-INDEX)">¶</a></h2><ul>
+<li><code>CREATE INDEX</code> erstellt einen Index auf einer oder mehreren Spalten</li>
+<li><code>IF NOT EXISTS</code> verhindert einen Fehler, wenn der Index schon existiert</li>
+<li>Konvention für den Namen: <code>idx_tabellenname_spaltenname</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=91a1e9176b3965dc"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_customer_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=72582e66f49e24f3"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wann-Indizes-verwenden?">Wann Indizes verwenden?<a class="anchor-link" href="#Wann-Indizes-verwenden?">¶</a></h2><ul>
+<li>Verwenden Sie Indizes auf Spalten, die Sie häufig suchen oder filtern
+(<code>WHERE</code>, <code>JOIN</code>)</li>
+<li>Indizes beschleunigen das <strong>Lesen</strong>, verlangsamen aber das <strong>Schreiben</strong>
+(<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>)</li>
+<li>Erstellen Sie <strong>nicht</strong> auf jeder Spalte einen Index — nur dort, wo es hilft</li>
+<li>Kleine Tabellen (wenige hundert Zeilen) brauchen normalerweise keine
+zusätzlichen Indizes</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=dbb0e04479c91ee7"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Eindeutiger-Index-(UNIQUE-INDEX)">Eindeutiger Index (UNIQUE INDEX)<a class="anchor-link" href="#Eindeutiger-Index-(UNIQUE-INDEX)">¶</a></h2><ul>
+<li>Ein <code>UNIQUE</code>-Index stellt sicher, dass keine zwei Zeilen den gleichen Wert
+in dieser Spalte haben</li>
+<li>Der Versuch, einen doppelten Wert einzufügen, führt zu einem Fehler</li>
+<li><strong>Ausnahme:</strong> <code>NULL</code>-Werte gelten als unterschiedlich — mehrere <code>NULL</code>s sind
+erlaubt</li>
+<li>Nützlich für Spalten wie E-Mail-Adressen oder Benutzernamen</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=949ca88795ea239d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customer_email</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">email</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=6fa7bb05f6266b0d"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Zusammengesetzte-Indizes-und-Indizes-l%C3%B6schen">Zusammengesetzte Indizes und Indizes löschen<a class="anchor-link" href="#Zusammengesetzte-Indizes-und-Indizes-l%C3%B6schen">¶</a></h2><ul>
+<li>Ein zusammengesetzter Index umfasst mehrere Spalten</li>
+<li>Nützlich, wenn häufig nach einer Kombination von Spalten gesucht wird</li>
+<li><code>DROP INDEX</code> entfernt einen Index (die Daten in der Tabelle bleiben
+unverändert)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=c1efac10f89bd698"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_orders_cust_prod</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">product_id</span><span class="p">);</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_orders_cust_prod</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=118ca7c7289d5513"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vorhandene-Indizes-anzeigen">Vorhandene Indizes anzeigen<a class="anchor-link" href="#Vorhandene-Indizes-anzeigen">¶</a></h2><ul>
+<li><code>PRAGMA index_list(tabellenname)</code> zeigt alle Indizes einer Tabelle</li>
+<li><code>PRAGMA index_info(indexname)</code> zeigt, welche Spalten ein Index umfasst</li>
+<li>In DB Browser: Indizes sind auch im Reiter "Datenbankstruktur" sichtbar</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=4d330d4944c71683"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">PRAGMA</span><span class="w"> </span><span class="n">index_list</span><span class="p">(</span><span class="n">customers</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4fa67f5ec38fa12c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Workshop:-Tabellenstruktur-%C3%A4ndern-und-Indizes-verwenden">Workshop: Tabellenstruktur ändern und Indizes verwenden<a class="anchor-link" href="#Workshop:-Tabellenstruktur-%C3%A4ndern-und-Indizes-verwenden">¶</a></h2><ol>
+<li>Fügen Sie der <code>customers</code>-Tabelle eine neue Spalte <code>email</code> (TEXT) hinzu.
+Überprüfen Sie das Ergebnis mit <code>SELECT</code></li>
+<li>Fügen Sie der <code>products</code>-Tabelle eine Spalte <code>in_stock</code> (INTEGER, NOT NULL,
+DEFAULT 1) hinzu. Überprüfen Sie, dass der Standardwert bei allen bestehenden
+Produkten gesetzt wurde</li>
+<li>Benennen Sie die Spalte <code>address</code> in der <code>customers</code>-Tabelle in
+<code>street_address</code> um</li>
+<li>Erstellen Sie einen UNIQUE-Index auf <code>customers(email)</code>. Setzen Sie
+verschiedene E-Mail-Adressen für einige Kunden. Versuchen Sie dann, zwei
+Kunden die gleiche E-Mail-Adresse zu geben — beobachten Sie den Fehler</li>
+<li>Erstellen Sie einen zusammengesetzten Index auf
+<code>orders(customer_id, product_id)</code>. Überprüfen Sie mit
+<code>PRAGMA index_list(orders)</code>, ob der Index existiert</li>
+<li>Erstellen Sie eine neue Tabelle <code>test_table</code> und löschen Sie sie dann mit
+<code>DROP TABLE IF EXISTS</code></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=532945ec2913b857"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="L%C3%B6sung-/-Solution">Lösung / Solution<a class="anchor-link" href="#L%C3%B6sung-/-Solution">¶</a></h3><p><strong>1. Spalte email hinzufügen / Add email column:</strong></p>
+<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=c6cb06da19f63fd4"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>2. Spalte in_stock mit Standardwert / Add in_stock column with default:</strong></p>
+<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">in_stock</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">products</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=4efc8c57bfd5dc3b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>3. Spalte umbenennen / Rename column:</strong></p>
+<div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">street_address</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=740f399a279fd8a8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>4. UNIQUE-Index und Fehler testen / UNIQUE index and error test:</strong></p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_customer_email</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">email</span><span class="p">);</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'john@example.com'</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'jane@example.com'</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="c1">-- This causes an error (duplicate email):</span>
+<span class="c1">-- UPDATE customers SET email = 'john@example.com' WHERE id = 3;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=5e69033d27f618e0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>5. Zusammengesetzter Index / Composite index:</strong></p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_orders_cust_prod</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">product_id</span><span class="p">);</span>
+<span class="n">PRAGMA</span><span class="w"> </span><span class="n">index_list</span><span class="p">(</span><span class="n">orders</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_alt celltag_subslide" id="cell-id=393d5c85e06ba205"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>6. Tabelle erstellen und löschen / Create and drop table:</strong></p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">);</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">test_table</span><span class="p">;</span>
+<span class="c1">-- Verify it's gone (no error because of IF EXISTS):</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">test_table</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
