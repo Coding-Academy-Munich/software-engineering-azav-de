@@ -124,8 +124,9 @@ STUDENTS = [
 #
 # ### SQL-Injection vermeiden
 #
-# Bevorzuge `executemany()` mit Argumentensubstitution statt manuell erstellten
-# SQL-Abfragen. Der folgende Code ist anfällig für einen SQL-Injection-Angriff:
+# Bevorzuge `execute()` und `executemany()` mit Parametersubstitution statt manuell
+# erstellten SQL-Abfragen. Der folgende Code ist anfällig für einen
+# SQL-Injection-Angriff:
 
 
 # %%
@@ -149,5 +150,45 @@ STUDENTS = [
 #
 # Wenn eine Verbindung nicht mehr benötigt wird, kann sie mit `close()` geschlossen
 # werden:
+
+# %%
+
+# %% [markdown]
+#
+# ## Mini-Workshop: Bücherdatenbank
+#
+# Erstellen Sie ein Python-Programm, das folgende Schritte ausführt:
+#
+# 1. Erzeugen Sie eine Verbindung zu einer In-Memory-Datenbank
+# 2. Erstellen Sie eine Tabelle `books` mit den Spalten `id` (INTEGER) und
+#    `title` (TEXT)
+# 3. Fügen Sie ein Buch mit `execute()` und Parametersubstitution ein
+# 4. Fügen Sie mehrere Bücher mit `executemany()` ein
+# 5. Geben Sie alle Bücher aus
+# 6. Schließen Sie die Verbindung
+
+# %%
+import sqlite3
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+MORE_BOOKS = [
+    (2, "1984"),
+    (3, "Brave New World"),
+    (4, "Fahrenheit 451"),
+]
+
+# %%
+
+# %%
+
+# %%
 
 # %%

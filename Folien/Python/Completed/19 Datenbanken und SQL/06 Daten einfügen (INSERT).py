@@ -87,12 +87,23 @@
 # %% [markdown]
 #
 # ```sql
+# INSERT INTO customers (name, address) VALUES ('John Smith', '123 Elm St');
+# INSERT INTO customers (name, address) VALUES ('Jane Doe', '456 Oak St');
+# INSERT INTO customers (name, address) VALUES ('John Smith', '789 Maple St');
+# ```
+
+# %% [markdown]
+#
+# ```sql
 # INSERT INTO products (id, product_name, price, description)
-#   VALUES(346, 'Kichererbsen', 0.59, 'Gesunde Kichererbsen');
+#   VALUES(2341, 'Tomatensuppe', 1.99,
+#     'Unsere fantastische Tomatensuppe in Dosen.');
 # INSERT INTO products (id, product_name, price, description)
-#   VALUES(2341, 'Tomatensuppe', 1.99, 'Leckere Tomatensuppe');
+#   VALUES(939504, 'Tomatensuppe', 2.49,
+#     'Premium-Tomatensuppe in Glasflaschen.');
 # INSERT INTO products (id, product_name, price, description)
-#   VALUES(939504, 'Tomatensuppe', 2.49, 'Premium Tomatensuppe');
+#   VALUES(346, 'Kichererbsen', 0.59,
+#     'In Wasser einweichen und genießen...');
 # ```
 
 # %% [markdown]

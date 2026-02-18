@@ -78,6 +78,7 @@ assert con.execute("SELECT * FROM employees").fetchall() == [
 ]
 
 # %%
+from typing import Sequence
 
 # %%
 
@@ -93,6 +94,10 @@ EMPLOYEES = [
 create_employees(con, EMPLOYEES)
 
 # %%
+assert con.execute("SELECT * FROM employees").fetchall() == [
+    (1, "Geraldine E. Stegner", 1, 40),
+    *EMPLOYEES,
+]
 
 # %%
 

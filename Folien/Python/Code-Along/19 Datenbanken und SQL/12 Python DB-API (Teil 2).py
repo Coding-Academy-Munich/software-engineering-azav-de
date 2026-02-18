@@ -103,6 +103,11 @@ cur = cur.execute("SELECT * FROM students ORDER BY id")
 # %%
 con.close()
 
+# %% [markdown]
+#
+# Wir verwenden jetzt eine dateibasierte Datenbank, denn bei `:memory:` erzeugt
+# jede Verbindung eine eigene, unabhängige Datenbank.
+
 # %%
 import tempfile
 
@@ -121,6 +126,11 @@ cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
 
 # %%
 con2 = sqlite3.connect(DB)
+
+# %% [markdown]
+#
+# Da die Tabelle keinen Primärschlüssel hat, können wir eine weitere Zeile mit
+# `id` 2 einfügen:
 
 # %%
 cur.execute("INSERT INTO students VALUES(2, 'Deborah Winter')")
@@ -154,6 +164,13 @@ con = sqlite3.connect(DB)
 
 # %%
 
+# %% [markdown]
+#
+# `cur1` sieht die von `cur2` eingefügten Daten, da beide Cursors zur gleichen
+# Verbindung gehören:
+
+# %%
+
 # %%
 
 # %% [markdown]
@@ -182,3 +199,50 @@ try:
     os.unlink(DB)
 except PermissionError as e:
     print(f"Could not delete the database file: {e}")
+
+# %% [markdown]
+#
+# ## Mini-Workshop: Produkte abfragen
+#
+# 1. Erstellen Sie eine In-Memory-Datenbank mit einer Tabelle `products`
+#    (Spalten: `id` INTEGER, `name` TEXT, `price` REAL)
+# 2. Fügen Sie mindestens 5 Produkte mit `executemany()` ein
+# 3. Verwenden Sie `fetchall()`, um alle Produkte abzurufen
+# 4. Verwenden Sie `fetchone()`, um das erste Produkt abzurufen
+# 5. Verwenden Sie `fetchmany(2)`, um zwei Produkte abzurufen
+# 6. Verwenden Sie `con.execute()` (Shortcut-Methode) für eine Abfrage
+# 7. Prüfen Sie mit `sqlite_master`, ob die Tabelle `products` existiert
+
+# %%
+import sqlite3
+
+# %%
+PRODUCTS = [
+    (1, "Laptop", 999.99),
+    (2, "Mouse", 29.99),
+    (3, "Keyboard", 59.99),
+    (4, "Monitor", 349.99),
+    (5, "Headphones", 79.99),
+]
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+cur.execute("SELECT * FROM products ORDER BY price")
+
+# %%
+
+# %%
+cur.execute("SELECT * FROM products ORDER BY price")
+
+# %%
+
+# %%
+
+# %%
+
+# %%

@@ -13437,6 +13437,14 @@ beschrieben.</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=630e9c6263d98c1a"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir verwenden jetzt eine dateibasierte Datenbank, denn bei <code>:memory:</code> erzeugt
+jede Verbindung eine eigene, unabhängige Datenbank.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b1ca56c1e42ce1a0">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
@@ -13459,7 +13467,7 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=786c801df32692c6">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9ac4c558014363b1">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13470,7 +13478,7 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=051557688124a46c">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=514c87d3d3023a39">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13481,7 +13489,7 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=290118d4d20782e8">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9cb19b6661f770de">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13504,6 +13512,14 @@ beschrieben.</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=d5f675d2923ad20f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Da die Tabelle keinen Primärschlüssel hat, können wir eine weitere Zeile mit
+<code>id</code> 2 einfügen:</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=8fecd94448169c76">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
@@ -13515,7 +13531,7 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4723c86c2d16b117">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=36df9c2c2b04da70">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13559,7 +13575,7 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=36df9c2c2b04da70">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=412aefe1e7dfffd4">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13603,7 +13619,7 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=34955457d2ad553c">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=110250c7689f0c76">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13669,7 +13685,26 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a339443c5c8d48a7">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=6a4098100acf99fe"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>cur1</code> sieht die von <code>cur2</code> eingefügten Daten, da beide Cursors zur gleichen
+Verbindung gehören:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f9c7e918c388d44d">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=dc72d3e690bf3d04">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13744,7 +13779,7 @@ beschrieben.</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=efc43057fc3ddab8">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=705241b1a33c3e8c">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13775,6 +13810,160 @@ beschrieben.</li>
     <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">PermissionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not delete the database file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=02f3857dcf122836"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mini-Workshop:-Produkte-abfragen">Mini-Workshop: Produkte abfragen<a class="anchor-link" href="#Mini-Workshop:-Produkte-abfragen">¶</a></h2><ol>
+<li>Erstellen Sie eine In-Memory-Datenbank mit einer Tabelle <code>products</code>
+(Spalten: <code>id</code> INTEGER, <code>name</code> TEXT, <code>price</code> REAL)</li>
+<li>Fügen Sie mindestens 5 Produkte mit <code>executemany()</code> ein</li>
+<li>Verwenden Sie <code>fetchall()</code>, um alle Produkte abzurufen</li>
+<li>Verwenden Sie <code>fetchone()</code>, um das erste Produkt abzurufen</li>
+<li>Verwenden Sie <code>fetchmany(2)</code>, um zwei Produkte abzurufen</li>
+<li>Verwenden Sie <code>con.execute()</code> (Shortcut-Methode) für eine Abfrage</li>
+<li>Prüfen Sie mit <code>sqlite_master</code>, ob die Tabelle <code>products</code> existiert</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=55a45343255350e8">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6ac517102657f2f9">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">PRODUCTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Laptop"</span><span class="p">,</span> <span class="mf">999.99</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"Mouse"</span><span class="p">,</span> <span class="mf">29.99</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"Keyboard"</span><span class="p">,</span> <span class="mf">59.99</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"Monitor"</span><span class="p">,</span> <span class="mf">349.99</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"Headphones"</span><span class="p">,</span> <span class="mf">79.99</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=1b960d4435ac460d">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=366d0179245d35bf">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a4aed643039724f8">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1f7bbc08b10b22ff">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM products ORDER BY price"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2129d53a00ddcb77">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=490709c57d4ec45e">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM products ORDER BY price"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ec74219216b98d0d">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=52e48d54fc32e246">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=664290cd6b136674">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=91e5848a94b308a6">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>

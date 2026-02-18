@@ -98,8 +98,8 @@ sqlite3.paramstyle
 cur.execute("SELECT 'hello, world'")
 
 # %%
-for cursor in cur.execute("SELECT 'hello, world'"):
-    print(cursor)
+for row in cur.execute("SELECT 'hello, world'"):
+    print(row)
 
 # %% [markdown]
 #
@@ -144,8 +144,9 @@ con.commit()
 #
 # ### SQL-Injection vermeiden
 #
-# Bevorzuge `executemany()` mit Argumentensubstitution statt manuell erstellten
-# SQL-Abfragen. Der folgende Code ist anfällig für einen SQL-Injection-Angriff:
+# Bevorzuge `execute()` und `executemany()` mit Parametersubstitution statt manuell
+# erstellten SQL-Abfragen. Der folgende Code ist anfällig für einen
+# SQL-Injection-Angriff:
 
 
 # %%
@@ -184,6 +185,55 @@ for row in cur.execute("SELECT * from sqlite_master"):
 #
 # Wenn eine Verbindung nicht mehr benötigt wird, kann sie mit `close()` geschlossen
 # werden:
+
+# %%
+con.close()
+
+# %% [markdown]
+#
+# ## Mini-Workshop: Bücherdatenbank
+#
+# Erstellen Sie ein Python-Programm, das folgende Schritte ausführt:
+#
+# 1. Erzeugen Sie eine Verbindung zu einer In-Memory-Datenbank
+# 2. Erstellen Sie eine Tabelle `books` mit den Spalten `id` (INTEGER) und
+#    `title` (TEXT)
+# 3. Fügen Sie ein Buch mit `execute()` und Parametersubstitution ein
+# 4. Fügen Sie mehrere Bücher mit `executemany()` ein
+# 5. Geben Sie alle Bücher aus
+# 6. Schließen Sie die Verbindung
+
+# %%
+import sqlite3
+
+# %%
+con = sqlite3.connect(":memory:")
+
+# %%
+cur = con.cursor()
+
+# %%
+cur.execute("CREATE TABLE books(id INTEGER, title TEXT)")
+
+# %%
+cur.execute("INSERT INTO books VALUES(?, ?)", (1, "The Hitchhiker's Guide to the Galaxy"))
+
+# %%
+MORE_BOOKS = [
+    (2, "1984"),
+    (3, "Brave New World"),
+    (4, "Fahrenheit 451"),
+]
+
+# %%
+cur.executemany("INSERT INTO books VALUES(?, ?)", MORE_BOOKS)
+
+# %%
+con.commit()
+
+# %%
+for row in cur.execute("SELECT * FROM books ORDER BY id"):
+    print(row)
 
 # %%
 con.close()

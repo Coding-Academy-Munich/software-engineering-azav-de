@@ -13145,7 +13145,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=0d1eff60bbadb663"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0d1eff60bbadb663"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Datenbanken-in-Python:-DB-API-2.0">Datenbanken in Python: DB-API 2.0<a class="anchor-link" href="#Datenbanken-in-Python:-DB-API-2.0">¶</a></h1><ul>
@@ -13236,7 +13236,7 @@ Dateipfad als Wert für <code>DB</code> verwenden, z.B. <code>DB = "students.db"
 <div class="output_area">
 <div class="prompt output_prompt">Out[3]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Connection at 0x24abe4c1300&gt;</pre>
+<pre>&lt;sqlite3.Connection at 0x23dea471a80&gt;</pre>
 </div>
 </div>
 </div>
@@ -13291,7 +13291,7 @@ sondern auf einem Cursor:</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[6]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x24abe6beb40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13377,19 +13377,19 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[9]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x24abe6beb40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3f01518619b1e349">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=1c7682c08df02986">
 <div class="input">
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">cursor</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT 'hello, world'"</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT 'hello, world'"</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13428,7 +13428,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[11]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x24abe6beb40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13460,7 +13460,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[13]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x24abe6beb40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13481,7 +13481,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[14]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x24abe6beb40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13555,7 +13555,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[18]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x24abe6beb40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13572,11 +13572,12 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=92e8d2036c274c5b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=f7a06b08a440ee9e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="SQL-Injection-vermeiden">SQL-Injection vermeiden<a class="anchor-link" href="#SQL-Injection-vermeiden">¶</a></h3><p>Bevorzuge <code>executemany()</code> mit Argumentensubstitution statt manuell erstellten
-SQL-Abfragen. Der folgende Code ist anfällig für einen SQL-Injection-Angriff:</p>
+<h3 id="SQL-Injection-vermeiden">SQL-Injection vermeiden<a class="anchor-link" href="#SQL-Injection-vermeiden">¶</a></h3><p>Bevorzuge <code>execute()</code> und <code>executemany()</code> mit Parametersubstitution statt manuell
+erstellten SQL-Abfragen. Der folgende Code ist anfällig für einen
+SQL-Injection-Angriff:</p>
 </div>
 </div>
 </div>
@@ -13661,7 +13662,7 @@ SQL-Abfragen. Der folgende Code ist anfällig für einen SQL-Injection-Angriff:<
 <div class="output_area">
 <div class="prompt output_prompt">Out[23]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x24abe6beb40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13705,6 +13706,181 @@ werden:</p>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=36b057457cc51a4b">
 <div class="input">
 <div class="prompt input_prompt">In [25]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c769da25b890dee2"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mini-Workshop:-B%C3%BCcherdatenbank">Mini-Workshop: Bücherdatenbank<a class="anchor-link" href="#Mini-Workshop:-B%C3%BCcherdatenbank">¶</a></h2><p>Erstellen Sie ein Python-Programm, das folgende Schritte ausführt:</p>
+<ol>
+<li>Erzeugen Sie eine Verbindung zu einer In-Memory-Datenbank</li>
+<li>Erstellen Sie eine Tabelle <code>books</code> mit den Spalten <code>id</code> (INTEGER) und
+<code>title</code> (TEXT)</li>
+<li>Fügen Sie ein Buch mit <code>execute()</code> und Parametersubstitution ein</li>
+<li>Fügen Sie mehrere Bücher mit <code>executemany()</code> ein</li>
+<li>Geben Sie alle Bücher aus</li>
+<li>Schließen Sie die Verbindung</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=a97aa0f0327d6a19">
+<div class="input">
+<div class="prompt input_prompt">In [26]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=47f66fde754c2f68">
+<div class="input">
+<div class="prompt input_prompt">In [27]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=34b24c18d8fadcb1">
+<div class="input">
+<div class="prompt input_prompt">In [28]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=18851a8d9df41d4c">
+<div class="input">
+<div class="prompt input_prompt">In [29]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE books(id INTEGER, title TEXT)"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[29]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x23dea669f40&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9b047a00fabb9b77">
+<div class="input">
+<div class="prompt input_prompt">In [30]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO books VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"The Hitchhiker's Guide to the Galaxy"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[30]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x23dea669f40&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9cdb4c6a0b41bb5a">
+<div class="input">
+<div class="prompt input_prompt">In [31]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">MORE_BOOKS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"1984"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"Brave New World"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"Fahrenheit 451"</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=51493f6c41fe67f1">
+<div class="input">
+<div class="prompt input_prompt">In [32]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO books VALUES(?, ?)"</span><span class="p">,</span> <span class="n">MORE_BOOKS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[32]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x23dea669f40&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b54d5050fda71e58">
+<div class="input">
+<div class="prompt input_prompt">In [33]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b5696ace1feab553">
+<div class="input">
+<div class="prompt input_prompt">In [34]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM books ORDER BY id"</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1, "The Hitchhiker's Guide to the Galaxy")
+(2, '1984')
+(3, 'Brave New World')
+(4, 'Fahrenheit 451')
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a8a50facfeb6618f">
+<div class="input">
+<div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
