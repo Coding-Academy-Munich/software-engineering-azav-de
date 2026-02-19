@@ -9,7 +9,7 @@
 
 # %% [markdown]
 #
-# ## Mini-Workshop: Mitarbeiter-Datenbank
+# ## Workshop: Mitarbeiter-Datenbank
 #
 # Sie wollen Daten für die Mitarbeiter einer Firma in einer SQLite Datenbank
 # speichern. Jeder Mitarbeiter wird dabei durch folgende Daten beschrieben:
@@ -54,8 +54,8 @@ def create_employee_db(con: sqlite3.Connection):
     return con.executescript(
         """
         BEGIN;
-        CREATE TABLE employees(id INTEGER, name TEXT, dep_id INTEGER, hours INTEGER);
-        CREATE TABLE departments(id INTEGER, name TEXT);
+        CREATE TABLE employees(id INTEGER PRIMARY KEY, name TEXT, dep_id INTEGER, hours INTEGER);
+        CREATE TABLE departments(id INTEGER PRIMARY KEY, name TEXT);
         COMMIT;
         """
     )

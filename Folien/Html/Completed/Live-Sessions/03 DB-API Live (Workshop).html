@@ -13087,7 +13087,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=12b3741c79029849"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=0bb13e51c6caf187"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13137,7 +13137,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Python DB-API (Teil 2)</b>
+<b>DB-API Live (Workshop)</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13145,14 +13145,41 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7748036582cae967"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c44b30952b670b1e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Zugriff-auf-Ergebnisse">Zugriff auf Ergebnisse<a class="anchor-link" href="#Zugriff-auf-Ergebnisse">¶</a></h2><ul>
-<li><code>cursor.fetchall()</code> für alle Ergebnisse</li>
-<li><code>cursor.fetchone()</code> für einzelne Ergebnisse</li>
-<li><code>cursor.fetchmany()</code> für eine bestimmte Anzahl an Ergebnissen</li>
-<li>Iteration über einen Ergebnis-Cursor</li>
+<h2 id="Workshop:-Bibliotheks-Datenbank">Workshop: Bibliotheks-Datenbank<a class="anchor-link" href="#Workshop:-Bibliotheks-Datenbank">¶</a></h2><p>Sie wollen Daten für eine kleine Bibliothek in einer SQLite-Datenbank
+speichern. Jeder Autor wird durch folgende Daten beschrieben:</p>
+<ul>
+<li>Autor-ID</li>
+<li>Name</li>
+<li>Herkunftsland</li>
+</ul>
+<p>Jedes Buch wird repräsentiert durch:</p>
+<ul>
+<li>Buch-ID</li>
+<li>Titel</li>
+<li>Erscheinungsjahr</li>
+<li>Autor-ID (Fremdschlüssel)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c147e120e5800488"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Schreiben Sie folgende Funktionen:</p>
+<ul>
+<li><code>create_library_db(con)</code>, die die Tabellen erzeugt</li>
+<li><code>add_author(con, id_, name, country)</code>, die einen Autor einfügt</li>
+<li><code>add_book(con, id_, title, year, author_id)</code>, die ein Buch einfügt</li>
+<li><code>add_books(con, books)</code>, die mehrere Bücher einfügt</li>
+<li><code>get_book_info(con, book_id)</code>, die die Daten eines Buchs zurückgibt
+(falls Sie SQL-Joins kennen, geben Sie den Autornamen statt der ID zurück)</li>
+<li><code>find_old_books(con, year)</code>, die die Titel aller Bücher zurückgibt,
+die vor dem angegebenen Jahr erschienen sind</li>
+<li><code>print_books_by_author(con, author_name)</code>, die alle Bücher eines Autors
+ausgibt (falls Sie SQL-Joins nicht kennen, können Sie die Autor-ID übergeben)</li>
 </ul>
 </div>
 </div>
@@ -13168,1049 +13195,341 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e243fb291193699b">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=47f66fde754c2f68">
 <div class="input">
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">DB</span> <span class="o">=</span> <span class="s2">":memory:"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=69fc28a8623d6bd3">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7a6a521acb492950">
 <div class="input">
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">STUDENTS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Jack Bradley"</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"Robert'); DROP TABLE students; --"</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">845</span><span class="p">,</span> <span class="s2">"Samantha Jones"</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">210</span><span class="p">,</span> <span class="s2">"Jill McGee"</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">62</span><span class="p">,</span> <span class="s2">"Doug Caisson"</span><span class="p">),</span>
-<span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_library_db</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        BEGIN;</span>
+<span class="sd">        CREATE TABLE authors(id INTEGER PRIMARY KEY, name TEXT, country TEXT);</span>
+<span class="sd">        CREATE TABLE books(id INTEGER PRIMARY KEY, title TEXT, year INTEGER, author_id INTEGER);</span>
+<span class="sd">        COMMIT;</span>
+<span class="sd">        """</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=55f081caf400d1fe">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=89c454f0beda6221">
 <div class="input">
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">create_library_db</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1df7af7b040&gt;</pre>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=34b24c18d8fadcb1">
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7f85257f61dbf242">
 <div class="input">
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_author</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">country</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO authors VALUES (?, ?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="n">id_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">country</span><span class="p">))</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=91d54f25d077b381"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir erstellen die Tabelle <code>students</code> mit einigen Daten:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=55fd668708bc0e7a">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e70b343cb014703c">
 <div class="input">
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="n">STUDENTS</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">add_author</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"George Orwell"</span><span class="p">,</span> <span class="s2">"UK"</span><span class="p">)</span>
+<span class="n">add_author</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Gabriel Garcia Marquez"</span><span class="p">,</span> <span class="s2">"Colombia"</span><span class="p">)</span>
+<span class="n">add_author</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Haruki Murakami"</span><span class="p">,</span> <span class="s2">"Japan"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563aec0&gt;</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6788cf47eca2fd7a">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=667b2814ba3773cc">
 <div class="input">
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students ORDER BY id"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563aec0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3ba926aa49289fef">
-<div class="input">
-<div class="prompt input_prompt">In [8]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[8]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Jack Bradley'),
- (2, "Robert'); DROP TABLE students; --"),
- (62, 'Doug Caisson'),
- (210, 'Jill McGee'),
- (845, 'Samantha Jones')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=24fc7634695ed30d"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Ein Cursor kann nur einmal verwendet werden, um Ergebnisse zu bekommen:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=b9808eb8ad1327d1">
-<div class="input">
-<div class="prompt input_prompt">In [9]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[9]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=7fd4bb35c79d9c8e">
-<div class="input">
-<div class="prompt input_prompt">In [10]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students ORDER BY id"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=d393f5894a60b5f8"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Mit <code>fetchone()</code> können wir die Ergebnisse einzeln abrufen. Nach dem letzten
-Ergebnis gibt <code>fetchone()</code> <code>None</code> zurück:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5d87664d457d0369">
-<div class="input">
-<div class="prompt input_prompt">In [11]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>(1, 'Jack Bradley')</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5860b388a364bb05">
-<div class="input">
-<div class="prompt input_prompt">In [12]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>(2, "Robert'); DROP TABLE students; --")</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6c78a8eead3a9fe0">
-<div class="input">
-<div class="prompt input_prompt">In [13]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(62, 'Doug Caisson'), (210, 'Jill McGee'), (845, 'Samantha Jones')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6e362ca6efe83591">
-<div class="input">
-<div class="prompt input_prompt">In [14]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[14]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=c391dd34db0f858b">
-<div class="input">
-<div class="prompt input_prompt">In [15]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students ORDER BY id"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=b8b0398ed2c35cc6">
-<div class="input">
-<div class="prompt input_prompt">In [16]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Jack Bradley'),
- (2, "Robert'); DROP TABLE students; --"),
- (62, 'Doug Caisson')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a5b849b712c5b276"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Shortcut-Methoden">Shortcut-Methoden<a class="anchor-link" href="#Shortcut-Methoden">¶</a></h3><ul>
-<li>Um das explizite Erzeugen von Cursor-Instanzen zu umgehen, kann man
-die Shortcut-Methoden auf dem Connection-Objekt verwenden:</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f47fd77775118cec">
-<div class="input">
-<div class="prompt input_prompt">In [17]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students ORDER BY id"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3b025f93186f2786">
-<div class="input">
-<div class="prompt input_prompt">In [18]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cursor</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[18]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563be40&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=2ab9ee38c6921099">
-<div class="input">
-<div class="prompt input_prompt">In [19]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[19]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Jack Bradley'),
- (2, "Robert'); DROP TABLE students; --"),
- (62, 'Doug Caisson'),
- (210, 'Jill McGee'),
- (845, 'Samantha Jones')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=cd7c3f04a6972ba8">
-<div class="input">
-<div class="prompt input_prompt">In [20]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=fda2c2ebc1a9cedc"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mehrere-Verbindungen">Mehrere Verbindungen<a class="anchor-link" href="#Mehrere-Verbindungen">¶</a></h2><ul>
-<li>Mehrere Verbindungen zur gleichen Datenbank sind möglich</li>
-<li>Mehrere Cursors zur gleichen Verbindung sind möglich<ul>
-<li>Aber: In beiden Fällen führen mehrere gleichzeitig aktive
-Transaktionen zu Timeouts</li>
-</ul>
-</li>
-<li>Cursors zur gleichen Verbindung sind nicht isoliert</li>
-<li>Wie isoliert Threads voneinander sind, wird durch
-<a href="https://peps.python.org/pep-0249/#threadsafety"><code>connection.threadsafety</code></a>
-beschrieben.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=36b057457cc51a4b">
-<div class="input">
-<div class="prompt input_prompt">In [21]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=630e9c6263d98c1a"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir verwenden jetzt eine dateibasierte Datenbank, denn bei <code>:memory:</code> erzeugt
-jede Verbindung eine eigene, unabhängige Datenbank.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b1ca56c1e42ce1a0">
-<div class="input">
-<div class="prompt input_prompt">In [22]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b16b70d0add8ad12">
-<div class="input">
-<div class="prompt input_prompt">In [23]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">FD</span><span class="p">,</span> <span class="n">DB</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s2">".db"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=718315e69da8ab52">
-<div class="input">
-<div class="prompt input_prompt">In [24]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d5db159d50b019b8">
-<div class="input">
-<div class="prompt input_prompt">In [25]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=52c890513d3a9c3f">
-<div class="input">
-<div class="prompt input_prompt">In [26]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="n">STUDENTS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[26]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563bcc0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4f8c794f0fe4db51">
-<div class="input">
-<div class="prompt input_prompt">In [27]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=8a79ec7c2df5a002"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Da die Tabelle einen Primärschlüssel hat, können wir keine weitere Zeile mit
-<code>id</code> 2 einfügen:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=03cedc3422684fb3">
-<div class="input">
-<div class="prompt input_prompt">In [28]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(2, 'Deborah Winter')"</span><span class="p">)</span>
-<span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Error: UNIQUE constraint failed: students.id
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7ecc87a92fa6d006">
-<div class="input">
-<div class="prompt input_prompt">In [29]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0741f34e4fa4acf0"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Nach dem Commit von <code>con</code> kann <code>con2</code> die eingefügten Daten sehen:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6be094e22cec6aaf">
-<div class="input">
-<div class="prompt input_prompt">In [30]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">res2</span> <span class="o">=</span> <span class="n">con2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students ORDER BY id"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d4bdaf79c7ebfc3b">
-<div class="input">
-<div class="prompt input_prompt">In [31]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=067589e594f71826">
-<div class="input">
-<div class="prompt input_prompt">In [32]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students ORDER BY id"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5edcca5757af7022">
-<div class="input">
-<div class="prompt input_prompt">In [33]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=625636754a08cc70">
-<div class="input">
-<div class="prompt input_prompt">In [34]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">res1</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[34]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Jack Bradley'),
- (2, "Robert'); DROP TABLE students; --"),
- (62, 'Doug Caisson'),
- (210, 'Jill McGee'),
- (845, 'Samantha Jones')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=b6ccf700a3aace7e"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Die zweite Verbindung sieht die gleichen Daten:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f6073a9123edf6f8">
-<div class="input">
-<div class="prompt input_prompt">In [35]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">res2</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[35]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Jack Bradley'),
- (2, "Robert'); DROP TABLE students; --"),
- (62, 'Doug Caisson'),
- (210, 'Jill McGee'),
- (845, 'Samantha Jones')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c95ea9e7f8305133">
-<div class="input">
-<div class="prompt input_prompt">In [36]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">con2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=fa258d4e7de1f769">
-<div class="input">
-<div class="prompt input_prompt">In [37]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3141af0bf0816263"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Wir erzeugen zwei Cursors auf der gleichen Verbindung und beobachten, dass
-sie nicht voneinander isoliert sind:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7c2b008736e46cbe">
-<div class="input">
-<div class="prompt input_prompt">In [38]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c480b4cf2d34aace">
-<div class="input">
-<div class="prompt input_prompt">In [39]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur2</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=6e8dcfe71f5bfb16">
-<div class="input">
-<div class="prompt input_prompt">In [40]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[40]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563bf40&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ecee11a897bfae61">
-<div class="input">
-<div class="prompt input_prompt">In [41]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[41]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Jack Bradley'),
- (2, "Robert'); DROP TABLE students; --"),
- (62, 'Doug Caisson'),
- (210, 'Jill McGee'),
- (845, 'Samantha Jones')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=37b0b56edc11dafb">
-<div class="input">
-<div class="prompt input_prompt">In [42]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur2</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
-    <span class="s2">"INSERT INTO students VALUES (?, ?)"</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1001</span><span class="p">,</span> <span class="s2">"Kay Garcia"</span><span class="p">),</span> <span class="p">(</span><span class="mi">1002</span><span class="p">,</span> <span class="s2">"Amanda Goodson"</span><span class="p">)]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[42]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563b0c0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=6a4098100acf99fe"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>cur1</code> sieht die von <code>cur2</code> eingefügten Daten, da beide Cursors zur gleichen
-Verbindung gehören:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f9c7e918c388d44d">
-<div class="input">
-<div class="prompt input_prompt">In [43]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[43]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Jack Bradley'),
- (2, "Robert'); DROP TABLE students; --"),
- (62, 'Doug Caisson'),
- (210, 'Jill McGee'),
- (845, 'Samantha Jones'),
- (1001, 'Kay Garcia'),
- (1002, 'Amanda Goodson')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a21d705a2d8076c5">
-<div class="input">
-<div class="prompt input_prompt">In [44]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7bce33a70c529bb6"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Zugriff-auf-Metadaten">Zugriff auf Metadaten<a class="anchor-link" href="#Zugriff-auf-Metadaten">¶</a></h2><ul>
-<li>Erfolgt typischerweise mit DB-spezifischen Tabellen</li>
-<li>In SQLite enthält <code>sqlite_master</code> Informationen über alle Tabellen und
-Indizes</li>
-<li>Andere Datenbanken haben ähnliche Mechanismen (z.B. <code>INFORMATION_SCHEMA</code>
-in PostgreSQL/MySQL)</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=9d9ae5a73e0501d7">
-<div class="input">
-<div class="prompt input_prompt">In [45]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master"</span><span class="p">)</span>
-<span class="n">cursor</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[45]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x20785670cc0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ce0a16ff64ea5cce">
-<div class="input">
-<div class="prompt input_prompt">In [46]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[46]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>('students',)</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=1f3863e3ad8f4bee">
-<div class="input">
-<div class="prompt input_prompt">In [47]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master WHERE name='foo'"</span><span class="p">)</span>
-<span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[47]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7b3849e096db1d8c">
-<div class="input">
-<div class="prompt input_prompt">In [48]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE projects(proj_id INTEGER PRIMARY KEY, name TEXT, budget REAL)"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[48]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563b1c0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=102a79ebdc84f4b2">
-<div class="input">
-<div class="prompt input_prompt">In [49]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM sqlite_master"</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[49]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[('table',
-  'students',
-  'students',
-  2,
-  'CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)'),
- ('table',
-  'projects',
-  'projects',
-  3,
-  'CREATE TABLE projects(proj_id INTEGER PRIMARY KEY, name TEXT, budget REAL)')]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e746afec92ba473f">
-<div class="input">
-<div class="prompt input_prompt">In [50]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=c246775ae2a597f0">
-<div class="input">
-<div class="prompt input_prompt">In [51]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1a0e6d7ac13647ac">
-<div class="input">
-<div class="prompt input_prompt">In [52]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">PermissionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not delete the database file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Could not delete the database file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\tc\\AppData\\Local\\Temp\\tmpis68679l.db'
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9deecadb9640e9cd"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Workshop:-Produkte-abfragen">Workshop: Produkte abfragen<a class="anchor-link" href="#Workshop:-Produkte-abfragen">¶</a></h2><ol>
-<li>Erstellen Sie eine In-Memory-Datenbank mit einer Tabelle <code>products</code>
-(Spalten: <code>id</code> INTEGER, <code>name</code> TEXT, <code>price</code> REAL)</li>
-<li>Fügen Sie mindestens 5 Produkte mit <code>executemany()</code> ein</li>
-<li>Verwenden Sie <code>fetchall()</code>, um alle Produkte abzurufen</li>
-<li>Verwenden Sie <code>fetchone()</code>, um das erste Produkt abzurufen</li>
-<li>Verwenden Sie <code>fetchmany(2)</code>, um zwei Produkte abzurufen</li>
-<li>Verwenden Sie <code>con.execute()</code> (Shortcut-Methode) für eine Abfrage</li>
-<li>Prüfen Sie mit <code>sqlite_master</code>, ob die Tabelle <code>products</code> existiert</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=93615459994b1c75">
-<div class="input">
-<div class="prompt input_prompt">In [53]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6ac517102657f2f9">
-<div class="input">
-<div class="prompt input_prompt">In [54]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">PRODUCTS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Laptop"</span><span class="p">,</span> <span class="mf">999.99</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"Mouse"</span><span class="p">,</span> <span class="mf">29.99</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"Keyboard"</span><span class="p">,</span> <span class="mf">59.99</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"Monitor"</span><span class="p">,</span> <span class="mf">349.99</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"Headphones"</span><span class="p">,</span> <span class="mf">79.99</span><span class="p">),</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM authors ORDER BY id"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"George Orwell"</span><span class="p">,</span> <span class="s2">"UK"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"Gabriel Garcia Marquez"</span><span class="p">,</span> <span class="s2">"Colombia"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"Haruki Murakami"</span><span class="p">,</span> <span class="s2">"Japan"</span><span class="p">),</span>
 <span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d0c5e693253831ab">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=285d4b330695d4fc">
 <div class="input">
-<div class="prompt input_prompt">In [55]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
-<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE products(id INTEGER PRIMARY KEY, name TEXT, price REAL)"</span><span class="p">)</span>
-<span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO products VALUES(?, ?, ?)"</span><span class="p">,</span> <span class="n">PRODUCTS</span><span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_book</span><span class="p">(</span>
+    <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">author_id</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO books VALUES (?, ?, ?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="n">id_</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">author_id</span><span class="p">))</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=366d0179245d35bf">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=360b0010e3ac044f">
 <div class="input">
-<div class="prompt input_prompt">In [56]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM products ORDER BY price"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">add_book</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"1984"</span><span class="p">,</span> <span class="mi">1949</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=18873ac2b99ded42">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM books"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span> <span class="o">==</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"1984"</span><span class="p">,</span> <span class="mi">1949</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=a1fce7e6ffecde41">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c5a702f300ee0564">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_books</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">books</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO books VALUES (?, ?, ?, ?)"</span><span class="p">,</span> <span class="n">books</span><span class="p">)</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5390f9a6a07345b9">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">BOOKS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"Animal Farm"</span><span class="p">,</span> <span class="mi">1945</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"One Hundred Years of Solitude"</span><span class="p">,</span> <span class="mi">1967</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"Norwegian Wood"</span><span class="p">,</span> <span class="mi">1987</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"Kafka on the Shore"</span><span class="p">,</span> <span class="mi">2002</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b03a459db91002f9">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">add_books</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">BOOKS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=efa17a3d5d0f8cd0">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM books ORDER BY id"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"1984"</span><span class="p">,</span> <span class="mi">1949</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="o">*</span><span class="n">BOOKS</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ea078febcd0e9e23">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_book_info</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">book_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        SELECT b.id, b.title, a.name, b.year</span>
+<span class="sd">        FROM books AS b</span>
+<span class="sd">        JOIN authors AS a</span>
+<span class="sd">        ON b.author_id = a.id</span>
+<span class="sd">        WHERE b.id = ?</span>
+<span class="sd">        """</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">book_id</span><span class="p">,),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=567d8955fa79a15f">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">get_book_info</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"1984"</span><span class="p">,</span> <span class="s2">"George Orwell"</span><span class="p">,</span> <span class="mi">1949</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=145f2c295b26f0dc">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">get_book_info</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=72c2ecf11ee594b7">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_book_info_no_join</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">book_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        SELECT id, title, author_id, year</span>
+<span class="sd">        FROM books</span>
+<span class="sd">        WHERE id = ?</span>
+<span class="sd">        """</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">book_id</span><span class="p">,),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=195c205c80935610">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">get_book_info_no_join</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"1984"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1949</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=4a0d94719c2c19c3">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">get_book_info_no_join</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=6e44e72b16ee7898">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">find_old_books</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">title</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">title</span><span class="p">,)</span> <span class="ow">in</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">"SELECT title FROM books WHERE year &lt; ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">year</span><span class="p">,)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=f567551bfc905498">
+<div class="input">
+<div class="prompt input_prompt">In [23]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">find_old_books</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="mi">1950</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">"1984"</span><span class="p">,</span> <span class="s2">"Animal Farm"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0e7b200ef528698e">
+<div class="input">
+<div class="prompt input_prompt">In [24]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_books_by_author</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">author_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">books</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        SELECT b.id, b.title, a.name, b.year</span>
+<span class="sd">        FROM books AS b</span>
+<span class="sd">        JOIN authors AS a</span>
+<span class="sd">        ON b.author_id = a.id</span>
+<span class="sd">        WHERE a.name = ?</span>
+<span class="sd">        """</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">author_name</span><span class="p">,),</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">id_</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">books</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">): id = </span><span class="si">{</span><span class="n">id_</span><span class="si">}</span><span class="s2">, author = </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=751c1e65943358ec">
+<div class="input">
+<div class="prompt input_prompt">In [25]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">print_books_by_author</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">"Haruki Murakami"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -14218,171 +13537,32 @@ in PostgreSQL/MySQL)</li>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[56]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563ac40&gt;</pre>
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Norwegian Wood (1987): id = 4, author = Haruki Murakami
+Kafka on the Shore (2002): id = 5, author = Haruki Murakami
+</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f3da0e695a1691af">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=03ffccdcb504492b"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ausgabe:</p>
+<pre><code>Norwegian Wood (1987): id = 4, author = Haruki Murakami
+Kafka on the Shore (2002): id = 5, author = Haruki Murakami
+</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=6b4e03423667dbb7">
 <div class="input">
-<div class="prompt input_prompt">In [57]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[57]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(2, 'Mouse', 29.99),
- (3, 'Keyboard', 59.99),
- (5, 'Headphones', 79.99),
- (4, 'Monitor', 349.99),
- (1, 'Laptop', 999.99)]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6ad96c6e9903454c">
-<div class="input">
-<div class="prompt input_prompt">In [58]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM products ORDER BY price"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[58]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563ac40&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=09b0f7256d01be6a">
-<div class="input">
-<div class="prompt input_prompt">In [59]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[59]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>(2, 'Mouse', 29.99)</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=64dbbc6c2fa649c3">
-<div class="input">
-<div class="prompt input_prompt">In [60]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM products ORDER BY price"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[60]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2078563ac40&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ec74219216b98d0d">
-<div class="input">
-<div class="prompt input_prompt">In [61]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[61]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(2, 'Mouse', 29.99), (3, 'Keyboard', 59.99)]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=52e48d54fc32e246">
-<div class="input">
-<div class="prompt input_prompt">In [62]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM products WHERE price &gt; 100"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[62]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Laptop', 999.99), (4, 'Monitor', 349.99)]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=664290cd6b136674">
-<div class="input">
-<div class="prompt input_prompt">In [63]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[63]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>('products',)</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=daaa06688306a351">
-<div class="input">
-<div class="prompt input_prompt">In [64]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>

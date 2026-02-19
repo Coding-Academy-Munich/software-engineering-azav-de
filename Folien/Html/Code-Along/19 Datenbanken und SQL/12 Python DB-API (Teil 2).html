@@ -13225,12 +13225,12 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=31b172c083ac0591">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=55fd668708bc0e7a">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE IF NOT EXISTS students(id INTEGER, name TEXT)"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="n">STUDENTS</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -13288,6 +13288,14 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=d393f5894a60b5f8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mit <code>fetchone()</code> können wir die Ergebnisse einzeln abrufen. Nach dem letzten
+Ergebnis gibt <code>fetchone()</code> <code>None</code> zurück:</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=5d87664d457d0369">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
@@ -13299,7 +13307,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=39a416c3d411537e">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5860b388a364bb05">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13310,7 +13318,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=dba0a7a125753a7f">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=6c78a8eead3a9fe0">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13332,7 +13340,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=8dec906c2ad2bafc">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=c391dd34db0f858b">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13467,7 +13475,7 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9ac4c558014363b1">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=718315e69da8ab52">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13478,7 +13486,7 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=514c87d3d3023a39">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d5db159d50b019b8">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13489,12 +13497,12 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9cb19b6661f770de">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=52c890513d3a9c3f">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE IF NOT EXISTS students(id INTEGER, name TEXT)"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="n">STUDENTS</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -13512,26 +13520,29 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=d5f675d2923ad20f"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=8a79ec7c2df5a002"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Da die Tabelle keinen Primärschlüssel hat, können wir eine weitere Zeile mit
+<p>Da die Tabelle einen Primärschlüssel hat, können wir keine weitere Zeile mit
 <code>id</code> 2 einfügen:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=8fecd94448169c76">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=03cedc3422684fb3">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(2, 'Deborah Winter')"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(2, 'Deborah Winter')"</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=36df9c2c2b04da70">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7ecc87a92fa6d006">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13539,6 +13550,13 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 <div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=0741f34e4fa4acf0"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nach dem Commit von <code>con</code> kann <code>con2</code> die eingefügten Daten sehen:</p>
 </div>
 </div>
 </div>
@@ -13575,7 +13593,7 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=412aefe1e7dfffd4">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5edcca5757af7022">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13594,6 +13612,13 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 <div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=b6ccf700a3aace7e"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Die zweite Verbindung sieht die gleichen Daten:</p>
 </div>
 </div>
 </div>
@@ -13619,7 +13644,7 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=110250c7689f0c76">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=fa258d4e7de1f769">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13627,6 +13652,14 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=3141af0bf0816263"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir erzeugen zwei Cursors auf der gleichen Verbindung und beobachten, dass
+sie nicht voneinander isoliert sind:</p>
 </div>
 </div>
 </div>
@@ -13674,7 +13707,7 @@ jede Verbindung eine eigene, unabhängige Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f5538fdb0ba14658">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=37b0b56edc11dafb">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13704,7 +13737,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=dc72d3e690bf3d04">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a21d705a2d8076c5">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13715,11 +13748,15 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a16e9a34d45361db"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7bce33a70c529bb6"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Zugriff-auf-Metadaten">Zugriff auf Metadaten<a class="anchor-link" href="#Zugriff-auf-Metadaten">¶</a></h2><ul>
-<li>Erfolgt typischerweise mit DB-spezifischen Tabellen:</li>
+<li>Erfolgt typischerweise mit DB-spezifischen Tabellen</li>
+<li>In SQLite enthält <code>sqlite_master</code> Informationen über alle Tabellen und
+Indizes</li>
+<li>Andere Datenbanken haben ähnliche Mechanismen (z.B. <code>INFORMATION_SCHEMA</code>
+in PostgreSQL/MySQL)</li>
 </ul>
 </div>
 </div>
@@ -13757,7 +13794,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=149ddb338d52efd4">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=7b3849e096db1d8c">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13779,7 +13816,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=705241b1a33c3e8c">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e746afec92ba473f">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13815,10 +13852,10 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=02f3857dcf122836"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9deecadb9640e9cd"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mini-Workshop:-Produkte-abfragen">Mini-Workshop: Produkte abfragen<a class="anchor-link" href="#Mini-Workshop:-Produkte-abfragen">¶</a></h2><ol>
+<h2 id="Workshop:-Produkte-abfragen">Workshop: Produkte abfragen<a class="anchor-link" href="#Workshop:-Produkte-abfragen">¶</a></h2><ol>
 <li>Erstellen Sie eine In-Memory-Datenbank mit einer Tabelle <code>products</code>
 (Spalten: <code>id</code> INTEGER, <code>name</code> TEXT, <code>price</code> REAL)</li>
 <li>Fügen Sie mindestens 5 Produkte mit <code>executemany()</code> ein</li>
@@ -13831,7 +13868,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=55a45343255350e8">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=93615459994b1c75">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13859,7 +13896,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=1b960d4435ac460d">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=d0c5e693253831ab">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13881,7 +13918,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a4aed643039724f8">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f3da0e695a1691af">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13892,7 +13929,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1f7bbc08b10b22ff">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6ad96c6e9903454c">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13903,7 +13940,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=2129d53a00ddcb77">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=09b0f7256d01be6a">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13914,7 +13951,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=490709c57d4ec45e">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=64dbbc6c2fa649c3">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13958,7 +13995,7 @@ Verbindung gehören:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=91e5848a94b308a6">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=daaa06688306a351">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">

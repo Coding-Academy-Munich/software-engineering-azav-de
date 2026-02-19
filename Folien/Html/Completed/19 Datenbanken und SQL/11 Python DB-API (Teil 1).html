@@ -13173,6 +13173,44 @@ wir einen <em>Cursor</em></li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c1bbc22336921c99"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Was-ist-eine-Transaktion?">Was ist eine Transaktion?<a class="anchor-link" href="#Was-ist-eine-Transaktion?">¶</a></h2><ul>
+<li>Eine Transaktion fasst mehrere Datenbankoperationen zu einer logischen Einheit
+zusammen</li>
+<li>Entweder werden alle Operationen ausgeführt oder keine</li>
+<li>Beispiel: Banküberweisung<ul>
+<li>Konto A wird belastet, Konto B wird gutgeschrieben</li>
+<li>Beide Operationen müssen gemeinsam gelingen oder gemeinsam fehlschlagen</li>
+<li>Ohne Transaktionen: Ein Absturz zwischen den beiden Operationen könnte
+dazu führen, dass Geld "verschwindet"</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=80c09d76ebbba878"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Commit-und-Rollback">Commit und Rollback<a class="anchor-link" href="#Commit-und-Rollback">¶</a></h2><ul>
+<li><strong>Commit</strong>: Macht alle Änderungen der aktuellen Transaktion dauerhaft</li>
+<li><strong>Rollback</strong>: Macht alle Änderungen der aktuellen Transaktion rückgängig</li>
+<li>Typisches Muster:<ul>
+<li>Operationen ausführen</li>
+<li>Bei Erfolg: Commit</li>
+<li>Bei Fehler: Rollback</li>
+</ul>
+</li>
+<li>Viele Datenbanken öffnen Transaktionen automatisch<ul>
+<li>Änderungen sind für andere erst nach einem Commit sichtbar</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=2a50ccec417f1104"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13236,7 +13274,7 @@ Dateipfad als Wert für <code>DB</code> verwenden, z.B. <code>DB = "students.db"
 <div class="output_area">
 <div class="prompt output_prompt">Out[3]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Connection at 0x23dea471a80&gt;</pre>
+<pre>&lt;sqlite3.Connection at 0x1b54ad41a80&gt;</pre>
 </div>
 </div>
 </div>
@@ -13291,7 +13329,7 @@ sondern auf einem Cursor:</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[6]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3bf40&gt;</pre>
 </div>
 </div>
 </div>
@@ -13320,51 +13358,17 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=76919f7c54720c37">
-<div class="input">
-<div class="prompt input_prompt">In [7]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">isolation_level</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>''</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c9e7d10cc86d7b25">
-<div class="input">
-<div class="prompt input_prompt">In [8]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">sqlite3</span><span class="o">.</span><span class="n">paramstyle</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[8]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>'qmark'</pre>
-</div>
-</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a0c82b08176b503f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mit dem Cursor können wir SQL-Anweisungen ausführen, um z.B. Tabellen zu
+erstellen oder Daten einzufügen.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=40248c69768fd728">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT 'hello, world'"</span><span class="p">)</span>
@@ -13375,9 +13379,9 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[9]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3bf40&gt;</pre>
 </div>
 </div>
 </div>
@@ -13385,7 +13389,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=1c7682c08df02986">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT 'hello, world'"</span><span class="p">):</span>
@@ -13413,12 +13417,12 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=dda8779e8e5a9346">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=d7d7cbd6c438a416">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE students(id INTEGER, name TEXT)"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13426,17 +13430,17 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt output_prompt">Out[9]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3bf40&gt;</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=cd6f8f5cf763057f">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5e9090b4321a4551">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
@@ -13445,9 +13449,16 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=856ad12e989436c6"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir fügen Zeilen mit <code>execute()</code> und Parametersubstitution (<code>?</code>) ein:</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=4bd6bf5b2f77ee96">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s2">"Joe Random"</span><span class="p">))</span>
@@ -13458,9 +13469,9 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3bf40&gt;</pre>
 </div>
 </div>
 </div>
@@ -13468,7 +13479,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=0c5bd21532c0b5bf">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">234</span><span class="p">,</span> <span class="s2">"Jane Doe"</span><span class="p">))</span>
@@ -13479,17 +13490,17 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[14]:</div>
+<div class="prompt output_prompt">Out[12]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3bf40&gt;</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ee4a8bb43a3ed37b">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2b70f4f7a196874b">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
@@ -13500,7 +13511,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=d4cb8be61e061379">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT id, name FROM students ORDER BY name"</span><span class="p">):</span>
@@ -13522,9 +13533,18 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=adcc994018f600f8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mit <code>executemany()</code> können wir mehrere Zeilen auf einmal einfügen. Beachten
+Sie den zweiten Eintrag — wir werden ihn später verwenden, um SQL-Injection
+zu demonstrieren:</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6bb15167bb423554">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">STUDENTS</span> <span class="o">=</span> <span class="p">[</span>
@@ -13542,7 +13562,7 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=b138d053aab36d28">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="n">STUDENTS</span><span class="p">)</span>
@@ -13553,17 +13573,17 @@ bestimmt, wie Parameter im Query-String gekennzeichnet werden</li>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[18]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3bf40&gt;</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=2552d4fdd60e8723">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=be2b1b5030bc16d5">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
@@ -13581,13 +13601,110 @@ SQL-Injection-Angriff:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3e00fbd8b6c969c8">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b2148b88b5d4a8bc"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir setzen die Tabelle zurück, um den Angriff zu demonstrieren:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=8147a328c9464a5b">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS students"</span><span class="p">)</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s2">"Joe Random"</span><span class="p">))</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">234</span><span class="p">,</span> <span class="s2">"Jane Doe"</span><span class="p">))</span>
+<span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=83a9996124d49909"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dieser Code verwendet String-Formatierung statt Parametersubstitution:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=a24006dbd8a983f9">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">STUDENTS</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="sa">f</span><span class="s2">"INSERT INTO students VALUES(</span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, '</span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">')"</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Error: no such table: students
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=16a8763452e62a1c"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Bobby Tables hat die Tabelle gelöscht!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=d5174baeb8129a67">
 <div class="input">
 <div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># for s in STUDENTS:</span>
-<span class="c1">#     cur.executescript(f"INSERT INTO students VALUES({s[0]}, '{s[1]}')")</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students"</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Error: no such table: students
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=66cf4b64d5319f37"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir stellen die Tabelle wieder her:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=cc168f5bb2b99ed3">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s2">"Joe Random"</span><span class="p">))</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">234</span><span class="p">,</span> <span class="s2">"Jane Doe"</span><span class="p">))</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO students VALUES(?, ?)"</span><span class="p">,</span> <span class="n">STUDENTS</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -13595,7 +13712,7 @@ SQL-Injection-Angriff:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=4f45e94de68bb464">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM students ORDER BY id"</span><span class="p">):</span>
@@ -13629,15 +13746,15 @@ SQL-Injection-Angriff:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=731828a4ab114fc8">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=76fb4daedde26ea5">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">SCRIPT</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    BEGIN;</span>
-<span class="s2">    CREATE TABLE teachers(id INTEGER, name TEXT);</span>
-<span class="s2">    CREATE TABLE courses(course_id INTEGER, title TEXT, grade_points REAL);</span>
+<span class="s2">    CREATE TABLE teachers(id INTEGER PRIMARY KEY, name TEXT);</span>
+<span class="s2">    CREATE TABLE courses(course_id INTEGER PRIMARY KEY, title TEXT, grade_points REAL);</span>
 <span class="s2">    CREATE TABLE teaches(teacher_id INTEGER, course_id INTEGER);</span>
 <span class="s2">    CREATE TABLE enrolments(student_id INTEGER, course_id INTEGER);</span>
 <span class="s2">    COMMIT;</span>
@@ -13649,7 +13766,7 @@ SQL-Injection-Angriff:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=46a2ca694cf42b2b">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">SCRIPT</span><span class="p">)</span>
@@ -13660,9 +13777,9 @@ SQL-Injection-Angriff:</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[23]:</div>
+<div class="prompt output_prompt">Out[24]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea66aec0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3bf40&gt;</pre>
 </div>
 </div>
 </div>
@@ -13670,7 +13787,7 @@ SQL-Injection-Angriff:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=ef13f62e6836d46e">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * from sqlite_master"</span><span class="p">):</span>
@@ -13684,9 +13801,9 @@ SQL-Injection-Angriff:</p>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>('table', 'students', 'students', 2, 'CREATE TABLE students(id INTEGER, name TEXT)')
-('table', 'teachers', 'teachers', 3, 'CREATE TABLE teachers(id INTEGER, name TEXT)')
-('table', 'courses', 'courses', 4, 'CREATE TABLE courses(course_id INTEGER, title TEXT, grade_points REAL)')
+<pre>('table', 'students', 'students', 2, 'CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)')
+('table', 'teachers', 'teachers', 3, 'CREATE TABLE teachers(id INTEGER PRIMARY KEY, name TEXT)')
+('table', 'courses', 'courses', 4, 'CREATE TABLE courses(course_id INTEGER PRIMARY KEY, title TEXT, grade_points REAL)')
 ('table', 'teaches', 'teaches', 5, 'CREATE TABLE teaches(teacher_id INTEGER, course_id INTEGER)')
 ('table', 'enrolments', 'enrolments', 6, 'CREATE TABLE enrolments(student_id INTEGER, course_id INTEGER)')
 </pre>
@@ -13705,7 +13822,7 @@ werden:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=36b057457cc51a4b">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -13714,10 +13831,10 @@ werden:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c769da25b890dee2"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4cd5832b5c86298b"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mini-Workshop:-B%C3%BCcherdatenbank">Mini-Workshop: Bücherdatenbank<a class="anchor-link" href="#Mini-Workshop:-B%C3%BCcherdatenbank">¶</a></h2><p>Erstellen Sie ein Python-Programm, das folgende Schritte ausführt:</p>
+<h2 id="Workshop:-B%C3%BCcherdatenbank">Workshop: Bücherdatenbank<a class="anchor-link" href="#Workshop:-B%C3%BCcherdatenbank">¶</a></h2><p>Erstellen Sie ein Python-Programm, das folgende Schritte ausführt:</p>
 <ol>
 <li>Erzeugen Sie eine Verbindung zu einer In-Memory-Datenbank</li>
 <li>Erstellen Sie eine Tabelle <code>books</code> mit den Spalten <code>id</code> (INTEGER) und
@@ -13730,9 +13847,9 @@ werden:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=a97aa0f0327d6a19">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=c2bc724fd0127d15">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
@@ -13743,7 +13860,7 @@ werden:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=47f66fde754c2f68">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
@@ -13754,7 +13871,7 @@ werden:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=34b24c18d8fadcb1">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
@@ -13763,12 +13880,12 @@ werden:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=18851a8d9df41d4c">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=9480ab70285dec93">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE books(id INTEGER, title TEXT)"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE books(id INTEGER PRIMARY KEY, title TEXT)"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13776,9 +13893,9 @@ werden:</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[29]:</div>
+<div class="prompt output_prompt">Out[30]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea669f40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3b1c0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13786,7 +13903,7 @@ werden:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=9b047a00fabb9b77">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO books VALUES(?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"The Hitchhiker's Guide to the Galaxy"</span><span class="p">))</span>
@@ -13797,9 +13914,9 @@ werden:</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[30]:</div>
+<div class="prompt output_prompt">Out[31]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea669f40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3b1c0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13807,7 +13924,7 @@ werden:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=9cdb4c6a0b41bb5a">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">MORE_BOOKS</span> <span class="o">=</span> <span class="p">[</span>
@@ -13822,7 +13939,7 @@ werden:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=51493f6c41fe67f1">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO books VALUES(?, ?)"</span><span class="p">,</span> <span class="n">MORE_BOOKS</span><span class="p">)</span>
@@ -13833,17 +13950,17 @@ werden:</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[32]:</div>
+<div class="prompt output_prompt">Out[33]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x23dea669f40&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1b54af3b1c0&gt;</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=b54d5050fda71e58">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=0ecc5570b8e38405">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
@@ -13854,7 +13971,7 @@ werden:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=b5696ace1feab553">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM books ORDER BY id"</span><span class="p">):</span>
@@ -13878,9 +13995,9 @@ werden:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a8a50facfeb6618f">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=e746afec92ba473f">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>

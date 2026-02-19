@@ -42,7 +42,7 @@ cur = con.cursor()
 # Wir erstellen die Tabelle `students` mit einigen Daten:
 
 # %%
-cur.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER, name TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)")
 cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
 
 # %%
@@ -58,6 +58,11 @@ cur.execute("SELECT * FROM students ORDER BY id")
 
 # %%
 cur = cur.execute("SELECT * FROM students ORDER BY id")
+
+# %% [markdown]
+#
+# Mit `fetchone()` können wir die Ergebnisse einzeln abrufen. Nach dem letzten
+# Ergebnis gibt `fetchone()` `None` zurück:
 
 # %%
 
@@ -121,7 +126,7 @@ con = sqlite3.connect(DB)
 cur = con.cursor()
 
 # %%
-cur.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER, name TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)")
 cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
 
 # %%
@@ -129,11 +134,20 @@ con2 = sqlite3.connect(DB)
 
 # %% [markdown]
 #
-# Da die Tabelle keinen Primärschlüssel hat, können wir eine weitere Zeile mit
+# Da die Tabelle einen Primärschlüssel hat, können wir keine weitere Zeile mit
 # `id` 2 einfügen:
 
 # %%
-cur.execute("INSERT INTO students VALUES(2, 'Deborah Winter')")
+try:
+    cur.execute("INSERT INTO students VALUES(2, 'Deborah Winter')")
+except sqlite3.IntegrityError as e:
+    print(f"Error: {e}")
+
+# %%
+
+# %% [markdown]
+#
+# Nach dem Commit von `con` kann `con2` die eingefügten Daten sehen:
 
 # %%
 
@@ -145,7 +159,9 @@ cur.execute("INSERT INTO students VALUES(2, 'Deborah Winter')")
 
 # %%
 
-# %%
+# %% [markdown]
+#
+# Die zweite Verbindung sieht die gleichen Daten:
 
 # %%
 
@@ -153,6 +169,11 @@ cur.execute("INSERT INTO students VALUES(2, 'Deborah Winter')")
 
 # %%
 con = sqlite3.connect(DB)
+
+# %% [markdown]
+#
+# Wir erzeugen zwei Cursors auf der gleichen Verbindung und beobachten, dass
+# sie nicht voneinander isoliert sind:
 
 # %%
 
@@ -177,7 +198,11 @@ con = sqlite3.connect(DB)
 #
 # ## Zugriff auf Metadaten
 #
-# - Erfolgt typischerweise mit DB-spezifischen Tabellen:
+# - Erfolgt typischerweise mit DB-spezifischen Tabellen
+# - In SQLite enthält `sqlite_master` Informationen über alle Tabellen und
+#   Indizes
+# - Andere Datenbanken haben ähnliche Mechanismen (z.B. `INFORMATION_SCHEMA`
+#   in PostgreSQL/MySQL)
 
 # %%
 
@@ -202,7 +227,7 @@ except PermissionError as e:
 
 # %% [markdown]
 #
-# ## Mini-Workshop: Produkte abfragen
+# ## Workshop: Produkte abfragen
 #
 # 1. Erstellen Sie eine In-Memory-Datenbank mit einer Tabelle `products`
 #    (Spalten: `id` INTEGER, `name` TEXT, `price` REAL)

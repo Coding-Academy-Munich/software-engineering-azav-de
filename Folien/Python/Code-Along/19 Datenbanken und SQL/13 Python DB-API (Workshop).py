@@ -9,7 +9,7 @@
 
 # %% [markdown]
 #
-# ## Mini-Workshop: Mitarbeiter-Datenbank
+# ## Workshop: Mitarbeiter-Datenbank
 #
 # Sie wollen Daten für die Mitarbeiter einer Firma in einer SQLite Datenbank
 # speichern. Jeder Mitarbeiter wird dabei durch folgende Daten beschrieben:

@@ -30,6 +30,32 @@
 
 # %% [markdown]
 #
+# ## Was ist eine Transaktion?
+#
+# - Eine Transaktion fasst mehrere Datenbankoperationen zu einer logischen Einheit
+#   zusammen
+# - Entweder werden alle Operationen ausgeführt oder keine
+# - Beispiel: Banküberweisung
+#   - Konto A wird belastet, Konto B wird gutgeschrieben
+#   - Beide Operationen müssen gemeinsam gelingen oder gemeinsam fehlschlagen
+#   - Ohne Transaktionen: Ein Absturz zwischen den beiden Operationen könnte
+#     dazu führen, dass Geld "verschwindet"
+
+# %% [markdown]
+#
+# ## Commit und Rollback
+#
+# - **Commit**: Macht alle Änderungen der aktuellen Transaktion dauerhaft
+# - **Rollback**: Macht alle Änderungen der aktuellen Transaktion rückgängig
+# - Typisches Muster:
+#   - Operationen ausführen
+#   - Bei Erfolg: Commit
+#   - Bei Fehler: Rollback
+# - Viele Datenbanken öffnen Transaktionen automatisch
+#   - Änderungen sind für andere erst nach einem Commit sichtbar
+
+# %% [markdown]
+#
 # ## Erzeugen einer Verbindung
 #
 # - Eine `Connection`-Instanz wird mit `sqlite3.connect()` erzeugt
@@ -82,9 +108,10 @@ DB = ":memory:"
 # - `cursor.executescript()` führt mehrere SQL-Anweisungen aus
 #   - Transaktionen müssen manuell verwaltet werden
 
-# %%
-
-# %%
+# %% [markdown]
+#
+# Mit dem Cursor können wir SQL-Anweisungen ausführen, um z.B. Tabellen zu
+# erstellen oder Daten einzufügen.
 
 # %%
 
@@ -98,13 +125,23 @@ DB = ":memory:"
 
 # %%
 
-# %%
+# %% [markdown]
+#
+# Wir fügen Zeilen mit `execute()` und Parametersubstitution (`?`) ein:
 
 # %%
 
 # %%
 
 # %%
+
+# %%
+
+# %% [markdown]
+#
+# Mit `executemany()` können wir mehrere Zeilen auf einmal einfügen. Beachten
+# Sie den zweiten Eintrag — wir werden ihn später verwenden, um SQL-Injection
+# zu demonstrieren:
 
 # %%
 STUDENTS = [
@@ -129,8 +166,48 @@ STUDENTS = [
 # SQL-Injection-Angriff:
 
 
-# %%
+# %% [markdown]
+#
+# Wir setzen die Tabelle zurück, um den Angriff zu demonstrieren:
 
+# %%
+cur.executescript("DROP TABLE IF EXISTS students")
+cur.execute("CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)")
+cur.execute("INSERT INTO students VALUES(?, ?)", (123, "Joe Random"))
+cur.execute("INSERT INTO students VALUES(?, ?)", (234, "Jane Doe"))
+con.commit()
+
+# %% [markdown]
+#
+# Dieser Code verwendet String-Formatierung statt Parametersubstitution:
+
+# %%
+try:
+    for s in STUDENTS:
+        cur.executescript(f"INSERT INTO students VALUES({s[0]}, '{s[1]}')")
+except sqlite3.OperationalError as e:
+    print(f"Error: {e}")
+
+# %% [markdown]
+#
+# Bobby Tables hat die Tabelle gelöscht!
+
+# %%
+try:
+    cur.execute("SELECT * FROM students")
+except sqlite3.OperationalError as e:
+    print(f"Error: {e}")
+
+# %% [markdown]
+#
+# Wir stellen die Tabelle wieder her:
+
+# %%
+cur.execute("CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)")
+cur.execute("INSERT INTO students VALUES(?, ?)", (123, "Joe Random"))
+cur.execute("INSERT INTO students VALUES(?, ?)", (234, "Jane Doe"))
+cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
+con.commit()
 
 # %%
 
@@ -139,6 +216,14 @@ STUDENTS = [
 # ### `executescript()`: Mehrere Anweisungen ausführen
 
 # %%
+SCRIPT = """
+    BEGIN;
+    CREATE TABLE teachers(id INTEGER PRIMARY KEY, name TEXT);
+    CREATE TABLE courses(course_id INTEGER PRIMARY KEY, title TEXT, grade_points REAL);
+    CREATE TABLE teaches(teacher_id INTEGER, course_id INTEGER);
+    CREATE TABLE enrolments(student_id INTEGER, course_id INTEGER);
+    COMMIT;
+"""
 
 # %%
 
@@ -155,7 +240,7 @@ STUDENTS = [
 
 # %% [markdown]
 #
-# ## Mini-Workshop: Bücherdatenbank
+# ## Workshop: Bücherdatenbank
 #
 # Erstellen Sie ein Python-Programm, das folgende Schritte ausführt:
 #

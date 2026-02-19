@@ -96,8 +96,6 @@
 # - `DROP TABLE` löscht eine Tabelle und **alle ihre Daten** dauerhaft
 # - Es gibt **kein Rückgängigmachen** — die Daten sind unwiderruflich verloren
 # - `IF EXISTS` verhindert einen Fehler, wenn die Tabelle nicht existiert
-# - **Vorsicht** bei Tabellen, auf die andere Tabellen per Fremdschlüssel
-#   verweisen — die verweisenden Tabellen können danach inkonsistent sein
 
 # %% [markdown]
 #
