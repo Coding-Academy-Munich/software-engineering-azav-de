@@ -13244,7 +13244,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="output_area">
 <div class="prompt output_prompt">Out[6]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb045bac0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1e2490f7240&gt;</pre>
 </div>
 </div>
 </div>
@@ -13326,7 +13326,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="output_area">
 <div class="prompt output_prompt">Out[9]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb045bac0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1e2490f7240&gt;</pre>
 </div>
 </div>
 </div>
@@ -13441,7 +13441,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="output_area">
 <div class="prompt output_prompt">Out[14]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb045bac0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1e2490f7240&gt;</pre>
 </div>
 </div>
 </div>
@@ -13504,7 +13504,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 <div class="output_area">
 <div class="prompt output_prompt">Out[17]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb045b0c0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1e2490f7ec0&gt;</pre>
 </div>
 </div>
 </div>
@@ -13547,16 +13547,13 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=46e2e0c93005238e"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c12649cee78e096e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mehrere-Verbindungen-und-Cursors">Mehrere Verbindungen und Cursors<a class="anchor-link" href="#Mehrere-Verbindungen-und-Cursors">¶</a></h2><ul>
-<li>Mehrere Verbindungen zur selben Datenbank möglich</li>
-<li>Mehrere Cursors auf einer Verbindung möglich<ul>
-<li>Aber: Gleichzeitig aktive Transaktionen führen zu Timeouts</li>
-</ul>
-</li>
-<li>Cursors auf derselben Verbindung sind <strong>nicht</strong> isoliert</li>
+<h2 id="Mehrere-Cursors-und-Verbindungen">Mehrere Cursors und Verbindungen<a class="anchor-link" href="#Mehrere-Cursors-und-Verbindungen">¶</a></h2><ul>
+<li>Wir können mehrere Cursors auf einer Verbindung oder mehrere
+Verbindungen zur gleichen Datenbank verwenden</li>
+<li>Diese beiden Fälle verhalten sich unterschiedlich</li>
 </ul>
 </div>
 </div>
@@ -13572,17 +13569,142 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=32b7d5e874116ddd"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=33f9893574167c86"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Für mehrere Verbindungen brauchen wir eine dateibasierte Datenbank.
-Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
+<h3 id="Mehrere-Cursors-(gleiche-Verbindung)">Mehrere Cursors (gleiche Verbindung)<a class="anchor-link" href="#Mehrere-Cursors-(gleiche-Verbindung)">¶</a></h3><ul>
+<li>Eine Verbindung kann mehrere Cursors haben</li>
+<li>Alle Cursors teilen sich den Zustand der Verbindung</li>
+<li>Änderungen über einen Cursor sind sofort für andere Cursors sichtbar
+(auch ohne Commit)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=dba0d6ec75cc357c">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
+<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE movies(id INTEGER PRIMARY KEY, title TEXT, year INTEGER)"</span><span class="p">)</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO movies VALUES(?, ?, ?)"</span><span class="p">,</span> <span class="n">MOVIES</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=9f2cb955eb4b3742"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir erzeugen zwei Cursors auf der gleichen Verbindung:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5dd815434bd76fcc">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cur2</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=bbf714de938bd9f7"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>cur2</code> fügt einen neuen Film ein:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5cde8667b2f5d7d1">
+<div class="input">
+<div class="prompt input_prompt">In [23]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO movies VALUES(?, ?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="s2">"Gladiator"</span><span class="p">,</span> <span class="mi">2000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[23]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1e249131240&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=7774b880a5ff4fe3"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>cur1</code> sieht den von <code>cur2</code> eingefügten Film sofort — obwohl wir noch kein
+Commit gemacht haben:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=bc20df353108a186">
+<div class="input">
+<div class="prompt input_prompt">In [24]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM movies ORDER BY id"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[24]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[(1, 'Inception', 2010),
+ (2, 'The Matrix', 1999),
+ (3, 'Pulp Fiction', 1994),
+ (4, 'The Shawshank Redemption', 1994),
+ (5, 'Interstellar', 2014),
+ (6, 'Back to the Future', 1985),
+ (101, 'Gladiator', 2000)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=63714fca9fe3e413">
+<div class="input">
+<div class="prompt input_prompt">In [25]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=990de8772727c6a1"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Mehrere-Verbindungen-(gleiche-Datenbank)">Mehrere Verbindungen (gleiche Datenbank)<a class="anchor-link" href="#Mehrere-Verbindungen-(gleiche-Datenbank)">¶</a></h3><ul>
+<li>Jede Verbindung hat ihre eigene Transaktion</li>
+<li>Änderungen einer Verbindung sind für andere erst nach einem Commit sichtbar</li>
+<li>Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene, unabhängige Datenbank</li>
+<li>Daher verwenden wir für dieses Beispiel eine dateibasierte Datenbank</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b1ca56c1e42ce1a0">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
@@ -13593,7 +13715,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=b16b70d0add8ad12">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">FD</span><span class="p">,</span> <span class="n">DB</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s2">".db"</span><span class="p">)</span>
@@ -13602,43 +13724,39 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=2716e550d260bbd2">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=d7ae254c534f025f"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir erzeugen eine Verbindung, erstellen eine Tabelle und fügen Daten ein:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=af17d03a67342338">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e2dbf3aeb799fcff">
-<div class="input">
-<div class="prompt input_prompt">In [24]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE movies(id INTEGER PRIMARY KEY, title TEXT, year INTEGER)"</span><span class="p">)</span>
 <span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s2">"INSERT INTO movies VALUES(?, ?, ?)"</span><span class="p">,</span> <span class="n">MOVIES</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[24]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb0494540&gt;</pre>
 </div>
-</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cc38990cea0330b8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wir öffnen eine zweite Verbindung zur gleichen Datenbank.
+Sie kann die bereits committeten Daten sehen:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4f8c794f0fe4db51">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
@@ -13647,87 +13765,9 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=cdbe8f99d446320b"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Prim%C3%A4rschl%C3%BCssel-Constraint">Primärschlüssel-Constraint<a class="anchor-link" href="#Prim%C3%A4rschl%C3%BCssel-Constraint">¶</a></h3><p>Die Tabelle hat einen <code>PRIMARY KEY</code> — doppelte IDs sind nicht erlaubt:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=14a7e0fb2209dc27">
-<div class="input">
-<div class="prompt input_prompt">In [26]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO movies VALUES(1, 'Duplicate Movie', 2020)"</span><span class="p">)</span>
-<span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">IntegrityError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Error: UNIQUE constraint failed: movies.id
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=b4f05b317128d4e2"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Sichtbarkeit-von-Transaktionen">Sichtbarkeit von Transaktionen<a class="anchor-link" href="#Sichtbarkeit-von-Transaktionen">¶</a></h3><p>Vor dem Commit sieht die zweite Verbindung die Daten nicht:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3ffdedec4244f440">
-<div class="input">
-<div class="prompt input_prompt">In [27]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM movies"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[27]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=f572f2f560a7b07e"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Nach dem Commit sind die Daten sichtbar:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=1902b6f7e76826b3">
-<div class="input">
-<div class="prompt input_prompt">In [28]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=262949890d43d76c">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM movies ORDER BY id"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
@@ -13738,7 +13778,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[29]:</div>
+<div class="prompt output_prompt">Out[30]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[(1, 'Inception', 2010),
  (2, 'The Matrix', 1999),
@@ -13751,64 +13791,91 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c95ea9e7f8305133">
-<div class="input">
-<div class="prompt input_prompt">In [30]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">con2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=c49d2af764fae775"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Jetzt fügen wir über <code>con</code> einen neuen Film ein, <strong>ohne</strong> zu committen:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=fa258d4e7de1f769">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=c1bc6219771f963b">
 <div class="input">
 <div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DB</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"INSERT INTO movies VALUES(?, ?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="s2">"Gladiator"</span><span class="p">,</span> <span class="mi">2000</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[31]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1e249131540&gt;</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=4e40644877ce6643"><div class="prompt input_prompt">
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=b867934bb0dea66e"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Zwei-Cursors,-eine-Verbindung">Zwei Cursors, eine Verbindung<a class="anchor-link" href="#Zwei-Cursors,-eine-Verbindung">¶</a></h3><p>Cursors auf derselben Verbindung teilen sich den Zustand:</p>
+<p><code>con2</code> kann den neuen Film <strong>nicht</strong> sehen, da <code>con</code> noch nicht committet hat:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7c2b008736e46cbe">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=6fb5c979cb6d1b91">
 <div class="input">
 <div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM movies ORDER BY id"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[32]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[(1, 'Inception', 2010),
+ (2, 'The Matrix', 1999),
+ (3, 'Pulp Fiction', 1994),
+ (4, 'The Shawshank Redemption', 1994),
+ (5, 'Interstellar', 2014),
+ (6, 'Back to the Future', 1985)]</pre>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=c480b4cf2d34aace">
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=461db2106394ac14"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nach dem Commit von <code>con</code> kann <code>con2</code> den neuen Film sehen:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e3706affc136b02e">
 <div class="input">
 <div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur2</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=e3b5e29251a7fa27">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5afe2c6ffa76293a">
 <div class="input">
 <div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM movies"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM movies ORDER BY id"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -13823,77 +13890,19 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
  (3, 'Pulp Fiction', 1994),
  (4, 'The Shawshank Redemption', 1994),
  (5, 'Interstellar', 2014),
- (6, 'Back to the Future', 1985)]</pre>
+ (6, 'Back to the Future', 1985),
+ (101, 'Gladiator', 2000)]</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4623d0339336573e">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5f68308faa46973d">
 <div class="input">
 <div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur2</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span>
-    <span class="s2">"INSERT INTO movies VALUES (?, ?, ?)"</span><span class="p">,</span>
-    <span class="p">[(</span><span class="mi">101</span><span class="p">,</span> <span class="s2">"Gladiator"</span><span class="p">,</span> <span class="mi">2000</span><span class="p">),</span> <span class="p">(</span><span class="mi">102</span><span class="p">,</span> <span class="s2">"Amélie"</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)],</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[35]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb045bbc0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=e42e972da7ce7764"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>cur1</code> sieht die von <code>cur2</code> eingefügten Daten sofort:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=bc20df353108a186">
-<div class="input">
-<div class="prompt input_prompt">In [36]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur1</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM movies ORDER BY id"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[36]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>[(1, 'Inception', 2010),
- (2, 'The Matrix', 1999),
- (3, 'Pulp Fiction', 1994),
- (4, 'The Shawshank Redemption', 1994),
- (5, 'Interstellar', 2014),
- (6, 'Back to the Future', 1985),
- (101, 'Gladiator', 2000),
- (102, 'Amélie', 2001)]</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=709884b4b96e16a8">
-<div class="input">
-<div class="prompt input_prompt">In [37]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">con2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -13911,7 +13920,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=664290cd6b136674">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
@@ -13922,7 +13931,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[38]:</div>
+<div class="prompt output_prompt">Out[36]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>('movies',)</pre>
 </div>
@@ -13932,7 +13941,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=65ba0c609dc749db">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master WHERE name='foo'"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
@@ -13943,7 +13952,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[39]:</div>
+<div class="prompt output_prompt">Out[37]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
@@ -13953,7 +13962,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=c87ab37f2d1a599a">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE directors(id INTEGER PRIMARY KEY, name TEXT)"</span><span class="p">)</span>
@@ -13964,9 +13973,9 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[40]:</div>
+<div class="prompt output_prompt">Out[38]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb04956c0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1e249131940&gt;</pre>
 </div>
 </div>
 </div>
@@ -13974,7 +13983,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=25a94be97e0583b6">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master"</span><span class="p">))</span>
@@ -13985,7 +13994,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[41]:</div>
+<div class="prompt output_prompt">Out[39]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[('movies',), ('directors',)]</pre>
 </div>
@@ -13993,9 +14002,9 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=bbd5eb766294d48e">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=64ff97c71c1e9435">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -14006,7 +14015,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=c246775ae2a597f0">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -14017,7 +14026,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=1a0e6d7ac13647ac">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -14033,7 +14042,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Could not delete the database file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\tc\\AppData\\Local\\Temp\\tmp4n3f1t6t.db'
+<pre>Could not delete the database file: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\tc\\AppData\\Local\\Temp\\tmpdh4f1bxg.db'
 </pre>
 </div>
 </div>
@@ -14056,9 +14065,9 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=039a4427827fdb67">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=befdcec22d888b39">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In [43]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
@@ -14069,7 +14078,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e99a918e1a8943be">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In [44]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">DISHES</span> <span class="o">=</span> <span class="p">[</span>
@@ -14087,7 +14096,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=fcba664ca420a54e">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In [45]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
@@ -14104,6 +14113,53 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=09bec4e52ba7bbef">
 <div class="input">
+<div class="prompt input_prompt">In [46]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM dishes ORDER BY price"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[46]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;sqlite3.Cursor at 0x1e249131840&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=ec06f42590d04e8c">
+<div class="input">
+<div class="prompt input_prompt">In [47]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[47]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[(6, 'Ice Cream', 3.5, 'Dessert'),
+ (5, 'Tomato Soup', 4.9, 'Starter'),
+ (3, 'Chocolate Cake', 5.5, 'Dessert'),
+ (2, 'Caesar Salad', 6.9, 'Starter'),
+ (1, 'Margherita Pizza', 8.5, 'Main'),
+ (4, 'Grilled Salmon', 14.9, 'Main')]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=6787b35a8fe309b3">
+<div class="input">
 <div class="prompt input_prompt">In [48]:</div>
 <div class="inner_cell">
 <div class="input_area">
@@ -14117,18 +14173,18 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[48]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb04940c0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1e249131840&gt;</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=0beebe135cd99c4a">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=20f5c00d11834fe0">
 <div class="input">
 <div class="prompt input_prompt">In [49]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -14138,18 +14194,13 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[49]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[(6, 'Ice Cream', 3.5, 'Dessert'),
- (5, 'Tomato Soup', 4.9, 'Starter'),
- (3, 'Chocolate Cake', 5.5, 'Dessert'),
- (2, 'Caesar Salad', 6.9, 'Starter'),
- (1, 'Margherita Pizza', 8.5, 'Main'),
- (4, 'Grilled Salmon', 14.9, 'Main')]</pre>
+<pre>(6, 'Ice Cream', 3.5, 'Dessert')</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=faeb26909d4815ac">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=501c3456e16b0b33">
 <div class="input">
 <div class="prompt input_prompt">In [50]:</div>
 <div class="inner_cell">
@@ -14164,49 +14215,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[50]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb04940c0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=2cd3eda3969a4e23">
-<div class="input">
-<div class="prompt input_prompt">In [51]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[51]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>(6, 'Ice Cream', 3.5, 'Dessert')</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=0659abf9418b35a6">
-<div class="input">
-<div class="prompt input_prompt">In [52]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM dishes ORDER BY price"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[52]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;sqlite3.Cursor at 0x2bbb04940c0&gt;</pre>
+<pre>&lt;sqlite3.Cursor at 0x1e249131840&gt;</pre>
 </div>
 </div>
 </div>
@@ -14214,7 +14223,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=b8b0398ed2c35cc6">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In [51]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -14225,7 +14234,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[53]:</div>
+<div class="prompt output_prompt">Out[51]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[(6, 'Ice Cream', 3.5, 'Dessert'),
  (5, 'Tomato Soup', 4.9, 'Starter'),
@@ -14237,7 +14246,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered" id="cell-id=81e5a685643186ba">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In [52]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM dishes WHERE price &lt; 10.0"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
@@ -14248,7 +14257,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[54]:</div>
+<div class="prompt output_prompt">Out[52]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>[(1, 'Margherita Pizza', 8.5, 'Main'),
  (2, 'Caesar Salad', 6.9, 'Starter'),
@@ -14260,9 +14269,9 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7616abd84a714438">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5cb2d94c3184f35f">
 <div class="input">
-<div class="prompt input_prompt">In [55]:</div>
+<div class="prompt input_prompt">In [53]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
@@ -14273,7 +14282,7 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[55]:</div>
+<div class="prompt output_prompt">Out[53]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>('dishes',)</pre>
 </div>
@@ -14281,9 +14290,9 @@ Bei <code>:memory:</code> erzeugt jede Verbindung eine eigene Datenbank.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=ee8ac141ee188c79">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=4a1ca2322892695b">
 <div class="input">
-<div class="prompt input_prompt">In [56]:</div>
+<div class="prompt input_prompt">In [54]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>

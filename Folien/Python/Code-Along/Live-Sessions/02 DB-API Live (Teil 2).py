@@ -99,20 +99,65 @@ cur.execute("SELECT * FROM movies ORDER BY year")
 
 # %% [markdown]
 #
-# ## Mehrere Verbindungen und Cursors
+# ## Mehrere Cursors und Verbindungen
 #
-# - Mehrere Verbindungen zur selben Datenbank möglich
-# - Mehrere Cursors auf einer Verbindung möglich
-#   - Aber: Gleichzeitig aktive Transaktionen führen zu Timeouts
-# - Cursors auf derselben Verbindung sind **nicht** isoliert
+# - Wir können mehrere Cursors auf einer Verbindung oder mehrere
+#   Verbindungen zur gleichen Datenbank verwenden
+# - Diese beiden Fälle verhalten sich unterschiedlich
 
 # %%
 con.close()
 
 # %% [markdown]
 #
-# Für mehrere Verbindungen brauchen wir eine dateibasierte Datenbank.
-# Bei `:memory:` erzeugt jede Verbindung eine eigene Datenbank.
+# ### Mehrere Cursors (gleiche Verbindung)
+#
+# - Eine Verbindung kann mehrere Cursors haben
+# - Alle Cursors teilen sich den Zustand der Verbindung
+# - Änderungen über einen Cursor sind sofort für andere Cursors sichtbar
+#   (auch ohne Commit)
+
+# %%
+con = sqlite3.connect(":memory:")
+cur = con.cursor()
+cur.execute("CREATE TABLE movies(id INTEGER PRIMARY KEY, title TEXT, year INTEGER)")
+cur.executemany("INSERT INTO movies VALUES(?, ?, ?)", MOVIES)
+con.commit()
+
+# %% [markdown]
+#
+# Wir erzeugen zwei Cursors auf der gleichen Verbindung:
+
+# %%
+cur1 = con.cursor()
+cur2 = con.cursor()
+
+# %% [markdown]
+#
+# `cur2` fügt einen neuen Film ein:
+
+# %%
+cur2.execute("INSERT INTO movies VALUES(?, ?, ?)", (101, "Gladiator", 2000))
+
+# %% [markdown]
+#
+# `cur1` sieht den von `cur2` eingefügten Film sofort — obwohl wir noch kein
+# Commit gemacht haben:
+
+# %%
+
+# %%
+con.commit()
+con.close()
+
+# %% [markdown]
+#
+# ### Mehrere Verbindungen (gleiche Datenbank)
+#
+# - Jede Verbindung hat ihre eigene Transaktion
+# - Änderungen einer Verbindung sind für andere erst nach einem Commit sichtbar
+# - Bei `:memory:` erzeugt jede Verbindung eine eigene, unabhängige Datenbank
+# - Daher verwenden wir für dieses Beispiel eine dateibasierte Datenbank
 
 # %%
 import tempfile
@@ -120,71 +165,51 @@ import tempfile
 # %%
 FD, DB = tempfile.mkstemp(suffix=".db")
 
-# %%
-con = sqlite3.connect(DB)
+# %% [markdown]
+#
+# Wir erzeugen eine Verbindung, erstellen eine Tabelle und fügen Daten ein:
 
 # %%
+con = sqlite3.connect(DB)
 cur = con.cursor()
 cur.execute("CREATE TABLE movies(id INTEGER PRIMARY KEY, title TEXT, year INTEGER)")
 cur.executemany("INSERT INTO movies VALUES(?, ?, ?)", MOVIES)
+con.commit()
+
+# %% [markdown]
+#
+# Wir öffnen eine zweite Verbindung zur gleichen Datenbank.
+# Sie kann die bereits committeten Daten sehen:
 
 # %%
 con2 = sqlite3.connect(DB)
 
+# %%
+
 # %% [markdown]
 #
-# ### Primärschlüssel-Constraint
-#
-# Die Tabelle hat einen `PRIMARY KEY` — doppelte IDs sind nicht erlaubt:
+# Jetzt fügen wir über `con` einen neuen Film ein, **ohne** zu committen:
 
 # %%
-try:
-    cur.execute("INSERT INTO movies VALUES(1, 'Duplicate Movie', 2020)")
-except sqlite3.IntegrityError as e:
-    print(f"Error: {e}")
+con.execute("INSERT INTO movies VALUES(?, ?, ?)", (101, "Gladiator", 2000))
 
 # %% [markdown]
 #
-# ### Sichtbarkeit von Transaktionen
-#
-# Vor dem Commit sieht die zweite Verbindung die Daten nicht:
+# `con2` kann den neuen Film **nicht** sehen, da `con` noch nicht committet hat:
 
 # %%
 
 # %% [markdown]
 #
-# Nach dem Commit sind die Daten sichtbar:
+# Nach dem Commit von `con` kann `con2` den neuen Film sehen:
+
+# %%
+con.commit()
 
 # %%
 
 # %%
-
-# %%
-
-# %%
-con = sqlite3.connect(DB)
-
-# %% [markdown]
-#
-# ### Zwei Cursors, eine Verbindung
-#
-# Cursors auf derselben Verbindung teilen sich den Zustand:
-
-# %%
-
-# %%
-
-# %%
-
-# %%
-
-# %% [markdown]
-#
-# `cur1` sieht die von `cur2` eingefügten Daten sofort:
-
-# %%
-
-# %%
+con2.close()
 
 # %% [markdown]
 #

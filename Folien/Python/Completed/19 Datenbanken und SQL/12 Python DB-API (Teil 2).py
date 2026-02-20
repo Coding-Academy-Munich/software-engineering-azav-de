@@ -31,19 +31,31 @@ STUDENTS = [
     (62, "Doug Caisson"),
 ]
 
+
+# %% [markdown]
+#
+# Wir stellen eine Verbindung zu einer In-Memory-Datenbank her und erzeugen
+# eine Tabelle `students` mit einigen Daten:
+
 # %%
 con = sqlite3.connect(DB)
 
 # %%
 cur = con.cursor()
 
+# %%
+cur.execute("CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)")
+cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
+con.commit()
+
 # %% [markdown]
 #
-# Wir erstellen die Tabelle `students` mit einigen Daten:
-
-# %%
-cur.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)")
-cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
+# ## Erhalten aller Ergebnis-Zeilen mit `fetchall()`
+#
+# - Mit `fetchall()` können wir alle Zeilen eines Ergebnisses auf einmal
+#   abrufen.
+# - Das Ergebnis ist eine Liste von Tupeln, wobei jedes Tupel eine Zeile der
+#   Ergebnismenge darstellt.
 
 # %%
 cur.execute("SELECT * FROM students ORDER BY id")
@@ -53,18 +65,21 @@ cur.fetchall()
 
 # %% [markdown]
 #
-# Ein Cursor kann nur einmal verwendet werden, um Ergebnisse zu bekommen:
+# Ein Cursor kann (pro Abfrage) nur einmal verwendet werden, um Ergebnisse zu
+# bekommen:
 
 # %%
 cur.fetchall()
 
-# %%
-cur = cur.execute("SELECT * FROM students ORDER BY id")
-
 # %% [markdown]
 #
-# Mit `fetchone()` können wir die Ergebnisse einzeln abrufen. Nach dem letzten
-# Ergebnis gibt `fetchone()` `None` zurück:
+# ## Erhalten eines einzelnen Ergebnisses mit `fetchone()`
+#
+# - Mit `fetchone()` können wir die Ergebnisse einzeln abrufen.
+# - Nach dem letzten Ergebnis gibt `fetchone()` `None` zurück:
+
+# %%
+cur = cur.execute("SELECT * FROM students ORDER BY id")
 
 # %%
 cur.fetchone()
@@ -78,6 +93,14 @@ cur.fetchall()
 # %%
 cur.fetchone() is None
 
+# %% [markdown]
+#
+# ## Erhalten von mehreren Ergebnissen mit `fetchmany()`
+#
+# - Mit `fetchmany(size)` können wir eine bestimmte Anzahl von Ergebnissen
+#   abrufen.
+# - Nach dem letzten Ergebnis gibt `fetchmany()` eine leere Liste zurück:
+
 # %%
 cur = cur.execute("SELECT * FROM students ORDER BY id")
 
@@ -86,10 +109,29 @@ cur.fetchmany(3)
 
 # %% [markdown]
 #
+# ## Cursor und Iteration
+#
+# - Ein Cursor ist auch ein Iterator
+# - Das bedeutet, dass wir über die Ergebnisse eines Cursors iterieren können,
+#   ohne explizit `fetchone()` oder `fetchmany()` aufzurufen.
+
+# %%
+cur = cur.execute("SELECT * FROM students ORDER BY id")
+
+# %%
+for row in cur:
+    print(row)
+
+# %%
+list(cur)
+
+
+# %% [markdown]
+#
 # ### Shortcut-Methoden
 #
 # - Um das explizite Erzeugen von Cursor-Instanzen zu umgehen, kann man
-#   die Shortcut-Methoden auf dem Connection-Objekt verwenden:
+#   Shortcut-Methoden auf dem Connection-Objekt verwenden:
 
 # %%
 cursor = con.execute("SELECT * FROM students ORDER BY id")
@@ -105,24 +147,68 @@ con.commit()
 
 # %% [markdown]
 #
-# ## Mehrere Verbindungen
+# ## Mehrere Cursors und Verbindungen
 #
-# - Mehrere Verbindungen zur gleichen Datenbank sind möglich
-# - Mehrere Cursors zur gleichen Verbindung sind möglich
-#   - Aber: In beiden Fällen führen mehrere gleichzeitig aktive
-#     Transaktionen zu Timeouts
-# - Cursors zur gleichen Verbindung sind nicht isoliert
-# - Wie isoliert Threads voneinander sind, wird durch
-#   [`connection.threadsafety`](https://peps.python.org/pep-0249/#threadsafety)
-#   beschrieben.
+# - Bisher haben wir einen einzelnen Cursor auf einer einzelnen Verbindung
+#   verwendet
+# - Wir können aber auch mehrere Cursors auf einer Verbindung oder mehrere
+#   Verbindungen zur gleichen Datenbank verwenden
+# - Diese beiden Fälle verhalten sich unterschiedlich
 
 # %%
 con.close()
 
 # %% [markdown]
 #
-# Wir verwenden jetzt eine dateibasierte Datenbank, denn bei `:memory:` erzeugt
-# jede Verbindung eine eigene, unabhängige Datenbank.
+# ### Mehrere Cursors (gleiche Verbindung)
+#
+# - Eine Verbindung kann mehrere Cursors haben
+# - Alle Cursors teilen sich den Zustand der Verbindung
+# - Änderungen über einen Cursor sind sofort für andere Cursors sichtbar
+#   (auch ohne Commit)
+
+# %%
+con = sqlite3.connect(":memory:")
+cur = con.cursor()
+cur.execute("CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)")
+cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
+con.commit()
+
+# %% [markdown]
+#
+# Wir erzeugen zwei Cursors auf der gleichen Verbindung:
+
+# %%
+cur1 = con.cursor()
+cur2 = con.cursor()
+
+# %% [markdown]
+#
+# `cur2` fügt eine neue Zeile ein:
+
+# %%
+cur2.execute("INSERT INTO students VALUES(?, ?)", (1001, "Kay Garcia"))
+
+# %% [markdown]
+#
+# `cur1` sieht die von `cur2` eingefügte Zeile sofort — obwohl wir noch kein
+# Commit gemacht haben:
+
+# %%
+cur1.execute("SELECT * FROM students ORDER BY id").fetchall()
+
+# %%
+con.commit()
+con.close()
+
+# %% [markdown]
+#
+# ### Mehrere Verbindungen (gleiche Datenbank)
+#
+# - Jede Verbindung hat ihre eigene Transaktion
+# - Änderungen einer Verbindung sind für andere erst nach einem Commit sichtbar
+# - Bei `:memory:` erzeugt jede Verbindung eine eigene, unabhängige Datenbank
+# - Daher verwenden wir für dieses Beispiel eine dateibasierte Datenbank
 
 # %%
 import tempfile
@@ -130,98 +216,54 @@ import tempfile
 # %%
 FD, DB = tempfile.mkstemp(suffix=".db")
 
+# %% [markdown]
+#
+# Wir erzeugen eine Verbindung, erstellen eine Tabelle und fügen Daten ein:
+
 # %%
 con = sqlite3.connect(DB)
-
-# %%
 cur = con.cursor()
-
-# %%
-cur.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT)")
+cur.execute("CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT)")
 cur.executemany("INSERT INTO students VALUES(?, ?)", STUDENTS)
+con.commit()
+
+# %% [markdown]
+#
+# Wir öffnen eine zweite Verbindung zur gleichen Datenbank.
+# Sie kann die bereits committeten Daten sehen:
 
 # %%
 con2 = sqlite3.connect(DB)
 
-# %% [markdown]
-#
-# Da die Tabelle einen Primärschlüssel hat, können wir keine weitere Zeile mit
-# `id` 2 einfügen:
-
 # %%
-try:
-    cur.execute("INSERT INTO students VALUES(2, 'Deborah Winter')")
-except sqlite3.IntegrityError as e:
-    print(f"Error: {e}")
-
-# %%
-con.commit()
+con2.execute("SELECT * FROM students ORDER BY id").fetchall()
 
 # %% [markdown]
 #
-# Nach dem Commit von `con` kann `con2` die eingefügten Daten sehen:
+# Jetzt fügen wir über `con` eine neue Zeile ein, **ohne** zu committen:
 
 # %%
-res2 = con2.execute("SELECT * FROM students ORDER BY id")
+con.execute("INSERT INTO students VALUES(?, ?)", (1001, "Kay Garcia"))
+
+# %% [markdown]
+#
+# `con2` kann die neue Zeile **nicht** sehen, da `con` noch nicht committet hat:
 
 # %%
-con2.commit()
+con2.execute("SELECT * FROM students ORDER BY id").fetchall()
 
-# %%
-res1 = con.execute("SELECT * FROM students ORDER BY id")
+# %% [markdown]
+#
+# Nach dem Commit von `con` kann `con2` die neue Zeile sehen:
 
 # %%
 con.commit()
 
 # %%
-res1.fetchall()
-
-# %% [markdown]
-#
-# Die zweite Verbindung sieht die gleichen Daten:
+con2.execute("SELECT * FROM students ORDER BY id").fetchall()
 
 # %%
-res2.fetchall()
-
-# %%
-con.close()
 con2.close()
-
-# %%
-con = sqlite3.connect(DB)
-
-# %% [markdown]
-#
-# Wir erzeugen zwei Cursors auf der gleichen Verbindung und beobachten, dass
-# sie nicht voneinander isoliert sind:
-
-# %%
-cur1 = con.cursor()
-
-# %%
-cur2 = con.cursor()
-
-# %%
-cur1.execute("SELECT * FROM students")
-
-# %%
-cur1.fetchall()
-
-# %%
-cur2.executemany(
-    "INSERT INTO students VALUES (?, ?)", [(1001, "Kay Garcia"), (1002, "Amanda Goodson")]
-)
-
-# %% [markdown]
-#
-# `cur1` sieht die von `cur2` eingefügten Daten, da beide Cursors zur gleichen
-# Verbindung gehören:
-
-# %%
-cur1.execute("SELECT * FROM students").fetchall()
-
-# %%
-con.commit()
 
 # %% [markdown]
 #
