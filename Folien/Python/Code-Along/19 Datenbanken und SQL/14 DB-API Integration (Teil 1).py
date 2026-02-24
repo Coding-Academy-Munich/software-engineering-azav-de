@@ -46,8 +46,8 @@ con.execute(
 con.commit()
 
 # %%
-rows = con.execute("SELECT * FROM habits").fetchall()
-rows
+
+# %%
 
 # %% [markdown]
 #
@@ -55,10 +55,10 @@ rows
 
 # %%
 habit = rows[0]
-habit[0]
 
 # %%
-habit[2]
+
+# %%
 
 # %% [markdown]
 #
@@ -77,19 +77,6 @@ habit[2]
 from dataclasses import dataclass
 
 # %%
-@dataclass
-class Habit:
-    id: int
-    name: str
-    description: str = ""
-
-# %%
-@dataclass
-class HabitEntry:
-    id: int
-    habit_id: int
-    date: str
-    completed: bool = True
 
 # %% [markdown]
 #
@@ -103,22 +90,20 @@ row = con.execute("SELECT * FROM habits WHERE id = 1").fetchone()
 row
 
 # %%
-habit = Habit(*row)
-habit
 
 # %%
-habit.name
 
 # %%
-habit.description
+
+# %%
 
 # %% [markdown]
 #
 # ## Alle Zeilen umwandeln
 
 # %%
-habits = [Habit(*row) for row in con.execute("SELECT * FROM habits").fetchall()]
-habits
+
+# %%
 
 # %%
 con.close()
@@ -163,6 +148,7 @@ con.close()
 # - Habit hinzufügen
 # - Habit abfragen
 # - Alle Habits abfragen
+# - Habit aktualisieren
 # - Habit löschen
 
 # %% [markdown]
@@ -171,14 +157,16 @@ con.close()
 
 # %%
 class HabitRepository:
-    def __init__(self, connection: sqlite3.Connection):
-        self.con = connection
+    pass
 
 # %% [markdown]
 #
 # ## Tabelle anlegen
 
 # %%
+class HabitRepository:
+    def __init__(self, connection: sqlite3.Connection):
+        self.con = connection
 
 # %% [markdown]
 #
@@ -188,20 +176,113 @@ class HabitRepository:
 # - Neues `Habit`-Objekt mit generierter ID zurückgeben
 
 # %%
+class HabitRepository:
+    def __init__(self, connection: sqlite3.Connection):
+        self.con = connection
+
+    def create_table(self):
+        self.con.execute(
+            """CREATE TABLE IF NOT EXISTS habits(
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                description TEXT DEFAULT ''
+            )"""
+        )
+        self.con.commit()
 
 # %% [markdown]
 #
-# ## Habit abfragen
+# ## Repository verwenden: Tabelle anlegen
+
+# %%
+con = sqlite3.connect(":memory:")
+
+
+# %%
 
 # %%
 
 # %% [markdown]
 #
-# ## Alle Habits und Löschen
+# ## Einfügen von Gewohnheiten
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
 
 # %% [markdown]
 #
-# ## HabitRepository verwenden
+# ## Repository: Habit abfragen
+
+# %%
+class HabitRepository:
+    def __init__(self, connection: sqlite3.Connection):
+        self.con = connection
+
+    def create_table(self):
+        self.con.execute(
+            """CREATE TABLE IF NOT EXISTS habits(
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                description TEXT DEFAULT ''
+            )"""
+        )
+        self.con.commit()
+
+    def add(self, name: str, description: str = "") -> Habit:
+        cursor = self.con.execute(
+            "INSERT INTO habits(name, description) VALUES (?, ?)",
+            (name, description),
+        )
+        self.con.commit()
+        return Habit(cursor.lastrowid, name, description)
+
+# %% [markdown]
+#
+# ## Repository: Alle Habits, Aktualisieren und Löschen
+
+# %%
+class HabitRepository:
+    def __init__(self, connection: sqlite3.Connection):
+        self.con = connection
+
+    def create_table(self):
+        self.con.execute(
+            """CREATE TABLE IF NOT EXISTS habits(
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                description TEXT DEFAULT ''
+            )"""
+        )
+        self.con.commit()
+
+    def add(self, name: str, description: str = "") -> Habit:
+        cursor = self.con.execute(
+            "INSERT INTO habits(name, description) VALUES (?, ?)",
+            (name, description),
+        )
+        self.con.commit()
+        return Habit(cursor.lastrowid, name, description)
+
+    def get_by_id(self, habit_id: int) -> Habit | None:
+        row = self.con.execute(
+            "SELECT * FROM habits WHERE id = ?", (habit_id,)
+        ).fetchone()
+        if row is None:
+            return None
+        return Habit(*row)
+
+# %% [markdown]
+#
+# ## `HabitRepository` verwenden
 
 # %%
 con = sqlite3.connect(":memory:")
@@ -209,102 +290,111 @@ repo = HabitRepository(con)
 repo.create_table()
 
 # %%
-exercise = repo.add(Habit(0, "Exercise", "Daily workout for 30 minutes"))
-exercise
+exercise = repo.add("Exercise", "Daily workout for 30 minutes")
+reading = repo.add("Read", "Read for 20 minutes before bed")
+meditation = repo.add("Meditate", "Morning meditation for 10 minutes")
+
+# %% [markdown]
+#
+# ## Abfragen von Gewohnheiten
 
 # %%
-reading = repo.add(Habit(0, "Read", "Read for 20 minutes before bed"))
-reading
 
 # %%
-meditation = repo.add(Habit(0, "Meditate", "Morning meditation for 10 minutes"))
-meditation
 
 # %%
-repo.get_by_id(1)
+
+# %% [markdown]
+#
+# ## Update
 
 # %%
-repo.get_by_id(99) is None
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %% [markdown]
+#
+# ## Delete
 
 # %%
 repo.get_all()
 
+
 # %%
-repo.delete(2)
-repo.get_all()
+
+# %%
 
 # %% [markdown]
 #
-# ## EntryRepository
+# ## Anwendungslogik mit dem `HabitTracker`
 #
-# - Zweites Repository für die `entries`-Tabelle
-# - Gleiches Muster für eine zweite Entität
-# - Zeigt: Das Pattern skaliert
+# - Klasse `HabitTracker` kapselt das Repository
+# - Aufrufer muss nicht wissen, dass eine Datenbank im Hintergrund arbeitet
+# - Saubere Trennung: Geschäftslogik vs. Datenbankzugriff
+
+# %%
+class HabitTracker:
+    pass
 
 # %% [markdown]
 #
-# ## EntryRepository verwenden
+# ## `HabitTracker` erweitern
+#
+# - `rename_habit`: Habit abfragen, ändern, aktualisieren
+# - `remove_habit`: Delegiert an Repository
 
 # %%
-entry_repo = EntryRepository(con)
-entry_repo.create_table()
+class HabitTracker:
+    def __init__(self, habit_repo: HabitRepository):
+        self.habits = habit_repo
 
-# %%
-exercise = repo.add(Habit(0, "Exercise", "Daily workout for 30 minutes"))
-exercise
+    def add_habit(self, name: str, description: str = "") -> Habit:
+        return self.habits.add(name, description)
 
-# %%
-entry_repo.log_entry(HabitEntry(0, exercise.id, "2026-02-17"))
-entry_repo.log_entry(HabitEntry(0, exercise.id, "2026-02-18"))
-entry_repo.log_entry(HabitEntry(0, exercise.id, "2026-02-19", completed=False))
-
-# %%
-entry_repo.get_entries_for_habit(exercise.id)
-
-# %%
-entry_repo.get_completion_count(exercise.id)
-
+    def show_habits(self):
+        for habit in self.habits.get_all():
+            print(f"- {habit.name}: {habit.description}")
 
 # %% [markdown]
 #
-# ## Repositories zusammen verwenden
-#
-# - Der aufrufende Code enthält kein SQL
-# - Liest sich wie eine Beschreibung der Geschäftslogik
+# ## HabitTracker verwenden
 
 # %%
-con2 = sqlite3.connect(":memory:")
-habit_repo = HabitRepository(con2)
-habit_repo.create_table()
-entry_repo2 = EntryRepository(con2)
-entry_repo2.create_table()
+con = sqlite3.connect(":memory:")
+repo = HabitRepository(con)
+repo.create_table()
+tracker = HabitTracker(repo)
 
 # %%
-exercise = habit_repo.add(Habit(0, "Exercise", "Daily workout"))
-reading = habit_repo.add(Habit(0, "Read", "Read before bed"))
-meditation = habit_repo.add(Habit(0, "Meditate", "Morning meditation"))
+tracker.add_habit("Exercise", "Daily workout")
+tracker.add_habit("Read", "Read before bed")
+tracker.show_habits()
 
 # %%
-for date in ["2026-02-17", "2026-02-18", "2026-02-19"]:
-    entry_repo2.log_entry(HabitEntry(0, exercise.id, date))
 
 # %%
-entry_repo2.log_entry(HabitEntry(0, reading.id, "2026-02-17"))
-entry_repo2.log_entry(HabitEntry(0, reading.id, "2026-02-19"))
 
 # %%
-for habit in habit_repo.get_all():
-    count = entry_repo2.get_completion_count(habit.id)
-    print(f"{habit.name}: {count} completions")
+
+# %%
 
 
 # %% [markdown]
 #
 # ## Zusammenfassung: Vorher vs. Nachher
 #
-# | Vorher | Nachher |
-# |--------|---------|
-# | `habit[2]` | `habit.description` |
-# | SQL überall | SQL nur in Repositories |
-# | Schwer zu testen | Connection austauschbar |
-# | Rohe Tupel | Objekte mit Attributen |
+# | Vorher              | Nachher                 |
+# |---------------------|-------------------------|
+# | `habit[2]`          | `habit.description`     |
+# | SQL überall         | SQL nur in Repositories |
+# | Schwer zu testen    | Connection austauschbar |
+# | Rohe Tupel          | Objekte mit Attributen  |
+# | Logik direkt mit DB | Logik über HabitTracker |

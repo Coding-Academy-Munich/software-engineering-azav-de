@@ -22,7 +22,7 @@
 # Verwenden Sie:
 # - Eine `Account`-Dataclass als Domänenobjekt
 # - Ein `AccountRepository` für alle Datenbankoperationen
-# - Funktionen für Einzahlung, Abhebung und Überweisung
+# - Eine `BankSystem`-Klasse für die Geschäftslogik
 
 # %%
 import sqlite3
@@ -50,15 +50,15 @@ assert Account(2, "Bob").balance == 0.0
 # Implementieren Sie `AccountRepository` mit:
 # - `__init__(self, connection)` - Verbindung speichern
 # - `create_table(self)` - Tabelle `accounts` anlegen
-# - `add(self, account) -> Account` - Konto einfügen, mit generierter ID zurückgeben
+# - `add(self, owner, balance) -> Account` - Konto einfügen, mit generierter ID zurückgeben
 # - `get_by_id(self, account_id) -> Account | None` - Konto abfragen
 # - `get_all(self) -> list[Account]` - Alle Konten abfragen
-# - `update(self, account)` - Kontostand aktualisieren
+# - `update(self, account)` - Konto aktualisieren
 
 # %% [markdown]
 #
 # *Hinweise:*
-# - Verwenden Sie `with self.con:` für Transaktionssicherheit
+# - Verwenden Sie `with self.con:` für Transaktionssicherheit bei schreibenden Operationen
 # - Die Tabelle sollte die Spalten `id`, `owner` und `balance` haben
 # - Bei `add()`: Verwenden Sie `cursor.lastrowid` für die generierte ID
 # - Bei `update()`: Aktualisieren Sie `owner` und `balance` anhand der `id`
@@ -71,8 +71,8 @@ repo = AccountRepository(con)
 repo.create_table()
 
 # %%
-alice = repo.add(Account(0, "Alice", 1000.0))
-bob = repo.add(Account(0, "Bob", 500.0))
+alice = repo.add("Alice", 1000.0)
+bob = repo.add("Bob", 500.0)
 
 # %%
 assert alice.id == 1
@@ -91,42 +91,36 @@ assert len(repo.get_all()) == 2
 
 # %% [markdown]
 #
-# ### Schritt 3: Einzahlung
+# ### Schritt 3: `BankSystem` mit Einzahlung und Abhebung
 #
-# Schreiben Sie eine Funktion `deposit(repo, account_id, amount)`:
-# - Konto abfragen
-# - Kontostand erhöhen
-# - Konto aktualisieren
+# Implementieren Sie eine `BankSystem`-Klasse mit:
+# - `__init__(self, repo)` - Repository speichern
+# - `deposit(self, account_id, amount)` - Konto abfragen, Kontostand erhöhen,
+#   aktualisieren
+# - `withdraw(self, account_id, amount)` - Konto abfragen, prüfen ob genug Geld
+#   vorhanden ist, Kontostand verringern und aktualisieren; `ValueError` auslösen
+#   wenn nicht genug Geld vorhanden ist
 
 # %%
 
 # %%
-deposit(repo, alice.id, 200.0)
+bank = BankSystem(repo)
+
+# %%
+bank.deposit(alice.id, 200.0)
 assert repo.get_by_id(alice.id).balance == 1200.0
 
 # %%
-deposit(repo, bob.id, 50.0)
+bank.deposit(bob.id, 50.0)
 assert repo.get_by_id(bob.id).balance == 550.0
 
-# %% [markdown]
-#
-# ### Schritt 4: Abhebung
-#
-# Schreiben Sie eine Funktion `withdraw(repo, account_id, amount)`:
-# - Konto abfragen
-# - Prüfen, ob genug Geld vorhanden ist
-# - Wenn ja: Kontostand verringern und aktualisieren
-# - Wenn nein: `ValueError` auslösen
-
 # %%
-
-# %%
-withdraw(repo, alice.id, 200.0)
+bank.withdraw(alice.id, 200.0)
 assert repo.get_by_id(alice.id).balance == 1000.0
 
 # %%
 try:
-    withdraw(repo, bob.id, 9999.0)
+    bank.withdraw(bob.id, 9999.0)
 except ValueError as e:
     print(e)
 
@@ -135,31 +129,28 @@ assert repo.get_by_id(bob.id).balance == 550.0
 
 # %% [markdown]
 #
-# ### Schritt 5: Überweisung
+# ### Schritt 4: Überweisung
 #
-# Schreiben Sie eine Funktion `transfer(repo, from_id, to_id, amount)`:
-# - Verwenden Sie `with repo.con:` für Transaktionssicherheit
-# - Abhebung und Einzahlung als eine Transaktion
-#
-# *Hinweis:* Da `withdraw` und `deposit` intern `with self.con:` verwenden,
-# müssen Sie hier die Operationen direkt auf dem Konto ausführen, damit alles
-# in einer einzigen Transaktion abläuft.
+# Erweitern Sie die `BankSystem`-Klasse um eine Methode
+# `transfer(self, from_id, to_id, amount)`:
+# - Abhebung vom Quellkonto und Einzahlung auf das Zielkonto
 
 # %%
 
 # %%
-transfer(repo, alice.id, bob.id, 300.0)
+bank = BankSystem(repo)
+
+# %%
+bank.transfer(alice.id, bob.id, 300.0)
 assert repo.get_by_id(alice.id).balance == 700.0
 assert repo.get_by_id(bob.id).balance == 850.0
 
 # %%
 try:
-    transfer(repo, alice.id, bob.id, 9999.0)
+    bank.transfer(alice.id, bob.id, 9999.0)
 except ValueError as e:
     print(e)
 
 # %%
 assert repo.get_by_id(alice.id).balance == 700.0
 assert repo.get_by_id(bob.id).balance == 850.0
-
-# %%

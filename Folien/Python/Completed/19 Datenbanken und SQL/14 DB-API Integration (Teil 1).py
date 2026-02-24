@@ -47,6 +47,8 @@ con.commit()
 
 # %%
 rows = con.execute("SELECT * FROM habits").fetchall()
+
+# %%
 rows
 
 # %% [markdown]
@@ -55,6 +57,8 @@ rows
 
 # %%
 habit = rows[0]
+
+# %%
 habit[0]
 
 # %%
@@ -83,14 +87,6 @@ class Habit:
     name: str
     description: str = ""
 
-# %%
-@dataclass
-class HabitEntry:
-    id: int
-    habit_id: int
-    date: str
-    completed: bool = True
-
 # %% [markdown]
 #
 # ## DB-Zeilen in Objekte umwandeln
@@ -104,6 +100,8 @@ row
 
 # %%
 habit = Habit(*row)
+
+# %%
 habit
 
 # %%
@@ -117,7 +115,9 @@ habit.description
 # ## Alle Zeilen umwandeln
 
 # %%
-habits = [Habit(*row) for row in con.execute("SELECT * FROM habits").fetchall()]
+habits = [Habit(*row) for row in con.execute("SELECT * FROM habits")]
+
+# %%
 habits
 
 # %%
@@ -163,11 +163,17 @@ con.close()
 # - Habit hinzufügen
 # - Habit abfragen
 # - Alle Habits abfragen
+# - Habit aktualisieren
 # - Habit löschen
 
 # %% [markdown]
 #
 # ## Konstruktor: Verbindung speichern
+
+# %%
+class HabitRepository:
+    def __init__(self, connection: sqlite3.Connection):
+        self.con = connection
 
 # %% [markdown]
 #
@@ -210,17 +216,52 @@ class HabitRepository:
         )
         self.con.commit()
 
-    def add(self, habit: Habit) -> Habit:
+    def add(self, name: str, description: str = "") -> Habit:
         cursor = self.con.execute(
             "INSERT INTO habits(name, description) VALUES (?, ?)",
-            (habit.name, habit.description),
+            (name, description),
         )
         self.con.commit()
-        return Habit(cursor.lastrowid, habit.name, habit.description)
+        return Habit(cursor.lastrowid, name, description)
 
 # %% [markdown]
 #
-# ## Habit abfragen
+# ## Repository verwenden: Tabelle anlegen
+
+# %%
+con = sqlite3.connect(":memory:")
+
+# %%
+repo = HabitRepository(con)
+
+# %%
+repo.create_table()
+
+# %% [markdown]
+#
+# ## Einfügen von Gewohnheiten
+
+# %%
+exercise = repo.add("Exercise", "Daily workout for 30 minutes")
+
+# %%
+exercise
+
+# %%
+reading = repo.add("Read", "Read for 20 minutes before bed")
+
+# %%
+reading
+
+# %%
+meditation = repo.add("Meditate", "Morning meditation for 10 minutes")
+
+# %%
+meditation
+
+# %% [markdown]
+#
+# ## Repository: Habit abfragen
 
 # %%
 class HabitRepository:
@@ -237,13 +278,13 @@ class HabitRepository:
         )
         self.con.commit()
 
-    def add(self, habit: Habit) -> Habit:
+    def add(self, name: str, description: str = "") -> Habit:
         cursor = self.con.execute(
             "INSERT INTO habits(name, description) VALUES (?, ?)",
-            (habit.name, habit.description),
+            (name, description),
         )
         self.con.commit()
-        return Habit(cursor.lastrowid, habit.name, habit.description)
+        return Habit(cursor.lastrowid, name, description)
 
     def get_by_id(self, habit_id: int) -> Habit | None:
         row = self.con.execute(
@@ -255,7 +296,7 @@ class HabitRepository:
 
 # %% [markdown]
 #
-# ## Alle Habits und Löschen
+# ## Repository: Alle Habits, Aktualisieren und Löschen
 
 # %%
 class HabitRepository:
@@ -272,13 +313,13 @@ class HabitRepository:
         )
         self.con.commit()
 
-    def add(self, habit: Habit) -> Habit:
+    def add(self, name: str, description: str = "") -> Habit:
         cursor = self.con.execute(
             "INSERT INTO habits(name, description) VALUES (?, ?)",
-            (habit.name, habit.description),
+            (name, description),
         )
         self.con.commit()
-        return Habit(cursor.lastrowid, habit.name, habit.description)
+        return Habit(cursor.lastrowid, name, description)
 
     def get_by_id(self, habit_id: int) -> Habit | None:
         row = self.con.execute(
@@ -289,8 +330,15 @@ class HabitRepository:
         return Habit(*row)
 
     def get_all(self) -> list[Habit]:
-        rows = self.con.execute("SELECT * FROM habits").fetchall()
+        rows = self.con.execute("SELECT * FROM habits")
         return [Habit(*row) for row in rows]
+
+    def update(self, habit: Habit):
+        self.con.execute(
+            "UPDATE habits SET name = ?, description = ? WHERE id = ?",
+            (habit.name, habit.description, habit.id),
+        )
+        self.con.commit()
 
     def delete(self, habit_id: int):
         self.con.execute("DELETE FROM habits WHERE id = ?", (habit_id,))
@@ -299,7 +347,7 @@ class HabitRepository:
 
 # %% [markdown]
 #
-# ## HabitRepository verwenden
+# ## `HabitRepository` verwenden
 
 # %%
 con = sqlite3.connect(":memory:")
@@ -307,16 +355,13 @@ repo = HabitRepository(con)
 repo.create_table()
 
 # %%
-exercise = repo.add(Habit(0, "Exercise", "Daily workout for 30 minutes"))
-exercise
+exercise = repo.add("Exercise", "Daily workout for 30 minutes")
+reading = repo.add("Read", "Read for 20 minutes before bed")
+meditation = repo.add("Meditate", "Morning meditation for 10 minutes")
 
-# %%
-reading = repo.add(Habit(0, "Read", "Read for 20 minutes before bed"))
-reading
-
-# %%
-meditation = repo.add(Habit(0, "Meditate", "Morning meditation for 10 minutes"))
-meditation
+# %% [markdown]
+#
+# ## Abfragen von Gewohnheiten
 
 # %%
 repo.get_by_id(1)
@@ -327,121 +372,125 @@ repo.get_by_id(99) is None
 # %%
 repo.get_all()
 
+# %% [markdown]
+#
+# ## Update
+
+# %%
+habit = repo.get_by_id(1)
+
+# %%
+habit
+
+# %%
+habit.name = "Workout"
+
+# %%
+habit
+
+# %%
+repo.update(habit)
+
+# %%
+repo.get_by_id(1)
+
+# %% [markdown]
+#
+# ## Delete
+
+# %%
+repo.get_all()
+
 # %%
 repo.delete(2)
+
+# %%
 repo.get_all()
 
 
 # %% [markdown]
 #
-# ## EntryRepository
+# ## Anwendungslogik mit dem `HabitTracker`
 #
-# - Zweites Repository für die `entries`-Tabelle
-# - Gleiches Muster für eine zweite Entität
-# - Zeigt: Das Pattern skaliert
+# - Klasse `HabitTracker` kapselt das Repository
+# - Aufrufer muss nicht wissen, dass eine Datenbank im Hintergrund arbeitet
+# - Saubere Trennung: Geschäftslogik vs. Datenbankzugriff
 
 # %%
-class EntryRepository:
-    def __init__(self, connection: sqlite3.Connection):
-        self.con = connection
+class HabitTracker:
+    def __init__(self, habit_repo: HabitRepository):
+        self.habits = habit_repo
 
-    def create_table(self):
-        self.con.execute(
-            """CREATE TABLE IF NOT EXISTS entries(
-                id INTEGER PRIMARY KEY,
-                habit_id INTEGER NOT NULL,
-                date TEXT NOT NULL,
-                completed INTEGER DEFAULT 1
-            )"""
-        )
-        self.con.commit()
+    def add_habit(self, name: str, description: str = "") -> Habit:
+        return self.habits.add(name, description)
 
-    def log_entry(self, entry: HabitEntry) -> HabitEntry:
-        cursor = self.con.execute(
-            "INSERT INTO entries(habit_id, date, completed) VALUES (?, ?, ?)",
-            (entry.habit_id, entry.date, int(entry.completed)),
-        )
-        self.con.commit()
-        return HabitEntry(cursor.lastrowid, entry.habit_id, entry.date, entry.completed)
-
-    def get_entries_for_habit(self, habit_id: int) -> list[HabitEntry]:
-        rows = self.con.execute(
-            "SELECT * FROM entries WHERE habit_id = ?", (habit_id,)
-        ).fetchall()
-        return [HabitEntry(r[0], r[1], r[2], bool(r[3])) for r in rows]
-
-    def get_completion_count(self, habit_id: int) -> int:
-        row = self.con.execute(
-            "SELECT COUNT(*) FROM entries WHERE habit_id = ? AND completed = 1",
-            (habit_id,),
-        ).fetchone()
-        return row[0]
-
+    def show_habits(self):
+        for habit in self.habits.get_all():
+            print(f"- {habit.name}: {habit.description}")
 
 # %% [markdown]
 #
-# ## EntryRepository verwenden
+# ## `HabitTracker` erweitern
+#
+# - `rename_habit`: Habit abfragen, ändern, aktualisieren
+# - `remove_habit`: Delegiert an Repository
 
 # %%
-entry_repo = EntryRepository(con)
-entry_repo.create_table()
+class HabitTracker:
+    def __init__(self, habit_repo: HabitRepository):
+        self.habits = habit_repo
 
-# %%
-exercise = repo.add(Habit(0, "Exercise", "Daily workout for 30 minutes"))
-exercise
+    def add_habit(self, name: str, description: str = "") -> Habit:
+        return self.habits.add(name, description)
 
-# %%
-entry_repo.log_entry(HabitEntry(0, exercise.id, "2026-02-17"))
-entry_repo.log_entry(HabitEntry(0, exercise.id, "2026-02-18"))
-entry_repo.log_entry(HabitEntry(0, exercise.id, "2026-02-19", completed=False))
+    def show_habits(self):
+        for habit in self.habits.get_all():
+            print(f"- {habit.name}: {habit.description}")
 
-# %%
-entry_repo.get_entries_for_habit(exercise.id)
+    def rename_habit(self, habit_id: int, new_name: str):
+        habit = self.habits.get_by_id(habit_id)
+        habit.name = new_name
+        self.habits.update(habit)
 
-# %%
-entry_repo.get_completion_count(exercise.id)
-
+    def remove_habit(self, habit_id: int):
+        self.habits.delete(habit_id)
 
 # %% [markdown]
 #
-# ## Repositories zusammen verwenden
-#
-# - Der aufrufende Code enthält kein SQL
-# - Liest sich wie eine Beschreibung der Geschäftslogik
+# ## HabitTracker verwenden
 
 # %%
-con2 = sqlite3.connect(":memory:")
-habit_repo = HabitRepository(con2)
-habit_repo.create_table()
-entry_repo2 = EntryRepository(con2)
-entry_repo2.create_table()
+con = sqlite3.connect(":memory:")
+repo = HabitRepository(con)
+repo.create_table()
+tracker = HabitTracker(repo)
 
 # %%
-exercise = habit_repo.add(Habit(0, "Exercise", "Daily workout"))
-reading = habit_repo.add(Habit(0, "Read", "Read before bed"))
-meditation = habit_repo.add(Habit(0, "Meditate", "Morning meditation"))
+tracker.add_habit("Exercise", "Daily workout")
+tracker.add_habit("Read", "Read before bed")
+tracker.show_habits()
 
 # %%
-for date in ["2026-02-17", "2026-02-18", "2026-02-19"]:
-    entry_repo2.log_entry(HabitEntry(0, exercise.id, date))
+tracker.rename_habit(1, "Workout")
 
 # %%
-entry_repo2.log_entry(HabitEntry(0, reading.id, "2026-02-17"))
-entry_repo2.log_entry(HabitEntry(0, reading.id, "2026-02-19"))
+tracker.show_habits()
 
 # %%
-for habit in habit_repo.get_all():
-    count = entry_repo2.get_completion_count(habit.id)
-    print(f"{habit.name}: {count} completions")
+tracker.remove_habit(2)
+
+# %%
+tracker.show_habits()
 
 
 # %% [markdown]
 #
 # ## Zusammenfassung: Vorher vs. Nachher
 #
-# | Vorher | Nachher |
-# |--------|---------|
-# | `habit[2]` | `habit.description` |
-# | SQL überall | SQL nur in Repositories |
-# | Schwer zu testen | Connection austauschbar |
-# | Rohe Tupel | Objekte mit Attributen |
+# | Vorher              | Nachher                 |
+# |---------------------|-------------------------|
+# | `habit[2]`          | `habit.description`     |
+# | SQL überall         | SQL nur in Repositories |
+# | Schwer zu testen    | Connection austauschbar |
+# | Rohe Tupel          | Objekte mit Attributen  |
+# | Logik direkt mit DB | Logik über HabitTracker |
