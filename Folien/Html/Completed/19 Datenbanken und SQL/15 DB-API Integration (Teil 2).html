@@ -13919,7 +13919,7 @@ Repositories (HabitRepository, EntryRepository)
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=a40bf68a47d83d85">
+<div class="cell border-box-sizing code_cell rendered celltag_alt" id="cell-id=5b61958b8ee5963b">
 <div class="input">
 <div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
@@ -13938,11 +13938,17 @@ Repositories (HabitRepository, EntryRepository)
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">log_entry</span><span class="p">(</span><span class="n">habit</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
         <span class="k">raise</span> <span class="n">HabitNotFoundError</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">show_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">habit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">habits</span><span class="o">.</span><span class="n">get_all</span><span class="p">():</span>
             <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">get_completion_count</span><span class="p">(</span><span class="n">habit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
             <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">get_entries_for_habit</span><span class="p">(</span><span class="n">habit</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">habit</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> completed"</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">habit</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">total</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_progress</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> completed"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -14053,6 +14059,27 @@ Meditate: 1/1 completed
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5592005f942cfb76">
+<div class="input">
+<div class="prompt input_prompt">In [35]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tracker</span><span class="o">.</span><span class="n">get_progress</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[35]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[('Exercise', 4, 4), ('Read', 2, 2), ('Meditate', 1, 1)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=130fed6f3c6bcc58"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14072,35 +14099,34 @@ Meditate: 1/1 completed
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e6b3a762fca35a39">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=4724b9a516c873f4">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setup_test_db</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">HabitRepository</span><span class="p">,</span> <span class="n">EntryRepository</span><span class="p">]:</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setup_test_db</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">HabitRepository</span><span class="p">,</span> <span class="n">EntryRepository</span><span class="p">]:</span>
     <span class="n">con</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="s2">":memory:"</span><span class="p">)</span>
     <span class="n">habit_repo</span> <span class="o">=</span> <span class="n">HabitRepository</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
     <span class="n">habit_repo</span><span class="o">.</span><span class="n">create_table</span><span class="p">()</span>
     <span class="n">entry_repo</span> <span class="o">=</span> <span class="n">EntryRepository</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
     <span class="n">entry_repo</span><span class="o">.</span><span class="n">create_table</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">con</span><span class="p">,</span> <span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span>
+    <span class="k">return</span> <span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=8144451e0d06156e">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=afa90aeee89931e1">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_add_habit</span><span class="p">():</span>
-    <span class="n">con</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">setup_test_db</span><span class="p">()</span>
+    <span class="n">repo</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">setup_test_db</span><span class="p">()</span>
     <span class="n">habit</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"Test Habit"</span><span class="p">,</span> <span class="s2">"For testing"</span><span class="p">)</span>
 
     <span class="k">assert</span> <span class="n">habit</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="mi">1</span>
     <span class="k">assert</span> <span class="n">habit</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"Test Habit"</span>
-    <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -14108,7 +14134,7 @@ Meditate: 1/1 completed
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=5a94fe8128d444b5">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">test_add_habit</span><span class="p">()</span>
@@ -14117,16 +14143,15 @@ Meditate: 1/1 completed
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=94a68dc24ea34fa5">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=1186742e5dc56f89">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_get_nonexistent_habit</span><span class="p">():</span>
-    <span class="n">con</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">setup_test_db</span><span class="p">()</span>
+    <span class="n">repo</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">setup_test_db</span><span class="p">()</span>
 
     <span class="k">assert</span> <span class="n">repo</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
-    <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -14134,7 +14159,7 @@ Meditate: 1/1 completed
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=aa79f8b26024b2c8">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">test_get_nonexistent_habit</span><span class="p">()</span>
@@ -14154,21 +14179,33 @@ Meditate: 1/1 completed
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=ae55ed4649f32af2">
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=ba77e0855007690b">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In [41]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setup_habit_tracker</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">HabitTracker</span><span class="p">:</span>
+    <span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span> <span class="o">=</span> <span class="n">setup_test_db</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">HabitTracker</span><span class="p">(</span><span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=38856170e5a03f25">
+<div class="input">
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_habit_tracking</span><span class="p">():</span>
-    <span class="n">con</span><span class="p">,</span> <span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span> <span class="o">=</span> <span class="n">setup_test_db</span><span class="p">()</span>
-    <span class="n">tracker</span> <span class="o">=</span> <span class="n">HabitTracker</span><span class="p">(</span><span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span><span class="p">)</span>
+    <span class="n">tracker</span> <span class="o">=</span> <span class="n">setup_habit_tracker</span><span class="p">()</span>
 
-    <span class="n">habit</span> <span class="o">=</span> <span class="n">tracker</span><span class="o">.</span><span class="n">add_habit</span><span class="p">(</span><span class="s2">"Exercise"</span><span class="p">)</span>
-    <span class="n">entry_repo</span><span class="o">.</span><span class="n">log_entry</span><span class="p">(</span><span class="n">habit</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">"2026-02-17"</span><span class="p">)</span>
-    <span class="n">entry_repo</span><span class="o">.</span><span class="n">log_entry</span><span class="p">(</span><span class="n">habit</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">"2026-02-18"</span><span class="p">)</span>
+    <span class="n">tracker</span><span class="o">.</span><span class="n">add_habit</span><span class="p">(</span><span class="s2">"Exercise"</span><span class="p">)</span>
+    <span class="n">tracker</span><span class="o">.</span><span class="n">log_entry</span><span class="p">(</span><span class="s2">"Exercise"</span><span class="p">,</span> <span class="s2">"2026-02-17"</span><span class="p">)</span>
+    <span class="n">tracker</span><span class="o">.</span><span class="n">log_entry</span><span class="p">(</span><span class="s2">"Exercise"</span><span class="p">,</span> <span class="s2">"2026-02-18"</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">entry_repo</span><span class="o">.</span><span class="n">get_completion_count</span><span class="p">(</span><span class="n">habit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
-    <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">progress</span> <span class="o">=</span> <span class="n">tracker</span><span class="o">.</span><span class="n">get_progress</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">progress</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"Exercise"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -14176,7 +14213,7 @@ Meditate: 1/1 completed
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=369a68546b20ef47">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In [43]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">test_habit_tracking</span><span class="p">()</span>
@@ -14185,22 +14222,19 @@ Meditate: 1/1 completed
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=ee865eba208dd6f4">
+<div class="cell border-box-sizing code_cell rendered celltag_keep celltag_subslide" id="cell-id=668742bdc019dae5">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In [44]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_log_entry_unknown_habit</span><span class="p">():</span>
-    <span class="n">con</span><span class="p">,</span> <span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span> <span class="o">=</span> <span class="n">setup_test_db</span><span class="p">()</span>
-    <span class="n">tracker</span> <span class="o">=</span> <span class="n">HabitTracker</span><span class="p">(</span><span class="n">habit_repo</span><span class="p">,</span> <span class="n">entry_repo</span><span class="p">)</span>
+    <span class="n">tracker</span> <span class="o">=</span> <span class="n">setup_habit_tracker</span><span class="p">()</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">tracker</span><span class="o">.</span><span class="n">log_entry</span><span class="p">(</span><span class="s2">"Nonexistent"</span><span class="p">,</span> <span class="s2">"2026-02-17"</span><span class="p">)</span>
         <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"Should have raised HabitNotFoundError"</span>
     <span class="k">except</span> <span class="n">HabitNotFoundError</span><span class="p">:</span>
         <span class="k">pass</span>
-
-    <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -14208,7 +14242,7 @@ Meditate: 1/1 completed
 </div>
 <div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=e7266d47b28cf8b2">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In [45]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">test_log_entry_unknown_habit</span><span class="p">()</span>

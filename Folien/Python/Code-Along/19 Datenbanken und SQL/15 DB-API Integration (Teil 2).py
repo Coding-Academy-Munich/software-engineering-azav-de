@@ -325,6 +325,9 @@ tracker.log_entry("Meditate", "2026-02-20")
 # %%
 tracker.show_progress()
 
+# %%
+tracker.get_progress()
+
 
 # %% [markdown]
 #
@@ -340,23 +343,22 @@ tracker.show_progress()
 # ## Repository testen
 
 # %%
-def setup_test_db() -> tuple[sqlite3.Connection, HabitRepository, EntryRepository]:
+def setup_test_db() -> tuple[HabitRepository, EntryRepository]:
     con = create_connection(":memory:")
     habit_repo = HabitRepository(con)
     habit_repo.create_table()
     entry_repo = EntryRepository(con)
     entry_repo.create_table()
-    return con, habit_repo, entry_repo
+    return habit_repo, entry_repo
 
 
 # %%
 def test_add_habit():
-    con, repo, _ = setup_test_db()
+    repo, _ = setup_test_db()
     habit = repo.add("Test Habit", "For testing")
 
     assert habit.id == 1
     assert habit.name == "Test Habit"
-    con.close()
 
 
 # %%
@@ -365,10 +367,9 @@ test_add_habit()
 
 # %%
 def test_get_nonexistent_habit():
-    con, repo, _ = setup_test_db()
+    repo, _ = setup_test_db()
 
     assert repo.get_by_id(999) is None
-    con.close()
 
 
 # %%
@@ -384,16 +385,21 @@ test_get_nonexistent_habit()
 # - Geschäftslogik unabhängig von Datenbankdetails testen
 
 # %%
+def setup_habit_tracker() -> HabitTracker:
+    habit_repo, entry_repo = setup_test_db()
+    return HabitTracker(habit_repo, entry_repo)
+
+
+# %%
 def test_habit_tracking():
-    con, habit_repo, entry_repo = setup_test_db()
-    tracker = HabitTracker(habit_repo, entry_repo)
+    tracker = setup_habit_tracker()
 
-    habit = tracker.add_habit("Exercise")
-    entry_repo.log_entry(habit.id, "2026-02-17")
-    entry_repo.log_entry(habit.id, "2026-02-18")
+    tracker.add_habit("Exercise")
+    tracker.log_entry("Exercise", "2026-02-17")
+    tracker.log_entry("Exercise", "2026-02-18")
 
-    assert entry_repo.get_completion_count(habit.id) == 2
-    con.close()
+    progress = tracker.get_progress()
+    assert progress == [("Exercise", 2, 2)]
 
 
 # %%
@@ -402,16 +408,13 @@ test_habit_tracking()
 
 # %%
 def test_log_entry_unknown_habit():
-    con, habit_repo, entry_repo = setup_test_db()
-    tracker = HabitTracker(habit_repo, entry_repo)
+    tracker = setup_habit_tracker()
 
     try:
         tracker.log_entry("Nonexistent", "2026-02-17")
         assert False, "Should have raised HabitNotFoundError"
     except HabitNotFoundError:
         pass
-
-    con.close()
 
 
 # %%
