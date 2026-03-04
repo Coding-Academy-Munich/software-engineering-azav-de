@@ -13087,7 +13087,7 @@ div#notebook {
 <main>
 <div class="border-box-sizing" id="notebook" tabindex="-1">
 <div class="container" id="notebook-container">
-<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=86a986d2a3984c39"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=559246c674518a74"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img alt="Python Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRw
@@ -13137,7 +13137,7 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 " style="display:block;margin:auto;width:10%"/>
 <br/></p>
 <div style="text-align:center; font-size:200%;">
-<b>Klassenmethoden und Factories</b>
+<b>Beliebig viele Funktionsargumente</b>
 </div>
 <br>
 <div style="text-align:center;">Dr. Matthias Hölzl</div>
@@ -13145,87 +13145,21 @@ ZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIi8+PC9zdmc+
 </br></div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=5b685f143c80870b"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_private" id="cell-id=aefbf8b9b10d8919"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Klassenmethoden-und-Factories">Klassenmethoden und Factories<a class="anchor-link" href="#Klassenmethoden-und-Factories">¶</a></h2><p>Eine Factory ist eine Funktion (oder Klasse), die zur Konstruktion von
-Objekten verwendet werden kann. Python bietet mit Klassenmethoden ein
-mächtiges Konstrukt für die Implementierung von Factories an.</p>
-<p>Klassenmethoden sind Methoden, die typischerweise auf einer Klasse (und nicht
-einem Objekt) aufgerufen werden. Im Gegensatz zu statischen Methoden (die
-keine Information über die Klasse, auf der sie aufgerufen werden bekommen)
-bekommen Klassenmethoden das Klassenobjekt, auf dem sie aufgerufen werden, als
-argument. Dieses Klassenobjekt kann verwendet werden um Operationen
-auszuführen, die von der Klasse abhängen, z.B. das Erstellen von
-Objektinstanzen.</p>
+<p>Requires lists and dicts</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3f5203df18900b5a">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=93a46ee7864e34fd">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5d80dfad15379339">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f6d369b5f7311899">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=7a6b5cbfe20849e3">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=58758e2e3d4077ce"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=8be139d7751c1ec7"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Falls die Konstruktor-Argumente einer Subklasse mit der Oberklasse kompatibel
-sind, können die Klassenmethoden der Oberklasse direkt als Factories für die
-Unterklassen verwendet werden.</p>
+<h2 id="Beliebig-viele-Funktionsargumente:">Beliebig viele Funktionsargumente:<a class="anchor-link" href="#Beliebig-viele-Funktionsargumente:">¶</a></h2><p>Man kann Funktionen definieren, die beliebig viele Argumente bekommen können:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a710995e761ce41e">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=cecbef691a0db0d9">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13236,7 +13170,7 @@ Unterklassen verwendet werden.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=d7fa2b275cf200ef">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=bcb14d6cfce35477">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13247,38 +13181,19 @@ Unterklassen verwendet werden.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=188899af7ea8b663">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3d2e512b87acbda8">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=8b269c4a3486441d"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=9a8f1f20265d4958"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Attribute-von-Klassen">Attribute von Klassen<a class="anchor-link" href="#Attribute-von-Klassen">¶</a></h2><p>Die meisten Attribute werden auf der Instanz-Ebene definiert, d.h.,
-jedes Objekt hat seine eigenen Werte für die Attribute. Manchmal ist es
-aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
+<h2 id="Mini-Workshop">Mini-Workshop<a class="anchor-link" href="#Mini-Workshop">¶</a></h2><p>Schreiben Sie eine Funktion <code>print_lines(*args)</code>, die beliebig viele
+Argumente bekommt und ein Argument pro Zeile ausgibt:</p>
+<pre><code>&gt;&gt;&gt; print_lines("hey", "you")
+hey
+you
+</code></pre>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=58ca5a5eaaed6e7f">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=405687451aa11027">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13289,7 +13204,7 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=703c922f2db75e62">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=b4568b3f87387919">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13300,58 +13215,14 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5c50b67e406e8198">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=63ca60e2a03b5596">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=5e4121cb170cdd75">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a8219a76f07fb244">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered" id="cell-id=aa5eded2ab0183b8"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=cbc294dba84973b4"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Vererbung">Vererbung<a class="anchor-link" href="#Vererbung">¶</a></h3>
+<p>Das kann auch mit anderen Argumenten kombiniert werden:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=f02a38c342b6a6ec">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=bfd3dfd519eb5dd2">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13362,7 +13233,7 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=06c6be560b10f4fd">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=962fc5d7c0d55bc0">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13373,7 +13244,7 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=8c1e6ec1752d84f9">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=c419446a737de85d">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13384,7 +13255,7 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=cd2e22075610095f">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=da94002cf41e1c87">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13395,7 +13266,14 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=3712caf1b81c1796">
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=579d3cc6470759e9"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Beliebig-viele-benannte-Argumente:">Beliebig viele benannte Argumente:<a class="anchor-link" href="#Beliebig-viele-benannte-Argumente:">¶</a></h2><p>Ebenso kann eine Funktion beliebig viele benannte Argumente haben:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=5e15f38278be5b6a">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13406,7 +13284,7 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=a0a33f28cad599f0">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=94dd256786ee07df">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13417,7 +13295,14 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=fb1e02d245d9bde5">
+<div class="cell border-box-sizing text_cell rendered" id="cell-id=648ab4d59993b3e8"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Es ist möglich diese beiden Features zu kombinieren:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=079dd9932f4deee3">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13428,7 +13313,7 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=317fd60c5eefa8cf">
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=1b6070d61bdb19ae">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -13439,7 +13324,143 @@ aber sinnvoll Attribute auch auf der Klassenebene zu definieren:</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered" id="cell-id=4cbda18ccd992d9d">
+<div class="cell border-box-sizing text_cell rendered celltag_subslide" id="cell-id=a5ca99652dd1c7d9"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mini-Workshop">Mini-Workshop<a class="anchor-link" href="#Mini-Workshop">¶</a></h2><p>Schreiben Sie eine Funktion <code>print_named_lines(**kwargs)</code>, die beliebig viele
+Keyword-Argumente bekommt und sie in folgender Form auf dem Bildschirm
+ausgibt:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_named_lines</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="s2">"My Foo"</span><span class="p">,</span> <span class="n">bar</span><span class="o">=</span><span class="s2">"My Bar"</span><span class="p">,</span> <span class="n">quux</span><span class="o">=</span><span class="s2">"My Quux"</span><span class="p">)</span>
+<span class="n">Key</span><span class="p">:</span> <span class="n">foo</span> <span class="o">--</span> <span class="n">value</span><span class="p">:</span> <span class="n">My</span> <span class="n">Foo</span>
+<span class="n">Key</span><span class="p">:</span> <span class="n">bar</span> <span class="o">--</span> <span class="n">value</span><span class="p">:</span> <span class="n">My</span> <span class="n">Bar</span>
+<span class="n">Key</span><span class="p">:</span> <span class="n">quux</span> <span class="o">--</span> <span class="n">value</span><span class="p">:</span> <span class="n">My</span> <span class="n">Quux</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=6061829bfcbbd36f">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_keep" id="cell-id=bf5af174a2510290">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">print_named_lines</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="s2">"My Foo"</span><span class="p">,</span> <span class="n">bar</span><span class="o">=</span><span class="s2">"My Bar"</span><span class="p">,</span> <span class="n">quux</span><span class="o">=</span><span class="s2">"My Quux"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered celltag_slide" id="cell-id=80af7ba5d0b10760"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="%22Splicing%22-von-Argumenten">"Splicing" von Argumenten<a class="anchor-link" href="#%22Splicing%22-von-Argumenten">¶</a></h2><ul>
+<li>Wenn man eine Liste <code>args</code> hat, kann man die darin enthaltenen Werte mit
+der Syntax <code>*args</code> als positionale Argumente übergeben.</li>
+<li>Wenn man ein Dictionary <code>kwargs</code> hat, kann man die Key/Value-Paare mit der
+Syntax <code>**kwargs</code> als benannte Argumente übergeben:</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=f21ecbe2fda4e4de">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=a16b90b464ab92aa">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2d031126aa9c801d">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=95b98e8756aff055">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=1a8d973f7fa893a4">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_subslide" id="cell-id=1868936e40e4b092">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=acc236559508f1e6">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=70c4bb6a95ab64ae">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered" id="cell-id=2434c00fa9b2b890">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
